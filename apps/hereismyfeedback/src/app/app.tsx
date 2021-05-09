@@ -2,7 +2,11 @@ import { useGlobal } from "../GlobalProvider";
 
 export function App() {
   const { connect, accessToken } = useGlobal();
-  connect(accessToken);
+  const socket = connect(accessToken);
+  socket.on("news", function (data) {
+    console.log(data);
+  });
+
   // return <div className={styles.app}>test</div>;
   return (
     <div className="min-h-screen bg-gray-100 p-0 sm:p-12">
