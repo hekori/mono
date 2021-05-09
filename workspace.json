@@ -42,10 +42,9 @@
               "apps/hereismyfeedback/src/assets"
             ],
             "styles": [
-              "apps/hereismyfeedback/src/styles.css"
             ],
             "scripts": [],
-            "webpackConfig": "@nrwl/react/plugins/webpack"
+            "webpackConfig": "webpack.config.js"
           },
           "configurations": {
             "production": {

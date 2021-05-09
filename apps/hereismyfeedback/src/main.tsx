@@ -1,8 +1,8 @@
-import React, { StrictMode, useContext } from "react";
+import React, { StrictMode } from "react";
 import * as ReactDOM from "react-dom";
-
-import App from "./app/app";
+import "tailwindcss/tailwind.css";
 import { GlobalProvider } from "./GlobalProvider";
+import { App } from "./app/app";
 
 ReactDOM.render(
   <StrictMode>

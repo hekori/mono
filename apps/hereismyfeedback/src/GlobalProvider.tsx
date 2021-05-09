@@ -4,7 +4,7 @@ import React, { useContext, useMemo } from "react";
 export const GlobalCtx = React.createContext(null);
 
 interface GlobalProviderProps {
-  children: React.ReactChildren;
+  children: React.ReactChildren | React.ReactChild;
 }
 export const GlobalProvider: React.FC<GlobalProviderProps> = ({ children }) => {
   const connect = (accessToken: string) => {
