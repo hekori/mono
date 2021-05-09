@@ -19,6 +19,10 @@ io.use(function (socket, next) {
   console.log(socket.handshake.query);
   if (socket.handshake.query && socket.handshake.query.accessToken) {
     try {
+      setInterval(() => {
+        socket.emit("news", { hello: "world" });
+      }, 1000);
+
       const decoded = jwt.verify(
         socket.handshake.query.accessToken,
         process.env.NX_JWT_PRIVATE_KEY
