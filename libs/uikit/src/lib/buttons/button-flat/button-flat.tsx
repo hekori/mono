@@ -1,8 +1,10 @@
-interface ButtonProps {
+import React from "react";
+
+interface ButtonFlatProps {
   text: string;
 }
 
-export const Button: React.FC<ButtonProps> = ({ text }) => {
+export const ButtonFlat: React.FC<ButtonFlatProps> = ({ text }) => {
   return (
     <button
       type="button"
@@ -12,3 +14,5 @@ export const Button: React.FC<ButtonProps> = ({ text }) => {
     </button>
   );
 };
+
+export default ButtonFlat;
