@@ -23,6 +23,9 @@
       ],
       "@hekori/uikit": [
         "libs/uikit/src/index.ts"
+      ],
+      "@hekori/cli": [
+        "libs/cli/src/index.ts"
       ]
     }
   },
