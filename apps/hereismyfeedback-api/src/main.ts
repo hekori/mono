@@ -20,8 +20,10 @@ io.use(function (socket, next) {
     console.log(socket.handshake.query)
     if (socket.handshake.query && socket.handshake.query.accessToken) {
         try {
+            let counter = 0
             setInterval(() => {
-                socket.emit('news', { hello: 'world' })
+                socket.emit('news', { id: '' + counter, title: 'Random' })
+                counter += 1
             }, 1000)
 
             const decoded = jwt.verify(

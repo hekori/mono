@@ -5,12 +5,6 @@ import { CreateNewFeedback } from './pages/CreateNewFeedback'
 import { IndexPage } from './pages/IndexPage'
 
 export function App() {
-    const { connect, accessToken } = useGlobal()
-    const socket = connect(accessToken)
-    socket.on('news', function (data) {
-        console.log(data)
-    })
-
     return (
         <BrowserRouter>
             <Switch>
