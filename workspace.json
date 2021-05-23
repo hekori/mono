@@ -1,284 +1,260 @@
 {
-  "version": 2,
-  "cli": {
-    "defaultCollection": "@nrwl/react"
-  },
-  "defaultProject": "hereismyfeedback",
-  "generators": {
-    "@nrwl/react": {
-      "application": {
-        "style": "css",
-        "linter": "eslint",
-        "babel": true
-      },
-      "component": {
-        "style": "css"
-      },
-      "library": {
-        "style": "css",
-        "linter": "eslint"
-      }
-    }
-  },
-  "projects": {
-    "hereismyfeedback": {
-      "root": "apps/hereismyfeedback",
-      "sourceRoot": "apps/hereismyfeedback/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/web:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/apps/hereismyfeedback",
-            "index": "apps/hereismyfeedback/src/index.html",
-            "main": "apps/hereismyfeedback/src/main.tsx",
-            "polyfills": "apps/hereismyfeedback/src/polyfills.ts",
-            "tsConfig": "apps/hereismyfeedback/tsconfig.app.json",
-            "assets": [
-              "apps/hereismyfeedback/src/favicon.ico",
-              "apps/hereismyfeedback/src/assets"
-            ],
-            "styles": [],
-            "scripts": [],
-            "webpackConfig": "webpack.config.js"
-          },
-          "configurations": {
-            "production": {
-              "fileReplacements": [
-                {
-                  "replace": "apps/hereismyfeedback/src/environments/environment.ts",
-                  "with": "apps/hereismyfeedback/src/environments/environment.prod.ts"
-                }
-              ],
-              "optimization": true,
-              "outputHashing": "all",
-              "sourceMap": false,
-              "extractCss": true,
-              "namedChunks": false,
-              "extractLicenses": true,
-              "vendorChunk": false,
-              "budgets": [
-                {
-                  "type": "initial",
-                  "maximumWarning": "2mb",
-                  "maximumError": "5mb"
-                }
-              ]
-            }
-          }
-        },
-        "serve": {
-          "executor": "@nrwl/web:dev-server",
-          "options": {
-            "buildTarget": "hereismyfeedback:build",
-            "proxyConfig": "apps/hereismyfeedback/proxy.conf.json"
-          },
-          "configurations": {
-            "production": {
-              "buildTarget": "hereismyfeedback:build:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/hereismyfeedback/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/hereismyfeedback"
-          ],
-          "options": {
-            "jestConfig": "apps/hereismyfeedback/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "hereismyfeedback-e2e": {
-      "root": "apps/hereismyfeedback-e2e",
-      "sourceRoot": "apps/hereismyfeedback-e2e/src",
-      "projectType": "application",
-      "targets": {
-        "e2e": {
-          "executor": "@nrwl/cypress:cypress",
-          "options": {
-            "cypressConfig": "apps/hereismyfeedback-e2e/cypress.json",
-            "tsConfig": "apps/hereismyfeedback-e2e/tsconfig.e2e.json",
-            "devServerTarget": "hereismyfeedback:serve"
-          },
-          "configurations": {
-            "production": {
-              "devServerTarget": "hereismyfeedback:serve:production"
-            }
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/hereismyfeedback-e2e/**/*.{js,ts}"
-            ]
-          }
-        }
-      }
-    },
-    "api": {
-      "root": "apps/api",
-      "sourceRoot": "apps/api/src",
-      "projectType": "application",
-      "targets": {
-        "build": {
-          "executor": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/apps/api",
-            "main": "apps/api/src/main.ts",
-            "tsConfig": "apps/api/tsconfig.app.json",
-            "assets": [
-              "apps/api/src/assets"
-            ]
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "extractLicenses": true,
-              "inspect": false,
-              "fileReplacements": [
-                {
-                  "replace": "apps/api/src/environments/environment.ts",
-                  "with": "apps/api/src/environments/environment.prod.ts"
-                }
-              ]
-            }
-          }
-        },
-        "buildCli": {
-          "executor": "@nrwl/node:build",
-          "outputs": [
-            "{options.outputPath}"
-          ],
-          "options": {
-            "outputPath": "dist/apps/api/cli",
-            "main": "apps/api/src/cli/index.ts",
-            "tsConfig": "apps/api/tsconfig.app.json"
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "inspect": false
-            }
-          }
-        },
-        "serve": {
-          "executor": "@nrwl/node:execute",
-          "options": {
-            "buildTarget": "api:build"
-          }
-        },
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "apps/api/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/apps/api"
-          ],
-          "options": {
-            "jestConfig": "apps/api/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "shared": {
-      "root": "libs/shared",
-      "sourceRoot": "libs/shared/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/shared/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/shared"
-          ],
-          "options": {
-            "jestConfig": "libs/shared/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
-    "uikit": {
-      "root": "libs/uikit",
-      "sourceRoot": "libs/uikit/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/uikit/**/*.{ts,tsx,js,jsx}"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/uikit"
-          ],
-          "options": {
-            "jestConfig": "libs/uikit/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
+    "version": 2,
     "cli": {
-      "root": "libs/cli",
-      "sourceRoot": "libs/cli/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": [
-              "libs/cli/**/*.ts"
-            ]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": [
-            "coverage/libs/cli"
-          ],
-          "options": {
-            "jestConfig": "libs/cli/jest.config.js",
-            "passWithNoTests": true
-          }
+        "defaultCollection": "@nrwl/react"
+    },
+    "defaultProject": "hereismyfeedback",
+    "generators": {
+        "@nrwl/react": {
+            "application": {
+                "style": "css",
+                "linter": "eslint",
+                "babel": true
+            },
+            "component": {
+                "style": "css"
+            },
+            "library": {
+                "style": "css",
+                "linter": "eslint"
+            }
         }
-      }
+    },
+    "projects": {
+        "hereismyfeedback": {
+            "root": "apps/hereismyfeedback",
+            "sourceRoot": "apps/hereismyfeedback/src",
+            "projectType": "application",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/web:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/hereismyfeedback",
+                        "index": "apps/hereismyfeedback/src/index.html",
+                        "main": "apps/hereismyfeedback/src/main.tsx",
+                        "polyfills": "apps/hereismyfeedback/src/polyfills.ts",
+                        "tsConfig": "apps/hereismyfeedback/tsconfig.app.json",
+                        "assets": [
+                            "apps/hereismyfeedback/src/favicon.ico",
+                            "apps/hereismyfeedback/src/assets"
+                        ],
+                        "styles": [],
+                        "scripts": [],
+                        "webpackConfig": "webpack.config.js"
+                    },
+                    "configurations": {
+                        "production": {
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/hereismyfeedback/src/environments/environment.ts",
+                                    "with": "apps/hereismyfeedback/src/environments/environment.prod.ts"
+                                }
+                            ],
+                            "optimization": true,
+                            "outputHashing": "all",
+                            "sourceMap": false,
+                            "extractCss": true,
+                            "namedChunks": false,
+                            "extractLicenses": true,
+                            "vendorChunk": false,
+                            "budgets": [
+                                {
+                                    "type": "initial",
+                                    "maximumWarning": "2mb",
+                                    "maximumError": "5mb"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/web:dev-server",
+                    "options": {
+                        "buildTarget": "hereismyfeedback:build",
+                        "proxyConfig": "apps/hereismyfeedback/proxy.conf.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "buildTarget": "hereismyfeedback:build:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/hereismyfeedback/**/*.{ts,tsx,js,jsx}"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/hereismyfeedback"],
+                    "options": {
+                        "jestConfig": "apps/hereismyfeedback/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "hereismyfeedback-e2e": {
+            "root": "apps/hereismyfeedback-e2e",
+            "sourceRoot": "apps/hereismyfeedback-e2e/src",
+            "projectType": "application",
+            "targets": {
+                "e2e": {
+                    "executor": "@nrwl/cypress:cypress",
+                    "options": {
+                        "cypressConfig": "apps/hereismyfeedback-e2e/cypress.json",
+                        "tsConfig": "apps/hereismyfeedback-e2e/tsconfig.e2e.json",
+                        "devServerTarget": "hereismyfeedback:serve"
+                    },
+                    "configurations": {
+                        "production": {
+                            "devServerTarget": "hereismyfeedback:serve:production"
+                        }
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/hereismyfeedback-e2e/**/*.{js,ts}"
+                        ]
+                    }
+                }
+            }
+        },
+        "shared": {
+            "root": "libs/shared",
+            "sourceRoot": "libs/shared/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/shared/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/shared"],
+                    "options": {
+                        "jestConfig": "libs/shared/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "uikit": {
+            "root": "libs/uikit",
+            "sourceRoot": "libs/uikit/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/uikit/**/*.{ts,tsx,js,jsx}"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/uikit"],
+                    "options": {
+                        "jestConfig": "libs/uikit/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "cli": {
+            "root": "libs/cli",
+            "sourceRoot": "libs/cli/src",
+            "projectType": "library",
+            "targets": {
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": ["libs/cli/**/*.ts"]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/libs/cli"],
+                    "options": {
+                        "jestConfig": "libs/cli/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        },
+        "hereismyfeedback-api": {
+            "root": "apps/hereismyfeedback-api",
+            "sourceRoot": "apps/hereismyfeedback-api/src",
+            "projectType": "application",
+            "targets": {
+                "build": {
+                    "executor": "@nrwl/node:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/hereismyfeedback-api",
+                        "main": "apps/hereismyfeedback-api/src/main.ts",
+                        "tsConfig": "apps/hereismyfeedback-api/tsconfig.app.json",
+                        "assets": ["apps/hereismyfeedback-api/src/assets"]
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "extractLicenses": true,
+                            "inspect": false,
+                            "fileReplacements": [
+                                {
+                                    "replace": "apps/hereismyfeedback-api/src/environments/environment.ts",
+                                    "with": "apps/hereismyfeedback-api/src/environments/environment.prod.ts"
+                                }
+                            ]
+                        }
+                    }
+                },
+                "buildCli": {
+                    "executor": "@nrwl/node:build",
+                    "outputs": ["{options.outputPath}"],
+                    "options": {
+                        "outputPath": "dist/apps/hereismyfeedback-api/cli",
+                        "main": "apps/hereismyfeedback-api/src/cli/index.ts",
+                        "tsConfig": "apps/hereismyfeedback-api/tsconfig.app.json"
+                    },
+                    "configurations": {
+                        "production": {
+                            "optimization": true,
+                            "inspect": false
+                        }
+                    }
+                },
+                "serve": {
+                    "executor": "@nrwl/node:execute",
+                    "options": {
+                        "buildTarget": "hereismyfeedback-api:build"
+                    }
+                },
+                "lint": {
+                    "executor": "@nrwl/linter:eslint",
+                    "options": {
+                        "lintFilePatterns": [
+                            "apps/hereismyfeedback-api/**/*.ts"
+                        ]
+                    }
+                },
+                "test": {
+                    "executor": "@nrwl/jest:jest",
+                    "outputs": ["coverage/apps/hereismyfeedback-api"],
+                    "options": {
+                        "jestConfig": "apps/hereismyfeedback-api/jest.config.js",
+                        "passWithNoTests": true
+                    }
+                }
+            }
+        }
     }
-  }
 }
