@@ -31,3 +31,5 @@ program
     .command('createMigration')
     .action(createMigration)
     .arguments('<action> [pathToDump]')
+
+program.parse(process.argv)
