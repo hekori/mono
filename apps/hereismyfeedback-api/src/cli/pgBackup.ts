@@ -5,7 +5,7 @@ import * as path from 'path'
 import * as chalk from 'chalk'
 import dayjs = require('dayjs')
 import { formatFileSystemSaveISO } from './migrate'
-import { execLog } from '@hekori/shared'
+import { execLog } from '../../../../libs/shared/src'
 const ROOT_DIR = path.dirname(path.dirname(__dirname))
 
 enum Action {

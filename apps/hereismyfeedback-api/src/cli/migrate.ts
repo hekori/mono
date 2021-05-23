@@ -6,21 +6,20 @@ import { Dayjs } from 'dayjs'
 
 const TABLE_NAME = 'migrations'
 
-export const setupMigrations = async () => {
-    try {
-        pg.raw(`
-CREATE TABLE IF NOT EXISTS ${TABLE_NAME}();
-ALTER TABLE ${TABLE_NAME} ADD COLUMN IF NOT EXISTS "migrationId" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
-ALTER TABLE ${TABLE_NAME} ADD COLUMN IF NOT EXISTS "executedAt" timestamp with time zone NOT NULL;
-ALTER TABLE ${TABLE_NAME} ADD COLUMN IF NOT EXISTS "NAME" VARCHAR(256) NOT NULL;
-ALTER TABLE ${TABLE_NAME} ADD CONSTRAINT IF NOT EXISTS UNIQUE("name");
-        `)
-    } catch (e) {
-        // do nothing
-    }
-}
-
 const migrationsPath = path.join(path.dirname(__dirname), 'migrations')
+
+export const setupMigrations = async () => {
+    console.log('Create migrations table if not exists ...')
+    await pg.raw(`
+CREATE EXTENSION IF NOT EXISTS "uuid-ossp";
+CREATE TABLE IF NOT EXISTS ${TABLE_NAME}();
+ALTER TABLE ${TABLE_NAME} ADD COLUMN IF NOT EXISTS "uuid" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
+ALTER TABLE ${TABLE_NAME} ADD COLUMN IF NOT EXISTS "executedAt" timestamp with time zone NOT NULL;
+ALTER TABLE ${TABLE_NAME} ADD COLUMN IF NOT EXISTS "name" VARCHAR(256) NOT NULL;
+CREATE UNIQUE INDEX IF NOT EXISTS  "${TABLE_NAME}_name_idx" on ${TABLE_NAME} ("name");
+`)
+    console.log('Done.')
+}
 
 export const migrateUp = async (migration: string) => {
     console.log(`called migrateUp(${migration})`)
@@ -63,7 +62,7 @@ export const migrateDown = async (migration: string) => {
 }
 
 export const getDbMigrations = async () => {
-    return pg.table('migration').select('*').orderBy('executedAt', 'asc')
+    return pg.table(TABLE_NAME).select('*').orderBy('executedAt', 'asc')
 }
 
 export const getFsMigrations = () => {
@@ -101,10 +100,8 @@ const printPostgresConnectionConfig = () => {
  * All files of the form ./migrations/*---*.ts get executed in lexicographical order
  * if and only if they are not marked as executed in the `migration` postgres table
  */
-export const migrate = async (cmd, args?: string[]) => {
-    const arg: string = (args ?? [''])[0]
-
-    if (arg !== '' && arg !== 'back') {
+export const migrate = async (arg?: string) => {
+    if (arg !== undefined && arg !== 'back') {
         console.error(`Invalid argument ${arg}`)
         return
     }
@@ -126,7 +123,7 @@ export const migrate = async (cmd, args?: string[]) => {
         case 'back':
             {
                 const res = await pg
-                    .table('migration')
+                    .table(TABLE_NAME)
                     .select('*')
                     .orderBy('executedAt', 'desc')
                     .limit(1)
@@ -142,11 +139,11 @@ export const migrate = async (cmd, args?: string[]) => {
             }
             break
 
-        case '':
+        case undefined:
             {
                 for (const migration of migrations) {
                     const res = await pg
-                        .table('migration')
+                        .table(TABLE_NAME)
                         .select('*')
                         .where('name', migration)
                     if (res.length === 0) {
@@ -171,16 +168,17 @@ export const formatFileSystemSaveISO = (date: string | Date | Dayjs) => {
 export const createMigration = async (name: string) => {
     const now = formatFileSystemSaveISO(dayjs())
     const fileName = `${now}---${name}.ts`
-    const fileContent = `import {Transaction} from 'knex'
+    const fileAbsPath = path.join(migrationsPath, fileName)
+    const fileContent = `import { Knex } from 'knex'
 
-export const up = async (trx: Transaction) => {
-   // add your code here
-}  
-  
-export const down = async (trx: Transaction) => {
-   // add your code here
+export const up = async (trx: Knex.Transaction) => {
+    // add your code here
+}
+
+export const down = async (trx: Knex.Transaction) => {
+    // add your code here
 }
 `
 
-    return fs.writeFileSync(fileName, fileContent, { encoding: 'utf8' })
+    return fs.writeFileSync(fileAbsPath, fileContent, { encoding: 'utf8' })
 }

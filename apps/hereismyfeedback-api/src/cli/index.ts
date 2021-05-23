@@ -18,14 +18,11 @@ program
     })
     .action(pgBackup)
 
-program
-    .command('migrate')
-    .action(migrate)
-    .arguments('<action>')
-    .description('save or restore a postgres database dump', {
-        action:
-            "use 'migrate' migrates forward all migrations. 'migrate back' goes back one migration",
-    })
+program.command('migrate').action(migrate).arguments('[back]').action(migrate)
+
+// .description('execute or revert migrations ./migrations/*.ts', {
+//     back: 'revert the last executed migration',
+// })
 
 program
     .command('createMigration')
