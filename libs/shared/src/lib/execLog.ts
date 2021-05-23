@@ -1,4 +1,4 @@
-import util from 'util'
+import * as util from 'util'
 import { exec as exec0 } from 'child_process'
 
 const exec = util.promisify(exec0)
@@ -15,3 +15,5 @@ export const execLog = async (command: string) => {
         return
     }
 }
+
+export default execLog

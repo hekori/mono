@@ -21,6 +21,7 @@
     "format:write": "nx format:write",
     "format:check": "nx format:check",
     "update": "nx migrate latest",
+    "cli": "dotenv -e .env node dist/apps/api/cli/main.js",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help"
@@ -69,6 +70,7 @@
     "commander": "^7.2.0",
     "cypress": "^6.0.1",
     "dotenv": "8.2.0",
+    "dotenv-cli": "^4.0.0",
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
