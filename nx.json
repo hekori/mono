@@ -1,49 +1,42 @@
 {
-  "implicitDependencies": {
-    "package.json": {
-      "dependencies": "*",
-      "devDependencies": "*"
+    "implicitDependencies": {
+        "package.json": {
+            "dependencies": "*",
+            "devDependencies": "*"
+        },
+        ".eslintrc.json": "*"
     },
-    ".eslintrc.json": "*"
-  },
-  "affected": {
-    "defaultBase": "master"
-  },
-  "npmScope": "hekori",
-  "tasksRunnerOptions": {
-    "default": {
-      "runner": "@nrwl/workspace/tasks-runners/default",
-      "options": {
-        "cacheableOperations": [
-          "build",
-          "lint",
-          "test",
-          "e2e"
-        ]
-      }
+    "affected": {
+        "defaultBase": "master"
+    },
+    "npmScope": "hekori",
+    "tasksRunnerOptions": {
+        "default": {
+            "runner": "@nrwl/workspace/tasks-runners/default",
+            "options": {
+                "cacheableOperations": ["build", "lint", "test", "e2e"]
+            }
+        }
+    },
+    "projects": {
+        "hereismyfeedback": {
+            "tags": []
+        },
+        "hereismyfeedback-e2e": {
+            "tags": [],
+            "implicitDependencies": ["hereismyfeedback"]
+        },
+        "shared": {
+            "tags": []
+        },
+        "uikit": {
+            "tags": []
+        },
+        "cli": {
+            "tags": []
+        },
+        "hereismyfeedback-api": {
+            "tags": []
+        }
     }
-  },
-  "projects": {
-    "hereismyfeedback": {
-      "tags": []
-    },
-    "hereismyfeedback-e2e": {
-      "tags": [],
-      "implicitDependencies": [
-        "hereismyfeedback"
-      ]
-    },
-    "api": {
-      "tags": []
-    },
-    "shared": {
-      "tags": []
-    },
-    "uikit": {
-      "tags": []
-    },
-    "cli": {
-      "tags": []
-    }
-  }
 }
