@@ -1,2 +1,2 @@
 export * from './lib/shared'
-export { execLog } from './lib/execLog'
+export { execLog } from '../../cli/src/lib/execLog'
