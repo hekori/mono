@@ -11,6 +11,7 @@ import {
   shortDayNameFormatter,
   timeFormatter,
 } from '@hekori/dates'
+import { to } from '../../../traqrcode-common/src/misc'
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo
