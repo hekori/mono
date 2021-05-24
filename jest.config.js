@@ -9,5 +9,6 @@ module.exports = {
     '<rootDir>/apps/traqrcode',
     '<rootDir>/apps/traqrcode-api',
     '<rootDir>/libs/dates',
+    '<rootDir>/apps/uibook',
   ],
 }
