@@ -3,11 +3,11 @@ import { useState } from 'react'
 import { ContextState } from '../index.provider'
 import { Shell } from '../components/shell'
 import { useHistory } from 'react-router-dom'
-import { to } from '@hekori/traqrcode-common'
 import { api } from '../api'
 import { InputText } from '../components/inputText'
 import { TypeErrors } from './frontpage'
 import { getBackendCreatePostUrl } from '../../../traqrcode-common/src/urls'
+import { to } from '../../../traqrcode-common/src/misc'
 
 export const PageCreate = () => {
   const { state, setState } = React.useContext(ContextState)

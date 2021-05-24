@@ -4,10 +4,10 @@ import { useEffect, useState } from 'react'
 import { ContextState } from '../index.provider'
 import { Shell } from '../components/shell'
 import { useHistory } from 'react-router-dom'
-import { to } from '@hekori/traqrcode-common'
 import { api } from '../api'
 import { Loading } from '../components/Loading'
 import { Task } from '../../../traqrcode-common/src/interfaces/models'
+import { to } from '../../../traqrcode-common/src/misc'
 
 type PropsPageRead = {
   routeInfo: ReadRouteInfo

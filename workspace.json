@@ -426,6 +426,27 @@
           }
         }
       }
+    },
+    "dates": {
+      "root": "libs/dates",
+      "sourceRoot": "libs/dates/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/dates/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/dates"],
+          "options": {
+            "jestConfig": "libs/dates/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

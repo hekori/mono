@@ -6,8 +6,8 @@ import { useHistory } from 'react-router-dom'
 import { api } from '../api'
 import { dl } from '../dl'
 import { Loading } from '../components/Loading'
-import { to } from '@hekori/traqrcode-common'
 import { BACKEND_URL } from '../../../traqrcode-common/src/settings'
+import { to } from '../../../traqrcode-common/src/misc'
 
 type PropsPageView = {
   routeInfo: AdminRouteInfo
