@@ -1,36 +1,25 @@
 {
-  "compileOnSave": false,
-  "compilerOptions": {
-    "rootDir": ".",
-    "sourceMap": true,
-    "declaration": false,
-    "moduleResolution": "node",
-    "emitDecoratorMetadata": true,
-    "experimentalDecorators": true,
-    "importHelpers": true,
-    "target": "es2015",
-    "module": "esnext",
-    "lib": [
-      "es2017",
-      "dom"
-    ],
-    "skipLibCheck": true,
-    "skipDefaultLibCheck": true,
-    "baseUrl": ".",
-    "paths": {
-      "@hekori/shared": [
-        "libs/shared/src/index.ts"
-      ],
-      "@hekori/uikit": [
-        "libs/uikit/src/index.ts"
-      ],
-      "@hekori/cli": [
-        "libs/cli/src/index.ts"
-      ]
-    }
-  },
-  "exclude": [
-    "node_modules",
-    "tmp"
-  ]
+    "compileOnSave": false,
+    "compilerOptions": {
+        "rootDir": ".",
+        "sourceMap": true,
+        "declaration": false,
+        "moduleResolution": "node",
+        "emitDecoratorMetadata": true,
+        "experimentalDecorators": true,
+        "importHelpers": true,
+        "target": "es2015",
+        "module": "esnext",
+        "lib": ["es2017", "dom"],
+        "skipLibCheck": true,
+        "skipDefaultLibCheck": true,
+        "baseUrl": ".",
+        "paths": {
+            "@hekori/uikit": ["libs/uikit/src/index.ts"],
+            "@hekori/cli": ["libs/cli/src/index.ts"],
+            "@hekori/mail": ["libs/mail/src/index.ts"],
+            "@hekori/traqrcode-common": ["libs/traqrcode-common/src/index.ts"]
+        }
+    },
+    "exclude": ["node_modules", "tmp"]
 }
