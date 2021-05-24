@@ -1,8 +1,8 @@
 import { log } from './utils'
 
 import { CronJob } from 'cron'
-import { getDate } from '@hekori/traqrcode-common'
 import { getReqPathsWithinRange, removeSync } from './core'
+import { getDate } from '@hekori/dates'
 
 export const deleteOldReqs = () => {
   log('Run cronjob deleteOldReqs')

@@ -1,4 +1,4 @@
-import { getDate, isoDatetimeFormatter } from '../dates'
+import { getDate, isoDatetimeFormatter } from './dates'
 
 describe('isoDatetimeFormatter', () => {
   it('should correctly return an iso datetime string', () => {

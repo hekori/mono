@@ -2,10 +2,10 @@ import * as React from 'react'
 import { SyntheticEvent } from 'react'
 import { InputText } from './inputText'
 import { ContextState } from '../index.provider'
-import { getItemUrl } from '@hekori/traqrcode-common'
 
 import QRCode from 'qrcode.react'
 import { PageEditErrors } from '../../../traqrcode-common/src/interfaces/api'
+import { getItemUrl } from '../../../traqrcode-common/src/misc'
 
 type ReqProps = {
   itemIndex: string

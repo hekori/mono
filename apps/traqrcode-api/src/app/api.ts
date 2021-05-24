@@ -6,7 +6,6 @@ import {
   SSLApp,
   TemplatedApp,
 } from 'uWebSockets.js'
-import { API_CODE, to } from '@hekori/traqrcode-common'
 import { log } from './utils'
 import { FileStream } from './api.file'
 import * as path from 'path'
@@ -17,6 +16,8 @@ import {
   STATIC_DIR,
 } from './settings'
 import { STAGE } from '../../../traqrcode-common/src/settings'
+import { to } from '../../../traqrcode-common/src/misc'
+import { API_CODE } from '../../../traqrcode-common/src/constants'
 
 export type MyHttpResponse = HttpResponse
 

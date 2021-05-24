@@ -8,5 +8,6 @@ module.exports = {
     '<rootDir>/libs/mail',
     '<rootDir>/apps/traqrcode',
     '<rootDir>/apps/traqrcode-api',
+    '<rootDir>/libs/dates',
   ],
 }

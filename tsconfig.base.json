@@ -18,7 +18,7 @@
       "@hekori/uikit": ["libs/uikit/src/index.ts"],
       "@hekori/cli": ["libs/cli/src/index.ts"],
       "@hekori/mail": ["libs/mail/src/index.ts"],
-      "@hekori/traqrcode-common": ["libs/traqrcode-common/src/index.ts"]
+      "@hekori/dates": ["libs/dates/src/index.ts"]
     }
   },
   "exclude": ["node_modules", "tmp"]

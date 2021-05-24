@@ -6,8 +6,9 @@ import {
   removeReq,
   writeReq,
 } from '../core'
-import { getDate, Req } from '@hekori/traqrcode-common'
 import { STORE_DIR } from '../settings'
+import { Req } from '../../../../traqrcode-common/src/interfaces/models'
+import { getDate } from '@hekori/dates'
 
 describe('getUnusedShortHash', () => {
   it('should get some hash', () => {

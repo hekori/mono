@@ -1,7 +1,7 @@
 import { sendMail } from '../mail'
 import { log } from '../utils'
-import { STAGE } from '@hekori/traqrcode-common'
 import { SMTP_HOST, SMTP_PORT, SMTP_USER } from '../settings'
+import { STAGE } from '../../../../traqrcode-common/src/settings'
 
 describe('sendMail', () => {
   it('should send email', async () => {
