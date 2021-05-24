@@ -23,8 +23,7 @@ export const PageRead = ({ routeInfo }: PropsPageRead) => {
   useEffect(() => {
     const t = async () => {
       setLoading(true)
-      let err, res
-      ;[err, res] = await to(
+      const [err, res] = await to(
         api.get(`/read/${routeInfo.shortHash}/${routeInfo.itemId}`)
       )
       setLoading(false)

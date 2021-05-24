@@ -18,8 +18,7 @@ export const PageView = ({ routeInfo }: PropsPageView) => {
 
   const download = async () => {
     setLoading(true)
-    let err, res
-    ;[err, res] = await to(api.getBlob(`/pdf/${routeInfo.shortHash}`))
+    const [err, res] = await to(api.getBlob(`/pdf/${routeInfo.shortHash}`))
     setLoading(false)
     if (err) {
       console.log('error', err)
