@@ -1,55 +1,55 @@
 {
-    "implicitDependencies": {
-        "package.json": {
-            "dependencies": "*",
-            "devDependencies": "*"
-        },
-        ".eslintrc.json": "*"
+  "implicitDependencies": {
+    "package.json": {
+      "dependencies": "*",
+      "devDependencies": "*"
     },
-    "affected": {
-        "defaultBase": "master"
-    },
-    "npmScope": "hekori",
-    "tasksRunnerOptions": {
-        "default": {
-            "runner": "@nrwl/workspace/tasks-runners/default",
-            "options": {
-                "cacheableOperations": ["build", "lint", "test", "e2e"]
-            }
-        }
-    },
-    "projects": {
-        "hereismyfeedback": {
-            "tags": []
-        },
-        "hereismyfeedback-e2e": {
-            "tags": [],
-            "implicitDependencies": ["hereismyfeedback"]
-        },
-        "uikit": {
-            "tags": []
-        },
-        "cli": {
-            "tags": []
-        },
-        "hereismyfeedback-api": {
-            "tags": []
-        },
-        "mail": {
-            "tags": []
-        },
-        "traqrcode": {
-            "tags": []
-        },
-        "traqrcode-e2e": {
-            "tags": [],
-            "implicitDependencies": ["traqrcode"]
-        },
-        "traqrcode-api": {
-            "tags": []
-        },
-        "traqrcode-common": {
-            "tags": []
-        }
+    ".eslintrc.json": "*"
+  },
+  "affected": {
+    "defaultBase": "master"
+  },
+  "npmScope": "hekori",
+  "tasksRunnerOptions": {
+    "default": {
+      "runner": "@nrwl/workspace/tasks-runners/default",
+      "options": {
+        "cacheableOperations": ["build", "lint", "test", "e2e"]
+      }
     }
+  },
+  "projects": {
+    "hereismyfeedback": {
+      "tags": []
+    },
+    "hereismyfeedback-e2e": {
+      "tags": [],
+      "implicitDependencies": ["hereismyfeedback"]
+    },
+    "uikit": {
+      "tags": []
+    },
+    "cli": {
+      "tags": []
+    },
+    "hereismyfeedback-api": {
+      "tags": []
+    },
+    "mail": {
+      "tags": []
+    },
+    "traqrcode": {
+      "tags": []
+    },
+    "traqrcode-e2e": {
+      "tags": [],
+      "implicitDependencies": ["traqrcode"]
+    },
+    "traqrcode-api": {
+      "tags": []
+    },
+    "traqrcode-common": {
+      "tags": []
+    }
+  }
 }

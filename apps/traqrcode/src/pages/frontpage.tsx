@@ -2,10 +2,10 @@ import { useHistory } from 'react-router-dom'
 import * as React from 'react'
 import { Shell } from '../components/shell'
 
-const progressSvg = require('../assets/frontpage/progress.svg')
-const workersSvg = require('../assets/frontpage/workers.svg')
-const emailSentSvg = require('../assets/frontpage/email_sent.svg')
-const mobileScanningSvg = require('../assets/frontpage/mobile_scanning_qr.svg')
+import progressSvg from '../assets/frontpage/progress.svg'
+import workersSvg from '../assets/frontpage/workers.svg'
+import emailSentSvg from '../assets/frontpage/email_sent.svg'
+import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
 
 export type TypeErrors = {
   admin?: string
