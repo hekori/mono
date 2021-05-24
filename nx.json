@@ -53,6 +53,13 @@
     },
     "dates": {
       "tags": []
+    },
+    "uibook": {
+      "tags": []
+    },
+    "uibook-e2e": {
+      "tags": [],
+      "implicitDependencies": ["uibook"]
     }
   }
 }
