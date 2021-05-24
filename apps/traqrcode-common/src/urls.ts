@@ -1,4 +1,4 @@
-import { BACKEND_URL, FRONTEND_URL } from '../settings'
+import { BACKEND_URL, FRONTEND_URL } from './settings'
 
 export enum Action {
   start = 'start',
@@ -41,7 +41,7 @@ export interface EditRouteInfo {
 
 export const getFrontendEditUrl = (
   routeInfo: EditRouteInfo,
-  addBaseUrl = false,
+  addBaseUrl = false
 ): string => {
   return `${addBaseUrl ? FRONTEND_URL : ''}/edit/${routeInfo.shortHash}/${
     routeInfo.accessToken
@@ -50,7 +50,7 @@ export const getFrontendEditUrl = (
 
 export const getFrontendReadUrl = (
   routeInfo: ReadRouteInfo,
-  addBaseUrl = false,
+  addBaseUrl = false
 ): string => {
   return `${addBaseUrl ? FRONTEND_URL : ''}/read/${routeInfo.shortHash}/${
     routeInfo.itemId
@@ -59,7 +59,7 @@ export const getFrontendReadUrl = (
 
 export const getFrontendTaskUrl = (
   routeInfo: TaskRouteInfo,
-  addBaseUrl = false,
+  addBaseUrl = false
 ): string => {
   return `${addBaseUrl ? FRONTEND_URL : ''}/task/${routeInfo.shortHash}/${
     routeInfo.itemId
@@ -68,7 +68,7 @@ export const getFrontendTaskUrl = (
 
 export const getFrontendActUrl = (
   routeInfo: ActRouteInfo,
-  addBaseUrl = false,
+  addBaseUrl = false
 ): string => {
   return `${addBaseUrl ? FRONTEND_URL : ''}/act/${routeInfo.action}/${
     routeInfo.shortHash
@@ -77,7 +77,7 @@ export const getFrontendActUrl = (
 
 export const getBackendPdfUrl = (
   routeInfo: PdfRouteInfo,
-  addBaseUrl = false,
+  addBaseUrl = false
 ): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/pdf/${routeInfo.shortHash}`
 }

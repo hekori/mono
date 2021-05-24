@@ -21,8 +21,7 @@
         "format:write": "nx format:write",
         "format:check": "nx format:check",
         "update": "nx migrate latest",
-        "cli": "dotenv -e .env ts-node apps/hereismyfeedback-api/src/cli/index.ts",
-        "cli-node": "dotenv -e .env node dist/apps/hereismyfeedback-api/cli/main.js",
+        "cli": "dotenv -e env/hereismyfeedback.dev.txt ts-node apps/hereismyfeedback-api/src/cli/index.ts",
         "workspace-generator": "nx workspace-generator",
         "dep-graph": "nx dep-graph",
         "help": "nx help"

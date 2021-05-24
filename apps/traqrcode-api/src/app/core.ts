@@ -6,10 +6,7 @@ import {
   millisSinceStartOfDay,
   MOMENTJS_FILESYSTEM_DATE_FORMAT,
   MyDate,
-  Req,
   shortuuid,
-  Task,
-  TaskStep,
   uuid,
 } from '@hekori/traqrcode-common'
 import {
@@ -25,6 +22,11 @@ const writeFileAtomicSync = require('write-file-atomic').sync
 
 import path = require('path')
 import moment = require('moment')
+import {
+  Req,
+  Task,
+  TaskStep,
+} from '../../../traqrcode-common/src/interfaces/models'
 
 export const createShortHash = () => {
   const now = getDate()

@@ -2,7 +2,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import * as React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { APP_NAME } from '@hekori/traqrcode-common'
+import { APP_NAME } from '../../../traqrcode-common/src/settings'
 
 export const NavBar = () => {
   const history = useHistory()
