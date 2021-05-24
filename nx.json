@@ -26,9 +26,6 @@
             "tags": [],
             "implicitDependencies": ["hereismyfeedback"]
         },
-        "shared": {
-            "tags": []
-        },
         "uikit": {
             "tags": []
         },
@@ -36,6 +33,22 @@
             "tags": []
         },
         "hereismyfeedback-api": {
+            "tags": []
+        },
+        "mail": {
+            "tags": []
+        },
+        "traqrcode": {
+            "tags": []
+        },
+        "traqrcode-e2e": {
+            "tags": [],
+            "implicitDependencies": ["traqrcode"]
+        },
+        "traqrcode-api": {
+            "tags": []
+        },
+        "traqrcode-common": {
             "tags": []
         }
     }
