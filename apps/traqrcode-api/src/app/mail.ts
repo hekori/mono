@@ -1,8 +1,8 @@
 import { log } from './utils'
-import { STAGE } from '@hekori/traqrcode-common'
 import { SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER } from './settings'
 
 import * as nodemailer from 'nodemailer'
+import { STAGE } from '../../../traqrcode-common/src/settings'
 
 interface SendMailArgs {
   sender: string

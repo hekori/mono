@@ -3,9 +3,9 @@ import { SyntheticEvent } from 'react'
 import { InputText } from './inputText'
 import { ContextState } from '../index.provider'
 import { getItemUrl } from '@hekori/traqrcode-common'
-import { PageEditErrors } from '@hekori/traqrcode-common'
 
 import QRCode from 'qrcode.react'
+import { PageEditErrors } from '../../../traqrcode-common/src/interfaces/api'
 
 type ReqProps = {
   itemIndex: string

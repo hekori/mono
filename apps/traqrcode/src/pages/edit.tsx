@@ -6,18 +6,16 @@ import { ContextState, State } from '../index.provider'
 import { Req, ReqNew } from '../components/req'
 import { AdminRouteInfo } from '../app'
 
-import {
-  API_CODE,
-  getBackendEditPostUrl,
-  InitialPageEditErrors,
-  PageEditErrors,
-  shortuuid,
-  to,
-} from '@hekori/traqrcode-common'
+import { API_CODE, shortuuid, to } from '@hekori/traqrcode-common'
 import { api } from '../api'
 import { useHistory } from 'react-router-dom'
 import { PageError404 } from './error404'
 import { Loading } from '../components/Loading'
+import {
+  InitialPageEditErrors,
+  PageEditErrors,
+} from '../../../traqrcode-common/src/interfaces/api'
+import { getBackendEditPostUrl } from '../../../traqrcode-common/src/urls'
 
 type PropsPageSetup = {
   routeInfo: AdminRouteInfo

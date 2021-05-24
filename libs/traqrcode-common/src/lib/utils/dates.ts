@@ -1,5 +1,5 @@
 import { Moment } from 'moment'
-import * as moment from 'moment'
+const moment = require('moment')
 
 export const MOMENTJS_DATE_FORMAT = 'YYYY-MM-DD'
 export const MOMENTJS_DATETIME_FORMAT = 'YYYY-MM-DD[T]HH:mm:ss[Z]'

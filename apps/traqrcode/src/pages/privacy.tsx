@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Shell } from '../components/shell'
-import { APP_NAME } from '@hekori/traqrcode-common'
+import { APP_NAME } from '../../../traqrcode-common/src/settings'
 
 export const PagePrivacy = () => {
   return (

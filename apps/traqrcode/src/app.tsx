@@ -10,8 +10,8 @@ import { PagePrivacy } from './pages/privacy'
 import { PageTerms } from './pages/terms'
 import { PageAction } from './pages/act'
 import { PageRead } from './pages/read'
-import { ActRouteInfo } from '@hekori/traqrcode-common'
 import { PageCreate } from './pages/create'
+import { ActRouteInfo } from '../../traqrcode-common/src/urls'
 
 export type AdminRouteInfo = {
   shortHash: string
