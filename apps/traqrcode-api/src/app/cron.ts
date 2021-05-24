@@ -1,8 +1,7 @@
 import { log } from './utils'
 
-// @ts-ignore
 import { CronJob } from 'cron'
-import { getDate } from '../../common/src/utils/dates'
+import { getDate } from '@hekori/traqrcode-common'
 import { getReqPathsWithinRange, removeSync } from './core'
 
 export const deleteOldReqs = () => {
@@ -13,7 +12,7 @@ export const deleteOldReqs = () => {
     function () {
       const fileToBeDeleted = getReqPathsWithinRange(
         '0000-01-01',
-        getDate().add(-1, 'years'),
+        getDate().add(-1, 'years')
       )
 
       for (const f of fileToBeDeleted) {
@@ -23,7 +22,7 @@ export const deleteOldReqs = () => {
     },
     null,
     true,
-    'UTC',
+    'UTC'
   )
   job.start()
 }

@@ -1,9 +1,8 @@
 import { log } from './utils'
-
-const nodemailer = require('nodemailer')
-
-import { STAGE } from '../../common/src/settings'
+import { STAGE } from '@hekori/traqrcode-common'
 import { SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER } from './settings'
+
+import * as nodemailer from 'nodemailer'
 
 interface SendMailArgs {
   sender: string
@@ -47,7 +46,7 @@ export const sendMail = async ({
     // https://nodemailer.com/transports/sendmail/
     // https://nodemailer.com/dkim/
 
-    let transporter = nodemailer.createTransport({
+    const transporter = nodemailer.createTransport({
       sendmail: true,
       newline: 'unix',
       path: '/usr/sbin/sendmail',
@@ -59,7 +58,7 @@ export const sendMail = async ({
     })
 
     log('prepare message')
-    let message = {
+    const message = {
       from: sender,
 
       // Comma separated list of recipients
@@ -73,7 +72,7 @@ export const sendMail = async ({
     }
 
     log('send message')
-    let info = await transporter.sendMail(message)
+    const info = await transporter.sendMail(message)
     log(`Message sent successfully as ${info.messageId}`)
     log(`${JSON.stringify(info.envelope)}`)
   }

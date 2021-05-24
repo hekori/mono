@@ -1,5 +1,5 @@
 import { Moment } from 'moment'
-import moment from 'moment'
+import * as moment from 'moment'
 
 export const MOMENTJS_DATE_FORMAT = 'YYYY-MM-DD'
 export const MOMENTJS_DATETIME_FORMAT = 'YYYY-MM-DD[T]HH:mm:ss[Z]'
@@ -53,13 +53,13 @@ export const isoDateFormatter = (date: MyDate): string =>
 // dayNameFormatter(new Date(), 'de'): "Dienstag"
 export const dayNameFormatter = (
   date: MyDate,
-  locale: string = getLocale(),
+  locale: string = getLocale()
 ): string => moment(date).locale(locale).format('dddd')
 
 // shortDayNameFormatter(new Date(), 'de'): "Di."
 export const shortDayNameFormatter = (
   date: MyDate,
-  locale: string = getLocale(),
+  locale: string = getLocale()
 ): string => moment(date).locale(locale).format('ddd')
 
 export const millisSinceStartOfDay = (date: MyDate): number => {
