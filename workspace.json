@@ -1,440 +1,431 @@
 {
-    "version": 2,
-    "cli": {
-        "defaultCollection": "@nrwl/react"
-    },
-    "defaultProject": "hereismyfeedback",
-    "generators": {
-        "@nrwl/react": {
-            "application": {
-                "style": "css",
-                "linter": "eslint",
-                "strict": true,
-                "babel": true
-            },
-            "component": {
-                "style": "css"
-            },
-            "library": {
-                "style": "css",
-                "linter": "eslint",
-                "strict": true
-            }
-        }
-    },
-    "projects": {
-        "hereismyfeedback": {
-            "root": "apps/hereismyfeedback",
-            "sourceRoot": "apps/hereismyfeedback/src",
-            "projectType": "application",
-            "targets": {
-                "build": {
-                    "executor": "@nrwl/web:build",
-                    "outputs": ["{options.outputPath}"],
-                    "options": {
-                        "outputPath": "dist/apps/hereismyfeedback",
-                        "index": "apps/hereismyfeedback/src/index.html",
-                        "main": "apps/hereismyfeedback/src/main.tsx",
-                        "polyfills": "apps/hereismyfeedback/src/polyfills.ts",
-                        "tsConfig": "apps/hereismyfeedback/tsconfig.app.json",
-                        "assets": [
-                            "apps/hereismyfeedback/src/favicon.ico",
-                            "apps/hereismyfeedback/src/assets"
-                        ],
-                        "styles": [],
-                        "scripts": [],
-                        "webpackConfig": "webpack.config.js"
-                    },
-                    "configurations": {
-                        "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "apps/hereismyfeedback/src/environments/environment.ts",
-                                    "with": "apps/hereismyfeedback/src/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "extractCss": true,
-                            "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "2mb",
-                                    "maximumError": "5mb"
-                                }
-                            ]
-                        }
-                    }
-                },
-                "serve": {
-                    "executor": "@nrwl/web:dev-server",
-                    "options": {
-                        "buildTarget": "hereismyfeedback:build",
-                        "proxyConfig": "apps/hereismyfeedback/proxy.conf.json",
-                        "port": 3001
-                    },
-                    "configurations": {
-                        "production": {
-                            "buildTarget": "hereismyfeedback:build:production"
-                        }
-                    }
-                },
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "apps/hereismyfeedback/**/*.{ts,tsx,js,jsx}"
-                        ]
-                    }
-                },
-                "test": {
-                    "executor": "@nrwl/jest:jest",
-                    "outputs": ["coverage/apps/hereismyfeedback"],
-                    "options": {
-                        "jestConfig": "apps/hereismyfeedback/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "hereismyfeedback-api": {
-            "root": "apps/hereismyfeedback-api",
-            "sourceRoot": "apps/hereismyfeedback-api/src",
-            "projectType": "application",
-            "targets": {
-                "build": {
-                    "executor": "@nrwl/node:build",
-                    "outputs": ["{options.outputPath}"],
-                    "options": {
-                        "outputPath": "dist/apps/hereismyfeedback-api",
-                        "main": "apps/hereismyfeedback-api/src/main.ts",
-                        "tsConfig": "apps/hereismyfeedback-api/tsconfig.app.json",
-                        "assets": ["apps/hereismyfeedback-api/src/assets"]
-                    },
-                    "configurations": {
-                        "production": {
-                            "optimization": true,
-                            "extractLicenses": true,
-                            "inspect": false,
-                            "fileReplacements": [
-                                {
-                                    "replace": "apps/hereismyfeedback-api/src/environments/environment.ts",
-                                    "with": "apps/hereismyfeedback-api/src/environments/environment.prod.ts"
-                                }
-                            ]
-                        }
-                    }
-                },
-                "buildCli": {
-                    "executor": "@nrwl/node:build",
-                    "outputs": ["{options.outputPath}"],
-                    "options": {
-                        "outputPath": "dist/apps/hereismyfeedback-api/cli",
-                        "main": "apps/hereismyfeedback-api/src/cli/index.ts",
-                        "tsConfig": "apps/hereismyfeedback-api/tsconfig.app.json"
-                    },
-                    "configurations": {
-                        "production": {
-                            "optimization": true,
-                            "inspect": false
-                        }
-                    }
-                },
-                "serve": {
-                    "executor": "@nrwl/node:execute",
-                    "options": {
-                        "buildTarget": "hereismyfeedback-api:build"
-                    }
-                },
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "apps/hereismyfeedback-api/**/*.ts"
-                        ]
-                    }
-                },
-                "test": {
-                    "executor": "@nrwl/jest:jest",
-                    "outputs": ["coverage/apps/hereismyfeedback-api"],
-                    "options": {
-                        "jestConfig": "apps/hereismyfeedback-api/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "hereismyfeedback-e2e": {
-            "root": "apps/hereismyfeedback-e2e",
-            "sourceRoot": "apps/hereismyfeedback-e2e/src",
-            "projectType": "application",
-            "targets": {
-                "e2e": {
-                    "executor": "@nrwl/cypress:cypress",
-                    "options": {
-                        "cypressConfig": "apps/hereismyfeedback-e2e/cypress.json",
-                        "tsConfig": "apps/hereismyfeedback-e2e/tsconfig.e2e.json",
-                        "devServerTarget": "hereismyfeedback:serve"
-                    },
-                    "configurations": {
-                        "production": {
-                            "devServerTarget": "hereismyfeedback:serve:production"
-                        }
-                    }
-                },
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "apps/hereismyfeedback-e2e/**/*.{js,ts}"
-                        ]
-                    }
-                }
-            }
-        },
-        "uikit": {
-            "root": "libs/uikit",
-            "sourceRoot": "libs/uikit/src",
-            "projectType": "library",
-            "targets": {
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["libs/uikit/**/*.{ts,tsx,js,jsx}"]
-                    }
-                },
-                "test": {
-                    "executor": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/uikit"],
-                    "options": {
-                        "jestConfig": "libs/uikit/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "cli": {
-            "root": "libs/cli",
-            "sourceRoot": "libs/cli/src",
-            "projectType": "library",
-            "targets": {
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["libs/cli/**/*.ts"]
-                    }
-                },
-                "test": {
-                    "executor": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/cli"],
-                    "options": {
-                        "jestConfig": "libs/cli/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "mail": {
-            "root": "libs/mail",
-            "sourceRoot": "libs/mail/src",
-            "projectType": "library",
-            "targets": {
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["libs/mail/**/*.ts"]
-                    }
-                },
-                "test": {
-                    "executor": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/mail"],
-                    "options": {
-                        "jestConfig": "libs/mail/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "traqrcode": {
-            "root": "apps/traqrcode",
-            "sourceRoot": "apps/traqrcode/src",
-            "projectType": "application",
-            "targets": {
-                "build": {
-                    "executor": "@nrwl/web:build",
-                    "outputs": ["{options.outputPath}"],
-                    "options": {
-                        "outputPath": "dist/apps/traqrcode",
-                        "index": "apps/traqrcode/src/index.html",
-                        "main": "apps/traqrcode/src/main.tsx",
-                        "polyfills": "apps/traqrcode/src/polyfills.ts",
-                        "tsConfig": "apps/traqrcode/tsconfig.app.json",
-                        "assets": [
-                            "apps/traqrcode/src/favicon.ico",
-                            "apps/traqrcode/src/assets"
-                        ],
-                        "styles": ["apps/traqrcode/src/styles.css"],
-                        "scripts": [],
-                        "webpackConfig": "@nrwl/react/plugins/webpack"
-                    },
-                    "configurations": {
-                        "production": {
-                            "fileReplacements": [
-                                {
-                                    "replace": "apps/traqrcode/src/environments/environment.ts",
-                                    "with": "apps/traqrcode/src/environments/environment.prod.ts"
-                                }
-                            ],
-                            "optimization": true,
-                            "outputHashing": "all",
-                            "sourceMap": false,
-                            "extractCss": true,
-                            "namedChunks": false,
-                            "extractLicenses": true,
-                            "vendorChunk": false,
-                            "budgets": [
-                                {
-                                    "type": "initial",
-                                    "maximumWarning": "500kb",
-                                    "maximumError": "1mb"
-                                }
-                            ]
-                        }
-                    }
-                },
-                "serve": {
-                    "executor": "@nrwl/web:dev-server",
-                    "options": {
-                        "buildTarget": "traqrcode:build",
-                        "hmr": true,
-                        "port": 3002
-
-                    },
-                    "configurations": {
-                        "production": {
-                            "buildTarget": "traqrcode:build:production",
-                            "hmr": false
-                        }
-                    }
-                },
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": [
-                            "apps/traqrcode/**/*.{ts,tsx,js,jsx}"
-                        ]
-                    }
-                },
-                "test": {
-                    "executor": "@nrwl/jest:jest",
-                    "outputs": ["coverage/apps/traqrcode"],
-                    "options": {
-                        "jestConfig": "apps/traqrcode/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "traqrcode-e2e": {
-            "root": "apps/traqrcode-e2e",
-            "sourceRoot": "apps/traqrcode-e2e/src",
-            "projectType": "application",
-            "targets": {
-                "e2e": {
-                    "executor": "@nrwl/cypress:cypress",
-                    "options": {
-                        "cypressConfig": "apps/traqrcode-e2e/cypress.json",
-                        "tsConfig": "apps/traqrcode-e2e/tsconfig.e2e.json",
-                        "devServerTarget": "traqrcode:serve"
-                    },
-                    "configurations": {
-                        "production": {
-                            "devServerTarget": "traqrcode:serve:production"
-                        }
-                    }
-                },
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["apps/traqrcode-e2e/**/*.{js,ts}"]
-                    }
-                }
-            }
-        },
-        "traqrcode-api": {
-            "root": "apps/traqrcode-api",
-            "sourceRoot": "apps/traqrcode-api/src",
-            "projectType": "application",
-            "targets": {
-                "build": {
-                    "executor": "@nrwl/node:build",
-                    "outputs": ["{options.outputPath}"],
-                    "options": {
-                        "outputPath": "dist/apps/traqrcode-api",
-                        "main": "apps/traqrcode-api/src/main.ts",
-                        "tsConfig": "apps/traqrcode-api/tsconfig.app.json",
-                        "assets": ["apps/traqrcode-api/src/assets"]
-                    },
-                    "configurations": {
-                        "production": {
-                            "optimization": true,
-                            "extractLicenses": true,
-                            "inspect": false,
-                            "fileReplacements": [
-                                {
-                                    "replace": "apps/traqrcode-api/src/environments/environment.ts",
-                                    "with": "apps/traqrcode-api/src/environments/environment.prod.ts"
-                                }
-                            ]
-                        }
-                    }
-                },
-                "serve": {
-                    "executor": "@nrwl/node:execute",
-                    "options": {
-                        "buildTarget": "traqrcode-api:build"
-                    }
-                },
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["apps/traqrcode-api/**/*.ts"]
-                    }
-                },
-                "test": {
-                    "executor": "@nrwl/jest:jest",
-                    "outputs": ["coverage/apps/traqrcode-api"],
-                    "options": {
-                        "jestConfig": "apps/traqrcode-api/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        },
-        "traqrcode-common": {
-            "root": "libs/traqrcode-common",
-            "sourceRoot": "libs/traqrcode-common/src",
-            "projectType": "library",
-            "targets": {
-                "lint": {
-                    "executor": "@nrwl/linter:eslint",
-                    "options": {
-                        "lintFilePatterns": ["libs/traqrcode-common/**/*.ts"]
-                    }
-                },
-                "test": {
-                    "executor": "@nrwl/jest:jest",
-                    "outputs": ["coverage/libs/traqrcode-common"],
-                    "options": {
-                        "jestConfig": "libs/traqrcode-common/jest.config.js",
-                        "passWithNoTests": true
-                    }
-                }
-            }
-        }
+  "version": 2,
+  "cli": {
+    "defaultCollection": "@nrwl/react"
+  },
+  "defaultProject": "hereismyfeedback",
+  "generators": {
+    "@nrwl/react": {
+      "application": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true,
+        "babel": true
+      },
+      "component": {
+        "style": "css"
+      },
+      "library": {
+        "style": "css",
+        "linter": "eslint",
+        "strict": true
+      }
     }
+  },
+  "projects": {
+    "hereismyfeedback": {
+      "root": "apps/hereismyfeedback",
+      "sourceRoot": "apps/hereismyfeedback/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/hereismyfeedback",
+            "index": "apps/hereismyfeedback/src/index.html",
+            "main": "apps/hereismyfeedback/src/main.tsx",
+            "polyfills": "apps/hereismyfeedback/src/polyfills.ts",
+            "tsConfig": "apps/hereismyfeedback/tsconfig.app.json",
+            "assets": [
+              "apps/hereismyfeedback/src/favicon.ico",
+              "apps/hereismyfeedback/src/assets"
+            ],
+            "styles": [],
+            "scripts": [],
+            "webpackConfig": "webpack.config.js"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/hereismyfeedback/src/environments/environment.ts",
+                  "with": "apps/hereismyfeedback/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "2mb",
+                  "maximumError": "5mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "hereismyfeedback:build",
+            "proxyConfig": "apps/hereismyfeedback/proxy.conf.json",
+            "port": 3001
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "hereismyfeedback:build:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/hereismyfeedback/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/hereismyfeedback"],
+          "options": {
+            "jestConfig": "apps/hereismyfeedback/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hereismyfeedback-api": {
+      "root": "apps/hereismyfeedback-api",
+      "sourceRoot": "apps/hereismyfeedback-api/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/hereismyfeedback-api",
+            "main": "apps/hereismyfeedback-api/src/main.ts",
+            "tsConfig": "apps/hereismyfeedback-api/tsconfig.app.json",
+            "assets": ["apps/hereismyfeedback-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/hereismyfeedback-api/src/environments/environment.ts",
+                  "with": "apps/hereismyfeedback-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "buildCli": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/hereismyfeedback-api/cli",
+            "main": "apps/hereismyfeedback-api/src/cli/index.ts",
+            "tsConfig": "apps/hereismyfeedback-api/tsconfig.app.json"
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "inspect": false
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "hereismyfeedback-api:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/hereismyfeedback-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/hereismyfeedback-api"],
+          "options": {
+            "jestConfig": "apps/hereismyfeedback-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "hereismyfeedback-e2e": {
+      "root": "apps/hereismyfeedback-e2e",
+      "sourceRoot": "apps/hereismyfeedback-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/hereismyfeedback-e2e/cypress.json",
+            "tsConfig": "apps/hereismyfeedback-e2e/tsconfig.e2e.json",
+            "devServerTarget": "hereismyfeedback:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "hereismyfeedback:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/hereismyfeedback-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "uikit": {
+      "root": "libs/uikit",
+      "sourceRoot": "libs/uikit/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/uikit/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/uikit"],
+          "options": {
+            "jestConfig": "libs/uikit/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "cli": {
+      "root": "libs/cli",
+      "sourceRoot": "libs/cli/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/cli/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/cli"],
+          "options": {
+            "jestConfig": "libs/cli/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "mail": {
+      "root": "libs/mail",
+      "sourceRoot": "libs/mail/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/mail/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/mail"],
+          "options": {
+            "jestConfig": "libs/mail/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "traqrcode": {
+      "root": "apps/traqrcode",
+      "sourceRoot": "apps/traqrcode/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/web:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/traqrcode",
+            "index": "apps/traqrcode/src/index.html",
+            "main": "apps/traqrcode/src/main.tsx",
+            "polyfills": "apps/traqrcode/src/polyfills.ts",
+            "tsConfig": "apps/traqrcode/tsconfig.app.json",
+            "assets": [
+              "apps/traqrcode/src/favicon.ico",
+              "apps/traqrcode/src/assets"
+            ],
+            "styles": ["apps/traqrcode/src/styles.css"],
+            "scripts": [],
+            "webpackConfig": "@nrwl/react/plugins/webpack"
+          },
+          "configurations": {
+            "production": {
+              "fileReplacements": [
+                {
+                  "replace": "apps/traqrcode/src/environments/environment.ts",
+                  "with": "apps/traqrcode/src/environments/environment.prod.ts"
+                }
+              ],
+              "optimization": true,
+              "outputHashing": "all",
+              "sourceMap": false,
+              "extractCss": true,
+              "namedChunks": false,
+              "extractLicenses": true,
+              "vendorChunk": false,
+              "budgets": [
+                {
+                  "type": "initial",
+                  "maximumWarning": "500kb",
+                  "maximumError": "1mb"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/web:dev-server",
+          "options": {
+            "buildTarget": "traqrcode:build",
+            "hmr": true,
+            "port": 3002
+          },
+          "configurations": {
+            "production": {
+              "buildTarget": "traqrcode:build:production",
+              "hmr": false
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/traqrcode/**/*.{ts,tsx,js,jsx}"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/traqrcode"],
+          "options": {
+            "jestConfig": "apps/traqrcode/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "traqrcode-e2e": {
+      "root": "apps/traqrcode-e2e",
+      "sourceRoot": "apps/traqrcode-e2e/src",
+      "projectType": "application",
+      "targets": {
+        "e2e": {
+          "executor": "@nrwl/cypress:cypress",
+          "options": {
+            "cypressConfig": "apps/traqrcode-e2e/cypress.json",
+            "tsConfig": "apps/traqrcode-e2e/tsconfig.e2e.json",
+            "devServerTarget": "traqrcode:serve"
+          },
+          "configurations": {
+            "production": {
+              "devServerTarget": "traqrcode:serve:production"
+            }
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/traqrcode-e2e/**/*.{js,ts}"]
+          }
+        }
+      }
+    },
+    "traqrcode-api": {
+      "root": "apps/traqrcode-api",
+      "sourceRoot": "apps/traqrcode-api/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/traqrcode-api",
+            "main": "apps/traqrcode-api/src/main.ts",
+            "tsConfig": "apps/traqrcode-api/tsconfig.app.json",
+            "assets": ["apps/traqrcode-api/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/traqrcode-api/src/environments/environment.ts",
+                  "with": "apps/traqrcode-api/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "traqrcode-api:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["apps/traqrcode-api/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/traqrcode-api"],
+          "options": {
+            "jestConfig": "apps/traqrcode-api/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "traqrcode-common": {
+      "root": "libs/traqrcode-common",
+      "sourceRoot": "libs/traqrcode-common/src",
+      "projectType": "library",
+      "targets": {
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": ["libs/traqrcode-common/**/*.ts"]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/libs/traqrcode-common"],
+          "options": {
+            "jestConfig": "libs/traqrcode-common/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    }
+  }
 }

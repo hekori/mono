@@ -1,4 +1,5 @@
 dist/
 env/
+store/
 node_modules/
 .yarn/
