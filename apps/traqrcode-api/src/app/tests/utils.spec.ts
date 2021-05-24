@@ -1,6 +1,6 @@
 import { sendMail } from '../mail'
 import { log } from '../utils'
-import { STAGE } from '../../../common/src/settings'
+import { STAGE } from '@hekori/traqrcode-common'
 import { SMTP_HOST, SMTP_PORT, SMTP_USER } from '../settings'
 
 describe('sendMail', () => {

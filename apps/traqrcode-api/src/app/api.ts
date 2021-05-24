@@ -6,11 +6,10 @@ import {
   SSLApp,
   TemplatedApp,
 } from 'uWebSockets.js'
-import { to } from '../../common/src/utils/misc'
-import { API_CODE } from '../../common/src/constants'
+import { API_CODE, to } from '@hekori/traqrcode-common'
 import { log } from './utils'
 import { FileStream } from './api.file'
-import path from 'path'
+import * as path from 'path'
 import { existsSync } from 'fs'
 import {
   SSL_PRIVATE_KEY_PATH,
@@ -18,9 +17,9 @@ import {
   STATIC_DIR,
 } from './settings'
 
-export interface MyHttpResponse extends HttpResponse {}
+export type MyHttpResponse = HttpResponse
 
-export interface MyHttpRequest extends HttpRequest {}
+export type MyHttpRequest = HttpRequest
 
 export enum HttpMethod {
   POST = 'POST',
@@ -37,7 +36,7 @@ export class Api {
     log(
       `Create api instance ${
         useSSL ? 'using SSL ' : ''
-      } on PORT ${PORT} for STAGE=${process.env.STAGE}`,
+      } on PORT ${PORT} for STAGE=${process.env.STAGE}`
     )
 
     if (useSSL) {
@@ -59,14 +58,14 @@ export class Api {
       res.writeHeader('Access-Control-Allow-Credentials', 'true')
       res.writeHeader(
         'Access-Control-Allow-Methods',
-        'POST, GET, OPTIONS, DELETE',
+        'POST, GET, OPTIONS, DELETE'
       )
       res.end()
     })
   }
 
   // FIXME: this should be a method of MyHttpResponse
-  send(res: HttpResponse, data: object): HttpResponse {
+  send(res: HttpResponse, data: any): HttpResponse {
     res.writeHeader('Access-Control-Allow-Origin', '*')
     res.writeHeader('Content-Type', 'application/json')
     const body = JSON.stringify(data)
@@ -98,7 +97,7 @@ export class Api {
   request(
     method: HttpMethod,
     pattern: RecognizedString,
-    myHandler: (myRes: MyHttpResponse, myReq: MyHttpRequest) => Promise<any>,
+    myHandler: (myRes: MyHttpResponse, myReq: MyHttpRequest) => Promise<any>
   ): TemplatedApp {
     const handler = async (res: HttpResponse, req: HttpRequest) => {
       // if (this.redirectToHttps(res, req)) return
@@ -129,21 +128,21 @@ export class Api {
 
   get(
     pattern: RecognizedString,
-    myHandler: (myRes: MyHttpResponse, myReq: MyHttpRequest) => Promise<any>,
+    myHandler: (myRes: MyHttpResponse, myReq: MyHttpRequest) => Promise<any>
   ): TemplatedApp {
     return this.request(HttpMethod.GET, pattern, myHandler)
   }
 
   post(
     pattern: RecognizedString,
-    myHandler: (myRes: MyHttpResponse, myReq: MyHttpRequest) => Promise<any>,
+    myHandler: (myRes: MyHttpResponse, myReq: MyHttpRequest) => Promise<any>
   ): TemplatedApp {
     return this.request(HttpMethod.POST, pattern, myHandler)
   }
 
   any(
     pattern: RecognizedString,
-    myHandler: (myRes: MyHttpResponse, myReq: MyHttpRequest) => Promise<any>,
+    myHandler: (myRes: MyHttpResponse, myReq: MyHttpRequest) => Promise<any>
   ): TemplatedApp {
     return this.request(HttpMethod.ANY, pattern, myHandler)
   }
@@ -154,7 +153,7 @@ export class Api {
     res.writeStatus('302')
     res.writeHeader(
       'location',
-      `https://${host.replace(`${this.PORT}`, `${NEWPORT}`)}${url}`,
+      `https://${host.replace(`${this.PORT}`, `${NEWPORT}`)}${url}`
     )
     this.sendRaw(res)
   }

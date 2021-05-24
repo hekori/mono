@@ -1,7 +1,28 @@
 import { deleteOldReqs } from './cron'
 import { log, toJson } from './utils'
-import { shortuuid, to } from '../../common/src/utils/misc'
-import { getDate, isoDatetimeFormatter } from '../../common/src/utils/dates'
+import {
+  Action,
+  API_CODE,
+  BACKEND_URL,
+  FRONTEND_URL,
+  getBackendCreatePostUrl,
+  getBackendEditPostUrl,
+  getBackendPdfUrl,
+  getDate,
+  getFrontendActUrl,
+  getFrontendEditUrl,
+  getFrontendReadUrl,
+  getFrontendTaskUrl,
+  InitialPageEditErrors,
+  isoDatetimeFormatter,
+  PageEditErrors,
+  PostCreateRequest,
+  Req,
+  shortuuid,
+  STAGE,
+  TaskStep,
+  to,
+} from '@hekori/traqrcode-common'
 import {
   createHash,
   getOrCreateTask,
@@ -9,7 +30,6 @@ import {
   readReq,
   writeReq,
 } from './core'
-import { Req, TaskStep } from '../../common/src/interfaces/models'
 import { sendMail } from './mail'
 import {
   email_notify_accept_task_body,
@@ -21,23 +41,6 @@ import {
   email_notify_receiver_of_new_task_body,
   email_notify_receiver_of_new_task_subject,
 } from './templates'
-import { API_CODE } from '../../common/src/constants'
-import {
-  InitialPageEditErrors,
-  PageEditErrors,
-  PostCreateRequest,
-} from '../../common/src/interfaces/api'
-import { BACKEND_URL, FRONTEND_URL, STAGE } from '../../common/src/settings'
-import {
-  Action,
-  getBackendCreatePostUrl,
-  getBackendEditPostUrl,
-  getBackendPdfUrl,
-  getFrontendActUrl,
-  getFrontendEditUrl,
-  getFrontendReadUrl,
-  getFrontendTaskUrl,
-} from '../../common/src/utils/urls'
 import { Api, MyHttpRequest, MyHttpResponse } from './api'
 import {
   EMAIL_DEFAULT_SENDER,
@@ -53,9 +56,8 @@ import {
   STORE_DIR,
 } from './settings'
 
-const QRCode = require('qrcode')
-
-const pdfkit = require('pdfkit')
+import QRCode from 'qrcode'
+import pdfkit = require('pdfkit')
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -159,11 +161,11 @@ api.post(
               shortHash: r.shortHash,
               accessToken: r.accessToken,
             },
-            true,
+            true
           ),
-          getBackendPdfUrl({ shortHash: r.shortHash }, true),
+          getBackendPdfUrl({ shortHash: r.shortHash }, true)
         ),
-      }),
+      })
     )
 
     return api.send(res, {
@@ -172,7 +174,7 @@ api.post(
       shortHash: r.shortHash,
       accessToken: r.accessToken,
     })
-  },
+  }
 )
 
 api.get('/view/:shortHash/:accessToken', async (res, req) => {
@@ -258,7 +260,7 @@ api.post(getBackendEditPostUrl(), async (res, req) => {
     if (item.taskIds === undefined) item.taskIds = []
     if (item.idToTask === undefined) item.idToTask = {}
 
-    let newErrors = []
+    const newErrors = []
     if (item.title.length === 0) newErrors.push(API_CODE.ERROR_EMPTY_TITLE)
     if (item.title.length > 25) newErrors.push(API_CODE.ERROR_TITLE_TOO_LONG)
     if (item.subTitle.length > 100)
@@ -307,14 +309,14 @@ api.get('/pdf/:shortHash', async (res, req) => {
   const r: Req = readReq(shortHash)
 
   const doc = new pdfkit({ autoFirstPage: false, bufferPages: true })
-  let buffers: any[] = []
+  const buffers: any[] = []
   doc.on('data', buffers.push.bind(buffers))
   doc.on('end', () => {
-    let pdfData = Buffer.concat(buffers)
+    const pdfData = Buffer.concat(buffers)
     api.sendRaw(res, pdfData)
   })
 
-  let filename = 'myfilename'
+  const filename = 'myfilename'
   // Stripping special characters
   // filename = encodeURIComponent(filename) + '.pdf'
   // Setting response to 'attachment' (download).
@@ -405,14 +407,14 @@ api.get('/pdf/:shortHash', async (res, req) => {
     doc.text(
       getFrontendReadUrl({ shortHash: r.shortHash, itemId }, true),
       PAGE_MARGIN + mm(6),
-      yoffset + mm(34),
+      yoffset + mm(34)
     )
     doc.restore()
 
     const [err, dataUrl] = await to(
       QRCode.toDataURL(
-        getFrontendReadUrl({ shortHash: r.shortHash, itemId }, true),
-      ),
+        getFrontendReadUrl({ shortHash: r.shortHash, itemId }, true)
+      )
     )
     doc
       .image(dataUrl, PAGE_WIDTH - PAGE_MARGIN - 2 * QR_W, yoffset, {
@@ -475,9 +477,9 @@ api.get('/read/:shortHash/:itemId', async (res, req) => {
               taskId: task.id,
               workerId,
             },
-            true,
+            true
           ),
-          getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true),
+          getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true)
         ),
       })
     }
@@ -564,9 +566,9 @@ api.get(
                 taskId: task.id,
                 workerId,
               },
-              true,
+              true
             ),
-            getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true),
+            getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true)
           ),
         })
       } else {
@@ -588,7 +590,7 @@ api.get(
           body: email_notify_done_task_body(
             item.title,
             item.subTitle,
-            getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true),
+            getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true)
           ),
         })
       } else {
@@ -615,7 +617,7 @@ api.get(
         workerId: task.workerId,
       },
     })
-  },
+  }
 )
 
 api.get('/optout/:shortHash/:workerId', async (res, req) => {
