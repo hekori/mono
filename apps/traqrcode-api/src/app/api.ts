@@ -16,6 +16,7 @@ import {
   SSL_PUBLIC_CERT_PATH,
   STATIC_DIR,
 } from './settings'
+import { STAGE } from '../../../traqrcode-common/src/settings'
 
 export type MyHttpResponse = HttpResponse
 
@@ -36,7 +37,7 @@ export class Api {
     log(
       `Create api instance ${
         useSSL ? 'using SSL ' : ''
-      } on PORT ${PORT} for STAGE=${process.env.STAGE}`
+      } on PORT ${PORT} for STAGE=${STAGE}`
     )
 
     if (useSSL) {

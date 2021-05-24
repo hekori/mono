@@ -40,8 +40,7 @@ import {
   STORE_DIR,
 } from './settings'
 
-import QRCode from 'qrcode'
-import pdfkit = require('pdfkit')
+import * as QRCode from 'qrcode'
 import {
   BACKEND_URL,
   FRONTEND_URL,
@@ -63,6 +62,7 @@ import {
   PostCreateRequest,
 } from '../../../traqrcode-common/src/interfaces/api'
 import { Req, TaskStep } from '../../../traqrcode-common/src/interfaces/models'
+import pdfkit = require('pdfkit')
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -314,6 +314,7 @@ api.get('/pdf/:shortHash', async (res, req) => {
   const r: Req = readReq(shortHash)
 
   const doc = new pdfkit({ autoFirstPage: false, bufferPages: true })
+
   const buffers: any[] = []
   doc.on('data', buffers.push.bind(buffers))
   doc.on('end', () => {
@@ -355,8 +356,12 @@ api.get('/pdf/:shortHash', async (res, req) => {
     doc.text('the QR code with your mobile phone', mm(20), mm(40))
 
     // FOOTER
-
-    const [, dataUrl] = await to(QRCode.toDataURL(FRONTEND_URL))
+    let dataUrl
+    try {
+      dataUrl = await QRCode.toDataURL(FRONTEND_URL)
+    } catch (e) {
+      console.error(e)
+    }
     doc
       .image(dataUrl, QR_X, QR_Y, { fit: [QR_W, QR_H] })
       .rect(QR_X, QR_Y, QR_W, QR_H)
