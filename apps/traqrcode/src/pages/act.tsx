@@ -36,8 +36,7 @@ export const PageAction = ({ routeInfo }: PropsPageAction) => {
   useEffect(() => {
     const t = async () => {
       setLoading(true)
-      let err, res
-      ;[err, res] = await to(api.get(getFrontendActUrl(routeInfo)))
+      const [err, res] = await to(api.get(getFrontendActUrl(routeInfo)))
       setLoading(false)
 
       if (err) {

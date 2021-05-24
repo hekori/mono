@@ -53,10 +53,9 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
 
   useEffect(() => {
     const t = async () => {
-      let err, res
       setErrors(InitialPageEditErrors)
       setLoading(true)
-      ;[err, res] = await to(
+      const [err, res] = await to(
         api.get(`/view/${routeInfo.shortHash}/${routeInfo.accessToken}`)
       )
       setLoading(false)
@@ -179,8 +178,7 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
             className="button min-w-full mt-4"
             onClick={async (e) => {
               e.preventDefault()
-              let err, res
-              ;[err, res] = await to(
+              const [err, res] = await to(
                 api.post(getBackendEditPostUrl(), {
                   test: false,
                   createdAt: new Date().toISOString(),

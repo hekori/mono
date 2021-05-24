@@ -93,8 +93,7 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
   useEffect(() => {
     const t = async () => {
       setLoading(true)
-      let err, res
-      ;[err, res] = await to(
+      const [err, res] = await to(
         api.get(
           `/task/${routeInfo.shortHash}/${routeInfo.itemId}/${routeInfo.taskId}`
         )
