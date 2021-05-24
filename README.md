@@ -49,7 +49,13 @@ Libraries are shareable across libraries and applications. They can be imported 
 
 ## Development server
 
-Run `nx serve my-app` for a dev server. Navigate to http://localhost:4200/. The app will automatically reload if you change any of the source files.
+Run `yarn nx run hereismyfeedback:serve` for a dev server for the React app.
+The port is defined in `workspace.json`
+Navigate to http://localhost:3001/.
+The app will automatically reload if you change any of the source files.
+
+Run `yarn nx run hereismyfeedback-api:serve` to startup the backend server for the React app.
+
 
 ## Code scaffolding
 
@@ -79,16 +85,15 @@ Run `nx dep-graph` to see a diagram of the dependencies of your projects.
 
 Visit the [Nx Documentation](https://nx.dev) to learn more.
 
+## Generate
 
+```
+# Node Library
+nx generate @nrwl/node:library <node-lib>
 
-## ☁ Nx Cloud
+# Node Application
+nx generate @nrwl/node:app <node-app>
 
-### Computation Memoization in the Cloud
-
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-cloud-card.png"></p>
-
-Nx Cloud pairs with Nx in order to enable you to build and test code more rapidly, by up to 10 times. Even teams that are new to Nx can connect to Nx Cloud and start saving time instantly.
-
-Teams using Nx gain the advantage of building full-stack applications with their preferred framework alongside Nx’s advanced code generation and project dependency graph, plus a unified experience for both frontend and backend developers.
-
-Visit [Nx Cloud](https://nx.app/) to learn more.
+# React Application
+nx generate @nrwl/react:app <react-app>
+```
