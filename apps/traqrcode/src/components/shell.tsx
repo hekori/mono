@@ -2,8 +2,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import * as React from 'react'
 import { useState } from 'react'
 import { useEffect } from 'react'
-import { APP_NAME } from '../../../traqrcode-common/src/settings'
-
+import { ReactComponent as Logo } from '../assets/traqrcode_logo.svg'
 export const NavBar = () => {
   const history = useHistory()
 
@@ -16,7 +15,7 @@ export const NavBar = () => {
             className="font-mono text-white cursor-pointer"
             onClick={() => history.push('/')}
           >
-            {APP_NAME}
+            <Logo />
           </div>
         </div>
 
@@ -113,7 +112,7 @@ export const Footer = () => {
               className="font-mono text-black cursor-pointer"
               onClick={() => history.push('/')}
             >
-              {APP_NAME}
+              <Logo />
             </div>
           </div>
 
