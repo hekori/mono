@@ -21,10 +21,11 @@
     "format:write": "nx format:write",
     "format:check": "nx format:check",
     "update": "nx migrate latest",
-    "cli": "dotenv -e env/hereismyfeedback.dev.txt ts-node apps/hereismyfeedback-api/src/cli/index.ts",
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
-    "help": "nx help"
+    "help": "nx help",
+    "cli": "dotenv -e env/hereismyfeedback.dev.txt ts-node apps/hereismyfeedback-api/src/cli/index.ts",
+    "postcss": "postcss libs/uikit/src/lib/tailwind.css -o libs/uikit/src/lib/App.css"
   },
   "private": true,
   "dependencies": {
