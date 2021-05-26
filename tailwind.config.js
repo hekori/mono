@@ -4,25 +4,18 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--color-primary)',
-        secondary: 'var(--color-secondary)',
-        'primary-background': 'var(--background-primary)',
-        'secondary-background': 'var(--background-secondary)',
-        'primary-contrast-background': 'var(--background-primary-contrast)',
-        'secondary-contrast-background': 'var(--background-secondary-contrast)',
-        'primary-text': 'var(--color-text-primary)',
-        'secondary-text': 'var(--color-text-secondary)',
-        'primary-contrast-text': 'var(--color-text-primary-contrast)',
-        'secondary-contrast-text': 'var(--color-text-secondary-contrast)',
-        'text-link': 'var(--color-text-link)',
+        primary: 'var(--text-primary)',
+        secondary: 'var(--text-secondary)',
       },
     },
     backgroundColor: (theme) => ({
       ...theme('colors'),
+      primary: 'var(--background-primary)',
+      secondary: 'var(--background-secondary)',
     }),
   },
   variants: {
-    backgroundColor: ['active'],
+    backgroundColor: ['active', 'hover', 'focus'],
   },
   plugins: [require('@tailwindcss/forms')],
 }

@@ -1,8 +1,7 @@
 import { Link, useHistory } from 'react-router-dom'
 import * as React from 'react'
-import { themes } from '@hekori/uikit'
 import { useEffect, useState } from 'react'
-import { applyTheme } from '../../../../libs/uikit/src/lib/themes/utils'
+import { applyTheme, themes } from '@hekori/uikit'
 
 function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
@@ -34,9 +33,9 @@ export const LeftNavigation: React.FC = () => {
         to={'/Typography'}
         className={classNames(
           history.location.pathname === '/Typography'
-            ? 'bg-gray-100 text-gray-900'
-            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
+            ? 'bg-primary'
+            : 'bg-secondary',
+          'group flex items-center px-2 py-2 text-base font-medium rounded-md text-primary hover:bg-red-900'
         )}
       >
         Typography
