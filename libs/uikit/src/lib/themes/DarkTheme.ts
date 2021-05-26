@@ -1,9 +1,17 @@
-export const DarkTheme = {
-  primary: '#a70909',
-  secondary: '#254E70',
-  negative: '#e45b78',
-  positive: '#A3D9B1',
-  textPrimary: '#333',
-  backgroundPrimary: '#110f0f',
-  backgroundSecondary: '#7e8489',
+import { Theme } from './types'
+
+export const DarkTheme: Theme = {
+  primary: '#ffffff',
+  secondary: '#c9c9c9',
+  backgroundPrimary: '#2a436f',
+  backgroundPrimaryContrast: '#c0c5cd',
+  backgroundSecondary: '#204a92',
+  backgroundSecondaryContrast: '#9ea6b3',
+  primaryContrast: '#000000',
+  secondaryContrast: '#327f34',
+  textLink: '#81afc7',
+  textPrimary: '#FFFFFF',
+  textPrimaryContrast: '#000000',
+  textSecondary: '#FFAAAA',
+  textSecondaryContrast: '#006666',
 }

@@ -1,26 +1,27 @@
 import { themes } from './index'
-
-export interface ITheme {
-  [key: string]: string
-}
+import { Theme } from './types'
 
 export interface IThemes {
-  [key: string]: ITheme
+  [key: string]: Theme
 }
 
 export interface IMappedTheme {
   [key: string]: string | null
 }
 
-export const mapTheme = (variables: ITheme): IMappedTheme => {
+export const mapTheme = (theme: Theme): IMappedTheme => {
   return {
-    '--color-primary': variables.primary || '',
-    '--color-secondary': variables.secondary || '',
-    '--color-positive': variables.positive || '',
-    '--color-negative': variables.negative || '',
-    '--color-text-primary': variables.textPrimary || '',
-    '--background-primary': variables.backgroundPrimary || '',
-    '--background-sec': variables.backgroundSecondary || '',
+    '--color-primary': theme.primary || '',
+    '--color-secondary': theme.secondary || '',
+    '--color-text-primary': theme.textPrimary || '',
+    '--color-text-secondary': theme.textSecondary || '',
+    '--color-text-primary-contrast': theme.textPrimaryContrast || '',
+    '--color-text-secondary-contrast': theme.textSecondaryContrast || '',
+    '--color-text-link': theme.textLink || '',
+    '--background-primary': theme.backgroundPrimary || '',
+    '--background-secondary': theme.backgroundSecondary || '',
+    '--background-primary-contrast': theme.backgroundPrimaryContrast || '',
+    '--background-secondary-contrast': theme.backgroundSecondaryContrast || '',
   }
 }
 
@@ -39,6 +40,6 @@ export const applyTheme = (theme: string): void => {
   })
 }
 
-export const extend = (extending: ITheme, newTheme: ITheme): ITheme => {
+export const extend = (extending: Theme, newTheme: Theme): Theme => {
   return { ...extending, ...newTheme }
 }
