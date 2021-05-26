@@ -6,11 +6,15 @@ module.exports = {
       colors: {
         primary: 'var(--color-primary)',
         secondary: 'var(--color-secondary)',
-        negative: 'var(--color-negative)',
-        positive: 'var(--color-positive)',
         'primary-background': 'var(--background-primary)',
-        'sec-background': 'var(--background-sec)',
+        'secondary-background': 'var(--background-secondary)',
+        'primary-contrast-background': 'var(--background-primary-contrast)',
+        'secondary-contrast-background': 'var(--background-secondary-contrast)',
         'primary-text': 'var(--color-text-primary)',
+        'secondary-text': 'var(--color-text-secondary)',
+        'primary-contrast-text': 'var(--color-text-primary-contrast)',
+        'secondary-contrast-text': 'var(--color-text-secondary-contrast)',
+        'text-link': 'var(--color-text-link)',
       },
     },
     backgroundColor: (theme) => ({
