@@ -11,17 +11,10 @@ export interface IMappedTheme {
 
 export const mapTheme = (theme: Theme): IMappedTheme => {
   return {
-    '--color-primary': theme.primary || '',
-    '--color-secondary': theme.secondary || '',
-    '--color-text-primary': theme.textPrimary || '',
-    '--color-text-secondary': theme.textSecondary || '',
-    '--color-text-primary-contrast': theme.textPrimaryContrast || '',
-    '--color-text-secondary-contrast': theme.textSecondaryContrast || '',
-    '--color-text-link': theme.textLink || '',
+    '--text-primary': theme.textPrimary || '',
+    '--text-secondary': theme.textSecondary || '',
     '--background-primary': theme.backgroundPrimary || '',
     '--background-secondary': theme.backgroundSecondary || '',
-    '--background-primary-contrast': theme.backgroundPrimaryContrast || '',
-    '--background-secondary-contrast': theme.backgroundSecondaryContrast || '',
   }
 }
 

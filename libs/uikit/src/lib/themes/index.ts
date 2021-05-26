@@ -8,3 +8,4 @@ export const themes: IThemes = {
   LightTheme,
   DarkTheme,
 }
+export { applyTheme } from './utils'
