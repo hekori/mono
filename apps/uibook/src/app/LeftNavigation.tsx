@@ -1,4 +1,4 @@
-import { Link, useHistory } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { applyTheme, themes } from '@hekori/uikit'
@@ -7,21 +7,39 @@ function classNames(...classes: string[]) {
   return classes.filter(Boolean).join(' ')
 }
 
+export const LeftNavigationItem: React.FC<{ name: string }> = ({ name }) => {
+  const location = useLocation()
+  const history = useHistory()
+
+  return (
+    <span
+      onClick={() => history.push(`/${name}`)}
+      className={classNames(
+        location.pathname !== `/${name}` ? 'bg-primary' : 'bg-secondary',
+        'group flex items-center px-2 py-2 text-base font-medium rounded-md text-primary hover:bg-secondary cursor-pointer'
+      )}
+    >
+      {name}
+    </span>
+  )
+}
+
 export const LeftNavigation: React.FC = () => {
   const history = useHistory()
   const [theme, setTheme] = useState('LightTheme')
 
   useEffect(() => {
+    console.log('called use effect')
     applyTheme(theme)
   }, [theme])
 
-  console.log(history.location.pathname)
+  console.log(history.location)
 
   return (
     <nav className="mt-5 px-2 space-y-1">
       <select
         name="location"
-        className="mt-1 block w-full pl-3 pr-10 py-2 text-base border-gray-300 focus:outline-none focus:ring-indigo-500 focus:border-indigo-500 sm:text-sm rounded-md"
+        className="mt-1 block w-full pl-3 pr-10 py-2 text-base focus:outline-none bg-input text-input sm:text-sm rounded-md"
         value={theme}
         onChange={(e) => setTheme(e.target.value)}
       >
@@ -29,41 +47,10 @@ export const LeftNavigation: React.FC = () => {
           <option key={themeOption}>{themeOption}</option>
         ))}
       </select>
-      <Link
-        to={'/Typography'}
-        className={classNames(
-          history.location.pathname === '/Typography'
-            ? 'bg-primary'
-            : 'bg-secondary',
-          'group flex items-center px-2 py-2 text-base font-medium rounded-md text-primary hover:bg-red-900'
-        )}
-      >
-        Typography
-      </Link>
 
-      <Link
-        to={'/Colors'}
-        className={classNames(
-          history.location.pathname === '/Colors'
-            ? 'bg-gray-100 text-gray-900'
-            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-        )}
-      >
-        Colors
-      </Link>
-
-      <Link
-        to={'/Buttons'}
-        className={classNames(
-          history.location.pathname === '/Buttons'
-            ? 'bg-gray-100 text-gray-900'
-            : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900',
-          'group flex items-center px-2 py-2 text-base font-medium rounded-md'
-        )}
-      >
-        Buttons
-      </Link>
+      <LeftNavigationItem name="Typography" />
+      <LeftNavigationItem name="Colors" />
+      <LeftNavigationItem name="Buttons" />
     </nav>
   )
 }

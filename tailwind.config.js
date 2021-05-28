@@ -4,14 +4,19 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        primary: 'var(--text-primary)',
-        secondary: 'var(--text-secondary)',
+        primary: 'var(--textPrimary)',
+        secondary: 'var(--textSecondary)',
+        input: 'var(--textInput)',
+        navigation: 'var(--textNavigation)',
+        divider: 'var(--divider)',
       },
     },
     backgroundColor: (theme) => ({
       ...theme('colors'),
-      primary: 'var(--background-primary)',
-      secondary: 'var(--background-secondary)',
+      primary: 'var(--backgroundPrimary)',
+      secondary: 'var(--backgroundSecondary)',
+      input: 'var(--backgroundInput)',
+      navigation: 'var(--backgroundNavigation)',
     }),
   },
   variants: {
@@ -19,3 +24,13 @@ module.exports = {
   },
   plugins: [require('@tailwindcss/forms')],
 }
+
+//  textPrimary: string
+//   textSecondary: string
+//   backgroundPrimary: string
+//   backgroundSecondary: string
+//   backgroundInput: string
+//   textInput: string
+//   backgroundNavigation: string
+//   textNavigation: string
+//   divider: string

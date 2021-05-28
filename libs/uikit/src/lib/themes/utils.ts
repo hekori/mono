@@ -10,17 +10,14 @@ export interface IMappedTheme {
 }
 
 export const mapTheme = (theme: Theme): IMappedTheme => {
-  return {
-    '--text-primary': theme.textPrimary || '',
-    '--text-secondary': theme.textSecondary || '',
-    '--background-primary': theme.backgroundPrimary || '',
-    '--background-secondary': theme.backgroundSecondary || '',
-  }
+  return { ...theme }
 }
 
-export const applyTheme = (theme: string): void => {
-  const themeObject: IMappedTheme = mapTheme(themes[theme])
+export const applyTheme = (themeName: string): void => {
+  const themeObject: IMappedTheme = mapTheme(themes[themeName])
   if (!themeObject) return
+
+  console.log('themeObject', themeObject)
 
   const root = document.documentElement
 
@@ -29,7 +26,7 @@ export const applyTheme = (theme: string): void => {
       return
     }
 
-    root.style.setProperty(property, themeObject[property])
+    root.style.setProperty(`--${property}`, themeObject[property])
   })
 }
 
