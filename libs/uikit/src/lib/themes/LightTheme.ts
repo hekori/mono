@@ -5,4 +5,9 @@ export const LightTheme: Theme = {
   textSecondary: '#016493',
   backgroundPrimary: '#FFFFFF',
   backgroundSecondary: '#EFEFEF',
+  backgroundInput: '#FFFFFF',
+  backgroundNavigation: '#FFFFFF',
+  divider: '#CCCCCC',
+  textInput: '#003650',
+  textNavigation: '#003650',
 }

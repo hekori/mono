@@ -5,4 +5,9 @@ export const DarkTheme: Theme = {
   textSecondary: '#EFEFEF',
   backgroundPrimary: '#003650',
   backgroundSecondary: '#016493',
+  backgroundInput: '#003650',
+  backgroundNavigation: '#003650',
+  divider: '#CCCCCC',
+  textInput: '#FFFFFF',
+  textNavigation: '#FFFFFF',
 }

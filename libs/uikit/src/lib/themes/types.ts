@@ -3,4 +3,9 @@ export interface Theme {
   textSecondary: string
   backgroundPrimary: string
   backgroundSecondary: string
+  backgroundInput: string
+  textInput: string
+  backgroundNavigation: string
+  textNavigation: string
+  divider: string
 }

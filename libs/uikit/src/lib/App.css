@@ -2084,11 +2084,23 @@ select {
 }
 
 .divide-primary > :not([hidden]) ~ :not([hidden]) {
-  border-color: var(--text-primary);
+  border-color: var(--textPrimary);
 }
 
 .divide-secondary > :not([hidden]) ~ :not([hidden]) {
-  border-color: var(--text-secondary);
+  border-color: var(--textSecondary);
+}
+
+.divide-input > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--textInput);
+}
+
+.divide-navigation > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--textNavigation);
+}
+
+.divide-divider > :not([hidden]) ~ :not([hidden]) {
+  border-color: var(--divider);
 }
 
 .divide-solid > :not([hidden]) ~ :not([hidden]) {
@@ -2694,11 +2706,23 @@ select {
 }
 
 .bg-primary {
-  background-color: var(--background-primary);
+  background-color: var(--backgroundPrimary);
 }
 
 .bg-secondary {
-  background-color: var(--background-secondary);
+  background-color: var(--backgroundSecondary);
+}
+
+.bg-input {
+  background-color: var(--backgroundInput);
+}
+
+.bg-navigation {
+  background-color: var(--backgroundNavigation);
+}
+
+.bg-divider {
+  background-color: var(--divider);
 }
 
 .active\:bg-transparent:active {
@@ -3120,11 +3144,23 @@ select {
 }
 
 .active\:bg-primary:active {
-  background-color: var(--background-primary);
+  background-color: var(--backgroundPrimary);
 }
 
 .active\:bg-secondary:active {
-  background-color: var(--background-secondary);
+  background-color: var(--backgroundSecondary);
+}
+
+.active\:bg-input:active {
+  background-color: var(--backgroundInput);
+}
+
+.active\:bg-navigation:active {
+  background-color: var(--backgroundNavigation);
+}
+
+.active\:bg-divider:active {
+  background-color: var(--divider);
 }
 
 .hover\:bg-transparent:hover {
@@ -3546,11 +3582,23 @@ select {
 }
 
 .hover\:bg-primary:hover {
-  background-color: var(--background-primary);
+  background-color: var(--backgroundPrimary);
 }
 
 .hover\:bg-secondary:hover {
-  background-color: var(--background-secondary);
+  background-color: var(--backgroundSecondary);
+}
+
+.hover\:bg-input:hover {
+  background-color: var(--backgroundInput);
+}
+
+.hover\:bg-navigation:hover {
+  background-color: var(--backgroundNavigation);
+}
+
+.hover\:bg-divider:hover {
+  background-color: var(--divider);
 }
 
 .focus\:bg-transparent:focus {
@@ -3972,11 +4020,23 @@ select {
 }
 
 .focus\:bg-primary:focus {
-  background-color: var(--background-primary);
+  background-color: var(--backgroundPrimary);
 }
 
 .focus\:bg-secondary:focus {
-  background-color: var(--background-secondary);
+  background-color: var(--backgroundSecondary);
+}
+
+.focus\:bg-input:focus {
+  background-color: var(--backgroundInput);
+}
+
+.focus\:bg-navigation:focus {
+  background-color: var(--backgroundNavigation);
+}
+
+.focus\:bg-divider:focus {
+  background-color: var(--divider);
 }
 
 .bg-none {
@@ -4436,12 +4496,27 @@ select {
 }
 
 .from-primary {
-  --tw-gradient-from: var(--text-primary);
+  --tw-gradient-from: var(--textPrimary);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .from-secondary {
-  --tw-gradient-from: var(--text-secondary);
+  --tw-gradient-from: var(--textSecondary);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.from-input {
+  --tw-gradient-from: var(--textInput);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.from-navigation {
+  --tw-gradient-from: var(--textNavigation);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.from-divider {
+  --tw-gradient-from: var(--divider);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
@@ -4782,11 +4857,23 @@ select {
 }
 
 .via-primary {
-  --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .via-secondary {
-  --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.via-input {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.via-navigation {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.via-divider {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .to-transparent {
@@ -5126,11 +5213,23 @@ select {
 }
 
 .to-primary {
-  --tw-gradient-to: var(--text-primary);
+  --tw-gradient-to: var(--textPrimary);
 }
 
 .to-secondary {
-  --tw-gradient-to: var(--text-secondary);
+  --tw-gradient-to: var(--textSecondary);
+}
+
+.to-input {
+  --tw-gradient-to: var(--textInput);
+}
+
+.to-navigation {
+  --tw-gradient-to: var(--textNavigation);
+}
+
+.to-divider {
+  --tw-gradient-to: var(--divider);
 }
 
 .hover\:from-transparent:hover {
@@ -5554,12 +5653,27 @@ select {
 }
 
 .hover\:from-primary:hover {
-  --tw-gradient-from: var(--text-primary);
+  --tw-gradient-from: var(--textPrimary);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .hover\:from-secondary:hover {
-  --tw-gradient-from: var(--text-secondary);
+  --tw-gradient-from: var(--textSecondary);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.hover\:from-input:hover {
+  --tw-gradient-from: var(--textInput);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.hover\:from-navigation:hover {
+  --tw-gradient-from: var(--textNavigation);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.hover\:from-divider:hover {
+  --tw-gradient-from: var(--divider);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
@@ -5900,11 +6014,23 @@ select {
 }
 
 .hover\:via-primary:hover {
-  --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .hover\:via-secondary:hover {
-  --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.hover\:via-input:hover {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.hover\:via-navigation:hover {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.hover\:via-divider:hover {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .hover\:to-transparent:hover {
@@ -6244,11 +6370,23 @@ select {
 }
 
 .hover\:to-primary:hover {
-  --tw-gradient-to: var(--text-primary);
+  --tw-gradient-to: var(--textPrimary);
 }
 
 .hover\:to-secondary:hover {
-  --tw-gradient-to: var(--text-secondary);
+  --tw-gradient-to: var(--textSecondary);
+}
+
+.hover\:to-input:hover {
+  --tw-gradient-to: var(--textInput);
+}
+
+.hover\:to-navigation:hover {
+  --tw-gradient-to: var(--textNavigation);
+}
+
+.hover\:to-divider:hover {
+  --tw-gradient-to: var(--divider);
 }
 
 .focus\:from-transparent:focus {
@@ -6672,12 +6810,27 @@ select {
 }
 
 .focus\:from-primary:focus {
-  --tw-gradient-from: var(--text-primary);
+  --tw-gradient-from: var(--textPrimary);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .focus\:from-secondary:focus {
-  --tw-gradient-from: var(--text-secondary);
+  --tw-gradient-from: var(--textSecondary);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.focus\:from-input:focus {
+  --tw-gradient-from: var(--textInput);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.focus\:from-navigation:focus {
+  --tw-gradient-from: var(--textNavigation);
+  --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.focus\:from-divider:focus {
+  --tw-gradient-from: var(--divider);
   --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
@@ -7018,11 +7171,23 @@ select {
 }
 
 .focus\:via-primary:focus {
-  --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .focus\:via-secondary:focus {
-  --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.focus\:via-input:focus {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.focus\:via-navigation:focus {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+}
+
+.focus\:via-divider:focus {
+  --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
 }
 
 .focus\:to-transparent:focus {
@@ -7362,11 +7527,23 @@ select {
 }
 
 .focus\:to-primary:focus {
-  --tw-gradient-to: var(--text-primary);
+  --tw-gradient-to: var(--textPrimary);
 }
 
 .focus\:to-secondary:focus {
-  --tw-gradient-to: var(--text-secondary);
+  --tw-gradient-to: var(--textSecondary);
+}
+
+.focus\:to-input:focus {
+  --tw-gradient-to: var(--textInput);
+}
+
+.focus\:to-navigation:focus {
+  --tw-gradient-to: var(--textNavigation);
+}
+
+.focus\:to-divider:focus {
+  --tw-gradient-to: var(--divider);
 }
 
 .bg-opacity-0 {
@@ -8168,11 +8345,23 @@ select {
 }
 
 .border-primary {
-  border-color: var(--text-primary);
+  border-color: var(--textPrimary);
 }
 
 .border-secondary {
-  border-color: var(--text-secondary);
+  border-color: var(--textSecondary);
+}
+
+.border-input {
+  border-color: var(--textInput);
+}
+
+.border-navigation {
+  border-color: var(--textNavigation);
+}
+
+.border-divider {
+  border-color: var(--divider);
 }
 
 .group:hover .group-hover\:border-transparent {
@@ -8594,11 +8783,23 @@ select {
 }
 
 .group:hover .group-hover\:border-primary {
-  border-color: var(--text-primary);
+  border-color: var(--textPrimary);
 }
 
 .group:hover .group-hover\:border-secondary {
-  border-color: var(--text-secondary);
+  border-color: var(--textSecondary);
+}
+
+.group:hover .group-hover\:border-input {
+  border-color: var(--textInput);
+}
+
+.group:hover .group-hover\:border-navigation {
+  border-color: var(--textNavigation);
+}
+
+.group:hover .group-hover\:border-divider {
+  border-color: var(--divider);
 }
 
 .focus-within\:border-transparent:focus-within {
@@ -9020,11 +9221,23 @@ select {
 }
 
 .focus-within\:border-primary:focus-within {
-  border-color: var(--text-primary);
+  border-color: var(--textPrimary);
 }
 
 .focus-within\:border-secondary:focus-within {
-  border-color: var(--text-secondary);
+  border-color: var(--textSecondary);
+}
+
+.focus-within\:border-input:focus-within {
+  border-color: var(--textInput);
+}
+
+.focus-within\:border-navigation:focus-within {
+  border-color: var(--textNavigation);
+}
+
+.focus-within\:border-divider:focus-within {
+  border-color: var(--divider);
 }
 
 .hover\:border-transparent:hover {
@@ -9446,11 +9659,23 @@ select {
 }
 
 .hover\:border-primary:hover {
-  border-color: var(--text-primary);
+  border-color: var(--textPrimary);
 }
 
 .hover\:border-secondary:hover {
-  border-color: var(--text-secondary);
+  border-color: var(--textSecondary);
+}
+
+.hover\:border-input:hover {
+  border-color: var(--textInput);
+}
+
+.hover\:border-navigation:hover {
+  border-color: var(--textNavigation);
+}
+
+.hover\:border-divider:hover {
+  border-color: var(--divider);
 }
 
 .focus\:border-transparent:focus {
@@ -9872,11 +10097,23 @@ select {
 }
 
 .focus\:border-primary:focus {
-  border-color: var(--text-primary);
+  border-color: var(--textPrimary);
 }
 
 .focus\:border-secondary:focus {
-  border-color: var(--text-secondary);
+  border-color: var(--textSecondary);
+}
+
+.focus\:border-input:focus {
+  border-color: var(--textInput);
+}
+
+.focus\:border-navigation:focus {
+  border-color: var(--textNavigation);
+}
+
+.focus\:border-divider:focus {
+  border-color: var(--divider);
 }
 
 .border-opacity-0 {
@@ -16739,27 +16976,63 @@ select {
 }
 
 .placeholder-primary::-moz-placeholder {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .placeholder-primary:-ms-input-placeholder {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .placeholder-primary::placeholder {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .placeholder-secondary::-moz-placeholder {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
 }
 
 .placeholder-secondary:-ms-input-placeholder {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
 }
 
 .placeholder-secondary::placeholder {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
+}
+
+.placeholder-input::-moz-placeholder {
+  color: var(--textInput);
+}
+
+.placeholder-input:-ms-input-placeholder {
+  color: var(--textInput);
+}
+
+.placeholder-input::placeholder {
+  color: var(--textInput);
+}
+
+.placeholder-navigation::-moz-placeholder {
+  color: var(--textNavigation);
+}
+
+.placeholder-navigation:-ms-input-placeholder {
+  color: var(--textNavigation);
+}
+
+.placeholder-navigation::placeholder {
+  color: var(--textNavigation);
+}
+
+.placeholder-divider::-moz-placeholder {
+  color: var(--divider);
+}
+
+.placeholder-divider:-ms-input-placeholder {
+  color: var(--divider);
+}
+
+.placeholder-divider::placeholder {
+  color: var(--divider);
 }
 
 .focus\:placeholder-transparent:focus::-moz-placeholder {
@@ -18017,27 +18290,63 @@ select {
 }
 
 .focus\:placeholder-primary:focus::-moz-placeholder {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .focus\:placeholder-primary:focus:-ms-input-placeholder {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .focus\:placeholder-primary:focus::placeholder {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .focus\:placeholder-secondary:focus::-moz-placeholder {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
 }
 
 .focus\:placeholder-secondary:focus:-ms-input-placeholder {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
 }
 
 .focus\:placeholder-secondary:focus::placeholder {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
+}
+
+.focus\:placeholder-input:focus::-moz-placeholder {
+  color: var(--textInput);
+}
+
+.focus\:placeholder-input:focus:-ms-input-placeholder {
+  color: var(--textInput);
+}
+
+.focus\:placeholder-input:focus::placeholder {
+  color: var(--textInput);
+}
+
+.focus\:placeholder-navigation:focus::-moz-placeholder {
+  color: var(--textNavigation);
+}
+
+.focus\:placeholder-navigation:focus:-ms-input-placeholder {
+  color: var(--textNavigation);
+}
+
+.focus\:placeholder-navigation:focus::placeholder {
+  color: var(--textNavigation);
+}
+
+.focus\:placeholder-divider:focus::-moz-placeholder {
+  color: var(--divider);
+}
+
+.focus\:placeholder-divider:focus:-ms-input-placeholder {
+  color: var(--divider);
+}
+
+.focus\:placeholder-divider:focus::placeholder {
+  color: var(--divider);
 }
 
 .placeholder-opacity-0::-moz-placeholder {
@@ -21919,11 +22228,23 @@ select {
 }
 
 .ring-offset-primary {
-  --tw-ring-offset-color: var(--text-primary);
+  --tw-ring-offset-color: var(--textPrimary);
 }
 
 .ring-offset-secondary {
-  --tw-ring-offset-color: var(--text-secondary);
+  --tw-ring-offset-color: var(--textSecondary);
+}
+
+.ring-offset-input {
+  --tw-ring-offset-color: var(--textInput);
+}
+
+.ring-offset-navigation {
+  --tw-ring-offset-color: var(--textNavigation);
+}
+
+.ring-offset-divider {
+  --tw-ring-offset-color: var(--divider);
 }
 
 .focus-within\:ring-offset-transparent:focus-within {
@@ -22263,11 +22584,23 @@ select {
 }
 
 .focus-within\:ring-offset-primary:focus-within {
-  --tw-ring-offset-color: var(--text-primary);
+  --tw-ring-offset-color: var(--textPrimary);
 }
 
 .focus-within\:ring-offset-secondary:focus-within {
-  --tw-ring-offset-color: var(--text-secondary);
+  --tw-ring-offset-color: var(--textSecondary);
+}
+
+.focus-within\:ring-offset-input:focus-within {
+  --tw-ring-offset-color: var(--textInput);
+}
+
+.focus-within\:ring-offset-navigation:focus-within {
+  --tw-ring-offset-color: var(--textNavigation);
+}
+
+.focus-within\:ring-offset-divider:focus-within {
+  --tw-ring-offset-color: var(--divider);
 }
 
 .focus\:ring-offset-transparent:focus {
@@ -22607,11 +22940,23 @@ select {
 }
 
 .focus\:ring-offset-primary:focus {
-  --tw-ring-offset-color: var(--text-primary);
+  --tw-ring-offset-color: var(--textPrimary);
 }
 
 .focus\:ring-offset-secondary:focus {
-  --tw-ring-offset-color: var(--text-secondary);
+  --tw-ring-offset-color: var(--textSecondary);
+}
+
+.focus\:ring-offset-input:focus {
+  --tw-ring-offset-color: var(--textInput);
+}
+
+.focus\:ring-offset-navigation:focus {
+  --tw-ring-offset-color: var(--textNavigation);
+}
+
+.focus\:ring-offset-divider:focus {
+  --tw-ring-offset-color: var(--divider);
 }
 
 .ring-offset-0 {
@@ -23093,11 +23438,23 @@ select {
 }
 
 .ring-primary {
-  --tw-ring-color: var(--text-primary);
+  --tw-ring-color: var(--textPrimary);
 }
 
 .ring-secondary {
-  --tw-ring-color: var(--text-secondary);
+  --tw-ring-color: var(--textSecondary);
+}
+
+.ring-input {
+  --tw-ring-color: var(--textInput);
+}
+
+.ring-navigation {
+  --tw-ring-color: var(--textNavigation);
+}
+
+.ring-divider {
+  --tw-ring-color: var(--divider);
 }
 
 .focus-within\:ring-transparent:focus-within {
@@ -23519,11 +23876,23 @@ select {
 }
 
 .focus-within\:ring-primary:focus-within {
-  --tw-ring-color: var(--text-primary);
+  --tw-ring-color: var(--textPrimary);
 }
 
 .focus-within\:ring-secondary:focus-within {
-  --tw-ring-color: var(--text-secondary);
+  --tw-ring-color: var(--textSecondary);
+}
+
+.focus-within\:ring-input:focus-within {
+  --tw-ring-color: var(--textInput);
+}
+
+.focus-within\:ring-navigation:focus-within {
+  --tw-ring-color: var(--textNavigation);
+}
+
+.focus-within\:ring-divider:focus-within {
+  --tw-ring-color: var(--divider);
 }
 
 .focus\:ring-transparent:focus {
@@ -23945,11 +24314,23 @@ select {
 }
 
 .focus\:ring-primary:focus {
-  --tw-ring-color: var(--text-primary);
+  --tw-ring-color: var(--textPrimary);
 }
 
 .focus\:ring-secondary:focus {
-  --tw-ring-color: var(--text-secondary);
+  --tw-ring-color: var(--textSecondary);
+}
+
+.focus\:ring-input:focus {
+  --tw-ring-color: var(--textInput);
+}
+
+.focus\:ring-navigation:focus {
+  --tw-ring-color: var(--textNavigation);
+}
+
+.focus\:ring-divider:focus {
+  --tw-ring-color: var(--divider);
 }
 
 .ring-opacity-0 {
@@ -24595,11 +24976,23 @@ select {
 }
 
 .text-primary {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .text-secondary {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
+}
+
+.text-input {
+  color: var(--textInput);
+}
+
+.text-navigation {
+  color: var(--textNavigation);
+}
+
+.text-divider {
+  color: var(--divider);
 }
 
 .group:hover .group-hover\:text-transparent {
@@ -25021,11 +25414,23 @@ select {
 }
 
 .group:hover .group-hover\:text-primary {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .group:hover .group-hover\:text-secondary {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
+}
+
+.group:hover .group-hover\:text-input {
+  color: var(--textInput);
+}
+
+.group:hover .group-hover\:text-navigation {
+  color: var(--textNavigation);
+}
+
+.group:hover .group-hover\:text-divider {
+  color: var(--divider);
 }
 
 .focus-within\:text-transparent:focus-within {
@@ -25447,11 +25852,23 @@ select {
 }
 
 .focus-within\:text-primary:focus-within {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .focus-within\:text-secondary:focus-within {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
+}
+
+.focus-within\:text-input:focus-within {
+  color: var(--textInput);
+}
+
+.focus-within\:text-navigation:focus-within {
+  color: var(--textNavigation);
+}
+
+.focus-within\:text-divider:focus-within {
+  color: var(--divider);
 }
 
 .hover\:text-transparent:hover {
@@ -25873,11 +26290,23 @@ select {
 }
 
 .hover\:text-primary:hover {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .hover\:text-secondary:hover {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
+}
+
+.hover\:text-input:hover {
+  color: var(--textInput);
+}
+
+.hover\:text-navigation:hover {
+  color: var(--textNavigation);
+}
+
+.hover\:text-divider:hover {
+  color: var(--divider);
 }
 
 .focus\:text-transparent:focus {
@@ -26299,11 +26728,23 @@ select {
 }
 
 .focus\:text-primary:focus {
-  color: var(--text-primary);
+  color: var(--textPrimary);
 }
 
 .focus\:text-secondary:focus {
-  color: var(--text-secondary);
+  color: var(--textSecondary);
+}
+
+.focus\:text-input:focus {
+  color: var(--textInput);
+}
+
+.focus\:text-navigation:focus {
+  color: var(--textNavigation);
+}
+
+.focus\:text-divider:focus {
+  color: var(--divider);
 }
 
 .text-opacity-0 {
@@ -33242,11 +33683,23 @@ select {
   }
 
   .sm\:divide-primary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .sm\:divide-secondary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .sm\:divide-input > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textInput);
+  }
+
+  .sm\:divide-navigation > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textNavigation);
+  }
+
+  .sm\:divide-divider > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--divider);
   }
 
   .sm\:divide-solid > :not([hidden]) ~ :not([hidden]) {
@@ -33890,12 +34343,27 @@ select {
   }
 
   .sm\:from-primary {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:from-secondary {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:from-input {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:from-navigation {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:from-divider {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -34236,11 +34704,23 @@ select {
   }
 
   .sm\:via-primary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:via-secondary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:via-input {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:via-navigation {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:via-divider {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:to-transparent {
@@ -34580,11 +35060,23 @@ select {
   }
 
   .sm\:to-primary {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .sm\:to-secondary {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .sm\:to-input {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .sm\:to-navigation {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .sm\:to-divider {
+    --tw-gradient-to: var(--divider);
   }
 
   .sm\:hover\:from-transparent:hover {
@@ -35008,12 +35500,27 @@ select {
   }
 
   .sm\:hover\:from-primary:hover {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:hover\:from-secondary:hover {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:hover\:from-input:hover {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:hover\:from-navigation:hover {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:hover\:from-divider:hover {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -35354,11 +35861,23 @@ select {
   }
 
   .sm\:hover\:via-primary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:hover\:via-secondary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:hover\:via-input:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:hover\:via-navigation:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:hover\:via-divider:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:hover\:to-transparent:hover {
@@ -35698,11 +36217,23 @@ select {
   }
 
   .sm\:hover\:to-primary:hover {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .sm\:hover\:to-secondary:hover {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .sm\:hover\:to-input:hover {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .sm\:hover\:to-navigation:hover {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .sm\:hover\:to-divider:hover {
+    --tw-gradient-to: var(--divider);
   }
 
   .sm\:focus\:from-transparent:focus {
@@ -36126,12 +36657,27 @@ select {
   }
 
   .sm\:focus\:from-primary:focus {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:focus\:from-secondary:focus {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:focus\:from-input:focus {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:focus\:from-navigation:focus {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:focus\:from-divider:focus {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -36472,11 +37018,23 @@ select {
   }
 
   .sm\:focus\:via-primary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:focus\:via-secondary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:focus\:via-input:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:focus\:via-navigation:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .sm\:focus\:via-divider:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .sm\:focus\:to-transparent:focus {
@@ -36816,11 +37374,23 @@ select {
   }
 
   .sm\:focus\:to-primary:focus {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .sm\:focus\:to-secondary:focus {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .sm\:focus\:to-input:focus {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .sm\:focus\:to-navigation:focus {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .sm\:focus\:to-divider:focus {
+    --tw-gradient-to: var(--divider);
   }
 
   .sm\:bg-opacity-0 {
@@ -37622,11 +38192,23 @@ select {
   }
 
   .sm\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .sm\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .sm\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .sm\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .sm\:border-divider {
+    border-color: var(--divider);
   }
 
   .group:hover .sm\:group-hover\:border-transparent {
@@ -38048,11 +38630,23 @@ select {
   }
 
   .group:hover .sm\:group-hover\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .group:hover .sm\:group-hover\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .group:hover .sm\:group-hover\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .group:hover .sm\:group-hover\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .group:hover .sm\:group-hover\:border-divider {
+    border-color: var(--divider);
   }
 
   .sm\:focus-within\:border-transparent:focus-within {
@@ -38474,11 +39068,23 @@ select {
   }
 
   .sm\:focus-within\:border-primary:focus-within {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .sm\:focus-within\:border-secondary:focus-within {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .sm\:focus-within\:border-input:focus-within {
+    border-color: var(--textInput);
+  }
+
+  .sm\:focus-within\:border-navigation:focus-within {
+    border-color: var(--textNavigation);
+  }
+
+  .sm\:focus-within\:border-divider:focus-within {
+    border-color: var(--divider);
   }
 
   .sm\:hover\:border-transparent:hover {
@@ -38900,11 +39506,23 @@ select {
   }
 
   .sm\:hover\:border-primary:hover {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .sm\:hover\:border-secondary:hover {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .sm\:hover\:border-input:hover {
+    border-color: var(--textInput);
+  }
+
+  .sm\:hover\:border-navigation:hover {
+    border-color: var(--textNavigation);
+  }
+
+  .sm\:hover\:border-divider:hover {
+    border-color: var(--divider);
   }
 
   .sm\:focus\:border-transparent:focus {
@@ -39326,11 +39944,23 @@ select {
   }
 
   .sm\:focus\:border-primary:focus {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .sm\:focus\:border-secondary:focus {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .sm\:focus\:border-input:focus {
+    border-color: var(--textInput);
+  }
+
+  .sm\:focus\:border-navigation:focus {
+    border-color: var(--textNavigation);
+  }
+
+  .sm\:focus\:border-divider:focus {
+    border-color: var(--divider);
   }
 
   .sm\:border-opacity-0 {
@@ -46193,27 +46823,63 @@ select {
   }
 
   .sm\:placeholder-primary::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:placeholder-primary:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:placeholder-primary::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:placeholder-secondary::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .sm\:placeholder-secondary:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .sm\:placeholder-secondary::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .sm\:placeholder-input::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .sm\:placeholder-input:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .sm\:placeholder-input::placeholder {
+    color: var(--textInput);
+  }
+
+  .sm\:placeholder-navigation::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .sm\:placeholder-navigation:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .sm\:placeholder-navigation::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .sm\:placeholder-divider::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .sm\:placeholder-divider:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .sm\:placeholder-divider::placeholder {
+    color: var(--divider);
   }
 
   .sm\:focus\:placeholder-transparent:focus::-moz-placeholder {
@@ -47471,27 +48137,63 @@ select {
   }
 
   .sm\:focus\:placeholder-primary:focus::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:focus\:placeholder-primary:focus:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:focus\:placeholder-primary:focus::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:focus\:placeholder-secondary:focus::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .sm\:focus\:placeholder-secondary:focus:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .sm\:focus\:placeholder-secondary:focus::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .sm\:focus\:placeholder-input:focus::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .sm\:focus\:placeholder-input:focus:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .sm\:focus\:placeholder-input:focus::placeholder {
+    color: var(--textInput);
+  }
+
+  .sm\:focus\:placeholder-navigation:focus::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .sm\:focus\:placeholder-navigation:focus:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .sm\:focus\:placeholder-navigation:focus::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .sm\:focus\:placeholder-divider:focus::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .sm\:focus\:placeholder-divider:focus:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .sm\:focus\:placeholder-divider:focus::placeholder {
+    color: var(--divider);
   }
 
   .sm\:placeholder-opacity-0::-moz-placeholder {
@@ -51360,11 +52062,23 @@ select {
   }
 
   .sm\:ring-offset-primary {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .sm\:ring-offset-secondary {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .sm\:ring-offset-input {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .sm\:ring-offset-navigation {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .sm\:ring-offset-divider {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .sm\:focus-within\:ring-offset-transparent:focus-within {
@@ -51704,11 +52418,23 @@ select {
   }
 
   .sm\:focus-within\:ring-offset-primary:focus-within {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .sm\:focus-within\:ring-offset-secondary:focus-within {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .sm\:focus-within\:ring-offset-input:focus-within {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .sm\:focus-within\:ring-offset-navigation:focus-within {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .sm\:focus-within\:ring-offset-divider:focus-within {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .sm\:focus\:ring-offset-transparent:focus {
@@ -52048,11 +52774,23 @@ select {
   }
 
   .sm\:focus\:ring-offset-primary:focus {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .sm\:focus\:ring-offset-secondary:focus {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .sm\:focus\:ring-offset-input:focus {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .sm\:focus\:ring-offset-navigation:focus {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .sm\:focus\:ring-offset-divider:focus {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .sm\:ring-offset-0 {
@@ -52534,11 +53272,23 @@ select {
   }
 
   .sm\:ring-primary {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .sm\:ring-secondary {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .sm\:ring-input {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .sm\:ring-navigation {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .sm\:ring-divider {
+    --tw-ring-color: var(--divider);
   }
 
   .sm\:focus-within\:ring-transparent:focus-within {
@@ -52960,11 +53710,23 @@ select {
   }
 
   .sm\:focus-within\:ring-primary:focus-within {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .sm\:focus-within\:ring-secondary:focus-within {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .sm\:focus-within\:ring-input:focus-within {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .sm\:focus-within\:ring-navigation:focus-within {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .sm\:focus-within\:ring-divider:focus-within {
+    --tw-ring-color: var(--divider);
   }
 
   .sm\:focus\:ring-transparent:focus {
@@ -53386,11 +54148,23 @@ select {
   }
 
   .sm\:focus\:ring-primary:focus {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .sm\:focus\:ring-secondary:focus {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .sm\:focus\:ring-input:focus {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .sm\:focus\:ring-navigation:focus {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .sm\:focus\:ring-divider:focus {
+    --tw-ring-color: var(--divider);
   }
 
   .sm\:ring-opacity-0 {
@@ -54036,11 +54810,23 @@ select {
   }
 
   .sm\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .sm\:text-input {
+    color: var(--textInput);
+  }
+
+  .sm\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .sm\:text-divider {
+    color: var(--divider);
   }
 
   .group:hover .sm\:group-hover\:text-transparent {
@@ -54462,11 +55248,23 @@ select {
   }
 
   .group:hover .sm\:group-hover\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .group:hover .sm\:group-hover\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .group:hover .sm\:group-hover\:text-input {
+    color: var(--textInput);
+  }
+
+  .group:hover .sm\:group-hover\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .group:hover .sm\:group-hover\:text-divider {
+    color: var(--divider);
   }
 
   .sm\:focus-within\:text-transparent:focus-within {
@@ -54888,11 +55686,23 @@ select {
   }
 
   .sm\:focus-within\:text-primary:focus-within {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:focus-within\:text-secondary:focus-within {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .sm\:focus-within\:text-input:focus-within {
+    color: var(--textInput);
+  }
+
+  .sm\:focus-within\:text-navigation:focus-within {
+    color: var(--textNavigation);
+  }
+
+  .sm\:focus-within\:text-divider:focus-within {
+    color: var(--divider);
   }
 
   .sm\:hover\:text-transparent:hover {
@@ -55314,11 +56124,23 @@ select {
   }
 
   .sm\:hover\:text-primary:hover {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:hover\:text-secondary:hover {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .sm\:hover\:text-input:hover {
+    color: var(--textInput);
+  }
+
+  .sm\:hover\:text-navigation:hover {
+    color: var(--textNavigation);
+  }
+
+  .sm\:hover\:text-divider:hover {
+    color: var(--divider);
   }
 
   .sm\:focus\:text-transparent:focus {
@@ -55740,11 +56562,23 @@ select {
   }
 
   .sm\:focus\:text-primary:focus {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .sm\:focus\:text-secondary:focus {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .sm\:focus\:text-input:focus {
+    color: var(--textInput);
+  }
+
+  .sm\:focus\:text-navigation:focus {
+    color: var(--textNavigation);
+  }
+
+  .sm\:focus\:text-divider:focus {
+    color: var(--divider);
   }
 
   .sm\:text-opacity-0 {
@@ -62526,11 +63360,23 @@ select {
   }
 
   .md\:divide-primary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .md\:divide-secondary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .md\:divide-input > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textInput);
+  }
+
+  .md\:divide-navigation > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textNavigation);
+  }
+
+  .md\:divide-divider > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--divider);
   }
 
   .md\:divide-solid > :not([hidden]) ~ :not([hidden]) {
@@ -63174,12 +64020,27 @@ select {
   }
 
   .md\:from-primary {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:from-secondary {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:from-input {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:from-navigation {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:from-divider {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -63520,11 +64381,23 @@ select {
   }
 
   .md\:via-primary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:via-secondary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:via-input {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:via-navigation {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:via-divider {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:to-transparent {
@@ -63864,11 +64737,23 @@ select {
   }
 
   .md\:to-primary {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .md\:to-secondary {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .md\:to-input {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .md\:to-navigation {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .md\:to-divider {
+    --tw-gradient-to: var(--divider);
   }
 
   .md\:hover\:from-transparent:hover {
@@ -64292,12 +65177,27 @@ select {
   }
 
   .md\:hover\:from-primary:hover {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:hover\:from-secondary:hover {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:hover\:from-input:hover {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:hover\:from-navigation:hover {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:hover\:from-divider:hover {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -64638,11 +65538,23 @@ select {
   }
 
   .md\:hover\:via-primary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:hover\:via-secondary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:hover\:via-input:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:hover\:via-navigation:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:hover\:via-divider:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:hover\:to-transparent:hover {
@@ -64982,11 +65894,23 @@ select {
   }
 
   .md\:hover\:to-primary:hover {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .md\:hover\:to-secondary:hover {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .md\:hover\:to-input:hover {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .md\:hover\:to-navigation:hover {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .md\:hover\:to-divider:hover {
+    --tw-gradient-to: var(--divider);
   }
 
   .md\:focus\:from-transparent:focus {
@@ -65410,12 +66334,27 @@ select {
   }
 
   .md\:focus\:from-primary:focus {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:focus\:from-secondary:focus {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:focus\:from-input:focus {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:focus\:from-navigation:focus {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:focus\:from-divider:focus {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -65756,11 +66695,23 @@ select {
   }
 
   .md\:focus\:via-primary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:focus\:via-secondary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:focus\:via-input:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:focus\:via-navigation:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .md\:focus\:via-divider:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .md\:focus\:to-transparent:focus {
@@ -66100,11 +67051,23 @@ select {
   }
 
   .md\:focus\:to-primary:focus {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .md\:focus\:to-secondary:focus {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .md\:focus\:to-input:focus {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .md\:focus\:to-navigation:focus {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .md\:focus\:to-divider:focus {
+    --tw-gradient-to: var(--divider);
   }
 
   .md\:bg-opacity-0 {
@@ -66906,11 +67869,23 @@ select {
   }
 
   .md\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .md\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .md\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .md\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .md\:border-divider {
+    border-color: var(--divider);
   }
 
   .group:hover .md\:group-hover\:border-transparent {
@@ -67332,11 +68307,23 @@ select {
   }
 
   .group:hover .md\:group-hover\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .group:hover .md\:group-hover\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .group:hover .md\:group-hover\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .group:hover .md\:group-hover\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .group:hover .md\:group-hover\:border-divider {
+    border-color: var(--divider);
   }
 
   .md\:focus-within\:border-transparent:focus-within {
@@ -67758,11 +68745,23 @@ select {
   }
 
   .md\:focus-within\:border-primary:focus-within {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .md\:focus-within\:border-secondary:focus-within {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .md\:focus-within\:border-input:focus-within {
+    border-color: var(--textInput);
+  }
+
+  .md\:focus-within\:border-navigation:focus-within {
+    border-color: var(--textNavigation);
+  }
+
+  .md\:focus-within\:border-divider:focus-within {
+    border-color: var(--divider);
   }
 
   .md\:hover\:border-transparent:hover {
@@ -68184,11 +69183,23 @@ select {
   }
 
   .md\:hover\:border-primary:hover {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .md\:hover\:border-secondary:hover {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .md\:hover\:border-input:hover {
+    border-color: var(--textInput);
+  }
+
+  .md\:hover\:border-navigation:hover {
+    border-color: var(--textNavigation);
+  }
+
+  .md\:hover\:border-divider:hover {
+    border-color: var(--divider);
   }
 
   .md\:focus\:border-transparent:focus {
@@ -68610,11 +69621,23 @@ select {
   }
 
   .md\:focus\:border-primary:focus {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .md\:focus\:border-secondary:focus {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .md\:focus\:border-input:focus {
+    border-color: var(--textInput);
+  }
+
+  .md\:focus\:border-navigation:focus {
+    border-color: var(--textNavigation);
+  }
+
+  .md\:focus\:border-divider:focus {
+    border-color: var(--divider);
   }
 
   .md\:border-opacity-0 {
@@ -75477,27 +76500,63 @@ select {
   }
 
   .md\:placeholder-primary::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:placeholder-primary:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:placeholder-primary::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:placeholder-secondary::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .md\:placeholder-secondary:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .md\:placeholder-secondary::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .md\:placeholder-input::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .md\:placeholder-input:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .md\:placeholder-input::placeholder {
+    color: var(--textInput);
+  }
+
+  .md\:placeholder-navigation::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .md\:placeholder-navigation:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .md\:placeholder-navigation::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .md\:placeholder-divider::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .md\:placeholder-divider:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .md\:placeholder-divider::placeholder {
+    color: var(--divider);
   }
 
   .md\:focus\:placeholder-transparent:focus::-moz-placeholder {
@@ -76755,27 +77814,63 @@ select {
   }
 
   .md\:focus\:placeholder-primary:focus::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:focus\:placeholder-primary:focus:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:focus\:placeholder-primary:focus::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:focus\:placeholder-secondary:focus::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .md\:focus\:placeholder-secondary:focus:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .md\:focus\:placeholder-secondary:focus::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .md\:focus\:placeholder-input:focus::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .md\:focus\:placeholder-input:focus:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .md\:focus\:placeholder-input:focus::placeholder {
+    color: var(--textInput);
+  }
+
+  .md\:focus\:placeholder-navigation:focus::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .md\:focus\:placeholder-navigation:focus:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .md\:focus\:placeholder-navigation:focus::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .md\:focus\:placeholder-divider:focus::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .md\:focus\:placeholder-divider:focus:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .md\:focus\:placeholder-divider:focus::placeholder {
+    color: var(--divider);
   }
 
   .md\:placeholder-opacity-0::-moz-placeholder {
@@ -80644,11 +81739,23 @@ select {
   }
 
   .md\:ring-offset-primary {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .md\:ring-offset-secondary {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .md\:ring-offset-input {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .md\:ring-offset-navigation {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .md\:ring-offset-divider {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .md\:focus-within\:ring-offset-transparent:focus-within {
@@ -80988,11 +82095,23 @@ select {
   }
 
   .md\:focus-within\:ring-offset-primary:focus-within {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .md\:focus-within\:ring-offset-secondary:focus-within {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .md\:focus-within\:ring-offset-input:focus-within {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .md\:focus-within\:ring-offset-navigation:focus-within {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .md\:focus-within\:ring-offset-divider:focus-within {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .md\:focus\:ring-offset-transparent:focus {
@@ -81332,11 +82451,23 @@ select {
   }
 
   .md\:focus\:ring-offset-primary:focus {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .md\:focus\:ring-offset-secondary:focus {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .md\:focus\:ring-offset-input:focus {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .md\:focus\:ring-offset-navigation:focus {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .md\:focus\:ring-offset-divider:focus {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .md\:ring-offset-0 {
@@ -81818,11 +82949,23 @@ select {
   }
 
   .md\:ring-primary {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .md\:ring-secondary {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .md\:ring-input {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .md\:ring-navigation {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .md\:ring-divider {
+    --tw-ring-color: var(--divider);
   }
 
   .md\:focus-within\:ring-transparent:focus-within {
@@ -82244,11 +83387,23 @@ select {
   }
 
   .md\:focus-within\:ring-primary:focus-within {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .md\:focus-within\:ring-secondary:focus-within {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .md\:focus-within\:ring-input:focus-within {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .md\:focus-within\:ring-navigation:focus-within {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .md\:focus-within\:ring-divider:focus-within {
+    --tw-ring-color: var(--divider);
   }
 
   .md\:focus\:ring-transparent:focus {
@@ -82670,11 +83825,23 @@ select {
   }
 
   .md\:focus\:ring-primary:focus {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .md\:focus\:ring-secondary:focus {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .md\:focus\:ring-input:focus {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .md\:focus\:ring-navigation:focus {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .md\:focus\:ring-divider:focus {
+    --tw-ring-color: var(--divider);
   }
 
   .md\:ring-opacity-0 {
@@ -83320,11 +84487,23 @@ select {
   }
 
   .md\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .md\:text-input {
+    color: var(--textInput);
+  }
+
+  .md\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .md\:text-divider {
+    color: var(--divider);
   }
 
   .group:hover .md\:group-hover\:text-transparent {
@@ -83746,11 +84925,23 @@ select {
   }
 
   .group:hover .md\:group-hover\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .group:hover .md\:group-hover\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .group:hover .md\:group-hover\:text-input {
+    color: var(--textInput);
+  }
+
+  .group:hover .md\:group-hover\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .group:hover .md\:group-hover\:text-divider {
+    color: var(--divider);
   }
 
   .md\:focus-within\:text-transparent:focus-within {
@@ -84172,11 +85363,23 @@ select {
   }
 
   .md\:focus-within\:text-primary:focus-within {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:focus-within\:text-secondary:focus-within {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .md\:focus-within\:text-input:focus-within {
+    color: var(--textInput);
+  }
+
+  .md\:focus-within\:text-navigation:focus-within {
+    color: var(--textNavigation);
+  }
+
+  .md\:focus-within\:text-divider:focus-within {
+    color: var(--divider);
   }
 
   .md\:hover\:text-transparent:hover {
@@ -84598,11 +85801,23 @@ select {
   }
 
   .md\:hover\:text-primary:hover {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:hover\:text-secondary:hover {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .md\:hover\:text-input:hover {
+    color: var(--textInput);
+  }
+
+  .md\:hover\:text-navigation:hover {
+    color: var(--textNavigation);
+  }
+
+  .md\:hover\:text-divider:hover {
+    color: var(--divider);
   }
 
   .md\:focus\:text-transparent:focus {
@@ -85024,11 +86239,23 @@ select {
   }
 
   .md\:focus\:text-primary:focus {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .md\:focus\:text-secondary:focus {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .md\:focus\:text-input:focus {
+    color: var(--textInput);
+  }
+
+  .md\:focus\:text-navigation:focus {
+    color: var(--textNavigation);
+  }
+
+  .md\:focus\:text-divider:focus {
+    color: var(--divider);
   }
 
   .md\:text-opacity-0 {
@@ -91810,11 +93037,23 @@ select {
   }
 
   .lg\:divide-primary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .lg\:divide-secondary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .lg\:divide-input > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textInput);
+  }
+
+  .lg\:divide-navigation > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textNavigation);
+  }
+
+  .lg\:divide-divider > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--divider);
   }
 
   .lg\:divide-solid > :not([hidden]) ~ :not([hidden]) {
@@ -92458,12 +93697,27 @@ select {
   }
 
   .lg\:from-primary {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:from-secondary {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:from-input {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:from-navigation {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:from-divider {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -92804,11 +94058,23 @@ select {
   }
 
   .lg\:via-primary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:via-secondary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:via-input {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:via-navigation {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:via-divider {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:to-transparent {
@@ -93148,11 +94414,23 @@ select {
   }
 
   .lg\:to-primary {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .lg\:to-secondary {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .lg\:to-input {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .lg\:to-navigation {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .lg\:to-divider {
+    --tw-gradient-to: var(--divider);
   }
 
   .lg\:hover\:from-transparent:hover {
@@ -93576,12 +94854,27 @@ select {
   }
 
   .lg\:hover\:from-primary:hover {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:hover\:from-secondary:hover {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:hover\:from-input:hover {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:hover\:from-navigation:hover {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:hover\:from-divider:hover {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -93922,11 +95215,23 @@ select {
   }
 
   .lg\:hover\:via-primary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:hover\:via-secondary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:hover\:via-input:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:hover\:via-navigation:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:hover\:via-divider:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:hover\:to-transparent:hover {
@@ -94266,11 +95571,23 @@ select {
   }
 
   .lg\:hover\:to-primary:hover {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .lg\:hover\:to-secondary:hover {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .lg\:hover\:to-input:hover {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .lg\:hover\:to-navigation:hover {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .lg\:hover\:to-divider:hover {
+    --tw-gradient-to: var(--divider);
   }
 
   .lg\:focus\:from-transparent:focus {
@@ -94694,12 +96011,27 @@ select {
   }
 
   .lg\:focus\:from-primary:focus {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:focus\:from-secondary:focus {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:focus\:from-input:focus {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:focus\:from-navigation:focus {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:focus\:from-divider:focus {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -95040,11 +96372,23 @@ select {
   }
 
   .lg\:focus\:via-primary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:focus\:via-secondary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:focus\:via-input:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:focus\:via-navigation:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .lg\:focus\:via-divider:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .lg\:focus\:to-transparent:focus {
@@ -95384,11 +96728,23 @@ select {
   }
 
   .lg\:focus\:to-primary:focus {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .lg\:focus\:to-secondary:focus {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .lg\:focus\:to-input:focus {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .lg\:focus\:to-navigation:focus {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .lg\:focus\:to-divider:focus {
+    --tw-gradient-to: var(--divider);
   }
 
   .lg\:bg-opacity-0 {
@@ -96190,11 +97546,23 @@ select {
   }
 
   .lg\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .lg\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .lg\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .lg\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .lg\:border-divider {
+    border-color: var(--divider);
   }
 
   .group:hover .lg\:group-hover\:border-transparent {
@@ -96616,11 +97984,23 @@ select {
   }
 
   .group:hover .lg\:group-hover\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .group:hover .lg\:group-hover\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .group:hover .lg\:group-hover\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .group:hover .lg\:group-hover\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .group:hover .lg\:group-hover\:border-divider {
+    border-color: var(--divider);
   }
 
   .lg\:focus-within\:border-transparent:focus-within {
@@ -97042,11 +98422,23 @@ select {
   }
 
   .lg\:focus-within\:border-primary:focus-within {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .lg\:focus-within\:border-secondary:focus-within {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .lg\:focus-within\:border-input:focus-within {
+    border-color: var(--textInput);
+  }
+
+  .lg\:focus-within\:border-navigation:focus-within {
+    border-color: var(--textNavigation);
+  }
+
+  .lg\:focus-within\:border-divider:focus-within {
+    border-color: var(--divider);
   }
 
   .lg\:hover\:border-transparent:hover {
@@ -97468,11 +98860,23 @@ select {
   }
 
   .lg\:hover\:border-primary:hover {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .lg\:hover\:border-secondary:hover {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .lg\:hover\:border-input:hover {
+    border-color: var(--textInput);
+  }
+
+  .lg\:hover\:border-navigation:hover {
+    border-color: var(--textNavigation);
+  }
+
+  .lg\:hover\:border-divider:hover {
+    border-color: var(--divider);
   }
 
   .lg\:focus\:border-transparent:focus {
@@ -97894,11 +99298,23 @@ select {
   }
 
   .lg\:focus\:border-primary:focus {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .lg\:focus\:border-secondary:focus {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .lg\:focus\:border-input:focus {
+    border-color: var(--textInput);
+  }
+
+  .lg\:focus\:border-navigation:focus {
+    border-color: var(--textNavigation);
+  }
+
+  .lg\:focus\:border-divider:focus {
+    border-color: var(--divider);
   }
 
   .lg\:border-opacity-0 {
@@ -104761,27 +106177,63 @@ select {
   }
 
   .lg\:placeholder-primary::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:placeholder-primary:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:placeholder-primary::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:placeholder-secondary::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .lg\:placeholder-secondary:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .lg\:placeholder-secondary::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .lg\:placeholder-input::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .lg\:placeholder-input:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .lg\:placeholder-input::placeholder {
+    color: var(--textInput);
+  }
+
+  .lg\:placeholder-navigation::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .lg\:placeholder-navigation:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .lg\:placeholder-navigation::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .lg\:placeholder-divider::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .lg\:placeholder-divider:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .lg\:placeholder-divider::placeholder {
+    color: var(--divider);
   }
 
   .lg\:focus\:placeholder-transparent:focus::-moz-placeholder {
@@ -106039,27 +107491,63 @@ select {
   }
 
   .lg\:focus\:placeholder-primary:focus::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:focus\:placeholder-primary:focus:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:focus\:placeholder-primary:focus::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:focus\:placeholder-secondary:focus::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .lg\:focus\:placeholder-secondary:focus:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .lg\:focus\:placeholder-secondary:focus::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .lg\:focus\:placeholder-input:focus::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .lg\:focus\:placeholder-input:focus:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .lg\:focus\:placeholder-input:focus::placeholder {
+    color: var(--textInput);
+  }
+
+  .lg\:focus\:placeholder-navigation:focus::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .lg\:focus\:placeholder-navigation:focus:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .lg\:focus\:placeholder-navigation:focus::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .lg\:focus\:placeholder-divider:focus::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .lg\:focus\:placeholder-divider:focus:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .lg\:focus\:placeholder-divider:focus::placeholder {
+    color: var(--divider);
   }
 
   .lg\:placeholder-opacity-0::-moz-placeholder {
@@ -109928,11 +111416,23 @@ select {
   }
 
   .lg\:ring-offset-primary {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .lg\:ring-offset-secondary {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .lg\:ring-offset-input {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .lg\:ring-offset-navigation {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .lg\:ring-offset-divider {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .lg\:focus-within\:ring-offset-transparent:focus-within {
@@ -110272,11 +111772,23 @@ select {
   }
 
   .lg\:focus-within\:ring-offset-primary:focus-within {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .lg\:focus-within\:ring-offset-secondary:focus-within {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .lg\:focus-within\:ring-offset-input:focus-within {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .lg\:focus-within\:ring-offset-navigation:focus-within {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .lg\:focus-within\:ring-offset-divider:focus-within {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .lg\:focus\:ring-offset-transparent:focus {
@@ -110616,11 +112128,23 @@ select {
   }
 
   .lg\:focus\:ring-offset-primary:focus {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .lg\:focus\:ring-offset-secondary:focus {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .lg\:focus\:ring-offset-input:focus {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .lg\:focus\:ring-offset-navigation:focus {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .lg\:focus\:ring-offset-divider:focus {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .lg\:ring-offset-0 {
@@ -111102,11 +112626,23 @@ select {
   }
 
   .lg\:ring-primary {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .lg\:ring-secondary {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .lg\:ring-input {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .lg\:ring-navigation {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .lg\:ring-divider {
+    --tw-ring-color: var(--divider);
   }
 
   .lg\:focus-within\:ring-transparent:focus-within {
@@ -111528,11 +113064,23 @@ select {
   }
 
   .lg\:focus-within\:ring-primary:focus-within {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .lg\:focus-within\:ring-secondary:focus-within {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .lg\:focus-within\:ring-input:focus-within {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .lg\:focus-within\:ring-navigation:focus-within {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .lg\:focus-within\:ring-divider:focus-within {
+    --tw-ring-color: var(--divider);
   }
 
   .lg\:focus\:ring-transparent:focus {
@@ -111954,11 +113502,23 @@ select {
   }
 
   .lg\:focus\:ring-primary:focus {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .lg\:focus\:ring-secondary:focus {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .lg\:focus\:ring-input:focus {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .lg\:focus\:ring-navigation:focus {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .lg\:focus\:ring-divider:focus {
+    --tw-ring-color: var(--divider);
   }
 
   .lg\:ring-opacity-0 {
@@ -112604,11 +114164,23 @@ select {
   }
 
   .lg\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .lg\:text-input {
+    color: var(--textInput);
+  }
+
+  .lg\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .lg\:text-divider {
+    color: var(--divider);
   }
 
   .group:hover .lg\:group-hover\:text-transparent {
@@ -113030,11 +114602,23 @@ select {
   }
 
   .group:hover .lg\:group-hover\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .group:hover .lg\:group-hover\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .group:hover .lg\:group-hover\:text-input {
+    color: var(--textInput);
+  }
+
+  .group:hover .lg\:group-hover\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .group:hover .lg\:group-hover\:text-divider {
+    color: var(--divider);
   }
 
   .lg\:focus-within\:text-transparent:focus-within {
@@ -113456,11 +115040,23 @@ select {
   }
 
   .lg\:focus-within\:text-primary:focus-within {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:focus-within\:text-secondary:focus-within {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .lg\:focus-within\:text-input:focus-within {
+    color: var(--textInput);
+  }
+
+  .lg\:focus-within\:text-navigation:focus-within {
+    color: var(--textNavigation);
+  }
+
+  .lg\:focus-within\:text-divider:focus-within {
+    color: var(--divider);
   }
 
   .lg\:hover\:text-transparent:hover {
@@ -113882,11 +115478,23 @@ select {
   }
 
   .lg\:hover\:text-primary:hover {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:hover\:text-secondary:hover {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .lg\:hover\:text-input:hover {
+    color: var(--textInput);
+  }
+
+  .lg\:hover\:text-navigation:hover {
+    color: var(--textNavigation);
+  }
+
+  .lg\:hover\:text-divider:hover {
+    color: var(--divider);
   }
 
   .lg\:focus\:text-transparent:focus {
@@ -114308,11 +115916,23 @@ select {
   }
 
   .lg\:focus\:text-primary:focus {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .lg\:focus\:text-secondary:focus {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .lg\:focus\:text-input:focus {
+    color: var(--textInput);
+  }
+
+  .lg\:focus\:text-navigation:focus {
+    color: var(--textNavigation);
+  }
+
+  .lg\:focus\:text-divider:focus {
+    color: var(--divider);
   }
 
   .lg\:text-opacity-0 {
@@ -121094,11 +122714,23 @@ select {
   }
 
   .xl\:divide-primary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .xl\:divide-secondary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .xl\:divide-input > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textInput);
+  }
+
+  .xl\:divide-navigation > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textNavigation);
+  }
+
+  .xl\:divide-divider > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--divider);
   }
 
   .xl\:divide-solid > :not([hidden]) ~ :not([hidden]) {
@@ -121742,12 +123374,27 @@ select {
   }
 
   .xl\:from-primary {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:from-secondary {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:from-input {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:from-navigation {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:from-divider {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -122088,11 +123735,23 @@ select {
   }
 
   .xl\:via-primary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:via-secondary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:via-input {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:via-navigation {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:via-divider {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:to-transparent {
@@ -122432,11 +124091,23 @@ select {
   }
 
   .xl\:to-primary {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .xl\:to-secondary {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .xl\:to-input {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .xl\:to-navigation {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .xl\:to-divider {
+    --tw-gradient-to: var(--divider);
   }
 
   .xl\:hover\:from-transparent:hover {
@@ -122860,12 +124531,27 @@ select {
   }
 
   .xl\:hover\:from-primary:hover {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:hover\:from-secondary:hover {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:hover\:from-input:hover {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:hover\:from-navigation:hover {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:hover\:from-divider:hover {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -123206,11 +124892,23 @@ select {
   }
 
   .xl\:hover\:via-primary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:hover\:via-secondary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:hover\:via-input:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:hover\:via-navigation:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:hover\:via-divider:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:hover\:to-transparent:hover {
@@ -123550,11 +125248,23 @@ select {
   }
 
   .xl\:hover\:to-primary:hover {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .xl\:hover\:to-secondary:hover {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .xl\:hover\:to-input:hover {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .xl\:hover\:to-navigation:hover {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .xl\:hover\:to-divider:hover {
+    --tw-gradient-to: var(--divider);
   }
 
   .xl\:focus\:from-transparent:focus {
@@ -123978,12 +125688,27 @@ select {
   }
 
   .xl\:focus\:from-primary:focus {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:focus\:from-secondary:focus {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:focus\:from-input:focus {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:focus\:from-navigation:focus {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:focus\:from-divider:focus {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -124324,11 +126049,23 @@ select {
   }
 
   .xl\:focus\:via-primary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:focus\:via-secondary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:focus\:via-input:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:focus\:via-navigation:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .xl\:focus\:via-divider:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .xl\:focus\:to-transparent:focus {
@@ -124668,11 +126405,23 @@ select {
   }
 
   .xl\:focus\:to-primary:focus {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .xl\:focus\:to-secondary:focus {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .xl\:focus\:to-input:focus {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .xl\:focus\:to-navigation:focus {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .xl\:focus\:to-divider:focus {
+    --tw-gradient-to: var(--divider);
   }
 
   .xl\:bg-opacity-0 {
@@ -125474,11 +127223,23 @@ select {
   }
 
   .xl\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .xl\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .xl\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .xl\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .xl\:border-divider {
+    border-color: var(--divider);
   }
 
   .group:hover .xl\:group-hover\:border-transparent {
@@ -125900,11 +127661,23 @@ select {
   }
 
   .group:hover .xl\:group-hover\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .group:hover .xl\:group-hover\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .group:hover .xl\:group-hover\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .group:hover .xl\:group-hover\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .group:hover .xl\:group-hover\:border-divider {
+    border-color: var(--divider);
   }
 
   .xl\:focus-within\:border-transparent:focus-within {
@@ -126326,11 +128099,23 @@ select {
   }
 
   .xl\:focus-within\:border-primary:focus-within {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .xl\:focus-within\:border-secondary:focus-within {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .xl\:focus-within\:border-input:focus-within {
+    border-color: var(--textInput);
+  }
+
+  .xl\:focus-within\:border-navigation:focus-within {
+    border-color: var(--textNavigation);
+  }
+
+  .xl\:focus-within\:border-divider:focus-within {
+    border-color: var(--divider);
   }
 
   .xl\:hover\:border-transparent:hover {
@@ -126752,11 +128537,23 @@ select {
   }
 
   .xl\:hover\:border-primary:hover {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .xl\:hover\:border-secondary:hover {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .xl\:hover\:border-input:hover {
+    border-color: var(--textInput);
+  }
+
+  .xl\:hover\:border-navigation:hover {
+    border-color: var(--textNavigation);
+  }
+
+  .xl\:hover\:border-divider:hover {
+    border-color: var(--divider);
   }
 
   .xl\:focus\:border-transparent:focus {
@@ -127178,11 +128975,23 @@ select {
   }
 
   .xl\:focus\:border-primary:focus {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .xl\:focus\:border-secondary:focus {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .xl\:focus\:border-input:focus {
+    border-color: var(--textInput);
+  }
+
+  .xl\:focus\:border-navigation:focus {
+    border-color: var(--textNavigation);
+  }
+
+  .xl\:focus\:border-divider:focus {
+    border-color: var(--divider);
   }
 
   .xl\:border-opacity-0 {
@@ -134045,27 +135854,63 @@ select {
   }
 
   .xl\:placeholder-primary::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:placeholder-primary:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:placeholder-primary::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:placeholder-secondary::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .xl\:placeholder-secondary:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .xl\:placeholder-secondary::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .xl\:placeholder-input::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .xl\:placeholder-input:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .xl\:placeholder-input::placeholder {
+    color: var(--textInput);
+  }
+
+  .xl\:placeholder-navigation::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .xl\:placeholder-navigation:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .xl\:placeholder-navigation::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .xl\:placeholder-divider::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .xl\:placeholder-divider:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .xl\:placeholder-divider::placeholder {
+    color: var(--divider);
   }
 
   .xl\:focus\:placeholder-transparent:focus::-moz-placeholder {
@@ -135323,27 +137168,63 @@ select {
   }
 
   .xl\:focus\:placeholder-primary:focus::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:focus\:placeholder-primary:focus:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:focus\:placeholder-primary:focus::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:focus\:placeholder-secondary:focus::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .xl\:focus\:placeholder-secondary:focus:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .xl\:focus\:placeholder-secondary:focus::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .xl\:focus\:placeholder-input:focus::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .xl\:focus\:placeholder-input:focus:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .xl\:focus\:placeholder-input:focus::placeholder {
+    color: var(--textInput);
+  }
+
+  .xl\:focus\:placeholder-navigation:focus::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .xl\:focus\:placeholder-navigation:focus:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .xl\:focus\:placeholder-navigation:focus::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .xl\:focus\:placeholder-divider:focus::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .xl\:focus\:placeholder-divider:focus:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .xl\:focus\:placeholder-divider:focus::placeholder {
+    color: var(--divider);
   }
 
   .xl\:placeholder-opacity-0::-moz-placeholder {
@@ -139212,11 +141093,23 @@ select {
   }
 
   .xl\:ring-offset-primary {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .xl\:ring-offset-secondary {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .xl\:ring-offset-input {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .xl\:ring-offset-navigation {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .xl\:ring-offset-divider {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .xl\:focus-within\:ring-offset-transparent:focus-within {
@@ -139556,11 +141449,23 @@ select {
   }
 
   .xl\:focus-within\:ring-offset-primary:focus-within {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .xl\:focus-within\:ring-offset-secondary:focus-within {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .xl\:focus-within\:ring-offset-input:focus-within {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .xl\:focus-within\:ring-offset-navigation:focus-within {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .xl\:focus-within\:ring-offset-divider:focus-within {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .xl\:focus\:ring-offset-transparent:focus {
@@ -139900,11 +141805,23 @@ select {
   }
 
   .xl\:focus\:ring-offset-primary:focus {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .xl\:focus\:ring-offset-secondary:focus {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .xl\:focus\:ring-offset-input:focus {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .xl\:focus\:ring-offset-navigation:focus {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .xl\:focus\:ring-offset-divider:focus {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .xl\:ring-offset-0 {
@@ -140386,11 +142303,23 @@ select {
   }
 
   .xl\:ring-primary {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .xl\:ring-secondary {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .xl\:ring-input {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .xl\:ring-navigation {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .xl\:ring-divider {
+    --tw-ring-color: var(--divider);
   }
 
   .xl\:focus-within\:ring-transparent:focus-within {
@@ -140812,11 +142741,23 @@ select {
   }
 
   .xl\:focus-within\:ring-primary:focus-within {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .xl\:focus-within\:ring-secondary:focus-within {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .xl\:focus-within\:ring-input:focus-within {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .xl\:focus-within\:ring-navigation:focus-within {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .xl\:focus-within\:ring-divider:focus-within {
+    --tw-ring-color: var(--divider);
   }
 
   .xl\:focus\:ring-transparent:focus {
@@ -141238,11 +143179,23 @@ select {
   }
 
   .xl\:focus\:ring-primary:focus {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .xl\:focus\:ring-secondary:focus {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .xl\:focus\:ring-input:focus {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .xl\:focus\:ring-navigation:focus {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .xl\:focus\:ring-divider:focus {
+    --tw-ring-color: var(--divider);
   }
 
   .xl\:ring-opacity-0 {
@@ -141888,11 +143841,23 @@ select {
   }
 
   .xl\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .xl\:text-input {
+    color: var(--textInput);
+  }
+
+  .xl\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .xl\:text-divider {
+    color: var(--divider);
   }
 
   .group:hover .xl\:group-hover\:text-transparent {
@@ -142314,11 +144279,23 @@ select {
   }
 
   .group:hover .xl\:group-hover\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .group:hover .xl\:group-hover\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .group:hover .xl\:group-hover\:text-input {
+    color: var(--textInput);
+  }
+
+  .group:hover .xl\:group-hover\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .group:hover .xl\:group-hover\:text-divider {
+    color: var(--divider);
   }
 
   .xl\:focus-within\:text-transparent:focus-within {
@@ -142740,11 +144717,23 @@ select {
   }
 
   .xl\:focus-within\:text-primary:focus-within {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:focus-within\:text-secondary:focus-within {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .xl\:focus-within\:text-input:focus-within {
+    color: var(--textInput);
+  }
+
+  .xl\:focus-within\:text-navigation:focus-within {
+    color: var(--textNavigation);
+  }
+
+  .xl\:focus-within\:text-divider:focus-within {
+    color: var(--divider);
   }
 
   .xl\:hover\:text-transparent:hover {
@@ -143166,11 +145155,23 @@ select {
   }
 
   .xl\:hover\:text-primary:hover {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:hover\:text-secondary:hover {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .xl\:hover\:text-input:hover {
+    color: var(--textInput);
+  }
+
+  .xl\:hover\:text-navigation:hover {
+    color: var(--textNavigation);
+  }
+
+  .xl\:hover\:text-divider:hover {
+    color: var(--divider);
   }
 
   .xl\:focus\:text-transparent:focus {
@@ -143592,11 +145593,23 @@ select {
   }
 
   .xl\:focus\:text-primary:focus {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .xl\:focus\:text-secondary:focus {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .xl\:focus\:text-input:focus {
+    color: var(--textInput);
+  }
+
+  .xl\:focus\:text-navigation:focus {
+    color: var(--textNavigation);
+  }
+
+  .xl\:focus\:text-divider:focus {
+    color: var(--divider);
   }
 
   .xl\:text-opacity-0 {
@@ -150378,11 +152391,23 @@ select {
   }
 
   .\32xl\:divide-primary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .\32xl\:divide-secondary > :not([hidden]) ~ :not([hidden]) {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .\32xl\:divide-input > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textInput);
+  }
+
+  .\32xl\:divide-navigation > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--textNavigation);
+  }
+
+  .\32xl\:divide-divider > :not([hidden]) ~ :not([hidden]) {
+    border-color: var(--divider);
   }
 
   .\32xl\:divide-solid > :not([hidden]) ~ :not([hidden]) {
@@ -151026,12 +153051,27 @@ select {
   }
 
   .\32xl\:from-primary {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:from-secondary {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:from-input {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:from-navigation {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:from-divider {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -151372,11 +153412,23 @@ select {
   }
 
   .\32xl\:via-primary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:via-secondary {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:via-input {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:via-navigation {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:via-divider {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:to-transparent {
@@ -151716,11 +153768,23 @@ select {
   }
 
   .\32xl\:to-primary {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .\32xl\:to-secondary {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .\32xl\:to-input {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .\32xl\:to-navigation {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .\32xl\:to-divider {
+    --tw-gradient-to: var(--divider);
   }
 
   .\32xl\:hover\:from-transparent:hover {
@@ -152144,12 +154208,27 @@ select {
   }
 
   .\32xl\:hover\:from-primary:hover {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:hover\:from-secondary:hover {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:hover\:from-input:hover {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:hover\:from-navigation:hover {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:hover\:from-divider:hover {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -152490,11 +154569,23 @@ select {
   }
 
   .\32xl\:hover\:via-primary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:hover\:via-secondary:hover {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:hover\:via-input:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:hover\:via-navigation:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:hover\:via-divider:hover {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:hover\:to-transparent:hover {
@@ -152834,11 +154925,23 @@ select {
   }
 
   .\32xl\:hover\:to-primary:hover {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .\32xl\:hover\:to-secondary:hover {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .\32xl\:hover\:to-input:hover {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .\32xl\:hover\:to-navigation:hover {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .\32xl\:hover\:to-divider:hover {
+    --tw-gradient-to: var(--divider);
   }
 
   .\32xl\:focus\:from-transparent:focus {
@@ -153262,12 +155365,27 @@ select {
   }
 
   .\32xl\:focus\:from-primary:focus {
-    --tw-gradient-from: var(--text-primary);
+    --tw-gradient-from: var(--textPrimary);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:focus\:from-secondary:focus {
-    --tw-gradient-from: var(--text-secondary);
+    --tw-gradient-from: var(--textSecondary);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:focus\:from-input:focus {
+    --tw-gradient-from: var(--textInput);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:focus\:from-navigation:focus {
+    --tw-gradient-from: var(--textNavigation);
+    --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:focus\:from-divider:focus {
+    --tw-gradient-from: var(--divider);
     --tw-gradient-stops: var(--tw-gradient-from), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
@@ -153608,11 +155726,23 @@ select {
   }
 
   .\32xl\:focus\:via-primary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-primary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textPrimary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:focus\:via-secondary:focus {
-    --tw-gradient-stops: var(--tw-gradient-from), var(--text-secondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textSecondary), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:focus\:via-input:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textInput), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:focus\:via-navigation:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--textNavigation), var(--tw-gradient-to, rgba(255, 255, 255, 0));
+  }
+
+  .\32xl\:focus\:via-divider:focus {
+    --tw-gradient-stops: var(--tw-gradient-from), var(--divider), var(--tw-gradient-to, rgba(255, 255, 255, 0));
   }
 
   .\32xl\:focus\:to-transparent:focus {
@@ -153952,11 +156082,23 @@ select {
   }
 
   .\32xl\:focus\:to-primary:focus {
-    --tw-gradient-to: var(--text-primary);
+    --tw-gradient-to: var(--textPrimary);
   }
 
   .\32xl\:focus\:to-secondary:focus {
-    --tw-gradient-to: var(--text-secondary);
+    --tw-gradient-to: var(--textSecondary);
+  }
+
+  .\32xl\:focus\:to-input:focus {
+    --tw-gradient-to: var(--textInput);
+  }
+
+  .\32xl\:focus\:to-navigation:focus {
+    --tw-gradient-to: var(--textNavigation);
+  }
+
+  .\32xl\:focus\:to-divider:focus {
+    --tw-gradient-to: var(--divider);
   }
 
   .\32xl\:bg-opacity-0 {
@@ -154758,11 +156900,23 @@ select {
   }
 
   .\32xl\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .\32xl\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .\32xl\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .\32xl\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .\32xl\:border-divider {
+    border-color: var(--divider);
   }
 
   .group:hover .\32xl\:group-hover\:border-transparent {
@@ -155184,11 +157338,23 @@ select {
   }
 
   .group:hover .\32xl\:group-hover\:border-primary {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .group:hover .\32xl\:group-hover\:border-secondary {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .group:hover .\32xl\:group-hover\:border-input {
+    border-color: var(--textInput);
+  }
+
+  .group:hover .\32xl\:group-hover\:border-navigation {
+    border-color: var(--textNavigation);
+  }
+
+  .group:hover .\32xl\:group-hover\:border-divider {
+    border-color: var(--divider);
   }
 
   .\32xl\:focus-within\:border-transparent:focus-within {
@@ -155610,11 +157776,23 @@ select {
   }
 
   .\32xl\:focus-within\:border-primary:focus-within {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .\32xl\:focus-within\:border-secondary:focus-within {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .\32xl\:focus-within\:border-input:focus-within {
+    border-color: var(--textInput);
+  }
+
+  .\32xl\:focus-within\:border-navigation:focus-within {
+    border-color: var(--textNavigation);
+  }
+
+  .\32xl\:focus-within\:border-divider:focus-within {
+    border-color: var(--divider);
   }
 
   .\32xl\:hover\:border-transparent:hover {
@@ -156036,11 +158214,23 @@ select {
   }
 
   .\32xl\:hover\:border-primary:hover {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .\32xl\:hover\:border-secondary:hover {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .\32xl\:hover\:border-input:hover {
+    border-color: var(--textInput);
+  }
+
+  .\32xl\:hover\:border-navigation:hover {
+    border-color: var(--textNavigation);
+  }
+
+  .\32xl\:hover\:border-divider:hover {
+    border-color: var(--divider);
   }
 
   .\32xl\:focus\:border-transparent:focus {
@@ -156462,11 +158652,23 @@ select {
   }
 
   .\32xl\:focus\:border-primary:focus {
-    border-color: var(--text-primary);
+    border-color: var(--textPrimary);
   }
 
   .\32xl\:focus\:border-secondary:focus {
-    border-color: var(--text-secondary);
+    border-color: var(--textSecondary);
+  }
+
+  .\32xl\:focus\:border-input:focus {
+    border-color: var(--textInput);
+  }
+
+  .\32xl\:focus\:border-navigation:focus {
+    border-color: var(--textNavigation);
+  }
+
+  .\32xl\:focus\:border-divider:focus {
+    border-color: var(--divider);
   }
 
   .\32xl\:border-opacity-0 {
@@ -163329,27 +165531,63 @@ select {
   }
 
   .\32xl\:placeholder-primary::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:placeholder-primary:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:placeholder-primary::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:placeholder-secondary::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .\32xl\:placeholder-secondary:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .\32xl\:placeholder-secondary::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .\32xl\:placeholder-input::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .\32xl\:placeholder-input:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .\32xl\:placeholder-input::placeholder {
+    color: var(--textInput);
+  }
+
+  .\32xl\:placeholder-navigation::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:placeholder-navigation:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:placeholder-navigation::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:placeholder-divider::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .\32xl\:placeholder-divider:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .\32xl\:placeholder-divider::placeholder {
+    color: var(--divider);
   }
 
   .\32xl\:focus\:placeholder-transparent:focus::-moz-placeholder {
@@ -164607,27 +166845,63 @@ select {
   }
 
   .\32xl\:focus\:placeholder-primary:focus::-moz-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:focus\:placeholder-primary:focus:-ms-input-placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:focus\:placeholder-primary:focus::placeholder {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:focus\:placeholder-secondary:focus::-moz-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .\32xl\:focus\:placeholder-secondary:focus:-ms-input-placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
   }
 
   .\32xl\:focus\:placeholder-secondary:focus::placeholder {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .\32xl\:focus\:placeholder-input:focus::-moz-placeholder {
+    color: var(--textInput);
+  }
+
+  .\32xl\:focus\:placeholder-input:focus:-ms-input-placeholder {
+    color: var(--textInput);
+  }
+
+  .\32xl\:focus\:placeholder-input:focus::placeholder {
+    color: var(--textInput);
+  }
+
+  .\32xl\:focus\:placeholder-navigation:focus::-moz-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:focus\:placeholder-navigation:focus:-ms-input-placeholder {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:focus\:placeholder-navigation:focus::placeholder {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:focus\:placeholder-divider:focus::-moz-placeholder {
+    color: var(--divider);
+  }
+
+  .\32xl\:focus\:placeholder-divider:focus:-ms-input-placeholder {
+    color: var(--divider);
+  }
+
+  .\32xl\:focus\:placeholder-divider:focus::placeholder {
+    color: var(--divider);
   }
 
   .\32xl\:placeholder-opacity-0::-moz-placeholder {
@@ -168496,11 +170770,23 @@ select {
   }
 
   .\32xl\:ring-offset-primary {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .\32xl\:ring-offset-secondary {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .\32xl\:ring-offset-input {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .\32xl\:ring-offset-navigation {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .\32xl\:ring-offset-divider {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .\32xl\:focus-within\:ring-offset-transparent:focus-within {
@@ -168840,11 +171126,23 @@ select {
   }
 
   .\32xl\:focus-within\:ring-offset-primary:focus-within {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .\32xl\:focus-within\:ring-offset-secondary:focus-within {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .\32xl\:focus-within\:ring-offset-input:focus-within {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .\32xl\:focus-within\:ring-offset-navigation:focus-within {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .\32xl\:focus-within\:ring-offset-divider:focus-within {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .\32xl\:focus\:ring-offset-transparent:focus {
@@ -169184,11 +171482,23 @@ select {
   }
 
   .\32xl\:focus\:ring-offset-primary:focus {
-    --tw-ring-offset-color: var(--text-primary);
+    --tw-ring-offset-color: var(--textPrimary);
   }
 
   .\32xl\:focus\:ring-offset-secondary:focus {
-    --tw-ring-offset-color: var(--text-secondary);
+    --tw-ring-offset-color: var(--textSecondary);
+  }
+
+  .\32xl\:focus\:ring-offset-input:focus {
+    --tw-ring-offset-color: var(--textInput);
+  }
+
+  .\32xl\:focus\:ring-offset-navigation:focus {
+    --tw-ring-offset-color: var(--textNavigation);
+  }
+
+  .\32xl\:focus\:ring-offset-divider:focus {
+    --tw-ring-offset-color: var(--divider);
   }
 
   .\32xl\:ring-offset-0 {
@@ -169670,11 +171980,23 @@ select {
   }
 
   .\32xl\:ring-primary {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .\32xl\:ring-secondary {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .\32xl\:ring-input {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .\32xl\:ring-navigation {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .\32xl\:ring-divider {
+    --tw-ring-color: var(--divider);
   }
 
   .\32xl\:focus-within\:ring-transparent:focus-within {
@@ -170096,11 +172418,23 @@ select {
   }
 
   .\32xl\:focus-within\:ring-primary:focus-within {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .\32xl\:focus-within\:ring-secondary:focus-within {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .\32xl\:focus-within\:ring-input:focus-within {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .\32xl\:focus-within\:ring-navigation:focus-within {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .\32xl\:focus-within\:ring-divider:focus-within {
+    --tw-ring-color: var(--divider);
   }
 
   .\32xl\:focus\:ring-transparent:focus {
@@ -170522,11 +172856,23 @@ select {
   }
 
   .\32xl\:focus\:ring-primary:focus {
-    --tw-ring-color: var(--text-primary);
+    --tw-ring-color: var(--textPrimary);
   }
 
   .\32xl\:focus\:ring-secondary:focus {
-    --tw-ring-color: var(--text-secondary);
+    --tw-ring-color: var(--textSecondary);
+  }
+
+  .\32xl\:focus\:ring-input:focus {
+    --tw-ring-color: var(--textInput);
+  }
+
+  .\32xl\:focus\:ring-navigation:focus {
+    --tw-ring-color: var(--textNavigation);
+  }
+
+  .\32xl\:focus\:ring-divider:focus {
+    --tw-ring-color: var(--divider);
   }
 
   .\32xl\:ring-opacity-0 {
@@ -171172,11 +173518,23 @@ select {
   }
 
   .\32xl\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .\32xl\:text-input {
+    color: var(--textInput);
+  }
+
+  .\32xl\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:text-divider {
+    color: var(--divider);
   }
 
   .group:hover .\32xl\:group-hover\:text-transparent {
@@ -171598,11 +173956,23 @@ select {
   }
 
   .group:hover .\32xl\:group-hover\:text-primary {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .group:hover .\32xl\:group-hover\:text-secondary {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .group:hover .\32xl\:group-hover\:text-input {
+    color: var(--textInput);
+  }
+
+  .group:hover .\32xl\:group-hover\:text-navigation {
+    color: var(--textNavigation);
+  }
+
+  .group:hover .\32xl\:group-hover\:text-divider {
+    color: var(--divider);
   }
 
   .\32xl\:focus-within\:text-transparent:focus-within {
@@ -172024,11 +174394,23 @@ select {
   }
 
   .\32xl\:focus-within\:text-primary:focus-within {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:focus-within\:text-secondary:focus-within {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .\32xl\:focus-within\:text-input:focus-within {
+    color: var(--textInput);
+  }
+
+  .\32xl\:focus-within\:text-navigation:focus-within {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:focus-within\:text-divider:focus-within {
+    color: var(--divider);
   }
 
   .\32xl\:hover\:text-transparent:hover {
@@ -172450,11 +174832,23 @@ select {
   }
 
   .\32xl\:hover\:text-primary:hover {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:hover\:text-secondary:hover {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .\32xl\:hover\:text-input:hover {
+    color: var(--textInput);
+  }
+
+  .\32xl\:hover\:text-navigation:hover {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:hover\:text-divider:hover {
+    color: var(--divider);
   }
 
   .\32xl\:focus\:text-transparent:focus {
@@ -172876,11 +175270,23 @@ select {
   }
 
   .\32xl\:focus\:text-primary:focus {
-    color: var(--text-primary);
+    color: var(--textPrimary);
   }
 
   .\32xl\:focus\:text-secondary:focus {
-    color: var(--text-secondary);
+    color: var(--textSecondary);
+  }
+
+  .\32xl\:focus\:text-input:focus {
+    color: var(--textInput);
+  }
+
+  .\32xl\:focus\:text-navigation:focus {
+    color: var(--textNavigation);
+  }
+
+  .\32xl\:focus\:text-divider:focus {
+    color: var(--divider);
   }
 
   .\32xl\:text-opacity-0 {
