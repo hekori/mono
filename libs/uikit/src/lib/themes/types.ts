@@ -1,11 +1,23 @@
 export interface Theme {
-  textPrimary: string
-  textSecondary: string
-  backgroundPrimary: string
-  backgroundSecondary: string
-  backgroundInput: string
-  textInput: string
-  backgroundNavigation: string
-  textNavigation: string
+  document: string
+  onDocument: string
+  navigation: string
+  onNavigation: string
+  subNavigation: string
+  onSubNavigation: string
+  button: string
+  onButton: string
+  input: string
   divider: string
+  onInput: string
+  main: string
+  onMain: string
+  card: string
+  onCard: string
+  success: string
+  onSuccess: string
+  warning: string
+  onWarning: string
+  error: string
+  onError: string
 }

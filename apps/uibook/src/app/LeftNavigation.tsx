@@ -16,7 +16,7 @@ export const LeftNavigationItem: React.FC<{ name: string }> = ({ name }) => {
       onClick={() => history.push(`/${name}`)}
       className={classNames(
         location.pathname !== `/${name}` ? 'bg-primary' : 'bg-secondary',
-        'group flex items-center px-2 py-2 text-base font-medium rounded-md text-primary hover:bg-secondary cursor-pointer'
+        'group flex items-center px-2 py-2 text-base font-medium rounded-md text-onButton bg-button hover:bg-secondary cursor-pointer'
       )}
     >
       {name}
@@ -39,7 +39,7 @@ export const LeftNavigation: React.FC = () => {
     <nav className="mt-5 px-2 space-y-1">
       <select
         name="location"
-        className="mt-1 block w-full pl-3 pr-10 py-2 text-base focus:outline-none bg-input text-input sm:text-sm rounded-md"
+        className="mt-1 block w-full pl-3 pr-10 py-2 text-base focus:outline-none bg-input text-onInput sm:text-sm rounded-md"
         value={theme}
         onChange={(e) => setTheme(e.target.value)}
       >

@@ -1,15 +1,15 @@
 interface InputProps {
-  name?: string;
-  placeholder?: string;
-  required?: boolean;
-  value?: string;
-  label?: string;
-  error?: string;
-  type?: "text" | "email" | "password" | "number";
+  name?: string
+  placeholder?: string
+  required?: boolean
+  value?: string
+  label?: string
+  error?: string
+  type?: 'text' | 'email' | 'password' | 'number'
 }
 export const Input: React.FC<InputProps> = ({
   name,
-  type = "text",
+  type = 'text',
   placeholder,
   value,
   required = false,
@@ -23,7 +23,7 @@ export const Input: React.FC<InputProps> = ({
         name={name}
         placeholder={placeholder}
         value={value}
-        className="pt-3 pb-2 block w-full px-0 mt-0 bg-transparent border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-gray-200"
+        className="pt-3 pb-2 block w-full px-0 mt-0 bg-input text-onInput border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-divider"
       />
       {label && (
         <label
@@ -39,5 +39,5 @@ export const Input: React.FC<InputProps> = ({
         </span>
       )}
     </>
-  );
-};
+  )
+}

@@ -1,13 +1,12 @@
 import { Theme } from './types'
+import { LightTheme } from './LightTheme'
 
 export const DarkTheme: Theme = {
-  textPrimary: '#FFFFFF',
-  textSecondary: '#EFEFEF',
-  backgroundPrimary: '#003650',
-  backgroundSecondary: '#016493',
-  backgroundInput: '#003650',
-  backgroundNavigation: '#003650',
-  divider: '#CCCCCC',
-  textInput: '#FFFFFF',
-  textNavigation: '#FFFFFF',
+  ...LightTheme,
+  onDocument: '#FFFFFF',
+  document: '#000000',
+  onMain: '#dedede',
+  main: '#323232',
+  onCard: '#FFFFFF',
+  card: '#323232',
 }
