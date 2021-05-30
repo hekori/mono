@@ -1,15 +1,20 @@
 import { Command } from 'commander'
-import { pgBackup } from '../../../../libs/knexutils/src/lib/pgBackup'
-import {
-  createMigration,
-  migrate,
-} from '../../../../libs/knexutils/src/lib/migrate'
+
 import * as path from 'path'
+import { Migrate, pgBackup } from '@hekori/knexutils'
+import { pg } from '../pg'
 const program = new Command()
 
-const TABLE_NAME = 'migrations'
+const absolutePathToMigrationsDirectory = path.join(
+  path.dirname(__dirname),
+  'migrations'
+)
 
-const migrationsPath = path.join(path.dirname(__dirname), 'migrations')
+const migrate = new Migrate({
+  pg,
+  absolutePathToMigrationsDirectory,
+  tableName: 'migrations',
+})
 
 program
   .version('0.0.1')
@@ -24,7 +29,12 @@ program
   })
   .action(pgBackup)
 
-program.command('migrate').action(migrate).arguments('[back]').action(migrate)
+program
+  .command('migrate')
+  .action((args) => {
+    console.log(args)
+  })
+  .arguments('[back]')
 
 // .description('execute or revert migrations ./migrations/*.ts', {
 //     back: 'revert the last executed migration',
@@ -32,7 +42,9 @@ program.command('migrate').action(migrate).arguments('[back]').action(migrate)
 
 program
   .command('createMigration')
-  .action(createMigration)
+  .action((args) => {
+    console.log(args)
+  })
   .arguments('<action> [pathToDump]')
 
 program.parse(process.argv)

@@ -24,7 +24,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "cli": "dotenv -e env/hereismyfeedback.dev.txt ts-node apps/hereismyfeedback-api/src/cli/index.ts",
+    "cli": "dotenv -e env/hereismyfeedback.dev.txt ts-node --project apps/hereismyfeedback-api/tsconfig.json -r tsconfig-paths/register apps/hereismyfeedback-api/src/cli/index.ts",
     "postcss": "postcss libs/uikit/src/lib/tailwind.css -o libs/uikit/src/lib/App.css"
   },
   "private": true,
@@ -34,7 +34,7 @@
     "@mdi/font": "^5.9.55",
     "core-js": "^3.6.5",
     "cron": "^1.8.2",
-    "dayjs": "^1.10.4",
+    "dayjs": "^1.10.5",
     "document-register-element": "1.13.1",
     "express": "4",
     "js-file-download": "^0.4.12",
@@ -106,6 +106,7 @@
     "tailwindcss": "^2.1.2",
     "ts-jest": "26.5.5",
     "ts-node": "~9.1.1",
+    "tsconfig-paths": "^3.9.0",
     "typescript": "~4.1.4"
   }
 }
