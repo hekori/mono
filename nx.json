@@ -19,13 +19,6 @@
     }
   },
   "projects": {
-    "hereismyfeedback": {
-      "tags": []
-    },
-    "hereismyfeedback-e2e": {
-      "tags": [],
-      "implicitDependencies": ["hereismyfeedback"]
-    },
     "uikit": {
       "tags": []
     },
@@ -57,9 +50,8 @@
     "uibook": {
       "tags": []
     },
-    "uibook-e2e": {
-      "tags": [],
-      "implicitDependencies": ["uibook"]
+    "knexutils": {
+      "tags": []
     }
   }
 }
