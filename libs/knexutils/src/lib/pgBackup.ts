@@ -3,9 +3,10 @@ import { createInterface } from 'readline'
 import execa from 'execa'
 import * as path from 'path'
 import * as chalk from 'chalk'
-import dayjs = require('dayjs')
-import { formatFileSystemSaveISO } from './migrate'
 import execLog from '../../../cli/src/lib/execLog'
+import { formatFileSystemSaveISO, printPostgresEnvVars } from './utils'
+import dayjs = require('dayjs')
+
 const ROOT_DIR = path.dirname(path.dirname(__dirname))
 
 enum Action {
@@ -43,14 +44,6 @@ const checkInput = async (message: string, passphrase = 'yes') => {
   for await (const line of readline) {
     console.log(line)
   }
-}
-
-const printPostgresEnvVars = () => {
-  console.log(`PGHOST=${process.env.PGHOST}`)
-  console.log(`PGDATABASE=${process.env.PGDATABASE}`)
-  console.log(`PGPORT=${process.env.PGUSER}`)
-  console.log(`PGUSER=${process.env.PGUSER}`)
-  console.log('PGPASSWORD=***')
 }
 
 export const pgBackup = async (action, backupPath): Promise<void> => {
@@ -105,6 +98,6 @@ export const pgBackup = async (action, backupPath): Promise<void> => {
       break
     }
     default:
-      throw Error('Unknown action, plse use yarn cli pgBackup save/restore')
+      throw Error('Unknown action, please use yarn cli pgBackup save/restore')
   }
 }
