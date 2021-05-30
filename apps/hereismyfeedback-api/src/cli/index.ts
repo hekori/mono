@@ -1,3 +1,5 @@
+//https://stackoverflow.com/questions/59813513/how-to-run-nestjs-console-commands-in-context-of-angular-nx-workspace
+
 import { Command } from 'commander'
 
 import * as path from 'path'

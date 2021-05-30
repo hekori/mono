@@ -24,7 +24,7 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "cli": "dotenv -e env/hereismyfeedback.dev.txt ts-node --project apps/hereismyfeedback-api/tsconfig.json -r tsconfig-paths/register apps/hereismyfeedback-api/src/cli/index.ts",
+    "cli": "dotenv -e env/hereismyfeedback.dev.txt -- ts-node --project apps/hereismyfeedback-api/tsconfig.app.json -r tsconfig-paths/register apps/hereismyfeedback-api/src/cli/index.ts",
     "postcss": "postcss libs/uikit/src/lib/tailwind.css -o libs/uikit/src/lib/App.css"
   },
   "private": true,
