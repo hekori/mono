@@ -50,21 +50,7 @@
             }
           }
         },
-        "buildCli": {
-          "executor": "@nrwl/node:build",
-          "outputs": ["{options.outputPath}"],
-          "options": {
-            "outputPath": "dist/apps/hereismyfeedback-api/cli",
-            "main": "apps/hereismyfeedback-api/src/cli/index.ts",
-            "tsConfig": "apps/hereismyfeedback-api/tsconfig.app.json"
-          },
-          "configurations": {
-            "production": {
-              "optimization": true,
-              "inspect": false
-            }
-          }
-        },
+
         "serve": {
           "executor": "@nrwl/node:execute",
           "options": {
