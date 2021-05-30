@@ -1,6 +1,6 @@
 module.exports = {
   projects: [
-    '<rootDir>/apps/hereismyfeedback',
+    ,
     '<rootDir>/libs/traqrcode-common',
     '<rootDir>/libs/uikit',
     '<rootDir>/libs/cli',
@@ -10,5 +10,6 @@ module.exports = {
     '<rootDir>/apps/traqrcode-api',
     '<rootDir>/libs/dates',
     '<rootDir>/apps/uibook',
+    '<rootDir>/libs/knexutils',
   ],
 }
