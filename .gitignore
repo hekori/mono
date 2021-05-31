@@ -2,4 +2,5 @@ dist/
 env/
 store/
 node_modules/
+pgdata/
 .yarn/

@@ -1,0 +1,23 @@
+version: "3.9"
+services:
+  postgres:
+    image: "postgres:13.3-alpine"
+    environment:
+      POSTGRES_DB: ${PGDATABASE}
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+    command:
+      [
+      'postgres',
+      '-c',
+      'logging_collector=off',
+      '-c',
+      'log_destination=stderr',
+      '-c',
+      'log_statement=all'
+      ]
+    ports:
+      - "${PGPORT}:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: always
