@@ -24,8 +24,13 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "cli": "dotenv -e env/hereismyfeedback.dev.txt -- ts-node --project apps/hereismyfeedback-api/tsconfig.app.json -r tsconfig-paths/register apps/hereismyfeedback-api/src/cli/index.ts",
-    "postcss": "postcss libs/uikit/src/lib/tailwind.css -o libs/uikit/src/lib/App.css"
+    "cli": "dotenv -e env/traqrcode-api.dev.txt -- ts-node --project apps/traqrcode-api/tsconfig.app.json -r tsconfig-paths/register apps/traqrcode-api/cli.ts",
+    "postcss": "postcss libs/uikit/src/lib/tailwind.css -o libs/uikit/src/lib/App.css",
+    "pg:destroy": "dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file apps/traqrcode-api/docker-compose.yml down --volumes",
+    "pg:start": "dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file apps/traqrcode-api/docker-compose.yml up -d postgres",
+    "pg:stop": "dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file apps/traqrcode-api/docker-compose.yml stop --timeout 1 -- postgres   ",
+    "psql": "docker-compose --file apps/traqrcode-api/docker-compose.yml exec postgres pqsl"
+
   },
   "private": true,
   "dependencies": {
