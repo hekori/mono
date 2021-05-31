@@ -7,15 +7,7 @@ import { Migrate, pgBackup } from '@hekori/knexutils'
 import { pg } from './src/pg'
 const program = new Command()
 
-const absolutePathToMigrationsDirectory = path.join(
-  path.dirname(__dirname),
-  'migrations'
-)
-
-console.log(
-  'absolutePathToMigrationsDirectory',
-  absolutePathToMigrationsDirectory
-)
+const absolutePathToMigrationsDirectory = path.join(__dirname, 'migrations')
 
 const migrate = new Migrate({
   pg,
@@ -23,9 +15,7 @@ const migrate = new Migrate({
   tableName: 'migrations',
 })
 
-program
-  .version('0.0.1')
-  .description('Create, setup and destroy postgres databases for development.')
+program.version('0.0.1').description('Postgres backups and migrations.')
 
 program
   .command('pgBackup')
@@ -38,8 +28,8 @@ program
 
 program
   .command('migrate')
-  .action((args) => {
-    console.log(args)
+  .action((direction: undefined | 'back') => {
+    migrate.migrate({ direction })
   })
   .arguments('[back]')
 

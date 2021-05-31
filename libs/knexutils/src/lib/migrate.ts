@@ -95,7 +95,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS  "${this.tableName}_name_idx" on ${this.tableN
    * All files of the form ./migrations/*---*.ts get executed in lexicographical order
    * if and only if they are not marked as executed in the `migration` postgres table
    */
-  async migrate({ direction }: MigrateInput) {
+  async migrate({ direction }: Pick<MigrateInput, 'direction'>) {
     printPostgresEnvVars()
 
     await this.setupMigrations()
@@ -119,7 +119,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS  "${this.tableName}_name_idx" on ${this.tableN
             .limit(1)
           if (res.length > 0) {
             console.log('Revert last migration')
-            await this.migrateDown(res[0]?.name)
+            await this.migrateDown({ migrationName: res[0]?.name })
           } else {
             console.log('Nothing to do ...')
           }
