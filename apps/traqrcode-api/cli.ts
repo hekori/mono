@@ -39,9 +39,9 @@ program
 
 program
   .command('createMigration')
-  .action((args) => {
-    console.log(args)
+  .action((migrationName: string) => {
+    migrate.createMigration({ migrationName })
   })
-  .arguments('<action> [pathToDump]')
+  .arguments('<migrationName>')
 
 program.parse(process.argv)
