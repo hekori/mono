@@ -3,7 +3,7 @@ import * as React from 'react'
 import { useState } from 'react'
 import { LogoTraqrcode } from '../assets/LogoTraqrcode'
 import { DarkTheme } from '../../../../libs/uikit/src/lib/themes/DarkTheme'
-import { ButtonFlat, ButtonPrimary } from '@hekori/uikit'
+import { ButtonFlat, ButtonPrimary, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
 
@@ -17,13 +17,16 @@ export const Navigation = () => {
       id="header"
       className="relative bg-document text-onDocument flex items-center justify-between px-4 sm:px-6"
     >
-      <div className="max-w-screen-xl container mx-auto flex flex-wrap items-center justify-between mt-0 px-2 py-2">
+      <div className="max-w-screen-xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div className="p-2 h-2 flex items-center">
           <div
             className="font-mono text-white cursor-pointer"
             onClick={() => history.push('/')}
           >
-            <LogoTraqrcode color={DarkTheme.onDocument} height={32} />
+            <LogoTraqrcode
+              color={themes[state.theme]?.onDocument}
+              height={32}
+            />
           </div>
         </div>
 
