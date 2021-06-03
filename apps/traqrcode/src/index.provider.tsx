@@ -2,6 +2,8 @@ import { BrowserRouter as Router } from 'react-router-dom'
 import * as React from 'react'
 import { KeyToString } from '../../traqrcode-common/src/interfaces/generic'
 import { Item } from '../../traqrcode-common/src/interfaces/models'
+import { applyTheme } from '@hekori/uikit'
+import { useEffect } from 'react'
 
 export const initialState: State = {
   shortHash: '',
@@ -11,6 +13,7 @@ export const initialState: State = {
   idToWorker: {},
   idToItem: {},
   itemIds: [],
+  theme: 'DarkTheme',
 }
 
 export interface State {
@@ -21,6 +24,7 @@ export interface State {
   workerIds: string[]
   idToItem: { [index: string]: Item }
   itemIds: string[]
+  theme: string
 }
 
 export type StateContext = {
@@ -37,8 +41,16 @@ export const ContextState = React.createContext<StateContext>({
   setState: () => {},
 })
 
+export const useGlobal = () => {
+  return React.useContext(ContextState)
+}
+
 export const Provider = ({ children }: ProviderProps) => {
   const [state, setState] = React.useState<State>(initialState)
+
+  useEffect(() => {
+    applyTheme(state.theme)
+  }, [state.theme])
 
   return (
     <ContextState.Provider value={{ state, setState }}>

@@ -4,9 +4,12 @@ import { useState } from 'react'
 import { LogoTraqrcode } from '../assets/LogoTraqrcode'
 import { DarkTheme } from '../../../../libs/uikit/src/lib/themes/DarkTheme'
 import { ButtonFlat, ButtonPrimary } from '@hekori/uikit'
+import { MoonIcon, SunIcon } from '@heroicons/react/outline'
+import { useGlobal } from '../index.provider'
 
 export const Navigation = () => {
   const history = useHistory()
+  const { state, setState } = useGlobal()
 
   const [menuVisible, setMenuVisible] = useState<boolean>(false)
   return (
@@ -56,6 +59,24 @@ export const Navigation = () => {
             {/*    Active*/}
             {/*  </a>*/}
             {/*</li>*/}
+
+            <li className="mr-3">
+              <ButtonFlat
+                onClick={() => {
+                  setState({
+                    ...state,
+                    theme:
+                      state.theme === 'LightTheme' ? 'DarkTheme' : 'LightTheme',
+                  })
+                }}
+              >
+                {state.theme === 'DarkTheme' ? (
+                  <MoonIcon width={24} height={24} />
+                ) : (
+                  <SunIcon width={24} height={24} />
+                )}
+              </ButtonFlat>
+            </li>
 
             <li className="mr-3">
               <ButtonFlat onClick={() => history.push('/#pricing')}>

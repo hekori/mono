@@ -14,7 +14,7 @@ export const Footer = () => {
               className="font-mono cursor-pointer"
               onClick={() => history.push('/')}
             >
-              <LogoTraqrcode color={DarkTheme.onDocument} />
+              <LogoTraqrcode color={DarkTheme.onDocument} height={32} />
             </div>
           </div>
 
