@@ -2,32 +2,6 @@ import { Knex } from 'knex'
 import { pg } from '../src/pg'
 
 export const up = async (trx: Knex.Transaction) => {
-  // {
-  //     "admin": "sebastian.walter@gmail.com",
-  //     "createdAt": "2021-05-24T17:00:56Z",
-  //     "accessToken": "f945dbe5-ea90-4fd2-a020-26951020b50c",
-  //     "shortHash": "20210524_03a6b492-7e1fe1a1",
-  //     "test": false,
-  //     "idToItem": {
-  //     "0": {
-  //         "id": "0",
-  //             "idToTask": {},
-  //         "taskIds": [],
-  //             "title": "Toilettenpapier ist alle",
-  //             "subTitle": ""
-  //     }
-  // },
-  //     "idToWorker": {
-  //     "a88f0f0e": "sebastian.walter@gmail.com"
-  // },
-  //     "workerIds": [
-  //     "a88f0f0e"
-  // ],
-  //     "itemIds": [
-  //     "0"
-  // ]
-  // }
-
   const cmd = `
 CREATE TABLE IF NOT EXISTS "user"();
 ALTER TABLE "user" ADD COLUMN IF NOT EXISTS "userUuid" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
