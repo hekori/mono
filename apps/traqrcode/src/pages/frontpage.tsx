@@ -90,72 +90,45 @@ export const PageFront = () => {
           <div className="flex flex-wrap">
             <div className="w-5/6 sm:w-1/2 p-6">
               <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Scan QR code
+                Create & Print a PDF
               </h3>
               <p className="text-gray-600 mb-8">
-                Use your mobile phone to scan a QR code
+                <ol className="list-disc">
+                  <li>Create one or many PDFs in DIN A4 format.</li>
+                  <li>Print high-quality print outs.</li>
+                  <li>
+                    Put them wherever you want. (example on the right: WC){' '}
+                  </li>
+                </ol>
               </p>
             </div>
             <div className="w-full sm:w-1/2 p-6">
               <img
-                alt="scan with mobile phone"
-                src={mobileScanningSvg}
-                className="h-48"
+                className="object-contain h-96 w-full"
+                src="../assets/frontpage/exampe_pdf.png"
               />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap flex-col-reverse sm:flex-row">
-            <div className="w-full sm:w-1/2 p-6 mt-6">
-              <img alt="sending email" src={emailSentSvg} className="h-48" />
-            </div>
-            <div className="w-full sm:w-1/2 p-6 mt-6">
-              <div className="align-middle">
-                <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                  Recipients get email
-                </h3>
-                <p className="text-gray-600 mb-8">
-                  <br />
-                  <br />
-                </p>
-              </div>
             </div>
           </div>
 
           <div className="flex flex-wrap">
             <div className="w-5/6 sm:w-1/2 p-6">
               <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Receipients start work
+                Your customers scan the QR code with their mobile phone
               </h3>
               <p className="text-gray-600 mb-8">
-                <br />
-                <br />
+                <ol className="list-disc">
+                  <li>No installation of an app is necessary.</li>
+                  <li>No registration of the user is necessary.</li>
+                  <li>Your customers see the progress.</li>
+                </ol>
               </p>
             </div>
             <div className="w-full sm:w-1/2 p-6">
-              <img alt="workes do the job" src={workersSvg} className="h-48" />
-            </div>
-          </div>
-
-          <div className="flex flex-wrap flex-col-reverse sm:flex-row">
-            <div className="w-full sm:w-1/2 p-6 mt-6">
               <img
-                alt="track the progresss"
-                src={progressSvg}
-                className="h-48"
+                className="object-contain h-96 w-full"
+                alt="scan with mobile phone"
+                src={mobileScanningSvg}
               />
-            </div>
-            <div className="w-full sm:w-1/2 p-6 mt-6">
-              <div className="align-middle">
-                <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                  Get real time progress of the task
-                </h3>
-                <p className="text-gray-600 mb-8">
-                  on your mobile phone
-                  <br />
-                  <br />
-                </p>
-              </div>
             </div>
           </div>
         </div>
@@ -163,7 +136,7 @@ export const PageFront = () => {
       <section className="bg-white border-b py-8">
         <div className="container mx-auto flex flex-wrap pt-4 pb-12">
           <h2 className="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
-            Benefits
+            Your benefits
           </h2>
           <div className="w-full mb-4">
             <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
@@ -176,13 +149,15 @@ export const PageFront = () => {
                 className="flex flex-wrap no-underline hover:no-underline"
               >
                 <p className="w-full text-gray-600 text-xs md:text-sm px-6 mt-6">
-                  NO SIGNUP NECESSARY
+                  Hotels
                 </p>
                 <div className="w-full font-bold text-xl text-gray-800 px-6">
-                  Get anonymous feedback
+                  Improve room service
                 </div>
                 <p className="text-gray-600 text-base px-6 mb-5">
-                  Print the PDF and hang it out in your facility.
+                  By placing a printout in each room in your hotel, guests can
+                  request new towels or the room service on demand. All requests
+                  are automatically logged and your personnel is notified.
                 </p>
               </a>
             </div>

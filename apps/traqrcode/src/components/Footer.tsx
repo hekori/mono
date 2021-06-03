@@ -2,9 +2,12 @@ import { useHistory } from 'react-router-dom'
 import { LogoTraqrcode } from '../assets/LogoTraqrcode'
 import * as React from 'react'
 import { DarkTheme } from '../../../../libs/uikit/src/lib/themes/DarkTheme'
+import { themes } from '@hekori/uikit'
+import { useGlobal } from '../index.provider'
 
 export const Footer = () => {
   const history = useHistory()
+  const { state } = useGlobal()
   return (
     <footer className="bg-document text-onDocument  ">
       <div className="max-w-screen-xl container mx-auto mt-8 px-8">
@@ -14,7 +17,10 @@ export const Footer = () => {
               className="font-mono cursor-pointer"
               onClick={() => history.push('/')}
             >
-              <LogoTraqrcode color={DarkTheme.onDocument} height={32} />
+              <LogoTraqrcode
+                color={themes[state.theme]?.onDocument}
+                height={32}
+              />
             </div>
           </div>
 
@@ -34,7 +40,7 @@ export const Footer = () => {
               <li className="mt-2 inline-block mr-2 md:block md:mr-0">
                 <a
                   href="/privacy"
-                  className="font-light no-underline text-onDocument3 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
+                  className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
                 >
                   Privacy
                 </a>
@@ -42,7 +48,7 @@ export const Footer = () => {
               <li className="mt-2 inline-block mr-2 md:block md:mr-0">
                 <a
                   href="/imprint"
-                  className="font-light no-underline text-onDocument3 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
+                  className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
                 >
                   Imprint
                 </a>
@@ -58,7 +64,7 @@ export const Footer = () => {
               <li className="mt-2 inline-block mr-2 md:block md:mr-0">
                 <a
                   href="https://www.hekori.com"
-                  className="font-light no-underline text-onDocument3 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
+                  className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
                 >
                   Official Website
                 </a>
