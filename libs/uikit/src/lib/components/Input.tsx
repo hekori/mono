@@ -1,41 +1,29 @@
-interface InputProps {
-  name?: string
-  placeholder?: string
-  required?: boolean
-  value?: string
-  label?: string
-  error?: string
-  type?: 'text' | 'email' | 'password' | 'number'
-}
-export const Input: React.FC<InputProps> = ({
-  name,
-  type = 'text',
-  placeholder,
-  value,
-  required = false,
-  label,
-  error,
-}) => {
+import React, { InputHTMLAttributes } from 'react'
+
+export const Input: React.FC<
+  InputHTMLAttributes<HTMLInputElement> & {
+    label?: string
+    errors?: string[]
+    textSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
+  }
+> = ({ label, errors = [], textSize = 'md', ...props }) => {
   return (
     <>
       <input
-        type={type}
-        name={name}
-        placeholder={placeholder}
-        value={value}
-        className="pt-3 pb-2 block w-full px-0 mt-0 bg-input text-onInput border-0 border-b-2 appearance-none focus:outline-none focus:ring-0 focus:border-black border-divider"
+        {...props}
+        className={`p-2 block w-full border-2 border-inputBorder rounded-md bg-input text-onInput text-${textSize}`}
       />
       {label && (
         <label
-          htmlFor={name}
+          htmlFor={props.name}
           className="duration-300 -z-1 origin-0 text-gray-500 text-sm"
         >
           {label}
         </label>
       )}
-      {error && (
+      {errors.length > 0 && (
         <span className="text-sm text-red-600 hidden" id="error">
-          {error}
+          {errors.join(', ')}
         </span>
       )}
     </>

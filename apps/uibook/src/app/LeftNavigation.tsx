@@ -2,10 +2,7 @@ import { useHistory, useLocation } from 'react-router-dom'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { applyTheme, themes } from '@hekori/uikit'
-
-function classNames(...classes: string[]) {
-  return classes.filter(Boolean).join(' ')
-}
+import { classNames } from '../../../../libs/uikit/src/lib/ClassNames'
 
 export const LeftNavigationItem: React.FC<{ name: string }> = ({ name }) => {
   const location = useLocation()

@@ -9,7 +9,8 @@ export const ButtonFlat: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({
     <button
       type="button"
       {...props}
-      className="inline-flex items-center cursor-pointer px-4 py-2 text-base font-medium rounded-md text-onDocument bg-transparent hover:text-onDocument2 focus:outline-none focus:ring-1 focus:ring-offset-1 focus:text-onDocument"
+      //focus:outline-none focus:ring-1 focus:ring-offset-1
+      className="inline-flex items-center cursor-pointer px-4 py-2 text-base font-medium rounded-md text-onDocument bg-transparent hover:text-onDocument2  focus:text-onDocument focus:outline-none "
     >
       {children}
     </button>
