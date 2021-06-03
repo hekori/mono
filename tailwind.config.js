@@ -4,17 +4,26 @@ module.exports = {
   theme: {
     extend: {
       colors: {
-        card: 'var(--card)',
-        divider: 'var(--divider)',
         document: 'var(--document)',
         onDocument: 'var(--onDocument)',
+        onDocument2: 'var(--onDocument2)',
+        onDocument3: 'var(--onDocument3)',
+        onDocumentHighlight: 'var(--onDocumentHighlight)',
+        button: 'var(--button)',
+        buttonHover: 'var(--buttonHover)',
+        button2: 'var(--button2)',
+        button2Hover: 'var(--button2Hover)',
+        onButton: 'var(--onButton)',
+        card: 'var(--card)',
+        divider: 'var(--divider)',
         error: 'var(--error)',
         input: 'var(--input)',
+        inputBorder: 'var(--inputBorder)',
+        onInput: 'var(--onInput)',
         main: 'var(--main)',
         navigation: 'var(--navigation)',
         onCard: 'var(--onCard)',
         onError: 'var(--onError)',
-        onInput: 'var(--onInput)',
         onMain: 'var(--onMain)',
         onNavigation: 'var(--onNavigation)',
         onSubNavigation: 'var(--onSubNavigation)',
@@ -23,8 +32,9 @@ module.exports = {
         subNavigation: 'var(--subNavigation)',
         success: 'var(--success)',
         warning: 'var(--warning)',
-        button: 'var(--button)',
-        onButton: 'var(--onButton)',
+
+        teaser: 'var(--teaser)',
+        onTeaser: 'var(--onTeaser)',
       },
     },
     backgroundColor: (theme) => ({
@@ -34,5 +44,5 @@ module.exports = {
   variants: {
     backgroundColor: ['active', 'hover', 'focus'],
   },
-  plugins: [require('@tailwindcss/forms')],
+  plugins: [require('@tailwindcss/forms'), require('@tailwindcss/forms')],
 }

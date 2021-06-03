@@ -1,15 +1,22 @@
 export interface Theme {
   document: string
   onDocument: string
+  onDocument2: string
+  onDocument3: string
+  onDocumentHighlight: string
   navigation: string
   onNavigation: string
   subNavigation: string
   onSubNavigation: string
   button: string
+  buttonHover: string
+  button2: string
+  button2Hover: string
   onButton: string
   input: string
-  divider: string
+  inputBorder: string
   onInput: string
+  divider: string
   main: string
   onMain: string
   card: string
@@ -20,4 +27,6 @@ export interface Theme {
   onWarning: string
   error: string
   onError: string
+  teaser: string
+  onTeaser: string
 }

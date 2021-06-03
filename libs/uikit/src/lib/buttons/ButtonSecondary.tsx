@@ -1,11 +1,14 @@
 import React from 'react'
 import 'tailwindcss/tailwind.css'
 
-export const ButtonSecondary: React.FC = ({ children }) => {
+export const ButtonSecondary: React.FC<
+  React.HTMLAttributes<HTMLButtonElement>
+> = ({ children, ...props }) => {
   return (
     <button
       type="button"
-      className="inline-flex items-center cursor-pointer px-4 py-2 text-base font-medium rounded-md text-gray-700 bg-transparent hover:bg-gray-50 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500"
+      {...props}
+      className="inline-flex items-center cursor-pointer px-4 py-2 text-base font-medium rounded-md bg-button2 hover:bg-button2Hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-button2Hover"
     >
       {children}
     </button>

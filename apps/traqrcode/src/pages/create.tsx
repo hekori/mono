@@ -20,10 +20,10 @@ export const PageCreate = () => {
     <Shell>
       <div className="w-full mx-auto text-center pt-6 pb-12 min-h-screen">
         <div className="container max-w-5xl mx-auto m-8">
-          <h2 className="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
+          <h2 className="w-full my-2 text-5xl font-black leading-tight text-center text-onDocument">
             Enter your email
           </h2>
-          <h3 className="w-full my-2 text-xl leading-tight text-center text-gray-300">
+          <h3 className="w-full my-2 text-xl leading-tight text-center text-onDocument2">
             to manage your QR code
           </h3>
 

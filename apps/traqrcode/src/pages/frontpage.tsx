@@ -17,12 +17,12 @@ export const PageFront = () => {
 
   return (
     <Shell>
-      <div className="container mx-auto h-screen-50">
+      <div className="h-screen-50">
         <div className="text-center px-3 lg:px-0">
           <h1 className="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
             Track QR Code Scans
           </h1>
-          <p className="leading-normal text-gray-800 text-base md:text-xl lg:text-2xl mb-8">
+          <p className="leading-normal text-onDocument2 text-base md:text-xl lg:text-2xl mb-8">
             Get notified by email when your QR code gets scanned.
           </p>
 
