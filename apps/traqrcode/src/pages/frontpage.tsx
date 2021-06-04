@@ -6,10 +6,48 @@ import progressSvg from '../assets/frontpage/progress.svg'
 import workersSvg from '../assets/frontpage/workers.svg'
 import emailSentSvg from '../assets/frontpage/email_sent.svg'
 import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
+import { ButtonPrimary, ButtonSecondary } from '@hekori/uikit'
 
 export type TypeErrors = {
   admin?: string
   global?: string
+}
+
+interface BenefitsCardProps {
+  superTitle: string
+  title: string
+  text: string
+  onClick: () => void
+}
+const BenefitsCard: React.FC<BenefitsCardProps> = ({
+  superTitle,
+  title,
+  text,
+  onClick,
+}) => {
+  return (
+    <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink text-onDocument2 ">
+      <div className="flex-1 rounded-t rounded-b-none overflow-hidden shadow bg-document">
+        <div className="flex flex-wrap no-underline hover:no-underline">
+          <p className="w-full text-xs md:text-sm px-6 mt-6">{superTitle}</p>
+          <div className="w-full font-bold text-xl text-onDocument3 px-6">
+            {title}
+          </div>
+          <p className="text-base px-6 mb-5">{text}</p>
+        </div>
+      </div>
+      <div className="flex-none mt-auto rounded-b rounded-t-none overflow-hidden shadow p-6 bg-document">
+        <div className="flex items-center justify-start">
+          <ButtonSecondary
+            className="mx-auto lg:mx-0 hover:underline"
+            onClick={onClick}
+          >
+            Get started
+          </ButtonSecondary>
+        </div>
+      </div>
+    </div>
+  )
 }
 
 export const PageFront = () => {
@@ -17,7 +55,7 @@ export const PageFront = () => {
 
   return (
     <Shell>
-      <div className="h-screen-50">
+      <div className="h-screen-50 border-b border-divider">
         <div className="text-center px-3 lg:px-0">
           <h1 className="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
             Track QR Code Scans
@@ -26,9 +64,12 @@ export const PageFront = () => {
             Get notified by email when your QR code gets scanned.
           </p>
 
-          <button className="button" onClick={() => history.push('/create')}>
+          <ButtonPrimary
+            onClick={() => history.push('/create')}
+            className={'px-8 py-4'}
+          >
             Create QR Code
-          </button>
+          </ButtonPrimary>
           {/*<a*/}
           {/*  href="#"*/}
           {/*  className="inline-block mx-auto lg:mx-0 hover:underline bg-transparent text-gray-600 font-extrabold my-2 md:my-6 py-2 lg:py-4 px-8"*/}
@@ -41,16 +82,16 @@ export const PageFront = () => {
         {/*  <div className="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white w-1/2 rounded shadow-xl"/>>*/}
         {/*</div>*/}
       </div>
-      <section className="bg-white border-b py-12 mt-22">
+      <section className="bg-document2 text-onDocument border-b border-divider py-12 mt-22">
         <div className="container mx-auto flex flex-wrap items-center justify-between pb-12">
-          <h2 className="w-full my-2 text-xl font-black leading-tight text-center text-gray-800 lg:mt-8">
+          <h2 className="w-full my-2 text-xl font-black leading-tight text-center lg:mt-8">
             Built with
           </h2>
           <div className="w-full mb-4">
             <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
           </div>
 
-          <div className="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-xl text-gray-500 font-bold opacity-75">
+          <div className="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-xl text-onDocument3 font-bold opacity-75">
             <span className="w-1/2 p-4 md:w-auto flex items-center">
               <i className="mdi mdi-react mr-4 text-4xl" />
               React
@@ -71,33 +112,42 @@ export const PageFront = () => {
               Linux
             </span>
 
+            {/*<span className="w-1/2 p-4 md:w-auto flex items-center">*/}
+            {/*  <i className="mdi mdi-debian mr-4 text-4xl" />*/}
+            {/*  Debian*/}
+            {/*</span>*/}
+
             <span className="w-1/2 p-4 md:w-auto flex items-center">
-              <i className="mdi mdi-debian mr-4 text-4xl" />
-              Debian
+              <i className="mdi mdi-docker mr-4 text-4xl" />
+              Docker
             </span>
           </div>
         </div>
       </section>
-      <section className="bg-gray-100 border-b py-8" id="how-it-works">
+      <section
+        className="bg-document text-onDocument border-b border-divider py-8"
+        id="how-it-works"
+      >
         <div className="container max-w-5xl mx-auto m-8">
-          <h2 className="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
+          <h2 className="w-full my-2 text-5xl font-black leading-tight text-center">
             How it works
           </h2>
           <div className="w-full mb-4">
             <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
           </div>
 
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap text-onDocument2">
             <div className="w-5/6 sm:w-1/2 p-6">
-              <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Create & Print a PDF
+              <h3 className="text-3xl font-bold leading-none mb-3 text-onDocument">
+                As a Manager I can
               </h3>
-              <p className="text-gray-600 mb-8">
+              <p className="mb-8">
                 <ol className="list-disc">
-                  <li>Create one or many PDFs in DIN A4 format.</li>
-                  <li>Print high-quality print outs.</li>
+                  <li>create one or many PDFs in DIN A4 format.</li>
+                  <li>produce high-quality print outs.</li>
+                  <li>put them wherever I want.</li>
                   <li>
-                    Put them wherever you want. (example on the right: WC){' '}
+                    assign responsibilities to my team and track their progress.
                   </li>
                 </ol>
               </p>
@@ -110,17 +160,14 @@ export const PageFront = () => {
             </div>
           </div>
 
-          <div className="flex flex-wrap">
+          <div className="flex flex-wrap text-onDocument2">
             <div className="w-5/6 sm:w-1/2 p-6">
-              <h3 className="text-3xl text-gray-800 font-bold leading-none mb-3">
-                Your customers scan the QR code with their mobile phone
+              <h3 className="text-3xl text-onDocument font-bold leading-none mb-3">
+                As a User
               </h3>
-              <p className="text-gray-600 mb-8">
-                <ol className="list-disc">
-                  <li>No installation of an app is necessary.</li>
-                  <li>No registration of the user is necessary.</li>
-                  <li>Your customers see the progress.</li>
-                </ol>
+              <p className="mb-8">
+                I scan the QR code and receive real-time updates on the
+                progress.
               </p>
             </div>
             <div className="w-full sm:w-1/2 p-6">
@@ -133,104 +180,42 @@ export const PageFront = () => {
           </div>
         </div>
       </section>
-      <section className="bg-white border-b py-8">
+      <section className="bg-document2 text-onDocument border-b py-8">
         <div className="container mx-auto flex flex-wrap pt-4 pb-12">
-          <h2 className="w-full my-2 text-5xl font-black leading-tight text-center text-gray-800">
+          <h2 className="w-full my-2 text-5xl font-black leading-tight text-center">
             Your benefits
           </h2>
           <div className="w-full mb-4">
             <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
           </div>
+          <BenefitsCard
+            superTitle={'Hotels'}
+            title={'Improve room service'}
+            text={`By placing a printout in each room in your hotel, guests can 
+request new towels or the room service on demand. All requests
+are automatically logged and your personnel is notified.`}
+            onClick={() => {
+              history.push('/create')
+            }}
+          />
 
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-              <a
-                href="#"
-                className="flex flex-wrap no-underline hover:no-underline"
-              >
-                <p className="w-full text-gray-600 text-xs md:text-sm px-6 mt-6">
-                  Hotels
-                </p>
-                <div className="w-full font-bold text-xl text-gray-800 px-6">
-                  Improve room service
-                </div>
-                <p className="text-gray-600 text-base px-6 mb-5">
-                  By placing a printout in each room in your hotel, guests can
-                  request new towels or the room service on demand. All requests
-                  are automatically logged and your personnel is notified.
-                </p>
-              </a>
-            </div>
-            <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-              <div className="flex items-center justify-start">
-                <button
-                  className="mx-auto lg:mx-0 hover:underline"
-                  onClick={() => history.push('/create')}
-                >
-                  Get started
-                </button>
-              </div>
-            </div>
-          </div>
+          <BenefitsCard
+            superTitle={'Offices'}
+            title={'Reduce costs'}
+            text={`Fix things on demand when your employees need it.`}
+            onClick={() => {
+              history.push('/create')
+            }}
+          />
 
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-              <a
-                href="#"
-                className="flex flex-wrap no-underline hover:no-underline"
-              >
-                <p className="w-full text-gray-600 text-xs md:text-sm px-6 mt-6">
-                  NO HIDDEN COSTS
-                </p>
-                <div className="w-full font-bold text-xl text-gray-800 px-6">
-                  Increase workforce efficiency
-                </div>
-                <p className="text-gray-600 text-base px-6 mb-5">
-                  Offer task distribution without personal interaction or phone
-                  calls.
-                </p>
-              </a>
-            </div>
-            <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-              <div className="flex items-center justify-start">
-                <button
-                  className="mx-auto lg:mx-0 hover:underline"
-                  onClick={() => history.push('/create')}
-                >
-                  Get started
-                </button>
-              </div>
-            </div>
-          </div>
-
-          <div className="w-full md:w-1/3 p-6 flex flex-col flex-grow flex-shrink">
-            <div className="flex-1 bg-white rounded-t rounded-b-none overflow-hidden shadow">
-              <a
-                href="#"
-                className="flex flex-wrap no-underline hover:no-underline"
-              >
-                <p className="w-full text-gray-600 text-xs md:text-sm px-6 mt-6">
-                  ANALYZE
-                </p>
-                <div className="w-full font-bold text-xl text-gray-800 px-6">
-                  Find bottlenecks and improvement potentials
-                </div>
-                <p className="text-gray-600 text-base px-6 mb-5">
-                  All information accessible via email and in the web browser.
-                </p>
-              </a>
-            </div>
-            <div className="flex-none mt-auto bg-white rounded-b rounded-t-none overflow-hidden shadow p-6">
-              <div className="flex items-center justify-start">
-                <button
-                  className="mx-auto lg:mx-0 hover:underline"
-                  onClick={() => history.push('/create')}
-                >
-                  Get started
-                </button>
-              </div>
-            </div>
-          </div>
+          <BenefitsCard
+            superTitle={'Public Facilities'}
+            title={'Improve quality'}
+            text={`Prevent bad customer experience. Be in touch with your customers.`}
+            onClick={() => {
+              history.push('/create')
+            }}
+          />
         </div>
       </section>
       <section className="bg-gray-100 py-8" id="pricing">

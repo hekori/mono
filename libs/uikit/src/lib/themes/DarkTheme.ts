@@ -3,10 +3,11 @@ import { LightTheme } from './LightTheme'
 
 export const DarkTheme: Theme = {
   ...LightTheme,
-  document: '#090c11',
+  document: '#031227',
+  document2: '#141f30',
   onDocument: '#FFFFFF',
   onDocument2: '#CCCCCC',
-  onDocument3: '#9e9e9e',
+  onDocument3: '#7f92ad',
   onDocumentHighlight: '#00b7ff',
   button: '#ff8e00',
   buttonHover: '#ffba65',
@@ -16,9 +17,9 @@ export const DarkTheme: Theme = {
   input: '#383838',
   inputBorder: '#525252',
   onInput: '#e8e8e8',
-
   onMain: '#dedede',
   main: '#323232',
   onCard: '#FFFFFF',
   card: '#323232',
+  divider: '#CCCCCC44',
 }

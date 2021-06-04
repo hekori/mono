@@ -5,6 +5,7 @@ module.exports = {
     extend: {
       colors: {
         document: 'var(--document)',
+        document2: 'var(--document2)',
         onDocument: 'var(--onDocument)',
         onDocument2: 'var(--onDocument2)',
         onDocument3: 'var(--onDocument3)',
