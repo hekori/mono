@@ -1,7 +1,13 @@
 import { Theme } from './types'
 
 export const LightTheme: Theme = {
-  divider: '#828282',
+  document: '#FFFFFF',
+  document2: '#efefef',
+  onDocument: '#000000',
+  onDocument2: '#666666',
+  onDocument3: '#9e9e9e',
+  onDocumentHighlight: '#00b7ff',
+  divider: 'rgba(71,71,71,0.18)',
   error: '#571313',
   onError: '#fc0505',
   onSuccess: '#4ac900',
@@ -13,11 +19,6 @@ export const LightTheme: Theme = {
   onInput: '#232323',
   onSubNavigation: '#4d6f8b',
   subNavigation: '#d8f0ff',
-  document: '#FFFFFF',
-  onDocument: '#000000',
-  onDocument2: '#666666',
-  onDocument3: '#9e9e9e',
-  onDocumentHighlight: '#00b7ff',
   main: '#dedede',
   onMain: '#323232',
   card: '#FFFFFF',

@@ -8,7 +8,7 @@ export const ButtonSecondary: React.FC<
     <button
       type="button"
       {...props}
-      className="inline-flex items-center cursor-pointer px-4 py-2 text-base font-medium rounded-md bg-button2 hover:bg-button2Hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-button2Hover"
+      className="inline-flex items-center cursor-pointer px-4 py-2 text-base font-medium rounded-md shadow-md bg-button2 text-onButton hover:bg-button2Hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-button2Hover"
     >
       {children}
     </button>
