@@ -23,6 +23,7 @@ import {
   Input,
   TextSubtitle,
 } from '@hekori/uikit'
+import { TrashIcon } from '@heroicons/react/outline'
 
 type PropsPageSetup = {
   routeInfo: AdminRouteInfo
@@ -125,16 +126,14 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
                 />
               ))}
 
-              <li>
-                <div
-                  className="lg:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-pointer px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-touchableHighlight"
-                  onClick={() => {
-                    setState(createNewItem({ state }))
-                  }}
-                >
-                  {' '}
-                  + add another
-                </div>
+              <li
+                className="lg:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-pointer px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-touchableHighlight"
+                onClick={() => {
+                  setState(createNewItem({ state }))
+                }}
+              >
+                {' '}
+                + add another
               </li>
             </ul>
           </div>
@@ -150,45 +149,65 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
             Who should be notified when the QR code gets scanned?
           </TextSubtitle>
 
-          {state.workerIds.map((receiver, i) => {
-            return (
-              <Input
-                key={`${i}`}
-                placeholder={'Enter email'}
-                textSize={'xl'}
-                onChange={(e) => {
+          <div className="bg-document2 text-onDocument2 shadow overflow-hidden sm:rounded-md">
+            <ul className="divide-y divide-divider">
+              {state.workerIds.map((receiver, itemIndex) => {
+                return (
+                  <li className="p-4 flex flex-col lg:flex-row items-center justify-between">
+                    <Input
+                      key={`${itemIndex}`}
+                      placeholder={'Enter email'}
+                      textSize={'xl'}
+                      onChange={(e) => {
+                        setState({
+                          ...state,
+                          idToWorker: {
+                            ...state.idToWorker,
+                            [receiver]: e.target.value,
+                          },
+                        })
+                      }}
+                      errors={errors?.idToWorker?.[receiver] ?? []}
+                      value={state.idToWorker[receiver]}
+                    />
+
+                    <ButtonFlat
+                      onClick={() => {
+                        const newState = { ...state }
+                        newState.workerIds = state.workerIds.filter(
+                          (itemId) => itemId !== receiver
+                        )
+                        setState(newState)
+                      }}
+                    >
+                      <TrashIcon className="h-5 w-5" />
+                    </ButtonFlat>
+                  </li>
+                )
+              })}
+
+              <li
+                className="lg:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-pointer px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-touchableHighlight"
+                onClick={() => {
+                  const s = shortuuid()
                   setState({
                     ...state,
-                    idToWorker: {
-                      ...state.idToWorker,
-                      [receiver]: e.target.value,
-                    },
+                    workerIds: [...state.workerIds, s],
+                    idToWorker: { ...state.idToWorker, [s]: '' },
                   })
                 }}
-                errors={errors?.idToWorker?.[receiver] ?? []}
-                value={state.idToWorker[receiver]}
-              />
-            )
-          })}
-
-          <ButtonSecondary
-            onClick={() => {
-              const s = shortuuid()
-              setState({
-                ...state,
-                workerIds: [...state.workerIds, s],
-                idToWorker: { ...state.idToWorker, [s]: '' },
-              })
-            }}
-          >
-            + Add another
-          </ButtonSecondary>
+              >
+                {' '}
+                + add another
+              </li>
+            </ul>
+          </div>
           {errors.global.includes(API_CODE.ERROR_EMPTY_WORKER_LIST) && (
             <div className={'text-error'}>Add at least one receiver.</div>
           )}
 
-          <ButtonPrimary
-            className="min-w-full"
+          <ButtonSecondary
+            className="min-w-full mt-8"
             onClick={async (e) => {
               e.preventDefault()
               const [err, res] = await to(
@@ -227,7 +246,7 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
             }}
           >
             Save
-          </ButtonPrimary>
+          </ButtonSecondary>
           {errors.count > 0 && (
             <div className={'text-error'}>
               There were errors. Go up and correct them.
