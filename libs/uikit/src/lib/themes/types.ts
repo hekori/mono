@@ -31,4 +31,5 @@ export interface Theme {
   onError: string
   teaser: string
   onTeaser: string
+  touchableHighlight: string
 }

@@ -23,4 +23,5 @@ export const DarkTheme: Theme = {
   onCard: '#FFFFFF',
   card: '#323232',
   divider: '#CCCCCC44',
+  touchableHighlight: '#FFFFFF11',
 }

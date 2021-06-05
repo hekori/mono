@@ -15,8 +15,8 @@ export const LightTheme: Theme = {
   onWarning: '#dba00e',
   success: '#275f03',
   warning: '#5e2c02',
-  input: '#CCCCCC',
-  inputBorder: '#959595',
+  input: '#FFFFFF77',
+  inputBorder: '#95959533',
   onInput: '#232323',
   onSubNavigation: '#4d6f8b',
   subNavigation: '#d8f0ff',
@@ -33,4 +33,5 @@ export const LightTheme: Theme = {
   onButton: '#ffffff',
   teaser: '#51747f',
   onTeaser: '#f3f3f3',
+  touchableHighlight: '#AAAAFF44',
 }
