@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { Shell } from '../components/shell'
-import { InputText } from '../components/inputText'
 import { ContextState, State } from '../index.provider'
-import { Req, ReqNew } from '../components/req'
+import { Req } from '../components/req'
 import { AdminRouteInfo } from '../app'
 
 import { api } from '../api'
@@ -17,7 +16,13 @@ import {
 import { getBackendEditPostUrl } from '../../../traqrcode-common/src/urls'
 import { API_CODE } from '../../../traqrcode-common/src/constants'
 import { shortuuid, to } from '../../../traqrcode-common/src/misc'
-import { ButtonPrimary, ButtonSecondary, Input, TextTitle } from '@hekori/uikit'
+import {
+  ButtonFlat,
+  ButtonPrimary,
+  ButtonSecondary,
+  Input,
+  TextSubtitle,
+} from '@hekori/uikit'
 
 type PropsPageSetup = {
   routeInfo: AdminRouteInfo
@@ -97,32 +102,43 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
 
   return (
     <Shell>
-      <div className="max-w-screen-xl container mx-auto pt-6 pb-12 min-h-screen">
+      <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
         <div className="mt-8">
-          <TextTitle>Describe your QR code</TextTitle>
+          <TextSubtitle>Describe your QR code</TextSubtitle>
 
-          {state.itemIds.map((itemIndex) => (
-            <Req
-              key={itemIndex}
-              uid={routeInfo.shortHash}
-              itemIndex={itemIndex}
-              errors={errors}
-              setErrors={setErrors}
-              onClickDelete={() => {
-                const newState = { ...state }
-                newState.itemIds = state.itemIds.filter((i) => i !== itemIndex)
-                setState(newState)
-              }}
-            />
-          ))}
-          <ButtonSecondary
-            onClick={() => {
-              setState(createNewItem({ state }))
-            }}
-          >
-            {' '}
-            + add another
-          </ButtonSecondary>
+          <div className="bg-document2 text-onDocument2 shadow overflow-hidden sm:rounded-md">
+            <ul className="divide-y divide-divider">
+              {state.itemIds.map((itemIndex) => (
+                <Req
+                  key={itemIndex}
+                  uid={routeInfo.shortHash}
+                  itemIndex={itemIndex}
+                  errors={errors}
+                  setErrors={setErrors}
+                  onClickDelete={() => {
+                    const newState = { ...state }
+                    newState.itemIds = state.itemIds.filter(
+                      (i) => i !== itemIndex
+                    )
+                    setState(newState)
+                  }}
+                />
+              ))}
+
+              <li>
+                <ButtonFlat
+                  className="min-w-full"
+                  onClick={() => {
+                    setState(createNewItem({ state }))
+                  }}
+                >
+                  {' '}
+                  + add another
+                </ButtonFlat>
+              </li>
+            </ul>
+          </div>
+
           {errors.global.includes(API_CODE.ERROR_EMPTY_ITEMS_LIST) && (
             <div className={'text-error'}>Please add at least one QR code.</div>
           )}
@@ -130,9 +146,9 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
           <br />
           <br />
 
-          <TextTitle>
+          <TextSubtitle>
             Who should be notified when the QR code gets scanned?
-          </TextTitle>
+          </TextSubtitle>
 
           {state.workerIds.map((receiver, i) => {
             return (
@@ -172,7 +188,7 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
           )}
 
           <ButtonPrimary
-            className="min-w-full mt-4 py-8"
+            className="min-w-full"
             onClick={async (e) => {
               e.preventDefault()
               const [err, res] = await to(

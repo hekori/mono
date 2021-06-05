@@ -1,11 +1,17 @@
 import * as React from 'react'
 import { SyntheticEvent } from 'react'
-import { InputText } from './inputText'
 import { ContextState } from '../index.provider'
 
 import QRCode from 'qrcode.react'
 import { PageEditErrors } from '../../../traqrcode-common/src/interfaces/api'
 import { getItemUrl } from '../../../traqrcode-common/src/misc'
+import { ButtonFlat, Input, themes } from '@hekori/uikit'
+import {
+  CalendarIcon,
+  LocationMarkerIcon,
+  TrashIcon,
+  UsersIcon,
+} from '@heroicons/react/outline'
 
 type ReqProps = {
   itemIndex: string
@@ -26,11 +32,20 @@ export const Req = ({
   const item = state.idToItem[itemIndex]
   console.log('errors', errors)
   return (
-    <div className="req md:flex-row mb-4">
-      <div className="flex-1 justify-around">
-        <InputText
+    <li className="px-4 py-4">
+      <div className="flex flex-col lg:flex-row items-center justify-between">
+        <QRCode
+          value={getItemUrl(uid, itemIndex)}
+          renderAs="svg"
+          bgColor={'transparent'}
+          fgColor={themes[state.theme].onDocumentHighlight}
+          style={{ width: '96px', height: 'auto' }}
+        />
+        <div className="w-4 h-4" />
+        <Input
           placeholder="Enter title"
           autoFocus
+          textSize={'lg'}
           value={item.title}
           errors={errors?.idToItem?.[itemIndex]}
           onChange={(e) => {
@@ -46,28 +61,22 @@ export const Req = ({
             setErrors(newErrors)
           }}
         />
-        <InputText
+        <div className="w-4 h-4" />
+        <Input
           placeholder="Enter additional info"
           value={item.subTitle}
+          textSize={'lg'}
           onChange={(e) => {
             const newState = { ...state }
             newState.idToItem[itemIndex].subTitle = e.target.value
             setState(newState)
           }}
         />
-        <div className="text-xs text-primary">{getItemUrl(uid, itemIndex)}</div>
+        <ButtonFlat onClick={onClickDelete}>
+          <TrashIcon className="h-5 w-5" />
+        </ButtonFlat>
       </div>
-      <div className="md:w-1/4 flex justify-center items-center flex-col">
-        <QRCode
-          value={getItemUrl(uid, itemIndex)}
-          renderAs="svg"
-          style={{ width: '50%', height: 'auto' }}
-        />
-        <button className="button" onClick={onClickDelete}>
-          delete
-        </button>
-      </div>
-    </div>
+    </li>
   )
 }
 

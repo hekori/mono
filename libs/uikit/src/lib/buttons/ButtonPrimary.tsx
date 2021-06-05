@@ -3,11 +3,11 @@ import 'tailwindcss/tailwind.css'
 import { classNames } from '../ClassNames'
 
 export const ButtonPrimary: React.FC<
-  React.HTMLAttributes<HTMLButtonElement>
+  React.ButtonHTMLAttributes<HTMLButtonElement>
 > = ({ children, ...props }) => {
   return (
     <button
-      type="button"
+      type={props.type ?? 'button'}
       {...props}
       className={classNames(
         'cursor-pointer text-center px-8 py-4 font-extrabold  rounded-md shadow-lg bg-button text-onButton hover:bg-buttonHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-buttonHover',
