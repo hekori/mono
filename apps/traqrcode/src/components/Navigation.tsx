@@ -18,34 +18,43 @@ export const Navigation = () => {
       className="relative bg-document text-onDocument flex items-center justify-between px-4 sm:px-6"
     >
       <div className="max-w-screen-xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
-        <div className="p-2 h-2 flex items-center">
-          <div
-            className="font-mono text-white cursor-pointer"
-            onClick={() => history.push('/')}
-          >
-            <LogoTraqrcode
-              color={themes[state.theme]?.onDocument}
-              height={32}
-            />
-          </div>
+        <div
+          className="font-mono text-white cursor-pointer"
+          onClick={() => history.push('/')}
+        >
+          <LogoTraqrcode color={themes[state.theme]?.onDocument} height={32} />
         </div>
 
-        <div className="block lg:hidden pr-4">
-          <button
-            className="button flex items-center px-3 py-2 border rounded text-onDocument hover:text-onDocumentHighlight hover:border-teal-500 appearance-none focus:outline-none"
+        <div className="block lg:hidden pr-2">
+          <ButtonFlat
             onClick={() => {
               setMenuVisible(!menuVisible)
             }}
           >
             <svg
-              className="fill-current h-3 w-3"
+              className="fill-current h-5 w-5"
               viewBox="0 0 20 20"
               xmlns="http://www.w3.org/2000/svg"
             >
               <title>Menu</title>
               <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />
             </svg>
-          </button>
+          </ButtonFlat>
+          {/*<button*/}
+          {/*  className="flex items-center px-3 py-2 border rounded text-onDocument hover:text-onDocumentHighlight hover:border-teal-500 appearance-none focus:outline-none"*/}
+          {/*  onClick={() => {*/}
+          {/*    setMenuVisible(!menuVisible)*/}
+          {/*  }}*/}
+          {/*>*/}
+          {/*  <svg*/}
+          {/*    className="fill-current h-3 w-3"*/}
+          {/*    viewBox="0 0 20 20"*/}
+          {/*    xmlns="http://www.w3.org/2000/svg"*/}
+          {/*  >*/}
+          {/*    <title>Menu</title>*/}
+          {/*    <path d="M0 3h20v2H0V3zm0 6h20v2H0V9zm0 6h20v2H0v-2z" />*/}
+          {/*  </svg>*/}
+          {/*</button>*/}
         </div>
 
         <div
@@ -54,15 +63,6 @@ export const Navigation = () => {
           }`}
         >
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
-            {/*<li className="mr-3">*/}
-            {/*  <a*/}
-            {/*    className="inline-block py-2 px-4 text-onDocument font-bold no-underline"*/}
-            {/*    href="#"*/}
-            {/*  >*/}
-            {/*    Active*/}
-            {/*  </a>*/}
-            {/*</li>*/}
-
             <li className="mr-3">
               <ButtonFlat
                 onClick={() => {
@@ -82,13 +82,12 @@ export const Navigation = () => {
             </li>
 
             <li className="mr-3">
+              <ButtonFlat onClick={() => history.push('/')}>Home</ButtonFlat>
+            </li>
+
+            <li className="mr-3">
               <ButtonFlat onClick={() => history.push('/pricing')}>
                 Pricing
-              </ButtonFlat>
-            </li>
-            <li className="mr-3">
-              <ButtonFlat onClick={() => history.push('/#how-it-works')}>
-                How it works
               </ButtonFlat>
             </li>
           </ul>

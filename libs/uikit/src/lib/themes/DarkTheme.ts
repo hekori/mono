@@ -5,6 +5,7 @@ export const DarkTheme: Theme = {
   ...LightTheme,
   document: '#031227',
   document2: '#141f30',
+  document3: '#325286',
   onDocument: '#FFFFFF',
   onDocument2: '#CCCCCC',
   onDocument3: '#7f92ad',

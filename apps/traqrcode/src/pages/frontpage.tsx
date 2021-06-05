@@ -2,8 +2,8 @@ import { useHistory } from 'react-router-dom'
 import * as React from 'react'
 import { Shell } from '../components/shell'
 import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
-import { ButtonPrimary, ButtonSecondary } from '@hekori/uikit'
-import { useScrollToAnchor } from '../hooks/useScrollToAnchor'
+import { ButtonPrimary, ButtonSecondary, TextTitle } from '@hekori/uikit'
+import { SectionHeader } from '../components/SectionHeader'
 
 export type TypeErrors = {
   admin?: string
@@ -50,12 +50,10 @@ const BenefitsCard: React.FC<BenefitsCardProps> = ({
 export const PageFront = () => {
   const history = useHistory()
 
-  useScrollToAnchor(history.location.pathname)
-
   return (
     <Shell>
-      <div className="h-screen-50 border-b border-divider">
-        <div className="text-center px-3 lg:px-0">
+      <div className="md:h-128 border-b border-divider py-16">
+        <div className="text-center px-3 lg:px-0 md:my-32">
           <h1 className="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
             Track QR Code Scans
           </h1>
@@ -63,32 +61,14 @@ export const PageFront = () => {
             Get notified by email when your QR code gets scanned.
           </p>
 
-          <ButtonPrimary
-            onClick={() => history.push('/create')}
-            className={'px-8 py-4'}
-          >
+          <ButtonPrimary onClick={() => history.push('/create')}>
             Create QR Code
           </ButtonPrimary>
-          {/*<a*/}
-          {/*  href="#"*/}
-          {/*  className="inline-block mx-auto lg:mx-0 hover:underline bg-transparent text-gray-600 font-extrabold my-2 md:my-6 py-2 lg:py-4 px-8"*/}
-          {/*>*/}
-          {/*  View Additional Action*/}
-          {/*</a>*/}
         </div>
-
-        {/*<div className="flex items-center w-full mx-auto content-end">*/}
-        {/*  <div className="browser-mockup flex flex-1 m-6 md:px-0 md:m-12 bg-white w-1/2 rounded shadow-xl"/>>*/}
-        {/*</div>*/}
       </div>
       <section className="bg-document2 text-onDocument border-b border-divider py-12 mt-22">
         <div className="container mx-auto flex flex-wrap items-center justify-between pb-12">
-          <h2 className="w-full my-2 text-xl font-black leading-tight text-center lg:mt-8">
-            Built with
-          </h2>
-          <div className="w-full mb-4">
-            <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
-          </div>
+          <SectionHeader title="Built with" />
 
           <div className="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-xl text-onDocument3 font-bold opacity-75">
             <span className="w-1/2 p-4 md:w-auto flex items-center">
@@ -111,11 +91,6 @@ export const PageFront = () => {
               Linux
             </span>
 
-            {/*<span className="w-1/2 p-4 md:w-auto flex items-center">*/}
-            {/*  <i className="mdi mdi-debian mr-4 text-4xl" />*/}
-            {/*  Debian*/}
-            {/*</span>*/}
-
             <span className="w-1/2 p-4 md:w-auto flex items-center">
               <i className="mdi mdi-docker mr-4 text-4xl" />
               Docker
@@ -128,13 +103,7 @@ export const PageFront = () => {
         id="how-it-works"
       >
         <div className="container max-w-5xl mx-auto m-8">
-          <h2 className="w-full my-2 text-5xl font-black leading-tight text-center">
-            How it works
-          </h2>
-          <div className="w-full mb-4">
-            <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
-          </div>
-
+          <SectionHeader title="How it works" />
           <div className="flex flex-wrap text-onDocument2">
             <div className="w-5/6 sm:w-1/2 p-6">
               <h3 className="text-3xl font-bold leading-none mb-3 text-onDocument">
@@ -180,13 +149,9 @@ export const PageFront = () => {
         </div>
       </section>
       <section className="bg-document2 text-onDocument border-b border-divider py-8">
-        <div className="container mx-auto flex flex-wrap pt-4 pb-12">
-          <h2 className="w-full my-2 text-5xl font-black leading-tight text-center">
-            Your benefits
-          </h2>
-          <div className="w-full mb-4">
-            <div className="h-1 mx-auto gradient w-64 opacity-25 my-0 py-0 rounded-t" />
-          </div>
+        <div className="max-w-screen-xl container mx-auto flex flex-wrap pt-4 pb-12">
+          <SectionHeader title="Your benefits" />
+
           <BenefitsCard
             superTitle={'Hotels'}
             title={'Improve room service'}
@@ -197,7 +162,6 @@ are automatically logged and your personnel is notified.`}
               history.push('/create')
             }}
           />
-
           <BenefitsCard
             superTitle={'Offices'}
             title={'Reduce costs'}
@@ -206,7 +170,6 @@ are automatically logged and your personnel is notified.`}
               history.push('/create')
             }}
           />
-
           <BenefitsCard
             superTitle={'Public Facilities'}
             title={'Improve quality'}
