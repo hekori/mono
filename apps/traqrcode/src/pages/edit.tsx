@@ -17,6 +17,7 @@ import {
 import { getBackendEditPostUrl } from '../../../traqrcode-common/src/urls'
 import { API_CODE } from '../../../traqrcode-common/src/constants'
 import { shortuuid, to } from '../../../traqrcode-common/src/misc'
+import { ButtonPrimary, ButtonSecondary, Input, TextTitle } from '@hekori/uikit'
 
 type PropsPageSetup = {
   routeInfo: AdminRouteInfo
@@ -96,20 +97,9 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
 
   return (
     <Shell>
-      <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
-        <div className="container max-w-5xl mx-auto m-8 px-4">
-          {/*<h2 className="font-medium text-3xl mb-3">Setup supply chain</h2>*/}
-          {/*<InputText*/}
-          {/*  placeholder={"Enter admin email"}*/}
-          {/*  label={"Admin email"}*/}
-          {/*  onChange={e => {*/}
-          {/*    setState({ ...state, admin: e.target.value });*/}
-          {/*  }}*/}
-          {/*  value={state.admin}*/}
-          {/*  errors={get(errors, "admin", [])}*/}
-          {/*/>*/}
-
-          <h1>Describe your QR code</h1>
+      <div className="max-w-screen-xl container mx-auto pt-6 pb-12 min-h-screen">
+        <div className="mt-8">
+          <TextTitle>Describe your QR code</TextTitle>
 
           {state.itemIds.map((itemIndex) => (
             <Req
@@ -125,25 +115,31 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
               }}
             />
           ))}
-          <ReqNew
-            text="+ add another"
+          <ButtonSecondary
             onClick={() => {
               setState(createNewItem({ state }))
             }}
-          />
+          >
+            {' '}
+            + add another
+          </ButtonSecondary>
           {errors.global.includes(API_CODE.ERROR_EMPTY_ITEMS_LIST) && (
             <div className={'text-error'}>Please add at least one QR code.</div>
           )}
 
-          <h1 className="mt-16">
+          <br />
+          <br />
+
+          <TextTitle>
             Who should be notified when the QR code gets scanned?
-          </h1>
+          </TextTitle>
 
           {state.workerIds.map((receiver, i) => {
             return (
-              <InputText
+              <Input
                 key={`${i}`}
                 placeholder={'Enter email'}
+                textSize={'xl'}
                 onChange={(e) => {
                   setState({
                     ...state,
@@ -159,8 +155,7 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
             )
           })}
 
-          <ReqNew
-            text="+ add another"
+          <ButtonSecondary
             onClick={() => {
               const s = shortuuid()
               setState({
@@ -169,13 +164,15 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
                 idToWorker: { ...state.idToWorker, [s]: '' },
               })
             }}
-          />
+          >
+            + Add another
+          </ButtonSecondary>
           {errors.global.includes(API_CODE.ERROR_EMPTY_WORKER_LIST) && (
             <div className={'text-error'}>Add at least one receiver.</div>
           )}
 
-          <button
-            className="button min-w-full mt-4"
+          <ButtonPrimary
+            className="min-w-full mt-4 py-8"
             onClick={async (e) => {
               e.preventDefault()
               const [err, res] = await to(
@@ -214,7 +211,7 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
             }}
           >
             Save
-          </button>
+          </ButtonPrimary>
           {errors.count > 0 && (
             <div className={'text-error'}>
               There were errors. Go up and correct them.

@@ -3,6 +3,7 @@ import { Theme } from './types'
 export const LightTheme: Theme = {
   document: '#FFFFFF',
   document2: '#efefef',
+  document3: '#b7c0cb',
   onDocument: '#000000',
   onDocument2: '#666666',
   onDocument3: '#9e9e9e',

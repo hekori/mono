@@ -1,19 +1,14 @@
-import { useLocation } from 'react-router-dom'
 import * as React from 'react'
-import { useEffect } from 'react'
 import { Footer } from './Footer'
 import { Navigation } from './Navigation'
+import { useScrollToTop } from '../hooks/scrollToTop'
 
 type ShellProps = {
   children: any
 }
 
 export const Shell = ({ children }: ShellProps) => {
-  const location = useLocation()
-  useEffect(() => {
-    if (window.location.href.includes('#')) return
-    window.scrollTo(0, 0)
-  }, [location.pathname])
+  useScrollToTop()
 
   return (
     <div className="relative overflow-hidden bg-document text-onDocument leading-relaxed tracking-wide flex flex-col">

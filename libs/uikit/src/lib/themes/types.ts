@@ -1,6 +1,7 @@
 export interface Theme {
   document: string
   document2: string
+  document3: string
   onDocument: string
   onDocument2: string
   onDocument3: string

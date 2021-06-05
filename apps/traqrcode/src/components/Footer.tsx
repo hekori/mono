@@ -1,7 +1,6 @@
-import { useHistory } from 'react-router-dom'
+import { Link, useHistory } from 'react-router-dom'
 import { LogoTraqrcode } from '../assets/LogoTraqrcode'
 import * as React from 'react'
-import { DarkTheme } from '../../../../libs/uikit/src/lib/themes/DarkTheme'
 import { themes } from '@hekori/uikit'
 import { useGlobal } from '../index.provider'
 
@@ -30,28 +29,28 @@ export const Footer = () => {
             </p>
             <ul className="list-reset mb-6">
               <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a
-                  href="/terms"
+                <Link
+                  to="/terms"
                   className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
                 >
                   Terms
-                </a>
+                </Link>
               </li>
               <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a
-                  href="/privacy"
+                <Link
+                  to="/privacy"
                   className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
                 >
                   Privacy
-                </a>
+                </Link>
               </li>
               <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-                <a
-                  href="/imprint"
+                <Link
+                  to="/imprint"
                   className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
                 >
                   Imprint
-                </a>
+                </Link>
               </li>
             </ul>
           </div>

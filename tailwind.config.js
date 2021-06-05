@@ -1,11 +1,12 @@
 module.exports = {
   purge: ['./apps/hereismyfeedback/**/*.{js,ts,jsx,tsx}'],
-  darkMode: false, // or 'media' or 'class'
+  darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
       colors: {
         document: 'var(--document)',
         document2: 'var(--document2)',
+        document3: 'var(--document3)',
         onDocument: 'var(--onDocument)',
         onDocument2: 'var(--onDocument2)',
         onDocument3: 'var(--onDocument3)',
