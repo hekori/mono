@@ -126,15 +126,15 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
               ))}
 
               <li>
-                <ButtonFlat
-                  className="min-w-full"
+                <div
+                  className="lg:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-pointer px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-touchableHighlight"
                   onClick={() => {
                     setState(createNewItem({ state }))
                   }}
                 >
                   {' '}
                   + add another
-                </ButtonFlat>
+                </div>
               </li>
             </ul>
           </div>

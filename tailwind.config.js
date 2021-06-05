@@ -16,6 +16,7 @@ module.exports = {
         button2: 'var(--button2)',
         button2Hover: 'var(--button2Hover)',
         onButton: 'var(--onButton)',
+        touchableHighlight: 'var(--touchableHighlight)',
         card: 'var(--card)',
         divider: 'var(--divider)',
         error: 'var(--error)',
