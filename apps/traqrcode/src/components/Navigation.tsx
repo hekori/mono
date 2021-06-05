@@ -15,7 +15,7 @@ export const Navigation = () => {
   return (
     <nav
       id="header"
-      className="relative bg-document text-onDocument flex items-center justify-between px-4 sm:px-6"
+      className="relative bg-document text-onDocument flex items-center justify-between px-4 px-6"
     >
       <div className="max-w-screen-xl container mx-auto flex flex-wrap items-center justify-between mt-0 py-2">
         <div

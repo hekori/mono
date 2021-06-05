@@ -7,7 +7,7 @@ import { api } from '../api'
 import { TypeErrors } from './frontpage'
 import { getBackendCreatePostUrl } from '../../../traqrcode-common/src/urls'
 import { to } from '../../../traqrcode-common/src/misc'
-import { Input } from '@hekori/uikit'
+import { ButtonPrimary, Input } from '@hekori/uikit'
 
 export const PageCreate = () => {
   const { state, setState } = React.useContext(ContextState)
@@ -81,16 +81,16 @@ export const PageCreate = () => {
                 submitting ? 'opacity-100' : 'opacity-0'
               }`}
             />
-            <button
+            <ButtonPrimary
               type="submit"
-              className={`button min-w-full ${
+              className={`min-w-full ${
                 !state.admin || submitting ? 'disabled' : ''
               }`}
               data-testid="button-create"
             >
               {' '}
               Setup
-            </button>
+            </ButtonPrimary>
           </form>
         </div>
       </div>
