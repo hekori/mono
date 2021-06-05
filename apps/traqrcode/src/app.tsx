@@ -12,6 +12,7 @@ import { PageAction } from './pages/act'
 import { PageRead } from './pages/read'
 import { PageCreate } from './pages/create'
 import { ActRouteInfo } from '../../traqrcode-common/src/urls'
+import { PagePricing } from './pages/pricing'
 
 export type AdminRouteInfo = {
   shortHash: string
@@ -108,6 +109,9 @@ export const App = () => {
 
   // imprint
   if (location.pathname === '/imprint') return <PageImprint />
+
+  // pricing
+  if (location.pathname === '/pricing') return <PagePricing />
 
   // privacy
   if (location.pathname === '/privacy') return <PagePrivacy />
