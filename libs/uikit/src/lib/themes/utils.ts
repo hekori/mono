@@ -31,6 +31,8 @@ export const applyTheme = (themeName: string): void => {
 
   const root = document.documentElement
 
+  document.body.classList.add('bg-document')
+
   Object.keys(themeObject).forEach((property) => {
     if (property === 'name') {
       return

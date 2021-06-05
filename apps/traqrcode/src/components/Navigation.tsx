@@ -82,7 +82,7 @@ export const Navigation = () => {
             </li>
 
             <li className="mr-3">
-              <ButtonFlat onClick={() => history.push('/#pricing')}>
+              <ButtonFlat onClick={() => history.push('/pricing')}>
                 Pricing
               </ButtonFlat>
             </li>

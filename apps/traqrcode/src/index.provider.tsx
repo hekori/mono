@@ -1,9 +1,9 @@
 import { BrowserRouter as Router } from 'react-router-dom'
 import * as React from 'react'
+import { useEffect } from 'react'
 import { KeyToString } from '../../traqrcode-common/src/interfaces/generic'
 import { Item } from '../../traqrcode-common/src/interfaces/models'
 import { applyTheme } from '@hekori/uikit'
-import { useEffect } from 'react'
 
 export const initialState: State = {
   shortHash: '',
