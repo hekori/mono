@@ -14,7 +14,7 @@ import {
 } from '@heroicons/react/outline'
 
 type ReqProps = {
-  itemIndex: string
+  itemId: string
   uid: string
   onClickDelete: (e: SyntheticEvent) => void
   errors: PageEditErrors
@@ -22,24 +22,24 @@ type ReqProps = {
 }
 
 export const Req = ({
-  itemIndex,
+  itemId,
   uid,
   onClickDelete,
   errors,
   setErrors,
 }: ReqProps) => {
   const { state, setState } = React.useContext(ContextState)
-  const item = state.idToItem[itemIndex]
+  const item = state.idToItem[itemId]
   console.log('errors', errors)
   return (
     <li className="px-4 py-4">
-      <div className="flex flex-col lg:flex-row items-center justify-between">
+      <div className="flex flex-col lg:flex-row items-start justify-between">
         <QRCode
-          value={getItemUrl(uid, itemIndex)}
+          value={getItemUrl(uid, itemId)}
           renderAs="svg"
           bgColor={'transparent'}
           fgColor={themes[state.theme].onDocumentHighlight}
-          style={{ width: '96px', height: 'auto' }}
+          style={{ width: '48px', height: 'auto' }}
         />
         <div className="w-4 h-4" />
         <Input
@@ -47,16 +47,16 @@ export const Req = ({
           autoFocus
           textSize={'lg'}
           value={item.title}
-          errors={errors?.idToItem?.[itemIndex]}
+          errors={errors?.idToItem?.[itemId]}
           onChange={(e) => {
             const newState = { ...state }
-            newState.idToItem[itemIndex].title = e.target.value
+            newState.idToItem[itemId].title = e.target.value
             setState(newState)
 
             // reset errors
             const newErrors = {
               ...errors,
-              ...{ ...errors.idToItem, [itemIndex]: undefined },
+              ...{ ...errors.idToItem, [itemId]: undefined },
             }
             setErrors(newErrors)
           }}
@@ -68,7 +68,7 @@ export const Req = ({
           textSize={'lg'}
           onChange={(e) => {
             const newState = { ...state }
-            newState.idToItem[itemIndex].subTitle = e.target.value
+            newState.idToItem[itemId].subTitle = e.target.value
             setState(newState)
           }}
         />

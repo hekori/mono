@@ -8,7 +8,7 @@ export const Input: React.FC<
   }
 > = ({ label, errors = [], textSize = 'md', ...props }) => {
   return (
-    <>
+    <div className="flex flex-col flex-1">
       <input
         {...props}
         className={`p-2 block w-full border-2 border-inputBorder rounded-md bg-input text-onInput text-${textSize}`}
@@ -22,10 +22,10 @@ export const Input: React.FC<
         </label>
       )}
       {errors.length > 0 && (
-        <span className="text-sm text-error hidden" id="error">
+        <div className="text-sm bg-error text-onError rounded p-2">
           {errors.join(', ')}
-        </span>
+        </div>
       )}
-    </>
+    </div>
   )
 }

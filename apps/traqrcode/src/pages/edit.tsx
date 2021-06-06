@@ -113,7 +113,7 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
                 <Req
                   key={itemIndex}
                   uid={routeInfo.shortHash}
-                  itemIndex={itemIndex}
+                  itemId={itemIndex}
                   errors={errors}
                   setErrors={setErrors}
                   onClickDelete={() => {
@@ -248,7 +248,7 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
             Save
           </ButtonSecondary>
           {errors.count > 0 && (
-            <div className={'text-error'}>
+            <div className={'text-onError bg-error rounded p-2 mt-4'}>
               There were errors. Go up and correct them.
             </div>
           )}
