@@ -63,7 +63,7 @@ export const PageCreate = () => {
           >
             <Input
               placeholder={'Enter your email'}
-              textSize="xl"
+              className="text-xl"
               onChange={(e) => {
                 setState({
                   ...state,
