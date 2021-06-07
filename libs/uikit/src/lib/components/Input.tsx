@@ -1,17 +1,20 @@
 import React, { InputHTMLAttributes } from 'react'
+import { classNames } from '../ClassNames'
 
 export const Input: React.FC<
   InputHTMLAttributes<HTMLInputElement> & {
     label?: string
     errors?: string[]
-    textSize?: 'xs' | 'sm' | 'md' | 'lg' | 'xl'
   }
-> = ({ label, errors = [], textSize = 'md', ...props }) => {
+> = ({ label, errors = [], ...props }) => {
   return (
     <div className="flex flex-col flex-1">
       <input
         {...props}
-        className={`p-2 block w-full border-2 border-inputBorder rounded-md bg-input text-onInput text-${textSize}`}
+        className={classNames(
+          `p-2 block w-full border-2 border-inputBorder rounded-md bg-input text-onInput`,
+          props.className
+        )}
       />
       {label && (
         <label

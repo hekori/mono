@@ -55,11 +55,6 @@ export const PageFront = () => {
 
   return (
     <Shell>
-      <Helmet>
-        <title>TRAQRCODE</title>
-        <meta name="description" content="Track QR code scans." />
-      </Helmet>
-
       <div className="md:h-128 border-b border-divider py-16">
         <div className="text-center px-3 lg:px-0 md:my-32">
           <h1 className="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
