@@ -1,11 +1,8 @@
 import React from 'react'
-import 'tailwindcss/tailwind.css'
 import { classNames } from '../ClassNames'
+import { ButtonProps } from './types'
 
-export const ButtonFlat: React.FC<React.HTMLAttributes<HTMLButtonElement>> = ({
-  children,
-  ...props
-}) => {
+export const ButtonFlat: React.FC<ButtonProps> = ({ children, ...props }) => {
   return (
     <button
       type="button"

@@ -1,10 +1,11 @@
 import React from 'react'
-import 'tailwindcss/tailwind.css'
 import { classNames } from '../ClassNames'
+import { ButtonProps } from './types'
 
-export const ButtonPrimary: React.FC<
-  React.ButtonHTMLAttributes<HTMLButtonElement>
-> = ({ children, ...props }) => {
+export const ButtonPrimary: React.FC<ButtonProps> = ({
+  children,
+  ...props
+}) => {
   return (
     <button
       type={props.type ?? 'button'}

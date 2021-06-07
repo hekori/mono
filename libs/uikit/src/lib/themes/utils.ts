@@ -9,10 +9,12 @@ export interface IMappedTheme {
   [key: string]: string | null
 }
 
-export const generateTailwindConfig = (theme: IMappedTheme) => {
-  const result = {}
+export const generateTailwindConfig = (
+  theme: IMappedTheme
+): Record<string, string> => {
+  const result: Record<string, string> = {}
 
-  for (const property of Object.keys(theme)) {
+  for (const property of Object.keys(theme).filter(Boolean)) {
     result[property] = `var(--${property})`
   }
 

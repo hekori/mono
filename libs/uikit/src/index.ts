@@ -1,5 +1,3 @@
-import './lib/App.css'
-
 export * from './lib/buttons/ButtonFlat'
 export * from './lib/buttons/ButtonPrimary'
 export * from './lib/buttons/ButtonSecondary'
@@ -11,3 +9,5 @@ export * from './lib/components/NoShell'
 export * from './lib/components/Select'
 export * from './lib/shells/Shell'
 export * from './lib/themes'
+export { ButtonProps } from './lib/buttons/types'
+export { HtmlButtonProps } from './lib/buttons/types'

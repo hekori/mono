@@ -27,6 +27,7 @@ export const Navigation = () => {
 
         <div className="block lg:hidden pr-2">
           <ButtonFlat
+            aria-label="toggle menu visibility"
             onClick={() => {
               setMenuVisible(!menuVisible)
             }}
@@ -65,6 +66,7 @@ export const Navigation = () => {
           <ul className="list-reset lg:flex justify-end flex-1 items-center">
             <li className="mr-3">
               <ButtonFlat
+                aria-label="toggle light/dark theme"
                 onClick={() => {
                   setState({
                     ...state,
@@ -82,16 +84,27 @@ export const Navigation = () => {
             </li>
 
             <li className="mr-3">
-              <ButtonFlat onClick={() => history.push('/')}>Home</ButtonFlat>
+              <ButtonFlat
+                aria-label="Go to home page"
+                onClick={() => history.push('/')}
+              >
+                Home
+              </ButtonFlat>
             </li>
 
             <li className="mr-3">
-              <ButtonFlat onClick={() => history.push('/pricing')}>
+              <ButtonFlat
+                aria-label="Go to pricing page"
+                onClick={() => history.push('/pricing')}
+              >
                 Pricing
               </ButtonFlat>
             </li>
           </ul>
-          <ButtonPrimary onClick={() => history.push('/create')}>
+          <ButtonPrimary
+            aria-label="Create QR Code"
+            onClick={() => history.push('/create')}
+          >
             Create QR Code
           </ButtonPrimary>
         </div>
