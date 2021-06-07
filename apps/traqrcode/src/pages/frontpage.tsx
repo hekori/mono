@@ -4,6 +4,7 @@ import { Shell } from '../components/shell'
 import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
 import { ButtonPrimary, ButtonSecondary, TextTitle } from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
+import { HowItWorksAnimatedSvg } from '../components/HowItWorksAnimatedSvg'
 
 export type TypeErrors = {
   admin?: string
@@ -36,6 +37,7 @@ const BenefitsCard: React.FC<BenefitsCardProps> = ({
       <div className="flex-none mt-auto rounded-b rounded-t-none overflow-hidden shadow p-6 bg-document">
         <div className="flex items-center justify-start">
           <ButtonSecondary
+            aria-label="Get started"
             className="mx-auto lg:mx-0 hover:underline"
             onClick={onClick}
           >
@@ -61,7 +63,10 @@ export const PageFront = () => {
             Get notified by email when your QR code gets scanned.
           </p>
 
-          <ButtonPrimary onClick={() => history.push('/create')}>
+          <ButtonPrimary
+            aria-label="Create QR Code"
+            onClick={() => history.push('/create')}
+          >
             Create QR Code
           </ButtonPrimary>
         </div>
@@ -104,6 +109,9 @@ export const PageFront = () => {
       >
         <div className="container max-w-5xl mx-auto m-8">
           <SectionHeader title="How it works" />
+
+          <HowItWorksAnimatedSvg width={200} height={100} />
+
           <div className="flex flex-wrap text-onDocument2">
             <div className="w-5/6 sm:w-1/2 p-6">
               <h3 className="text-3xl font-bold leading-none mb-3 text-onDocument">

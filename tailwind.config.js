@@ -1,5 +1,8 @@
 module.exports = {
-  purge: ['./apps/hereismyfeedback/**/*.{js,ts,jsx,tsx}'],
+  purge: {
+    enabled: true,
+    content: ['./apps/**/*.{js,ts,jsx,tsx}'],
+  },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
     extend: {
