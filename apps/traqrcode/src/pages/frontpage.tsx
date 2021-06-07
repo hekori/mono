@@ -5,6 +5,7 @@ import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
 import { ButtonPrimary, ButtonSecondary, TextTitle } from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
 import { HowItWorksAnimatedSvg } from '../components/HowItWorksAnimatedSvg'
+import { Helmet } from 'react-helmet'
 
 export type TypeErrors = {
   admin?: string
@@ -54,6 +55,11 @@ export const PageFront = () => {
 
   return (
     <Shell>
+      <Helmet>
+        <title>TRAQRCODE</title>
+        <meta name="description" content="Track QR code scans." />
+      </Helmet>
+
       <div className="md:h-128 border-b border-divider py-16">
         <div className="text-center px-3 lg:px-0 md:my-32">
           <h1 className="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
@@ -130,6 +136,7 @@ export const PageFront = () => {
             </div>
             <div className="w-full sm:w-1/2 p-6">
               <img
+                alt="QR codes for scanning"
                 className="object-contain h-96 w-full"
                 src="../assets/frontpage/exampe_pdf.png"
               />

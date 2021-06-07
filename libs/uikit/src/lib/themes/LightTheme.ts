@@ -26,7 +26,7 @@ export const LightTheme: Theme = {
   onCard: '#323232',
   navigation: '#00a7ff',
   onNavigation: '#FFFFFF',
-  button: '#ff8e00',
+  button: '#dc7900',
   buttonHover: '#ffba65',
   button2: '#00c4ff',
   button2Hover: '#68dcff',
