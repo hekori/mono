@@ -10,7 +10,7 @@ export const DarkTheme: Theme = {
   onDocument2: '#CCCCCC',
   onDocument3: '#7f92ad',
   onDocumentHighlight: '#00b7ff',
-  button: '#ff8e00',
+  button: '#ff7700',
   buttonHover: '#ffba65',
   button2: '#00c4ff',
   button2Hover: '#68dcff',

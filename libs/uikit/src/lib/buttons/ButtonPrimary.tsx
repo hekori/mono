@@ -11,7 +11,7 @@ export const ButtonPrimary: React.FC<ButtonProps> = ({
       type={props.type ?? 'button'}
       {...props}
       className={classNames(
-        'cursor-pointer text-center px-8 py-4 font-extrabold  rounded-md shadow-lg bg-button text-onButton hover:bg-buttonHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-buttonHover',
+        'cursor-pointer text-center px-8 py-4 font-extrabold rounded-md shadow-lg bg-button text-onButton hover:bg-buttonHover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-buttonHover',
         props.className
       )}
     >

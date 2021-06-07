@@ -30,7 +30,6 @@
     "pg:start": "dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file apps/traqrcode-api/docker-compose.yml up -d postgres",
     "pg:stop": "dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file apps/traqrcode-api/docker-compose.yml stop --timeout 1 -- postgres   ",
     "psql": "docker-compose --file apps/traqrcode-api/docker-compose.yml exec postgres pqsl"
-
   },
   "private": true,
   "dependencies": {
@@ -54,6 +53,7 @@
     "qrcode.react": "^1.0.1",
     "react": "17.0.2",
     "react-dom": "17.0.2",
+    "react-helmet": "^6.1.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "0.13.7",
     "socket.io": "^4.0.2",
@@ -86,6 +86,7 @@
     "@types/qrcode.react": "^1.0.1",
     "@types/react": "17.0.3",
     "@types/react-dom": "17.0.3",
+    "@types/react-helmet": "^6.1.1",
     "@types/react-router-dom": "^5.1.7",
     "@types/uuid": "^8.3.0",
     "@typescript-eslint/eslint-plugin": "4.19.0",
