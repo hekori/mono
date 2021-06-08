@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
+import { useLayoutEffect, useState } from 'react'
 import { Shell } from '../components/shell'
 import { ContextState, State } from '../index.provider'
 import { Req } from '../components/req'
@@ -10,19 +10,14 @@ import { useHistory } from 'react-router-dom'
 import { PageError404 } from './error404'
 import { Loading } from '../components/Loading'
 import {
+  API_CODE,
+  getBackendEditPostUrl,
   InitialPageEditErrors,
   PageEditErrors,
-} from '../../../../libs/traqrcode-common/src/lib/interfaces/api'
-import { getBackendEditPostUrl } from '../../../../libs/traqrcode-common/src/lib/urls'
-import { API_CODE } from '../../../../libs/traqrcode-common/src/lib/constants'
-import { shortuuid, to } from '../../../../libs/traqrcode-common/src/lib/misc'
-import {
-  ButtonFlat,
-  ButtonPrimary,
-  ButtonSecondary,
-  Input,
-  TextSubtitle,
-} from '@hekori/uikit'
+  shortuuid,
+  to,
+} from '@hekori/traqrcode-common'
+import { ButtonFlat, ButtonSecondary, Input, TextSubtitle } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
 
 type PropsPageSetup = {
@@ -58,7 +53,7 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
   console.log('API_CODE=', API_CODE)
   const needLoad = state.shortHash !== routeInfo.shortHash
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     const t = async () => {
       setErrors(InitialPageEditErrors)
       setLoading(true)
@@ -153,11 +148,11 @@ export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
             <ul className="divide-y divide-divider">
               {state.workerIds.map((receiver, itemIndex) => {
                 return (
-                  <li className="p-4 flex flex-col lg:flex-row items-center justify-between">
+                  <li className="p-4 flex flex-col lg:flex-row lg:items-center justify-between">
                     <Input
                       key={`${itemIndex}`}
                       placeholder={'Enter email'}
-                      textSize={'xl'}
+                      className={'text-xl'}
                       onChange={(e) => {
                         setState({
                           ...state,

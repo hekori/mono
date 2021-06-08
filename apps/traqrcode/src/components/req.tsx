@@ -3,15 +3,9 @@ import { SyntheticEvent } from 'react'
 import { ContextState } from '../index.provider'
 
 import QRCode from 'qrcode.react'
-import { PageEditErrors } from '../../../../libs/traqrcode-common/src/lib/interfaces/api'
-import { getItemUrl } from '../../../../libs/traqrcode-common/src/lib/misc'
+import { getItemUrl, PageEditErrors } from '@hekori/traqrcode-common'
 import { ButtonFlat, Input, themes } from '@hekori/uikit'
-import {
-  CalendarIcon,
-  LocationMarkerIcon,
-  TrashIcon,
-  UsersIcon,
-} from '@heroicons/react/outline'
+import { TrashIcon } from '@heroicons/react/outline'
 
 type ReqProps = {
   itemId: string
@@ -33,7 +27,7 @@ export const Req = ({
   console.log('errors', errors)
   return (
     <li className="px-4 py-4">
-      <div className="flex flex-col lg:flex-row items-start justify-between">
+      <div className="flex flex-col lg:flex-row lg:items-start justify-between">
         <QRCode
           value={getItemUrl(uid, itemId)}
           renderAs="svg"
@@ -45,7 +39,7 @@ export const Req = ({
         <Input
           placeholder="Enter title"
           autoFocus
-          textSize={'lg'}
+          className={'text-lg'}
           value={item.title}
           errors={errors?.idToItem?.[itemId]}
           onChange={(e) => {
@@ -65,7 +59,7 @@ export const Req = ({
         <Input
           placeholder="Enter additional info"
           value={item.subTitle}
-          textSize={'lg'}
+          className={'text-lg'}
           onChange={(e) => {
             const newState = { ...state }
             newState.idToItem[itemId].subTitle = e.target.value
