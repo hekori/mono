@@ -848,13 +848,12 @@ select {
   border-color: rgba(229, 231, 235, var(--tw-border-opacity));
 }
 
-.border-indigo-600 {
-  --tw-border-opacity: 1;
-  border-color: rgba(79, 70, 229, var(--tw-border-opacity));
-}
-
 .border-divider {
   border-color: var(--divider);
+}
+
+.border-inputBorder {
+  border-color: var(--inputBorder);
 }
 
 .focus\:border-black:focus {
