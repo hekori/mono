@@ -1,20 +1,72 @@
-import { HTMLAttributes, SVGProps } from 'react'
+import { HTMLAttributes, SVGProps, useRef, useState } from 'react'
+import {
+  motion,
+  useMotionValue,
+  useTransform,
+  useViewportScroll,
+} from 'framer-motion'
+
+const variants = {
+  step1: { strokeDashoffset: 40 },
+  step2: { strokeDashoffset: 0 },
+}
+
+interface RepeatingPathProps {
+  x1: number
+  y1: number
+  x2: number
+  y2: number
+}
+const RepeatingPath = ({ x1, y1, x2, y2 }: RepeatingPathProps) => {
+  return (
+    <motion.path
+      d={`M ${x1} ${y1} L ${x2} ${y2}`}
+      initial="step1"
+      animate="step2"
+      // transform="translate(50 50)"
+      transition={{ repeat: Infinity, duration: 3 }}
+      fill="transparent"
+      strokeWidth="3"
+      stroke="hsl(0, 0%, 100%)"
+      strokeLinecap="round"
+      strokeLinejoin="round"
+      strokeDasharray="20,20"
+      variants={variants}
+    />
+  )
+}
 
 export const HowItWorksAnimatedSvg: React.FC<SVGProps<SVGElement>> = ({
   width,
   height,
 }) => {
+  const [isChecked, setIsChecked] = useState(false)
+
   return (
-    <svg width={width} height={height} version="1.1" viewBox="0 0 240 135">
-      <g id="root">
-        <g>
-          <rect x="60" y="55" width="24" height="60" fill="#236997"></rect>
-          <rect x="84" y="31" width="24" height="84" fill="#52aaeb"></rect>
-          <rect x="108" y="75" width="24" height="40" fill="#a75e07"></rect>
-          <rect x="132" y="89" width="24" height="26" fill="#f4a22d"></rect>
-          <rect x="156" y="68" width="24" height="47" fill="#f95b3a"></rect>
-        </g>
-      </g>
-    </svg>
+    <motion.svg
+      initial={false}
+      animate={isChecked ? 'checked' : 'unchecked'}
+      whileHover="hover"
+      whileTap="pressed"
+      width="440"
+      height="440"
+      onClick={() => setIsChecked(!isChecked)}
+    >
+      <RepeatingPath x1={50} y1={50} x2={150} y2={150} />
+      {/*<motion.path*/}
+      {/*  d="M 0 0 L 100 0"*/}
+      {/*  initial="step1"*/}
+      {/*  animate="step2"*/}
+      {/*  transform="translate(50 50)"*/}
+      {/*  transition={{ repeat: Infinity, duration: 3 }}*/}
+      {/*  fill="transparent"*/}
+      {/*  strokeWidth="3"*/}
+      {/*  stroke="hsl(0, 0%, 100%)"*/}
+      {/*  strokeLinecap="round"*/}
+      {/*  strokeLinejoin="round"*/}
+      {/*  strokeDasharray="20,20"*/}
+      {/*  variants={variants}*/}
+      {/*/>*/}
+    </motion.svg>
   )
 }

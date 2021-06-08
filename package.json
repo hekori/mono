@@ -41,6 +41,7 @@
     "dayjs": "^1.10.5",
     "document-register-element": "1.13.1",
     "express": "4",
+    "framer-motion": "^4.1.17",
     "js-file-download": "^0.4.12",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.6",

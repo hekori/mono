@@ -1,6 +1,6 @@
 import { BrowserRouter as Router } from 'react-router-dom'
 import * as React from 'react'
-import { useEffect } from 'react'
+import { useEffect, useLayoutEffect } from 'react'
 import { KeyToString } from '../../traqrcode-common/src/interfaces/generic'
 import { Item } from '../../traqrcode-common/src/interfaces/models'
 import { applyTheme } from '@hekori/uikit'
@@ -48,7 +48,7 @@ export const useGlobal = () => {
 export const Provider = ({ children }: ProviderProps) => {
   const [state, setState] = React.useState<State>(initialState)
 
-  useEffect(() => {
+  useLayoutEffect(() => {
     applyTheme(state.theme)
   }, [state.theme])
 
