@@ -11,7 +11,7 @@ import { PageTerms } from './pages/terms'
 import { PageAction } from './pages/act'
 import { PageRead } from './pages/read'
 import { PageCreate } from './pages/create'
-import { ActRouteInfo } from '../../traqrcode-common/src/urls'
+import { ActRouteInfo } from '../../../libs/traqrcode-common/src/lib/urls'
 import { PagePricing } from './pages/pricing'
 
 export type AdminRouteInfo = {

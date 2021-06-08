@@ -4,14 +4,14 @@ import { useEffect, useState } from 'react'
 import { ContextState } from '../index.provider'
 import { Shell } from '../components/shell'
 import { api } from '../api'
-import { Task } from '../../../traqrcode-common/src/interfaces/models'
+import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/models'
 import {
   dateFormatter,
   MyDate,
   shortDayNameFormatter,
   timeFormatter,
 } from '@hekori/dates'
-import { to } from '../../../traqrcode-common/src/misc'
+import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo

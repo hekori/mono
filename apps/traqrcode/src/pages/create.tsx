@@ -5,8 +5,8 @@ import { Shell } from '../components/shell'
 import { useHistory } from 'react-router-dom'
 import { api } from '../api'
 import { TypeErrors } from './frontpage'
-import { getBackendCreatePostUrl } from '../../../traqrcode-common/src/urls'
-import { to } from '../../../traqrcode-common/src/misc'
+import { getBackendCreatePostUrl } from '../../../../libs/traqrcode-common/src/lib/urls'
+import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
 import { ButtonPrimary, Input } from '@hekori/uikit'
 
 export const PageCreate = () => {

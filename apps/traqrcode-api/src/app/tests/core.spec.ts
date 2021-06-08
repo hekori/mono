@@ -7,7 +7,7 @@ import {
   writeReq,
 } from '../core'
 import { STORE_DIR } from '../settings'
-import { Req } from '../../../../traqrcode-common/src/interfaces/models'
+import { Req } from '../../../../../libs/traqrcode-common/src/lib/interfaces/models'
 import { getDate } from '@hekori/dates'
 
 describe('getUnusedShortHash', () => {

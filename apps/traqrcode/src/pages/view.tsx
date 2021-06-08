@@ -6,8 +6,8 @@ import { useHistory } from 'react-router-dom'
 import { api } from '../api'
 import { dl } from '../dl'
 import { Loading } from '../components/Loading'
-import { BACKEND_URL } from '../../../traqrcode-common/src/settings'
-import { to } from '../../../traqrcode-common/src/misc'
+import { BACKEND_URL } from '../../../../libs/traqrcode-common/src/lib/settings'
+import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
 import { ButtonPrimary, ButtonSecondary } from '@hekori/uikit'
 
 type PropsPageView = {

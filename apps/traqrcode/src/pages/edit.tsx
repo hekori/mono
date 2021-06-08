@@ -12,10 +12,10 @@ import { Loading } from '../components/Loading'
 import {
   InitialPageEditErrors,
   PageEditErrors,
-} from '../../../traqrcode-common/src/interfaces/api'
-import { getBackendEditPostUrl } from '../../../traqrcode-common/src/urls'
-import { API_CODE } from '../../../traqrcode-common/src/constants'
-import { shortuuid, to } from '../../../traqrcode-common/src/misc'
+} from '../../../../libs/traqrcode-common/src/lib/interfaces/api'
+import { getBackendEditPostUrl } from '../../../../libs/traqrcode-common/src/lib/urls'
+import { API_CODE } from '../../../../libs/traqrcode-common/src/lib/constants'
+import { shortuuid, to } from '../../../../libs/traqrcode-common/src/lib/misc'
 import {
   ButtonFlat,
   ButtonPrimary,

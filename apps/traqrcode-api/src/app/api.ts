@@ -15,9 +15,7 @@ import {
   SSL_PUBLIC_CERT_PATH,
   STATIC_DIR,
 } from './settings'
-import { STAGE } from '../../../traqrcode-common/src/settings'
-import { to } from '../../../traqrcode-common/src/misc'
-import { API_CODE } from '../../../traqrcode-common/src/constants'
+import { API_CODE, STAGE, to } from '@hekori/traqrcode-common'
 
 export type MyHttpResponse = HttpResponse
 

@@ -6,8 +6,8 @@ import { Shell } from '../components/shell'
 import { useHistory } from 'react-router-dom'
 import { api } from '../api'
 import { Loading } from '../components/Loading'
-import { Task } from '../../../traqrcode-common/src/interfaces/models'
-import { to } from '../../../traqrcode-common/src/misc'
+import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/models'
+import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
 
 type PropsPageRead = {
   routeInfo: ReadRouteInfo
