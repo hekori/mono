@@ -20,7 +20,7 @@ describe('getUnusedShortHash', () => {
 })
 
 describe('writeReq and readReq', () => {
-  it('should writeReq, readReq, removeReq correctly', () => {
+  it('should writeReq, readReq, removeReq correctly', async () => {
     console.log('STORE_DIR', STORE_DIR)
     const shortHash = getUnusedShortHash()
 
@@ -28,7 +28,7 @@ describe('writeReq and readReq', () => {
       admin: 'dl',
       createdAt: getDate().toISOString(),
     } as Req
-    writeReq(shortHash, expected)
+    await writeReq(shortHash, expected)
     expect(existsReq(shortHash)).toBe(true)
 
     const past = getDate().add(-1, 'days')

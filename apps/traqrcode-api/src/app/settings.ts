@@ -13,3 +13,9 @@ export const SMTP_USER = process.env.SMTP_USER || ''
 export const SMTP_PASS = process.env.SMTP_PASS || ''
 export const PORT: number = parseInt(process.env.PORT || '80')
 export const SSL_PORT: number = parseInt(process.env.SSL_PORT || '443')
+
+export const PGUSER = process.env.PGUSER || ''
+export const PGHOST = process.env.PGHOST || ''
+export const PGDATABASE = process.env.PGDATABASE || ''
+export const PGPASSWORD = process.env.PGPASSWORD || ''
+export const PGPORT = parseInt(process.env.PGPORT ?? '5432')

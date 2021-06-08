@@ -21,6 +21,7 @@ import {
 import { shortuuid, uuid } from '@hekori/traqrcode-common'
 
 import { sync as writeFileAtomicSync } from 'write-file-atomic'
+import { pg } from '../pg'
 
 export const createShortHash = () => {
   const now = getDate()
@@ -38,13 +39,24 @@ export const getReqFilePath = (shortHash: string) => {
   return path.join(STORE_DIR, folder, `${file}.json`)
 }
 
-export const writeReq = (shortHash: string, data: Req) => {
+export const writeReq = async (shortHash: string, data: Req) => {
   const [folder, file] = shortHash.split('_')
   mkdirSync(path.join(STORE_DIR, folder), { recursive: true })
   writeFileAtomicSync(
     path.join(STORE_DIR, folder, `${file}.json`),
     JSON.stringify(data, null, 2)
   )
+
+  console.log('start transaction')
+  const trx = await pg.transaction()
+  try {
+    await pg('user').insert({ email: data.admin })
+    await trx.commit()
+    console.log('end transaction')
+  } catch (e) {
+    await trx.rollback(e)
+    console.error(e)
+  }
 }
 
 export const readReq = (shortHash: string): Req => {
@@ -63,6 +75,7 @@ export const existsReq = (shortHash: string): boolean => {
 }
 
 export const getUnusedShortHash = (): string => {
+  // eslint-disable-next-line no-constant-condition
   while (true) {
     const shortHash = createShortHash()
     if (!existsSync(getReqFilePath(shortHash))) return shortHash

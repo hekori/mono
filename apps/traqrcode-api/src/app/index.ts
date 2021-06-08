@@ -21,6 +21,10 @@ import {
 import { Api, MyHttpRequest, MyHttpResponse } from './api'
 import {
   EMAIL_DEFAULT_SENDER,
+  PGDATABASE,
+  PGHOST,
+  PGPORT,
+  PGUSER,
   PORT,
   PROJECT_DIR,
   SMTP_HOST,
@@ -73,6 +77,11 @@ console.log('SSL_PRIVATE_KEY_PATH=', SSL_PRIVATE_KEY_PATH)
 console.log('SSL_PUBLIC_CERT_PATH=', SSL_PUBLIC_CERT_PATH)
 console.log('SSL_PORT=', SSL_PORT)
 console.log('PORT=', PORT)
+console.log('PGUSER=', PGUSER)
+console.log('PGHOST=', PGHOST)
+console.log('PGDATABASE=', PGDATABASE)
+console.log('PGPORT=', PGPORT)
+
 console.log('-'.repeat(80))
 
 // redirectApi.any('/*', async (res: MyHttpResponse, req: MyHttpRequest) => {
@@ -147,7 +156,7 @@ api.post(
       workerIds: [s],
       itemIds: [],
     }
-    writeReq(r.shortHash, r)
+    await writeReq(r.shortHash, r)
 
     to(
       sendMail({
