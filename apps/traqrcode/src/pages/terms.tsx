@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { Shell } from '../components/shell'
-import { APP_NAME } from '../../../traqrcode-common/src/settings'
+import { APP_NAME } from '../../../../libs/traqrcode-common/src/lib/settings'
 
 export const PageTerms = () => {
   return (

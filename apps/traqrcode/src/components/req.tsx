@@ -3,8 +3,8 @@ import { SyntheticEvent } from 'react'
 import { ContextState } from '../index.provider'
 
 import QRCode from 'qrcode.react'
-import { PageEditErrors } from '../../../traqrcode-common/src/interfaces/api'
-import { getItemUrl } from '../../../traqrcode-common/src/misc'
+import { PageEditErrors } from '../../../../libs/traqrcode-common/src/lib/interfaces/api'
+import { getItemUrl } from '../../../../libs/traqrcode-common/src/lib/misc'
 import { ButtonFlat, Input, themes } from '@hekori/uikit'
 import {
   CalendarIcon,

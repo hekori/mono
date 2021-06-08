@@ -9,9 +9,9 @@ import {
   ActRouteInfo,
   getFrontendActUrl,
   getFrontendTaskUrl,
-} from '../../../traqrcode-common/src/urls'
-import { Task } from '../../../traqrcode-common/src/interfaces/models'
-import { to } from '../../../traqrcode-common/src/misc'
+} from '../../../../libs/traqrcode-common/src/lib/urls'
+import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/models'
+import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
 
 type PropsPageAction = {
   routeInfo: ActRouteInfo

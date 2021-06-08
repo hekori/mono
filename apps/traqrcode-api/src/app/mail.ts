@@ -2,7 +2,7 @@ import { log } from './utils'
 import { SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER } from './settings'
 
 import * as nodemailer from 'nodemailer'
-import { STAGE } from '../../../traqrcode-common/src/settings'
+import { STAGE } from '../../../../libs/traqrcode-common/src/lib/settings'
 
 interface SendMailArgs {
   sender: string

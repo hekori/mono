@@ -4,7 +4,6 @@ import { Shell } from '../components/shell'
 import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
 import { ButtonPrimary, ButtonSecondary, TextSubtitle } from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
-import { HowItWorksAnimatedSvg } from '../components/HowItWorksAnimatedSvg'
 
 export type TypeErrors = {
   admin?: string
@@ -109,10 +108,6 @@ export const PageFront = () => {
       >
         <div className="container max-w-5xl mx-auto m-8">
           <SectionHeader title="How it works" />
-
-          <div className="flex flex-1 justify-center items-center">
-            <HowItWorksAnimatedSvg width={200} height={100} />
-          </div>
 
           <div className="flex flex-wrap text-onDocument2">
             <div className="w-5/6 sm:w-1/2 p-6">

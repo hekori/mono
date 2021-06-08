@@ -19,7 +19,9 @@
       "@hekori/cli": ["libs/cli/src/index.ts"],
       "@hekori/mail": ["libs/mail/src/index.ts"],
       "@hekori/dates": ["libs/dates/src/index.ts"],
-      "@hekori/knexutils": ["libs/knexutils/src/index.ts"]
+      "@hekori/knexutils": ["libs/knexutils/src/index.ts"],
+      "@hekori/traqrcode-common": ["libs/traqrcode-common/src/index.ts"]
+
     }
   },
   "exclude": ["node_modules", "tmp"]

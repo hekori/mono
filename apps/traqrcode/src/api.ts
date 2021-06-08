@@ -1,4 +1,4 @@
-import { BACKEND_URL } from '../../traqrcode-common/src/settings'
+import { BACKEND_URL } from '../../../libs/traqrcode-common/src/lib/settings'
 
 class Api {
   async get(url: string) {

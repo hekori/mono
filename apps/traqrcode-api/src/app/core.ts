@@ -6,16 +6,9 @@ import {
   unlinkSync,
 } from 'fs'
 import { STORE_DIR } from './settings'
-
-const writeFileAtomicSync = require('write-file-atomic').sync
-
 import path = require('path')
 import moment = require('moment')
-import {
-  Req,
-  Task,
-  TaskStep,
-} from '../../../traqrcode-common/src/interfaces/models'
+import { Req, Task, TaskStep } from '@hekori/traqrcode-common'
 import {
   getDate,
   isoDateFilesystemFormatter,
@@ -25,7 +18,9 @@ import {
   MOMENTJS_FILESYSTEM_DATE_FORMAT,
   MyDate,
 } from '@hekori/dates'
-import { shortuuid, uuid } from '../../../traqrcode-common/src/misc'
+import { shortuuid, uuid } from '@hekori/traqrcode-common'
+
+import { sync as writeFileAtomicSync } from 'write-file-atomic'
 
 export const createShortHash = () => {
   const now = getDate()

@@ -1,8 +1,8 @@
 import { BrowserRouter as Router } from 'react-router-dom'
 import * as React from 'react'
 import { useEffect, useLayoutEffect } from 'react'
-import { KeyToString } from '../../traqrcode-common/src/interfaces/generic'
-import { Item } from '../../traqrcode-common/src/interfaces/models'
+import { KeyToString } from '../../../libs/traqrcode-common/src/lib/interfaces/generic'
+import { Item } from '../../../libs/traqrcode-common/src/lib/interfaces/models'
 import { applyTheme } from '@hekori/uikit'
 
 export const initialState: State = {

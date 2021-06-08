@@ -35,12 +35,10 @@ import {
 
 import * as QRCode from 'qrcode'
 import {
+  Action,
+  API_CODE,
   BACKEND_URL,
   FRONTEND_URL,
-  STAGE,
-} from '../../../traqrcode-common/src/settings'
-import {
-  Action,
   getBackendCreatePostUrl,
   getBackendEditPostUrl,
   getBackendPdfUrl,
@@ -48,17 +46,17 @@ import {
   getFrontendEditUrl,
   getFrontendReadUrl,
   getFrontendTaskUrl,
-} from '../../../traqrcode-common/src/urls'
-import {
   InitialPageEditErrors,
   PageEditErrors,
   PostCreateRequest,
-} from '../../../traqrcode-common/src/interfaces/api'
-import { Req, TaskStep } from '../../../traqrcode-common/src/interfaces/models'
-import pdfkit = require('pdfkit')
-import { shortuuid, to } from '../../../traqrcode-common/src/misc'
-import { API_CODE } from '../../../traqrcode-common/src/constants'
+  Req,
+  shortuuid,
+  STAGE,
+  TaskStep,
+  to,
+} from '@hekori/traqrcode-common'
 import { getDate, isoDatetimeFormatter } from '@hekori/dates'
+import pdfkit = require('pdfkit')
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)

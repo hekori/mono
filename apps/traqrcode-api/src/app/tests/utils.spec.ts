@@ -1,7 +1,7 @@
 import { sendMail } from '../mail'
 import { log } from '../utils'
 import { SMTP_HOST, SMTP_PORT, SMTP_USER } from '../settings'
-import { STAGE } from '../../../../traqrcode-common/src/settings'
+import { STAGE } from '../../../../../libs/traqrcode-common/src/lib/settings'
 
 describe('sendMail', () => {
   it('should send email', async () => {
