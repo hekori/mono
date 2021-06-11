@@ -1,6 +1,6 @@
 import { useLocation } from 'react-router-dom'
 import { PageFront } from './pages/frontpage'
-import { PageSetup } from './pages/edit'
+import { PageEdit } from './pages/edit'
 import { PageError404 } from './pages/error404'
 import * as React from 'react'
 import { PageView } from './pages/view'
@@ -124,7 +124,7 @@ export const App = () => {
 
   // page edit
   const editRouteInfo: AdminRouteInfo | null = editRegex(location.pathname)
-  if (editRouteInfo) return <PageSetup routeInfo={editRouteInfo} />
+  if (editRouteInfo) return <PageEdit routeInfo={editRouteInfo} />
 
   // page view
   const viewRouteInfo: AdminRouteInfo | null = viewRegex(location.pathname)
