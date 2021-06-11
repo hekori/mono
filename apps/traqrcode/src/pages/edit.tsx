@@ -42,7 +42,7 @@ export const createNewItem = ({ state }: CreateNewItemArgs): State => {
   return newState
 }
 
-export const PageSetup = ({ routeInfo }: PropsPageSetup) => {
+export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
   const { state, setState } = React.useContext(ContextState)
   const history = useHistory()
   const [errors, setErrors] = useState<PageEditErrors>(InitialPageEditErrors)
