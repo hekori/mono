@@ -9,5 +9,7 @@ export * from './lib/components/NoShell'
 export * from './lib/components/Select'
 export * from './lib/shells/Shell'
 export * from './lib/themes'
+
+export * from './lib/ClassNames'
 export { ButtonProps } from './lib/buttons/types'
 export { HtmlButtonProps } from './lib/buttons/types'

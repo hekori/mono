@@ -18,7 +18,7 @@ export const PageCreate = () => {
 
   return (
     <Shell>
-      <div className="max-w-screen-xl container mx-auto mt-8 px-4 pt-6 pb-12 min-h-screen text-center ">
+      <div className="max-w-screen-xl container mx-auto mt-8 px-6 pt-6 pb-12 min-h-screen text-center ">
         <h2 className="w-full my-2 text-5xl font-black leading-tight text-center text-onDocument md:mt-16">
           Enter your email
         </h2>
