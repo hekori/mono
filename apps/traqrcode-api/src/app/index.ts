@@ -51,6 +51,8 @@ import {
   getFrontendReadUrl,
   getFrontendTaskUrl,
   InitialPageEditErrors,
+  MAX_QR_SUBTITLE_LENGTH,
+  MAX_QR_TITLE_LENGTH,
   PageEditErrors,
   PostCreateRequest,
   Req,
@@ -270,8 +272,9 @@ api.post(getBackendEditPostUrl(), async (res, req) => {
 
     const newErrors = []
     if (item.title.length === 0) newErrors.push(API_CODE.ERROR_EMPTY_TITLE)
-    if (item.title.length > 25) newErrors.push(API_CODE.ERROR_TITLE_TOO_LONG)
-    if (item.subTitle.length > 100)
+    if (item.title.length > MAX_QR_TITLE_LENGTH)
+      newErrors.push(API_CODE.ERROR_TITLE_TOO_LONG)
+    if (item.subTitle.length > MAX_QR_SUBTITLE_LENGTH)
       newErrors.push(API_CODE.ERROR_SUBTITLE_TOO_LONG)
 
     if (newErrors.length > 0) {
