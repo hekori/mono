@@ -3,7 +3,13 @@ import { SyntheticEvent } from 'react'
 import { ContextState } from '../index.provider'
 
 import QRCode from 'qrcode.react'
-import { getItemUrl, PageEditErrors } from '@hekori/traqrcode-common'
+import {
+  API_CODE,
+  getItemUrl,
+  MAX_QR_SUBTITLE_LENGTH,
+  MAX_QR_TITLE_LENGTH,
+  PageEditErrors,
+} from '@hekori/traqrcode-common'
 import { ButtonFlat, Input, themes } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
 
@@ -25,6 +31,14 @@ export const Req = ({
   const { state, setState } = React.useContext(ContextState)
   const item = state.idToItem[itemId]
   console.log('errors', errors)
+  let titleErrors = errors?.idToItem?.[itemId]
+  if (item.title.length > MAX_QR_TITLE_LENGTH)
+    titleErrors = [API_CODE.ERROR_TITLE_TOO_LONG]
+
+  let subTitleErrors = errors?.idToItem?.[itemId]
+  if (item.subTitle.length > MAX_QR_TITLE_LENGTH)
+    subTitleErrors = [API_CODE.ERROR_SUBTITLE_TOO_LONG]
+
   return (
     <li className="px-4 py-4">
       <div className="flex flex-col lg:flex-row lg:items-start justify-between">
@@ -41,7 +55,7 @@ export const Req = ({
           autoFocus
           className={'text-lg'}
           value={item.title}
-          errors={errors?.idToItem?.[itemId]}
+          errors={titleErrors}
           onChange={(e) => {
             const newState = { ...state }
             newState.idToItem[itemId].title = e.target.value
@@ -60,6 +74,7 @@ export const Req = ({
           placeholder="Enter additional info"
           value={item.subTitle}
           className={'text-lg'}
+          errors={subTitleErrors}
           onChange={(e) => {
             const newState = { ...state }
             newState.idToItem[itemId].subTitle = e.target.value
