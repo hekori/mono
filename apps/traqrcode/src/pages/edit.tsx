@@ -1,10 +1,9 @@
 import * as React from 'react'
 import { useLayoutEffect, useState } from 'react'
 import { ShellPublic } from '../components/ShellPublic'
-import { ContextState, State } from '../index.provider'
+import { GlobalContext, State, useGlobal } from '../index.provider'
 import { Req } from '../components/req'
 
-import { api } from '../api'
 import { useHistory } from 'react-router-dom'
 import { PageError404 } from './error404'
 import { Loading } from '../components/Loading'
@@ -43,7 +42,7 @@ export const createNewItem = ({ state }: CreateNewItemArgs): State => {
 }
 
 export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
-  const { state, setState } = React.useContext(ContextState)
+  const { state, setState, api } = useGlobal()
   const history = useHistory()
   const [errors, setErrors] = useState<PageEditErrors>(InitialPageEditErrors)
   const [loading, setLoading] = useState<boolean>(false)

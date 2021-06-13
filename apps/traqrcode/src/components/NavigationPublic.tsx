@@ -6,7 +6,13 @@ import { ButtonFlat, ButtonPrimary, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
 import { isLoggedIn, logout } from '../utils'
-import { homepageRoute, listRegex, listRoute, pricingRoute } from '../routings'
+import {
+  createRoute,
+  homepageRoute,
+  listRegex,
+  listRoute,
+  pricingRoute,
+} from '../routings'
 
 export const NavigationPublic = () => {
   const history = useHistory()
@@ -129,7 +135,7 @@ export const NavigationPublic = () => {
             <li className="mr-3">
               <ButtonPrimary
                 aria-label="Create QR Code"
-                onClick={() => history.push('/create')}
+                onClick={() => history.push(createRoute)}
               >
                 Create QR Code
               </ButtonPrimary>

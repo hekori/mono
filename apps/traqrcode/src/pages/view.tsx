@@ -2,19 +2,20 @@ import * as React from 'react'
 import { useState } from 'react'
 import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
-import { api } from '../api'
 import { dl } from '../dl'
 import { Loading } from '../components/Loading'
 import { BACKEND_URL } from '../../../../libs/traqrcode-common/src/lib/settings'
 import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
-import { ButtonPrimary, ButtonSecondary } from '@hekori/uikit'
+import { ButtonSecondary } from '@hekori/uikit'
 import { AdminRouteInfo } from '../routings'
+import { useGlobal } from '../index.provider'
 
 type PropsPageView = {
   routeInfo: AdminRouteInfo
 }
 
 export const PageView = ({ routeInfo }: PropsPageView) => {
+  const { api } = useGlobal()
   const [loading, setLoading] = useState<boolean>(false)
 
   const download = async () => {

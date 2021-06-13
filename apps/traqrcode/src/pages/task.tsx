@@ -1,16 +1,15 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { ContextState } from '../index.provider'
+import { GlobalContext, useGlobal } from '../index.provider'
 import { ShellPublic } from '../components/ShellPublic'
-import { api } from '../api'
-import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/models'
+import { Task } from '@hekori/traqrcode-common'
 import {
   dateFormatter,
   MyDate,
   shortDayNameFormatter,
   timeFormatter,
 } from '@hekori/dates'
-import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
+import { to } from '@hekori/traqrcode-common'
 import { TaskRouteInfo } from '../routings'
 
 type PropsPageTask = {
@@ -73,7 +72,7 @@ const ProgressInfoConnector: React.FC<{ done: boolean }> = ({ done }) => {
 }
 
 export const PageTask = ({ routeInfo }: PropsPageTask) => {
-  const { state } = React.useContext(ContextState)
+  const { state, api } = useGlobal()
 
   const [errors, setErrors] = useState<string[]>([])
   const [loading, setLoading] = useState<boolean>(true)

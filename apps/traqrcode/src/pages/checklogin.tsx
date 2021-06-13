@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useLayoutEffect, useState } from 'react'
-import { ContextState } from '../index.provider'
+import { GlobalContext, useGlobal } from '../index.provider'
 import { TypeErrors } from './frontpage'
 import { ShellPublic } from '../components/ShellPublic'
 import { Container } from '../components/Container'
@@ -14,7 +14,7 @@ interface PropsPageCheckLogin {
 export const PageCheckLogin: React.FC<PropsPageCheckLogin> = ({
   routeInfo,
 }) => {
-  const { state, setState } = React.useContext(ContextState)
+  const { state, setState } = useGlobal()
   const [errors, setErrors] = useState<TypeErrors>({})
   const [submitting, setSubmitting] = useState<boolean>(false)
   const [emailSentAt, setEmailSentAt] = useState<string | undefined>(undefined)

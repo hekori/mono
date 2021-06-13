@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { ContextState } from '../index.provider'
+import { GlobalContext, useGlobal } from '../index.provider'
 import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
-import { api } from '../api'
 import { Loading } from '../components/Loading'
 import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/models'
 import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
@@ -14,7 +13,7 @@ type PropsPageRead = {
 }
 
 export const PageRead = ({ routeInfo }: PropsPageRead) => {
-  const { state } = React.useContext(ContextState)
+  const { state, api } = useGlobal()
 
   const history = useHistory()
   const [errors, setErrors] = useState<string[]>([])

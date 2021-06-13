@@ -1,12 +1,11 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { ContextState } from '../index.provider'
+import { GlobalContext, useGlobal } from '../index.provider'
 import { ShellPublic } from '../components/ShellPublic'
-import { api } from '../api'
 import { TypeErrors } from './frontpage'
 import {
-  getBackendCreatePostUrl,
-  PostCreateResponse,
+  getBackendLoginPostUrl,
+  PostLoginResponse,
   to,
 } from '@hekori/traqrcode-common'
 import {
@@ -20,10 +19,8 @@ import { humanReadableTimeDifference, now } from '@hekori/dates'
 import { Container } from '../components/Container'
 
 export const Step2: React.FC<
-  PostCreateResponse & { setServerResponse: (args: any) => void }
+  PostLoginResponse & { setServerResponse: (args: any) => void }
 > = ({ emailSentAt, email, setServerResponse }) => {
-  const { state } = React.useContext(ContextState)
-
   const [ago, setAgo] = useState<string>(
     humanReadableTimeDifference(emailSentAt, now())
   )
@@ -72,12 +69,12 @@ export const Step2: React.FC<
 }
 
 export const PageSignup = () => {
-  const { state, setState } = React.useContext(ContextState)
+  const { state, setState, api } = useGlobal()
   const [errors, setErrors] = useState<TypeErrors>({})
   const [submitting, setSubmitting] = useState<boolean>(false)
 
   const [serverResponse, setServerResponse] = useState<
-    PostCreateResponse | undefined
+    PostLoginResponse | undefined
   >(undefined)
 
   if (serverResponse)
@@ -105,7 +102,7 @@ export const PageSignup = () => {
 
                 setSubmitting(true)
                 const [err, res] = await to(
-                  api.post(getBackendCreatePostUrl(), {
+                  api.post(getBackendLoginPostUrl(), {
                     admin: state.admin,
                   })
                 )

@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SyntheticEvent } from 'react'
-import { ContextState } from '../index.provider'
+import { GlobalContext } from '../index.provider'
 
 import QRCode from 'qrcode.react'
 import {
@@ -28,7 +28,7 @@ export const Req = ({
   errors,
   setErrors,
 }: ReqProps) => {
-  const { state, setState } = React.useContext(ContextState)
+  const { state, setState } = React.useContext(GlobalContext)
   const item = state.idToItem[itemId]
   console.log('errors', errors)
   let titleErrors = errors?.idToItem?.[itemId]
