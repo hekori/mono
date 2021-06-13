@@ -65,3 +65,23 @@ export const shortDayNameFormatter = (
 export const millisSinceStartOfDay = (date: MyDate): number => {
   return moment(date).diff(moment.utc(isoDateFormatter(date)), 'milliseconds')
 }
+
+export const now = (): string => {
+  return isoDatetimeFormatter(moment())
+}
+
+export const fromNow = (date: MyDate): string => {
+  return moment(date).fromNow()
+}
+
+export const humanReadableTimeDifference = (
+  start: MyDate,
+  stop: MyDate
+): string => {
+  const mStop = moment(stop)
+  const mStart = moment(start)
+  const differenceInSeconds = mStop.diff(mStart, 'seconds')
+
+  if (differenceInSeconds < 60) return `${differenceInSeconds} seconds ago`
+  else return `${mStop.diff(mStart, 'minutes')} minutes ago`
+}

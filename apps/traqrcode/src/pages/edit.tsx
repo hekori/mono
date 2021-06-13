@@ -1,9 +1,8 @@
 import * as React from 'react'
 import { useLayoutEffect, useState } from 'react'
-import { Shell } from '../components/shell'
+import { ShellPublic } from '../components/ShellPublic'
 import { ContextState, State } from '../index.provider'
 import { Req } from '../components/req'
-import { AdminRouteInfo } from '../app'
 
 import { api } from '../api'
 import { useHistory } from 'react-router-dom'
@@ -19,6 +18,7 @@ import {
 } from '@hekori/traqrcode-common'
 import { ButtonFlat, ButtonSecondary, Input, TextSubtitle } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
+import { AdminRouteInfo } from '../routings'
 
 type PropsPageSetup = {
   routeInfo: AdminRouteInfo
@@ -97,7 +97,7 @@ export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
     return <PageError404 />
 
   return (
-    <Shell>
+    <ShellPublic>
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
         <div className="mt-8">
           <TextSubtitle>Describe your QR code</TextSubtitle>
@@ -249,6 +249,6 @@ export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
           )}
         </div>
       </div>
-    </Shell>
+    </ShellPublic>
   )
 }

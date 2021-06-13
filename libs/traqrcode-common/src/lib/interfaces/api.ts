@@ -1,4 +1,5 @@
 import { KeyToStringArray } from './generic'
+import { API_CODE } from '../constants'
 
 export interface PageEditErrors {
   count: number
@@ -17,4 +18,18 @@ export const InitialPageEditErrors: PageEditErrors = {
 export interface PostCreateRequest {
   test: boolean
   admin: string
+}
+
+export interface PostResponseBase {
+  status: string
+  errors?: string[]
+}
+
+export interface PostCreateResponse extends PostResponseBase {
+  email: string
+  emailSentAt: string
+}
+
+export interface PostLoginRequest extends PostResponseBase {
+  accessToken: string
 }

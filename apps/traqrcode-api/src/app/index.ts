@@ -2,6 +2,7 @@ import { deleteOldReqs } from './cron'
 import { log, toJson } from './utils'
 import {
   createHash,
+  getLoginUrlForEmail,
   getOrCreateTask,
   getUnusedShortHash,
   readReq,
@@ -17,6 +18,8 @@ import {
   email_notify_done_task_subject,
   email_notify_receiver_of_new_task_body,
   email_notify_receiver_of_new_task_subject,
+  emailLoginBody,
+  emailLoginSubject,
 } from './templates'
 import { Api, MyHttpRequest, MyHttpResponse } from './api'
 import {
@@ -45,6 +48,7 @@ import {
   FRONTEND_URL,
   getBackendCreatePostUrl,
   getBackendEditPostUrl,
+  getBackendLoginPostUrl,
   getBackendPdfUrl,
   getFrontendActUrl,
   getFrontendEditUrl,
@@ -55,13 +59,15 @@ import {
   MAX_QR_TITLE_LENGTH,
   PageEditErrors,
   PostCreateRequest,
+  PostCreateResponse,
+  PostLoginRequest,
   Req,
   shortuuid,
   STAGE,
   TaskStep,
   to,
 } from '@hekori/traqrcode-common'
-import { getDate, isoDatetimeFormatter } from '@hekori/dates'
+import { getDate, isoDatetimeFormatter, now } from '@hekori/dates'
 import pdfkit = require('pdfkit')
 
 console.log('-'.repeat(80))
@@ -83,6 +89,7 @@ console.log('PGUSER=', PGUSER)
 console.log('PGHOST=', PGHOST)
 console.log('PGDATABASE=', PGDATABASE)
 console.log('PGPORT=', PGPORT)
+console.log('JWT_PRIVATE_KEY=', process.env.JWT_PRIVATE_KEY)
 
 console.log('-'.repeat(80))
 
@@ -143,46 +150,83 @@ api.post(
       })
     }
 
-    const now = getDate()
+    // TODO: MOVE TO A DEDICATED FUNCTION
+    // const now = getDate()
+    // const s = shortuuid()
+    // const r: Req = {
+    //   admin: data.admin,
+    //   createdAt: isoDatetimeFormatter(now),
+    //   accessToken: createHash(),
+    //   shortHash: getUnusedShortHash(),
+    //   test: false,
+    //   idToItem: {},
+    //   idToWorker: { [s]: data.admin },
+    //   workerIds: [s],
+    //   itemIds: [],
+    // }
+    // await writeReq(r.shortHash, r)
+    //
+    // const [emailSendError] = await to(
+    //   sendMail({
+    //     sender: EMAIL_DEFAULT_SENDER,
+    //     subject: email_notify_admin_of_new_req_subject(),
+    //     receiver: data.admin,
+    //     body: email_notify_admin_of_new_req_body(
+    //       getFrontendEditUrl(
+    //         {
+    //           shortHash: r.shortHash,
+    //           accessToken: r.accessToken,
+    //         },
+    //         true
+    //       ),
+    //       getBackendPdfUrl({ shortHash: r.shortHash }, true)
+    //     ),
+    //   })
+    // )
 
-    const s = shortuuid()
+    // return api.send(res, {
+    //   [API_CODE.status]: API_CODE.OK,
+    //   // FIXME: should be {status: ..., postCreateResponse: ....} PostCreateResponse
+    //   shortHash: r.shortHash,
+    //   accessToken: r.accessToken,
+    // })
 
-    const r: Req = {
-      admin: data.admin,
-      createdAt: isoDatetimeFormatter(now),
-      accessToken: createHash(),
-      shortHash: getUnusedShortHash(),
-      test: false,
-      idToItem: {},
-      idToWorker: { [s]: data.admin },
-      workerIds: [s],
-      itemIds: [],
-    }
-    await writeReq(r.shortHash, r)
-
-    to(
+    const [emailSendError] = await to(
       sendMail({
         sender: EMAIL_DEFAULT_SENDER,
-        subject: email_notify_admin_of_new_req_subject(),
+        subject: emailLoginSubject(),
         receiver: data.admin,
-        body: email_notify_admin_of_new_req_body(
-          getFrontendEditUrl(
-            {
-              shortHash: r.shortHash,
-              accessToken: r.accessToken,
-            },
-            true
-          ),
-          getBackendPdfUrl({ shortHash: r.shortHash }, true)
-        ),
+        body: emailLoginBody({ loginUrl: getLoginUrlForEmail(data.admin) }),
       })
     )
 
+    if (emailSendError) {
+      res.writeStatus('500')
+      return api.send(res, {
+        status: API_CODE.ERROR,
+        [API_CODE.errors]: [API_CODE.ERROR_SENDING_EMAIL],
+      })
+    }
+
+    const responseData: PostCreateResponse = {
+      status: API_CODE.OK,
+      emailSentAt: now(),
+      email: data.admin,
+    }
+    return api.send(res, responseData)
+  }
+)
+
+api.post(
+  getBackendLoginPostUrl(),
+  async (res: MyHttpResponse, req: MyHttpRequest) => {
+    console.log(`${req.getMethod()}: ${req.getUrl()} ${req.getQuery()}`)
+    const [, response] = await to(toJson(res))
+    const data = response as PostLoginRequest
+    console.log(data)
+
     return api.send(res, {
       [API_CODE.status]: API_CODE.OK,
-      // FIXME: should be {status: ..., postCreateResponse: ....} PostCreateResponse
-      shortHash: r.shortHash,
-      accessToken: r.accessToken,
     })
   }
 )

@@ -54,7 +54,10 @@ export class Api {
     this.app.options('/*', (res: HttpResponse, req: HttpRequest) => {
       console.log(`${req.getMethod()}: ${req.getUrl()} ${req.getQuery()}`)
       res.writeHeader('Access-Control-Allow-Origin', '*')
-      res.writeHeader('Access-Control-Allow-Headers', 'content-type')
+      res.writeHeader(
+        'Access-Control-Allow-Headers',
+        'content-type, Authorization'
+      )
       res.writeHeader('Access-Control-Allow-Credentials', 'true')
       res.writeHeader(
         'Access-Control-Allow-Methods',
