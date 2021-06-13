@@ -41,6 +41,8 @@
     "dayjs": "^1.10.5",
     "document-register-element": "1.13.1",
     "express": "4",
+    "fastify": "^3.17.0",
+    "fastify-cors": "^6.0.1",
     "js-file-download": "^0.4.12",
     "jsonwebtoken": "^8.5.1",
     "knex": "^0.95.6",

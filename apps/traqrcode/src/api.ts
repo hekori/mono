@@ -1,12 +1,12 @@
 import { BACKEND_URL } from '../../../libs/traqrcode-common/src/lib/settings'
 import { environment } from './environments/environment'
 
-class Api {
+export class Api {
   async get(url: string) {
     const response = await fetch(BACKEND_URL + url, {
       method: 'get',
       headers: {
-        'Content-type': 'text/plain; charset=UTF-8',
+        'Content-type': 'application/json; charset=UTF-8',
         Authorization: `Bearer ${localStorage.getItem(
           environment.getAccessTokenLocalStorageKey()
         )}`,
@@ -32,7 +32,7 @@ class Api {
     const response = await fetch(BACKEND_URL + url, {
       method: 'post',
       headers: {
-        'Content-type': 'text/plain; charset=UTF-8',
+        'Content-type': 'application/json; charset=UTF-8',
         Authorization: `Bearer ${localStorage.getItem(
           environment.getAccessTokenLocalStorageKey()
         )}`,
@@ -42,5 +42,3 @@ class Api {
     return response.json()
   }
 }
-
-export const api = new Api()

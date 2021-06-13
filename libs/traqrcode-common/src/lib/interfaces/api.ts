@@ -15,21 +15,22 @@ export const InitialPageEditErrors: PageEditErrors = {
   global: [],
 }
 
-export interface PostCreateRequest {
-  test: boolean
-  admin: string
-}
-
 export interface PostResponseBase {
   status: string
   errors?: string[]
 }
 
-export interface PostCreateResponse extends PostResponseBase {
-  email: string
-  emailSentAt: string
+export interface PostCreateRequest {
+  test: boolean
 }
+
+export interface PostCreateResponse extends PostResponseBase {}
 
 export interface PostLoginRequest extends PostResponseBase {
   accessToken: string
+}
+
+export interface PostLoginResponse extends PostResponseBase {
+  email: string
+  emailSentAt: string
 }

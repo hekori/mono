@@ -5,6 +5,7 @@ import { KeyToString } from '../../../libs/traqrcode-common/src/lib/interfaces/g
 import { Item } from '../../../libs/traqrcode-common/src/lib/interfaces/models'
 import { applyTheme } from '@hekori/uikit'
 import { QueryClient, QueryClientProvider } from 'react-query'
+import { Api } from './api'
 
 export const initialState: State = {
   shortHash: '',
@@ -31,23 +32,26 @@ export interface State {
 export type StateContext = {
   state: State
   setState: any
+  api: Api
 }
 
 type ProviderProps = {
   children: any
 }
 
-export const ContextState = React.createContext<StateContext>({
+export const GlobalContext = React.createContext<StateContext>({
   state: initialState,
   setState: () => {},
+  api: new Api(),
 })
 
 export const useGlobal = () => {
-  return React.useContext(ContextState)
+  return React.useContext(GlobalContext)
 }
 
 export const Provider = ({ children }: ProviderProps) => {
   const [state, setState] = React.useState<State>(initialState)
+  const api = new Api()
 
   const queryClient = new QueryClient()
 
@@ -57,9 +61,9 @@ export const Provider = ({ children }: ProviderProps) => {
 
   return (
     <QueryClientProvider client={queryClient}>
-      <ContextState.Provider value={{ state, setState }}>
+      <GlobalContext.Provider value={{ state, setState, api }}>
         <Router>{children}</Router>
-      </ContextState.Provider>
+      </GlobalContext.Provider>
     </QueryClientProvider>
   )
 }
