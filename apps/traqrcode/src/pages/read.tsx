@@ -1,13 +1,13 @@
-import { ReadRouteInfo } from '../app'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { ContextState } from '../index.provider'
-import { Shell } from '../components/shell'
+import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
 import { api } from '../api'
 import { Loading } from '../components/Loading'
 import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/models'
 import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
+import { ReadRouteInfo } from '../routings'
 
 type PropsPageRead = {
   routeInfo: ReadRouteInfo
@@ -51,7 +51,7 @@ export const PageRead = ({ routeInfo }: PropsPageRead) => {
   if (loading) return <Loading />
 
   return (
-    <Shell>
+    <ShellPublic>
       <div className="w-full mx-auto text-center pt-6 pb-12 min-h-screen">
         <div className="container max-w-5xl mx-auto m-8">
           <ul>
@@ -61,6 +61,6 @@ export const PageRead = ({ routeInfo }: PropsPageRead) => {
           </ul>
         </div>
       </div>
-    </Shell>
+    </ShellPublic>
   )
 }

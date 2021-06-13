@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { Shell } from '../components/shell'
+import { ShellPublic } from '../components/ShellPublic'
 import { APP_NAME } from '../../../../libs/traqrcode-common/src/lib/settings'
 
 export const PagePrivacy = () => {
   return (
-    <Shell>
+    <ShellPublic>
       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
         <div className="container max-w-5xl mx-auto m-8 px-4">
           {' '}
@@ -40,6 +40,6 @@ export const PagePrivacy = () => {
           We are hosted on hosteurope.de and use Google mail to send emails.
         </div>
       </div>
-    </Shell>
+    </ShellPublic>
   )
 }

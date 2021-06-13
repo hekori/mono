@@ -1,9 +1,9 @@
 import * as React from 'react'
-import { Shell } from '../components/shell'
+import { ShellPublic } from '../components/ShellPublic'
 
 export const PageImprint = () => {
   return (
-    <Shell>
+    <ShellPublic>
       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
         <div className="container max-w-5xl mx-auto m-8 px-4">
           <h2 className="text-3xl mb-3">Impressum</h2>
@@ -97,6 +97,6 @@ export const PageImprint = () => {
           <div className="flex-1" />
         </div>
       </div>
-    </Shell>
+    </ShellPublic>
   )
 }

@@ -1,4 +1,5 @@
 import { BACKEND_URL } from '../../../libs/traqrcode-common/src/lib/settings'
+import { environment } from './environments/environment'
 
 class Api {
   async get(url: string) {
@@ -6,6 +7,9 @@ class Api {
       method: 'get',
       headers: {
         'Content-type': 'text/plain; charset=UTF-8',
+        Authorization: `Bearer ${localStorage.getItem(
+          environment.getAccessTokenLocalStorageKey()
+        )}`,
       },
     })
     return response.json()
@@ -16,6 +20,9 @@ class Api {
       method: 'get',
       headers: {
         'Content-type': 'application/pdf',
+        Authorization: `Bearer ${localStorage.getItem(
+          environment.getAccessTokenLocalStorageKey()
+        )}`,
       },
     })
     return await response.arrayBuffer()
@@ -26,6 +33,9 @@ class Api {
       method: 'post',
       headers: {
         'Content-type': 'text/plain; charset=UTF-8',
+        Authorization: `Bearer ${localStorage.getItem(
+          environment.getAccessTokenLocalStorageKey()
+        )}`,
       },
       body: JSON.stringify(json),
     })

@@ -4,6 +4,7 @@ import { useEffect, useLayoutEffect } from 'react'
 import { KeyToString } from '../../../libs/traqrcode-common/src/lib/interfaces/generic'
 import { Item } from '../../../libs/traqrcode-common/src/lib/interfaces/models'
 import { applyTheme } from '@hekori/uikit'
+import { QueryClient, QueryClientProvider } from 'react-query'
 
 export const initialState: State = {
   shortHash: '',
@@ -48,13 +49,17 @@ export const useGlobal = () => {
 export const Provider = ({ children }: ProviderProps) => {
   const [state, setState] = React.useState<State>(initialState)
 
+  const queryClient = new QueryClient()
+
   useLayoutEffect(() => {
     applyTheme(state.theme)
   }, [state.theme])
 
   return (
-    <ContextState.Provider value={{ state, setState }}>
-      <Router>{children}</Router>
-    </ContextState.Provider>
+    <QueryClientProvider client={queryClient}>
+      <ContextState.Provider value={{ state, setState }}>
+        <Router>{children}</Router>
+      </ContextState.Provider>
+    </QueryClientProvider>
   )
 }

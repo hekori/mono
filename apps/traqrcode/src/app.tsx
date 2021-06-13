@@ -10,96 +10,25 @@ import { PagePrivacy } from './pages/privacy'
 import { PageTerms } from './pages/terms'
 import { PageAction } from './pages/act'
 import { PageRead } from './pages/read'
-import { PageCreate } from './pages/create'
-import { ActRouteInfo } from '../../../libs/traqrcode-common/src/lib/urls'
+import { PageSignup } from './pages/signup'
+import { ActRouteInfo } from '@hekori/traqrcode-common'
 import { PagePricing } from './pages/pricing'
-
-export type AdminRouteInfo = {
-  shortHash: string
-  accessToken: string
-}
-
-const editRegex = (pathname: string): AdminRouteInfo | null => {
-  const pattern = /\/edit\/(?<shortHash>.*)\/(?<accessToken>.*)/
-  // console.log(pathname.match(pattern));
-  const groups = pathname.match(pattern)?.groups
-  if (groups) {
-    return {
-      shortHash: groups.shortHash,
-      accessToken: groups.accessToken,
-    }
-  }
-  return null
-}
-
-const viewRegex = (pathname: string): AdminRouteInfo | null => {
-  const pattern = /\/view\/(?<shortHash>.*)\/(?<accessToken>.*)/
-  // console.log(pathname.match(pattern));
-  const groups = pathname.match(pattern)?.groups
-  if (groups) {
-    return {
-      shortHash: groups.shortHash,
-      accessToken: groups.accessToken,
-    }
-  }
-  return null
-}
-
-export type ReadRouteInfo = {
-  shortHash: string
-  itemId: string
-}
-
-const readRegex = (pathname: string): ReadRouteInfo | null => {
-  const pattern = /\/read\/(?<shortHash>.*)\/(?<itemId>.*)/
-  // console.log(pathname.match(pattern));
-  const groups = pathname.match(pattern)?.groups
-  if (groups) {
-    return { shortHash: groups.shortHash, itemId: groups.itemId }
-  }
-  return null
-}
-
-export type TaskRouteInfo = {
-  shortHash: string
-  itemId: string
-  taskId: string
-}
-
-const taskRegex = (pathname: string): TaskRouteInfo | null => {
-  const pattern = /\/task\/(?<shortHash>.*)\/(?<itemId>.*)\/(?<taskId>.*)/
-  const groups = pathname.match(pattern)?.groups
-  if (groups) {
-    return {
-      shortHash: groups.shortHash,
-      itemId: groups.itemId,
-      taskId: groups.taskId,
-    }
-  }
-  return null
-}
-
-export enum Action {
-  start = 'start',
-  cancel = 'cancel',
-  stop = 'stop',
-}
-
-const actRegex = (pathname: string): ActRouteInfo | null => {
-  const pattern = /\/act\/(?<action>.*)\/(?<shortHash>.*)\/(?<itemId>.*)\/(?<taskId>.*)\/(?<workerId>.*)/
-  // console.log(pathname.match(pattern));
-  const groups = pathname.match(pattern)?.groups
-  if (groups) {
-    return {
-      action: groups.action as Action,
-      shortHash: groups.shortHash,
-      itemId: groups.itemId,
-      taskId: groups.taskId,
-      workerId: groups.workerId,
-    }
-  }
-  return null
-}
+import { PageCheckLogin } from './pages/checklogin'
+import { PageList } from './pages/list'
+import {
+  actRegex,
+  AdminRouteInfo,
+  CheckLoginRouteInfo,
+  editRegex,
+  listRegex,
+  ListRouteInfo,
+  loginRegex,
+  readRegex,
+  ReadRouteInfo,
+  taskRegex,
+  TaskRouteInfo,
+  viewRegex,
+} from './routings'
 
 export const App = () => {
   const location = useLocation()
@@ -120,7 +49,17 @@ export const App = () => {
   if (location.pathname === '/terms') return <PageTerms />
 
   // page create
-  if (location.pathname === '/create') return <PageCreate />
+  if (location.pathname === '/create') return <PageSignup />
+
+  // page login
+  const loginRouteInfo: CheckLoginRouteInfo | null = loginRegex(
+    location.pathname
+  )
+  if (loginRouteInfo) return <PageCheckLogin routeInfo={loginRouteInfo} />
+
+  // page list
+  const listRouteInfo: ListRouteInfo | null = listRegex(location.pathname)
+  if (listRouteInfo) return <PageList routeInfo={listRouteInfo} />
 
   // page edit
   const editRouteInfo: AdminRouteInfo | null = editRegex(location.pathname)

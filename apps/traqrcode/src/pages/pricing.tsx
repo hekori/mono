@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useHistory } from 'react-router-dom'
-import { Shell } from '../components/shell'
+import { ShellPublic } from '../components/ShellPublic'
 import { SectionHeader } from '../components/SectionHeader'
 import { ButtonSecondary } from '@hekori/uikit'
 
@@ -8,7 +8,7 @@ export const PagePricing: React.FC = () => {
   const history = useHistory()
 
   return (
-    <Shell>
+    <ShellPublic>
       <section className="bg-document text-onDocument py-8" id="pricing">
         <div className="container mx-auto px-2 pt-4 pb-12">
           <SectionHeader title="Pricing" />
@@ -101,6 +101,6 @@ export const PagePricing: React.FC = () => {
           </div>
         </div>
       </section>
-    </Shell>
+    </ShellPublic>
   )
 }

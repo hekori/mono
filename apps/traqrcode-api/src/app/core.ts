@@ -5,7 +5,7 @@ import {
   readFileSync,
   unlinkSync,
 } from 'fs'
-import { STORE_DIR } from './settings'
+import { FRONTEND_URL, JWT_PRIVATE_KEY, STORE_DIR } from './settings'
 import path = require('path')
 import moment = require('moment')
 import { Req, Task, TaskStep } from '@hekori/traqrcode-common'
@@ -19,9 +19,15 @@ import {
   MyDate,
 } from '@hekori/dates'
 import { shortuuid, uuid } from '@hekori/traqrcode-common'
+import jwt = require('jsonwebtoken')
 
 import { sync as writeFileAtomicSync } from 'write-file-atomic'
 import { pg } from '../pg'
+
+export const getLoginUrlForEmail = (email: string): string => {
+  const accessToken = jwt.sign({ email }, JWT_PRIVATE_KEY)
+  return `${FRONTEND_URL}/login/${accessToken}`
+}
 
 export const createShortHash = () => {
   const now = getDate()

@@ -1,6 +1,6 @@
 import { useHistory } from 'react-router-dom'
 import * as React from 'react'
-import { Shell } from '../components/shell'
+import { ShellPublic } from '../components/ShellPublic'
 import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
 import { ButtonPrimary, ButtonSecondary, TextSubtitle } from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
@@ -52,7 +52,7 @@ export const PageFront = () => {
   const history = useHistory()
 
   return (
-    <Shell>
+    <ShellPublic>
       <div className="md:h-128 border-b border-divider py-16">
         <div className="text-center px-3 lg:px-0 md:my-32">
           <h1 className="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
@@ -182,6 +182,6 @@ are automatically logged and your personnel is notified.`}
           />
         </div>
       </section>
-    </Shell>
+    </ShellPublic>
   )
 }

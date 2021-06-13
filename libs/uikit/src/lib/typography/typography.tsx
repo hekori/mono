@@ -1,6 +1,12 @@
 import { classNames } from '../ClassNames'
 import React from 'react'
 
+export const TextLarge: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
+  children,
+}) => {
+  return <span className="text-lg text-primary">{children}</span>
+}
+
 export const TextNormal: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
   children,
 }) => {

@@ -1,8 +1,7 @@
-import { TaskRouteInfo } from '../app'
 import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { ContextState } from '../index.provider'
-import { Shell } from '../components/shell'
+import { ShellPublic } from '../components/ShellPublic'
 import { api } from '../api'
 import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/models'
 import {
@@ -12,6 +11,7 @@ import {
   timeFormatter,
 } from '@hekori/dates'
 import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
+import { TaskRouteInfo } from '../routings'
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo
@@ -119,14 +119,14 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
 
   if (loading)
     return (
-      <Shell>
+      <ShellPublic>
         <div className="spinner" />
-      </Shell>
+      </ShellPublic>
     )
 
   if (errors.length > 0)
     return (
-      <Shell>
+      <ShellPublic>
         <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
           <div className="container max-w-5xl mx-auto sm:p-8 p-4">
             <ul>
@@ -136,11 +136,11 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
             </ul>
           </div>
         </div>
-      </Shell>
+      </ShellPublic>
     )
 
   return (
-    <Shell>
+    <ShellPublic>
       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
         <div className="container max-w-5xl mx-auto sm:p-8 p-4">
           {/*<div className="flex flex-1 flex-col sm:p-8 p-4">*/}
@@ -172,6 +172,6 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
           />
         </div>
       </div>
-    </Shell>
+    </ShellPublic>
   )
 }

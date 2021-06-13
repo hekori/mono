@@ -19,3 +19,7 @@ export const PGHOST = process.env.PGHOST || ''
 export const PGDATABASE = process.env.PGDATABASE || ''
 export const PGPASSWORD = process.env.PGPASSWORD || ''
 export const PGPORT = parseInt(process.env.PGPORT ?? '5432')
+
+export const FRONTEND_URL = process.env.NX_FRONTEND_URL
+export const BACKEND_URL = process.env.NX_BACKEND_URL
+export const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY

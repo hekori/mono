@@ -1,7 +1,6 @@
-import { AdminRouteInfo } from '../app'
 import * as React from 'react'
 import { useState } from 'react'
-import { Shell } from '../components/shell'
+import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
 import { api } from '../api'
 import { dl } from '../dl'
@@ -9,6 +8,7 @@ import { Loading } from '../components/Loading'
 import { BACKEND_URL } from '../../../../libs/traqrcode-common/src/lib/settings'
 import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
 import { ButtonPrimary, ButtonSecondary } from '@hekori/uikit'
+import { AdminRouteInfo } from '../routings'
 
 type PropsPageView = {
   routeInfo: AdminRouteInfo
@@ -35,7 +35,7 @@ export const PageView = ({ routeInfo }: PropsPageView) => {
   }
 
   return (
-    <Shell>
+    <ShellPublic>
       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
         <div className="container max-w-5xl mx-auto m-8 p-4">
           <ButtonSecondary className="min-w-full mb-4" onClick={download}>
@@ -63,6 +63,6 @@ export const PageView = ({ routeInfo }: PropsPageView) => {
           </ButtonSecondary>
         </div>
       </div>
-    </Shell>
+    </ShellPublic>
   )
 }
