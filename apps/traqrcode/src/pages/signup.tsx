@@ -5,7 +5,9 @@ import { ShellPublic } from '../components/ShellPublic'
 import { TypeErrors } from './frontpage'
 import {
   getBackendLoginPostUrl,
+  getBackendSignupPostUrl,
   PostLoginResponse,
+  PostSignupResponse,
   to,
 } from '@hekori/traqrcode-common'
 import {
@@ -19,7 +21,9 @@ import { humanReadableTimeDifference, now } from '@hekori/dates'
 import { Container } from '../components/Container'
 
 export const Step2: React.FC<
-  PostLoginResponse & { setServerResponse: (args: any) => void }
+  Required<Pick<PostSignupResponse, 'email' | 'emailSentAt'>> & {
+    setServerResponse: (args: any) => void
+  }
 > = ({ emailSentAt, email, setServerResponse }) => {
   const [ago, setAgo] = useState<string>(
     humanReadableTimeDifference(emailSentAt, now())
@@ -74,11 +78,21 @@ export const PageSignup = () => {
   const [submitting, setSubmitting] = useState<boolean>(false)
 
   const [serverResponse, setServerResponse] = useState<
-    PostLoginResponse | undefined
+    PostSignupResponse | undefined
   >(undefined)
 
-  if (serverResponse)
-    return <Step2 {...serverResponse} setServerResponse={setServerResponse} />
+  if (
+    serverResponse &&
+    serverResponse?.email !== undefined &&
+    serverResponse?.emailSentAt !== undefined
+  )
+    return (
+      <Step2
+        email={serverResponse.email}
+        emailSentAt={serverResponse.emailSentAt}
+        setServerResponse={setServerResponse}
+      />
+    )
   else
     return (
       <ShellPublic>
@@ -102,8 +116,8 @@ export const PageSignup = () => {
 
                 setSubmitting(true)
                 const [err, res] = await to(
-                  api.post(getBackendLoginPostUrl(), {
-                    admin: state.admin,
+                  api.post(getBackendSignupPostUrl(), {
+                    email: state.admin,
                   })
                 )
                 setSubmitting(false)

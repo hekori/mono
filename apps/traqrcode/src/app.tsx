@@ -20,13 +20,18 @@ import {
   AdminRouteInfo,
   CheckLoginRouteInfo,
   editRegex,
+  IMPRINT_ROUTE,
   listRegex,
   ListRouteInfo,
   loginRegex,
+  PRICING_ROUTE,
+  PRIVACY_ROUTE,
   readRegex,
   ReadRouteInfo,
+  SIGNUP_ROUTE,
   taskRegex,
   TaskRouteInfo,
+  TERMS_ROUTE,
   viewRegex,
 } from './routings'
 
@@ -37,19 +42,19 @@ export const App = () => {
   if (location.pathname === '/') return <PageFront />
 
   // imprint
-  if (location.pathname === '/imprint') return <PageImprint />
+  if (location.pathname === IMPRINT_ROUTE) return <PageImprint />
 
   // pricing
-  if (location.pathname === '/pricing') return <PagePricing />
+  if (location.pathname === PRICING_ROUTE) return <PagePricing />
 
   // privacy
-  if (location.pathname === '/privacy') return <PagePrivacy />
+  if (location.pathname === PRIVACY_ROUTE) return <PagePrivacy />
 
   // terms
-  if (location.pathname === '/terms') return <PageTerms />
+  if (location.pathname === TERMS_ROUTE) return <PageTerms />
 
   // page create
-  if (location.pathname === '/create') return <PageSignup />
+  if (location.pathname === SIGNUP_ROUTE) return <PageSignup />
 
   // page login
   const loginRouteInfo: CheckLoginRouteInfo | null = loginRegex(
