@@ -26,11 +26,17 @@ export interface PostCreateRequest {
 
 export interface PostCreateResponse extends PostResponseBase {}
 
+export interface PostSignupRequest extends PostResponseBase {
+  email: string
+}
+
+export interface PostSignupResponse extends PostResponseBase {
+  email?: string
+  emailSentAt?: string
+}
+
 export interface PostLoginRequest extends PostResponseBase {
   accessToken: string
 }
 
-export interface PostLoginResponse extends PostResponseBase {
-  email: string
-  emailSentAt: string
-}
+export interface PostLoginResponse extends PostResponseBase {}

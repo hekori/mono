@@ -137,8 +137,9 @@ export const actRegex = (pathname: string): ActRouteInfo | null => {
   return null
 }
 
-export const pricingRoute = '/pricing'
-export const termsRoute = '/terms'
-export const privacyRoute = '/privacy'
-export const homepageRoute = '/'
-export const createRoute = '/create'
+export const PRICING_ROUTE = '/pricing'
+export const TERMS_ROUTE = '/terms'
+export const IMPRINT_ROUTE = '/imprint'
+export const PRIVACY_ROUTE = '/privacy'
+export const HOMEPAGE_ROUTE = '/'
+export const SIGNUP_ROUTE = '/signup'

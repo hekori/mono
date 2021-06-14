@@ -93,3 +93,7 @@ export const getBackendEditPostUrl = (addBaseUrl = false): string => {
 export const getBackendLoginPostUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/login`
 }
+
+export const getBackendSignupPostUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/signup`
+}

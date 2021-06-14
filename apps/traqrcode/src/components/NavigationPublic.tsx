@@ -7,11 +7,11 @@ import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
 import { isLoggedIn, logout } from '../utils'
 import {
-  createRoute,
-  homepageRoute,
+  SIGNUP_ROUTE,
+  HOMEPAGE_ROUTE,
   listRegex,
   listRoute,
-  pricingRoute,
+  PRICING_ROUTE,
 } from '../routings'
 
 export const NavigationPublic = () => {
@@ -93,9 +93,9 @@ export const NavigationPublic = () => {
             <ButtonFlat
               aria-label="Go to home page"
               className={
-                window.location.pathname === homepageRoute ? 'underline' : ''
+                window.location.pathname === HOMEPAGE_ROUTE ? 'underline' : ''
               }
-              onClick={() => history.push(homepageRoute)}
+              onClick={() => history.push(HOMEPAGE_ROUTE)}
             >
               Home
             </ButtonFlat>
@@ -105,11 +105,11 @@ export const NavigationPublic = () => {
             <ButtonFlat
               aria-label="Go to pricing page"
               className={
-                window.location.pathname.startsWith(pricingRoute)
+                window.location.pathname.startsWith(PRICING_ROUTE)
                   ? 'underline'
                   : ''
               }
-              onClick={() => history.push(pricingRoute)}
+              onClick={() => history.push(PRICING_ROUTE)}
             >
               Pricing
             </ButtonFlat>
@@ -135,7 +135,7 @@ export const NavigationPublic = () => {
             <li className="mr-3">
               <ButtonPrimary
                 aria-label="Create QR Code"
-                onClick={() => history.push(createRoute)}
+                onClick={() => history.push(SIGNUP_ROUTE)}
               >
                 Create QR Code
               </ButtonPrimary>
