@@ -22,6 +22,7 @@ import { ButtonFlat, ButtonSecondary, Input, TextSubtitle } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
 import { EditRouteInfo } from '../routings'
 import { PageItemInitializer } from '../../../../libs/traqrcode-common/src/lib/dbModels/types'
+import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 
 type PropsPageEdit = {
   routeInfo: EditRouteInfo
@@ -53,6 +54,8 @@ export const createNewItem = ({ state }: CreateNewItemArgs): PageEditState => {
 }
 
 export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
+  useCheckLoggedIn()
+
   const { api } = useGlobal()
   const history = useHistory()
   const [errors, setErrors] = useState<PageEditErrors>(InitialPageEditErrors)

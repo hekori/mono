@@ -4,6 +4,7 @@ import { ShellPublic } from '../components/ShellPublic'
 import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
 import { ButtonPrimary, ButtonSecondary, TextSubtitle } from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
+import { SIGNUP_ROUTE } from '../routings'
 
 export type TypeErrors = {
   admin?: string
@@ -64,7 +65,7 @@ export const PageFront = () => {
 
           <ButtonPrimary
             aria-label="Create QR Code"
-            onClick={() => history.push('/create')}
+            onClick={() => history.push(SIGNUP_ROUTE)}
           >
             Create QR Code
           </ButtonPrimary>
