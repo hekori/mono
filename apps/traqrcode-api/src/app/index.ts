@@ -2,6 +2,7 @@
 import fastify0 from 'fastify'
 import {
   EMAIL_DEFAULT_SENDER,
+  JWT_PRIVATE_KEY,
   PGDATABASE,
   PGHOST,
   PGPORT,
@@ -37,10 +38,12 @@ import {
 import fastify_cors from 'fastify-cors'
 import { getDate, isoDatetimeFormatter, getNow } from '@hekori/dates'
 import {
+  createAccessToken,
   createHash,
-  getLoginUrlForEmail,
+  getLoginUrlForAccessToken,
   getUnusedShortHash,
   readReq,
+  verifyAccessToken,
   writeReq,
 } from './core'
 import { pg } from '../pg'
@@ -107,16 +110,20 @@ api.post('/signup', async (request, reply) => {
   const trx = await pg.transaction()
 
   try {
-    const row = await trx('user').where({ email: data.email }).first()
-    console.log('row', row)
+    const user = await trx('user').where({ email: data.email }).first()
+    let userUuid = user?.userUuid
+    console.log('userUuid', userUuid)
 
     // create user if not exist
-    if (!row) {
-      const user: UserInitializer = {
+    if (!userUuid) {
+      const userInit: UserInitializer = {
         email: data.email,
       }
-      await trx('user').insert(user)
+      ;[{ userUuid }] = await trx('user').insert(userInit).returning('*')
     }
+    console.log('userUuid', userUuid)
+
+    const accessToken = createAccessToken({ userUuid })
 
     // send out email
     const [emailSendError] = await to(
@@ -124,7 +131,9 @@ api.post('/signup', async (request, reply) => {
         sender: EMAIL_DEFAULT_SENDER,
         subject: emailLoginSubject(),
         receiver: data.email,
-        body: emailLoginBody({ loginUrl: getLoginUrlForEmail(data.email) }),
+        body: emailLoginBody({
+          loginUrl: getLoginUrlForAccessToken(accessToken),
+        }),
       })
     )
 
@@ -153,14 +162,23 @@ api.post('/signup', async (request, reply) => {
 })
 
 api.post(getBackendCreatePostUrl(), async (request, reply) => {
-  console.log(`${request.method}: ${request.url} ${request.query}`)
   console.log(request.body)
+  console.log(request.headers)
+  console.log(request.headers?.authorization)
 
-  // TODO: CHECK JWT
+  const accessToken = request.headers?.authorization.replace('Bearer ', '')
+  const decoded = verifyAccessToken(accessToken)
+
+  if (!decoded) {
+    const responseData: PostResponseError = {
+      status: API_CODE.ERROR,
+      errors: [API_CODE.ERROR_INVALID_ACCESS_TOKEN],
+    }
+    return reply.send(responseData)
+  }
 
   const data = request.body as PostCreateRequest
-  const createdBy = 'sebastian.walter@gmail.com'
-  const shortHash = shortuuid()
+  const createdBy = decoded.userUuid
 
   const trx = await pg.transaction()
 

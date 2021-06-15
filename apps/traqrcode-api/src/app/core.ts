@@ -8,7 +8,7 @@ import {
 import { FRONTEND_URL, JWT_PRIVATE_KEY, STORE_DIR } from './settings'
 import path = require('path')
 import moment = require('moment')
-import { Req, Task, TaskStep } from '@hekori/traqrcode-common'
+import { Req, Task, TaskStep, to } from '@hekori/traqrcode-common'
 import {
   getDate,
   isoDateFilesystemFormatter,
@@ -19,13 +19,39 @@ import {
   MyDate,
 } from '@hekori/dates'
 import { shortuuid, getUuid } from '@hekori/traqrcode-common'
-import jwt = require('jsonwebtoken')
 
 import { sync as writeFileAtomicSync } from 'write-file-atomic'
 import { pg } from '../pg'
+import jwt = require('jsonwebtoken')
 
-export const getLoginUrlForEmail = (email: string): string => {
-  const accessToken = jwt.sign({ email }, JWT_PRIVATE_KEY)
+export const createAccessToken = (
+  {
+    userUuid,
+  }: {
+    userUuid: string
+  },
+  privateKey = JWT_PRIVATE_KEY
+): string => {
+  return jwt.sign({ userUuid }, privateKey, {
+    expiresIn: 90 * 24 * 60 * 60,
+  })
+}
+
+export const verifyAccessToken = (
+  accessToken: string,
+  privateKey = JWT_PRIVATE_KEY
+): { userUuid: string } | undefined => {
+  try {
+    const s = jwt.verify(accessToken, privateKey)
+    console.log(s)
+    return s
+  } catch (e) {
+    console.error(e)
+    return undefined
+  }
+}
+
+export const getLoginUrlForAccessToken = (accessToken: string): string => {
   return `${FRONTEND_URL}/login/${accessToken}`
 }
 

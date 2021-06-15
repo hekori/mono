@@ -5,6 +5,7 @@ import { ShellPublic } from '../components/ShellPublic'
 import { editRoute, ListRouteInfo } from '../routings'
 import { ButtonPrimary } from '@hekori/uikit'
 import {
+  API_CODE,
   getBackendCreatePostUrl,
   PostCreateRequest,
   PostCreateResponse,
@@ -31,7 +32,10 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
               PostCreateResponse,
               PostCreateRequest
             >(getBackendCreatePostUrl(), data)
-            history.push(editRoute({ pageUuid: response.pageUuid }))
+
+            console.log('response=', response)
+            if (response.status === API_CODE.OK)
+              history.push(editRoute({ pageUuid: response.pageUuid }))
           }}
         >
           + Create PDF
