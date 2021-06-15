@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SyntheticEvent } from 'react'
-import { GlobalContext } from '../index.provider'
+import { GlobalContext, useGlobal } from '../index.provider'
 
 import QRCode from 'qrcode.react'
 import {
@@ -12,30 +12,33 @@ import {
 } from '@hekori/traqrcode-common'
 import { ButtonFlat, Input, themes } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
+import { PageEditState } from '../pages/edit'
 
 type ReqProps = {
-  itemId: string
-  uid: string
+  pageItemUuid: string
   onClickDelete: (e: SyntheticEvent) => void
   errors: PageEditErrors
   setErrors: any
+  state: PageEditState
+  setState: (value: PageEditState) => void
 }
 
 export const Req = ({
-  itemId,
-  uid,
+  pageItemUuid,
   onClickDelete,
   errors,
   setErrors,
+  state,
+  setState,
 }: ReqProps) => {
-  const { state, setState } = React.useContext(GlobalContext)
-  const item = state.idToItem[itemId]
+  const { state: globalState } = useGlobal()
+  const item = state.uuidToPageItem[pageItemUuid]
   console.log('errors', errors)
-  let titleErrors = errors?.idToItem?.[itemId]
+  let titleErrors = errors?.idToItem?.[pageItemUuid]
   if (item.title.length > MAX_QR_TITLE_LENGTH)
     titleErrors = [API_CODE.ERROR_TITLE_TOO_LONG]
 
-  let subTitleErrors = errors?.idToItem?.[itemId]
+  let subTitleErrors = errors?.idToItem?.[pageItemUuid]
   if (item.subTitle.length > MAX_QR_TITLE_LENGTH)
     subTitleErrors = [API_CODE.ERROR_SUBTITLE_TOO_LONG]
 
@@ -43,10 +46,10 @@ export const Req = ({
     <li className="px-4 py-4">
       <div className="flex flex-col lg:flex-row lg:items-start justify-between">
         <QRCode
-          value={getItemUrl(uid, itemId)}
+          value={getItemUrl(pageItemUuid)}
           renderAs="svg"
           bgColor={'transparent'}
-          fgColor={themes[state.theme].onDocumentHighlight}
+          fgColor={themes[globalState.theme].onDocumentHighlight}
           style={{ width: '48px', height: 'auto' }}
         />
         <div className="w-4 h-4" />
@@ -58,13 +61,13 @@ export const Req = ({
           errors={titleErrors}
           onChange={(e) => {
             const newState = { ...state }
-            newState.idToItem[itemId].title = e.target.value
+            newState.uuidToPageItem[pageItemUuid].title = e.target.value
             setState(newState)
 
             // reset errors
             const newErrors = {
               ...errors,
-              ...{ ...errors.idToItem, [itemId]: undefined },
+              ...{ ...errors.idToItem, [pageItemUuid]: undefined },
             }
             setErrors(newErrors)
           }}
@@ -77,7 +80,7 @@ export const Req = ({
           errors={subTitleErrors}
           onChange={(e) => {
             const newState = { ...state }
-            newState.idToItem[itemId].subTitle = e.target.value
+            newState.uuidToPageItem[pageItemUuid].subTitle = e.target.value
             setState(newState)
           }}
         />

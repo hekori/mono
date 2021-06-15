@@ -17,7 +17,7 @@ import {
   TextNormal,
 } from '@hekori/uikit'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { humanReadableTimeDifference, now } from '@hekori/dates'
+import { humanReadableTimeDifference, getNow } from '@hekori/dates'
 import { Container } from '../components/Container'
 
 export const Step2: React.FC<
@@ -26,12 +26,12 @@ export const Step2: React.FC<
   }
 > = ({ emailSentAt, email, setServerResponse }) => {
   const [ago, setAgo] = useState<string>(
-    humanReadableTimeDifference(emailSentAt, now())
+    humanReadableTimeDifference(emailSentAt, getNow())
   )
 
   useEffect(() => {
     const runnerId = setInterval(
-      () => setAgo(humanReadableTimeDifference(emailSentAt, now())),
+      () => setAgo(humanReadableTimeDifference(emailSentAt, getNow())),
       1000
     )
     return () => clearInterval(runnerId)

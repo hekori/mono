@@ -12,8 +12,6 @@ CREATE TABLE IF NOT EXISTS "page"();
 ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "pageUuid" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
 ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "createdBy" UUID REFERENCES "user" ("userUuid") NOT NULL;
 ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "isTest" BOOLEAN NOT NULL DEFAULT FALSE;
-ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "shortHash" VARCHAR(26) NOT NULL;
 
 CREATE TABLE IF NOT EXISTS "pageItem"();
 ALTER TABLE "pageItem" ADD COLUMN IF NOT EXISTS "pageItemUuid" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
@@ -28,6 +26,11 @@ ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "pageItemUuid" UUID REFE
 ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "status" VARCHAR(8) NOT NULL;
 
+CREATE TABLE IF NOT EXISTS "pageWorker"();
+ALTER TABLE "pageWorker" ADD COLUMN IF NOT EXISTS "pageUuid" UUID REFERENCES "page" ("pageUuid");
+ALTER TABLE "pageWorker" ADD COLUMN IF NOT EXISTS "email" VARCHAR(256) NOT NULL;
+ALTER TABLE "pageWorker" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP;
+
 ALTER TABLE "user" ADD CONSTRAINT unique_user_email UNIQUE ("email");
 
 
@@ -38,10 +41,12 @@ ALTER TABLE "user" ADD CONSTRAINT unique_user_email UNIQUE ("email");
 
 export const down = async (trx: Knex.Transaction) => {
   const cmd = `
+DROP TABLE IF EXISTS "pageWorker";
 DROP TABLE IF EXISTS "pageItemProgress";
 DROP TABLE IF EXISTS "pageItem";
 DROP TABLE IF EXISTS "page";
 DROP TABLE IF EXISTS "user";
+
 `
   await trx.raw(cmd)
 }

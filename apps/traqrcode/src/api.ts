@@ -28,7 +28,7 @@ export class Api {
     return await response.arrayBuffer()
   }
 
-  async post(url: string, json: object) {
+  async post<ReturnType, BodyType>(url: string, json: BodyType) {
     const response = await fetch(BACKEND_URL + url, {
       method: 'post',
       headers: {
@@ -39,6 +39,7 @@ export class Api {
       },
       body: JSON.stringify(json),
     })
-    return response.json()
+    const returnValue = await response.json()
+    return returnValue as Promise<ReturnType>
   }
 }

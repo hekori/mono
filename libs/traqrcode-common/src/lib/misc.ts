@@ -4,11 +4,11 @@ export const to = (promise: Promise<any>) =>
   promise.then((data) => [null, data]).catch((err) => [err])
 
 // FIXME: why is window.orgin used here? this will only work in the browser
-export const getItemUrl = (pageUid: string, itemIndex: string) => {
-  return `${window.origin}/read/${pageUid}/${itemIndex}`
+export const getItemUrl = (pageItemUuid: string) => {
+  return `${window.origin}/read/${pageItemUuid}`
 }
 
-export const uuid = () => {
+export const getUuid = () => {
   return uuidv4()
 }
 

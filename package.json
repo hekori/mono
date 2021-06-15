@@ -63,6 +63,7 @@
     "socket.io-client": "^4.0.2",
     "tslib": "^2.0.0",
     "uWebSockets.js": "uNetworking/uWebSockets.js#v18.14.0",
+    "uuid": "^8.3.2",
     "write-file-atomic": "^3.0.3"
   },
   "devDependencies": {
