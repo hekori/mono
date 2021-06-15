@@ -1,7 +1,7 @@
 import * as React from 'react'
-import { useLayoutEffect, useState } from 'react'
+import { useState } from 'react'
 import { ShellPublic } from '../components/ShellPublic'
-import { GlobalContext, State, useGlobal } from '../index.provider'
+import { useGlobal } from '../index.provider'
 import { Req } from '../components/req'
 
 import { useHistory } from 'react-router-dom'
@@ -10,85 +10,101 @@ import { Loading } from '../components/Loading'
 import {
   API_CODE,
   getBackendEditPostUrl,
+  getUuid,
   InitialPageEditErrors,
   PageEditErrors,
+  PostEditRequest,
+  PostEditResponse,
   shortuuid,
   to,
 } from '@hekori/traqrcode-common'
 import { ButtonFlat, ButtonSecondary, Input, TextSubtitle } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
-import { AdminRouteInfo } from '../routings'
+import { EditRouteInfo } from '../routings'
+import { PageItemInitializer } from '../../../../libs/traqrcode-common/src/lib/dbModels/types'
 
-type PropsPageSetup = {
-  routeInfo: AdminRouteInfo
+type PropsPageEdit = {
+  routeInfo: EditRouteInfo
 }
 
 interface CreateNewItemArgs {
-  state: State
+  state: PageEditState
 }
 
-export const createNewItem = ({ state }: CreateNewItemArgs): State => {
+export interface PageEditState {
+  pageUuid: string
+  pageItemUuids: string[]
+  uuidToPageItem: Record<string, PageItemInitializer>
+  pageWorkerUuids: string[]
+  uuidToPageWorker: Record<string, string>
+}
+
+export const createNewItem = ({ state }: CreateNewItemArgs): PageEditState => {
   const newState = { ...state }
-  const newIndex = `${Object.keys(newState.idToItem).length}`
-  newState.itemIds.push(newIndex)
-  newState.idToItem[newIndex] = {
-    id: newIndex,
-    idToTask: {},
-    taskIds: [],
+  const pageItemUuid = getUuid()
+  newState.pageItemUuids.push(pageItemUuid)
+  newState.uuidToPageItem[pageItemUuid] = {
+    pageUuid: state.pageUuid,
+    pageItemUuid,
     title: '',
     subTitle: '',
   }
   return newState
 }
 
-export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
-  const { state, setState, api } = useGlobal()
+export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
+  const { api } = useGlobal()
   const history = useHistory()
   const [errors, setErrors] = useState<PageEditErrors>(InitialPageEditErrors)
   const [loading, setLoading] = useState<boolean>(false)
 
-  console.log('state=', state)
+  const [state, setState] = useState<PageEditState>({
+    pageUuid: routeInfo.pageUuid,
+    pageItemUuids: [],
+    uuidToPageItem: {},
+    pageWorkerUuids: [],
+    uuidToPageWorker: {},
+  })
+
   console.log('errors=', errors)
   console.log('API_CODE=', API_CODE)
-  const needLoad = state.shortHash !== routeInfo.shortHash
+  // const needLoad = state.shortHash !== routeInfo.shortHash
 
-  useLayoutEffect(() => {
-    const t = async () => {
-      setErrors(InitialPageEditErrors)
-      setLoading(true)
-      const [err, res] = await to(
-        api.get(`/view/${routeInfo.shortHash}/${routeInfo.accessToken}`)
-      )
-      setLoading(false)
-
-      if (err) {
-        console.log(err, res)
-        // setErrors({global: [ERRORS.NOT_FOUND]})
-        return
-      }
-
-      if (res.status === 'ERROR') {
-        console.log('error', res.errors)
-        setErrors({
-          ...errors,
-          global: [...(errors.global || []), ...res.errors],
-        })
-      } else {
-        console.log(res)
-        let newState = { ...state, ...res.data }
-
-        if (Object.keys(newState.idToItem).length === 0) {
-          newState = createNewItem({ state: newState })
-        }
-
-        setState(newState)
-      }
-    }
-
-    if (needLoad) {
-      void t()
-    }
-  }, [needLoad, routeInfo])
+  // useLayoutEffect(() => {
+  //   const t = async () => {
+  //     setErrors(InitialPageEditErrors)
+  //     setLoading(true)
+  //     const [err, res] = await to(
+  //       api.get(`/view/${routeInfo.shortHash}/${routeInfo.accessToken}`)
+  //     )
+  //     setLoading(false)
+  //
+  //     if (err) {
+  //       console.log(err, res)
+  //       // setErrors({global: [ERRORS.NOT_FOUND]})
+  //       return
+  //     }
+  //
+  //     if (res.status === 'ERROR') {
+  //       console.log('error', res.errors)
+  //       setErrors({
+  //         ...errors,
+  //         global: [...(errors.global || []), ...res.errors],
+  //       })
+  //     } else {
+  //       console.log(res)
+  //       let newState = { ...state, ...res.data }
+  //
+  //       if (Object.keys(newState.idToItem).length === 0) {
+  //         newState = createNewItem({ state: newState })
+  //       }
+  //
+  //       setState(newState)
+  //     }
+  //   }
+  //
+  //   void t()
+  // }, [])
 
   if (loading) return <Loading />
 
@@ -103,17 +119,18 @@ export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
 
           <div className="bg-document2 text-onDocument2 shadow overflow-hidden sm:rounded-md">
             <ul className="divide-y divide-divider">
-              {state.itemIds.map((itemIndex) => (
+              {state.pageItemUuids.map((uuid) => (
                 <Req
-                  key={itemIndex}
-                  uid={routeInfo.shortHash}
-                  itemId={itemIndex}
+                  key={uuid}
+                  pageItemUuid={uuid}
                   errors={errors}
                   setErrors={setErrors}
+                  state={state}
+                  setState={setState}
                   onClickDelete={() => {
                     const newState = { ...state }
-                    newState.itemIds = state.itemIds.filter(
-                      (i) => i !== itemIndex
+                    newState.pageItemUuids = state.pageItemUuids.filter(
+                      (i) => i !== uuid
                     )
                     setState(newState)
                   }}
@@ -145,31 +162,31 @@ export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
 
           <div className="bg-document2 text-onDocument2 shadow overflow-hidden sm:rounded-md">
             <ul className="divide-y divide-divider">
-              {state.workerIds.map((receiver, itemIndex) => {
+              {state.pageWorkerUuids.map((pageWorkerUuid) => {
                 return (
                   <li className="p-4 flex flex-col lg:flex-row lg:items-center justify-between">
                     <Input
-                      key={`${itemIndex}`}
+                      key={pageWorkerUuid}
                       placeholder={'Enter email'}
                       className={'text-xl'}
                       onChange={(e) => {
                         setState({
                           ...state,
-                          idToWorker: {
-                            ...state.idToWorker,
-                            [receiver]: e.target.value,
+                          uuidToPageWorker: {
+                            ...state.uuidToPageWorker,
+                            [pageWorkerUuid]: e.target.value,
                           },
                         })
                       }}
-                      errors={errors?.idToWorker?.[receiver] ?? []}
-                      value={state.idToWorker[receiver]}
+                      errors={errors?.idToWorker?.[pageWorkerUuid] ?? []}
+                      value={state.uuidToPageWorker[pageWorkerUuid]}
                     />
 
                     <ButtonFlat
                       onClick={() => {
                         const newState = { ...state }
-                        newState.workerIds = state.workerIds.filter(
-                          (itemId) => itemId !== receiver
+                        newState.pageWorkerUuids = state.pageWorkerUuids.filter(
+                          (itemId) => itemId !== pageWorkerUuid
                         )
                         setState(newState)
                       }}
@@ -183,11 +200,14 @@ export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
               <li
                 className="lg:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-pointer px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-touchableHighlight"
                 onClick={() => {
-                  const s = shortuuid()
+                  const pageWorkerUuid = getUuid()
                   setState({
                     ...state,
-                    workerIds: [...state.workerIds, s],
-                    idToWorker: { ...state.idToWorker, [s]: '' },
+                    pageWorkerUuids: [...state.pageWorkerUuids, pageWorkerUuid],
+                    uuidToPageWorker: {
+                      ...state.uuidToPageWorker,
+                      [pageWorkerUuid]: '',
+                    },
                   })
                 }}
               >
@@ -205,17 +225,10 @@ export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
             onClick={async (e) => {
               e.preventDefault()
               const [err, res] = await to(
-                api.post(getBackendEditPostUrl(), {
-                  test: false,
-                  createdAt: new Date().toISOString(),
-                  shortHash: state.shortHash,
-                  accessToken: state.accessToken,
-                  admin: state.admin,
-                  idToWorker: state.idToWorker,
-                  workerIds: state.workerIds,
-                  idToItem: state.idToItem,
-                  itemIds: state.itemIds,
-                })
+                api.post<PostEditResponse, PostEditRequest>(
+                  getBackendEditPostUrl(),
+                  {}
+                )
               )
 
               if (err) {
@@ -233,9 +246,7 @@ export const PageEdit = ({ routeInfo }: PropsPageSetup) => {
                 console.log('error', res.errors)
                 setErrors(res.errors)
               } else {
-                history.push(
-                  `/view/${routeInfo.shortHash}/${routeInfo.accessToken}`
-                )
+                history.push(`/view/${routeInfo.pageUuid}`)
               }
             }}
           >

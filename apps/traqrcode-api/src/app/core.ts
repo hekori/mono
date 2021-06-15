@@ -18,7 +18,7 @@ import {
   MOMENTJS_FILESYSTEM_DATE_FORMAT,
   MyDate,
 } from '@hekori/dates'
-import { shortuuid, uuid } from '@hekori/traqrcode-common'
+import { shortuuid, getUuid } from '@hekori/traqrcode-common'
 import jwt = require('jsonwebtoken')
 
 import { sync as writeFileAtomicSync } from 'write-file-atomic'
@@ -37,7 +37,7 @@ export const createShortHash = () => {
 }
 
 export const createHash = () => {
-  return uuid()
+  return getUuid()
 }
 
 export const getReqFilePath = (shortHash: string) => {

@@ -20,6 +20,7 @@ import {
   AdminRouteInfo,
   CheckLoginRouteInfo,
   editRegex,
+  EditRouteInfo,
   IMPRINT_ROUTE,
   listRegex,
   ListRouteInfo,
@@ -67,7 +68,7 @@ export const App = () => {
   if (listRouteInfo) return <PageList routeInfo={listRouteInfo} />
 
   // page edit
-  const editRouteInfo: AdminRouteInfo | null = editRegex(location.pathname)
+  const editRouteInfo: EditRouteInfo | null = editRegex(location.pathname)
   if (editRouteInfo) return <PageEdit routeInfo={editRouteInfo} />
 
   // page view

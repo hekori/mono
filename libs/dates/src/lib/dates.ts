@@ -66,7 +66,7 @@ export const millisSinceStartOfDay = (date: MyDate): number => {
   return moment(date).diff(moment.utc(isoDateFormatter(date)), 'milliseconds')
 }
 
-export const now = (): string => {
+export const getNow = (): string => {
   return isoDatetimeFormatter(moment())
 }
 

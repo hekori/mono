@@ -25,3 +25,25 @@ export interface PageInitializer {
   isTest?: boolean
   shortHash: string
 }
+
+export interface PageItem {
+  pageItemUuid: string
+  pageUuid: string
+  createdAt: string
+  title: string
+  subTitle: string
+}
+
+export interface PageItemInitializer {
+  pageItemUuid?: string
+  pageUuid: string
+  createdAt?: string
+  title: string
+  subTitle: string
+}
+
+export interface m2mPageUser {
+  userUuid: string
+  pageUuid: string
+  createdAt: string
+}

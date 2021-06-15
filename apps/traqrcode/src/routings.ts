@@ -31,18 +31,21 @@ export const listRegex = (pathname: string): ListRouteInfo | null => {
   } else return null
 }
 
-export const editRoute = ({ shortHash, accessToken }: AdminRouteInfo) => {
-  return `/edit/${shortHash}/${accessToken}`
+export type EditRouteInfo = {
+  pageUuid: string
 }
 
-export const editRegex = (pathname: string): AdminRouteInfo | null => {
-  const pattern = /\/edit\/(?<shortHash>.*)\/(?<accessToken>.*)/
+export const editRoute = ({ pageUuid }: EditRouteInfo) => {
+  return `/edit/${pageUuid}`
+}
+
+export const editRegex = (pathname: string): EditRouteInfo | null => {
+  const pattern = /\/edit\/(?<pageUuid>.*)/
   // console.log(pathname.match(pattern));
   const groups = pathname.match(pattern)?.groups
   if (groups) {
     return {
-      shortHash: groups.shortHash,
-      accessToken: groups.accessToken,
+      pageUuid: groups.pageUuid,
     }
   }
   return null

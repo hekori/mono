@@ -26,6 +26,7 @@ import {
   InitialPageEditErrors,
   PostCreateRequest,
   PostCreateResponse,
+  PostResponseError,
   PostSignupRequest,
   PostSignupResponse,
   Req,
@@ -34,7 +35,7 @@ import {
   to,
 } from '@hekori/traqrcode-common'
 import fastify_cors from 'fastify-cors'
-import { getDate, isoDatetimeFormatter, now } from '@hekori/dates'
+import { getDate, isoDatetimeFormatter, getNow } from '@hekori/dates'
 import {
   createHash,
   getLoginUrlForEmail,
@@ -43,7 +44,7 @@ import {
   writeReq,
 } from './core'
 import { pg } from '../pg'
-import { UserInitializer } from './dbModels/types'
+import { UserInitializer } from '../../../../libs/traqrcode-common/src/lib/dbModels/types'
 import { sendMail } from './mail'
 import { emailLoginBody, emailLoginSubject } from './templates'
 
@@ -128,7 +129,7 @@ api.post('/signup', async (request, reply) => {
     )
 
     if (emailSendError) {
-      const responseBody: PostSignupResponse = {
+      const responseBody: PostResponseError = {
         status: API_CODE.ERROR,
         errors: [API_CODE.ERROR_SENDING_EMAIL],
       }
@@ -139,7 +140,7 @@ api.post('/signup', async (request, reply) => {
     const responseBody: PostSignupResponse = {
       status: API_CODE.OK,
       email: data.email,
-      emailSentAt: now(),
+      emailSentAt: getNow(),
     }
     return reply.send(responseBody)
   } catch (e) {
@@ -151,50 +152,44 @@ api.post('/signup', async (request, reply) => {
   return {}
 })
 
-//
-// api.post(getBackendCreatePostUrl(), async (request, reply) => {
-//   console.log(`${request.method}: ${request.url} ${request.query}`)
-//   console.log(request.body)
-//
-//   // TODO: CHECK JWT
-//
-//   const data = request.body as PostCreateRequest
-//   const admin = 'sebastian.walter@gmail.com'
-//
-//   // const trx = await pg.transaction()
-//
-//   // try {
-//   //   await trx(tableName).insert({
-//   //     executedAt: dayjs().toISOString(),
-//   //     name: migrationName,
-//   //   })
-//   //   await trx.commit()
-//   // } catch (e) {
-//   //   await trx.rollback(e)
-//   //   console.error(e)
-//   // }
-//
-//   const now = getDate()
-//   const s = shortuuid()
-//   const r: Req = {
-//     admin,
-//     createdAt: isoDatetimeFormatter(now),
-//     accessToken: createHash(),
-//     shortHash: getUnusedShortHash(),
-//     test: data.test,
-//     idToItem: {},
-//     idToWorker: { [s]: admin },
-//     workerIds: [s],
-//     itemIds: [],
-//   }
-//   await writeReq(r.shortHash, r)
-//
-//   const responseData: PostCreateResponse = {
-//     status: API_CODE.OK,
-//   }
-//
-//   return responseData
-// })
+api.post(getBackendCreatePostUrl(), async (request, reply) => {
+  console.log(`${request.method}: ${request.url} ${request.query}`)
+  console.log(request.body)
+
+  // TODO: CHECK JWT
+
+  const data = request.body as PostCreateRequest
+  const createdBy = 'sebastian.walter@gmail.com'
+  const shortHash = shortuuid()
+
+  const trx = await pg.transaction()
+
+  try {
+    const [pageUuid] = await trx('page')
+      .insert({
+        createdBy,
+      })
+      .returning('pageUuid')
+    await trx.commit()
+
+    const responseData: PostCreateResponse = {
+      status: API_CODE.OK,
+      pageUuid,
+    }
+
+    return responseData
+  } catch (e) {
+    await trx.rollback(e)
+    console.error(e)
+
+    const responseData: PostResponseError = {
+      status: API_CODE.ERROR,
+      errors: [e.toString()],
+    }
+
+    return responseData
+  }
+})
 
 //
 // api.get('/view/:shortHash/:accessToken', async (request, reply) => {

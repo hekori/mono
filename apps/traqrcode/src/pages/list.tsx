@@ -1,19 +1,22 @@
 import * as React from 'react'
-import { GlobalContext, useGlobal } from '../index.provider'
+import { useGlobal } from '../index.provider'
 import { Container } from '../components/Container'
 import { ShellPublic } from '../components/ShellPublic'
-import { ListRouteInfo } from '../routings'
+import { editRoute, ListRouteInfo } from '../routings'
 import { ButtonPrimary } from '@hekori/uikit'
 import {
   getBackendCreatePostUrl,
   PostCreateRequest,
+  PostCreateResponse,
 } from '@hekori/traqrcode-common'
+import { useHistory } from 'react-router-dom'
 
 interface PropsPageList {
   routeInfo: ListRouteInfo
 }
 export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
   const { state, setState, api } = useGlobal()
+  const history = useHistory()
 
   return (
     <ShellPublic>
@@ -23,8 +26,12 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
           className={`min-w-full`}
           data-testid="button-create"
           onClick={async () => {
-            const data: PostCreateRequest = { test: false }
-            await api.post(getBackendCreatePostUrl(), data)
+            const data: PostCreateRequest = {}
+            const response = await api.post<
+              PostCreateResponse,
+              PostCreateRequest
+            >(getBackendCreatePostUrl(), data)
+            history.push(editRoute({ pageUuid: response.pageUuid }))
           }}
         >
           + Create PDF
