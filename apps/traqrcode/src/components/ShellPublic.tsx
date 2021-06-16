@@ -6,9 +6,20 @@ import { Helmet } from 'react-helmet'
 
 type ShellProps = {
   children: any
+  loading?: boolean
 }
 
-export const ShellPublic = ({ children }: ShellProps) => {
+const LoadingContent: React.FC = () => {
+  return (
+    <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
+      <div className="container max-w-5xl mx-auto m-8">
+        <div className="spinner" />
+      </div>
+    </div>
+  )
+}
+
+export const ShellPublic = ({ children, loading = false }: ShellProps) => {
   useScrollToTop()
 
   return (
@@ -18,7 +29,7 @@ export const ShellPublic = ({ children }: ShellProps) => {
         <meta name="description" content="Track QR code scans." />
       </Helmet>
       <NavigationPublic />
-      {children}
+      {loading ? <LoadingContent /> : children}
       <Footer />
     </div>
   )

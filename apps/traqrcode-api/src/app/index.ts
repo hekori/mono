@@ -23,6 +23,7 @@ import {
   BACKEND_URL,
   FRONTEND_URL,
   getBackendCreatePostUrl,
+  getBackendListGetUrl,
   getBackendSignupPostUrl,
   InitialPageEditErrors,
   PostCreateRequest,
@@ -40,6 +41,7 @@ import { getDate, isoDatetimeFormatter, getNow } from '@hekori/dates'
 import {
   createAccessToken,
   createHash,
+  getAccessTokenFromRequest,
   getLoginUrlForAccessToken,
   getUnusedShortHash,
   readReq,
@@ -50,6 +52,7 @@ import { pg } from '../pg'
 import { UserInitializer } from '../../../../libs/traqrcode-common/src/lib/dbModels/types'
 import { sendMail } from './mail'
 import { emailLoginBody, emailLoginSubject } from './templates'
+import { convertListToIdAndObject } from './utils'
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -166,7 +169,7 @@ api.post(getBackendCreatePostUrl(), async (request, reply) => {
   console.log(request.headers)
   console.log(request.headers?.authorization)
 
-  const accessToken = request.headers?.authorization.replace('Bearer ', '')
+  const accessToken = getAccessTokenFromRequest(request)
   const decoded = verifyAccessToken(accessToken)
 
   if (!decoded) {
@@ -207,6 +210,33 @@ api.post(getBackendCreatePostUrl(), async (request, reply) => {
 
     return responseData
   }
+})
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}
+
+api.get(getBackendListGetUrl(), async (request, reply) => {
+  console.log(request.body)
+  console.log(request.headers)
+  console.log(request.headers?.authorization)
+
+  const accessToken = getAccessTokenFromRequest(request)
+  const decoded = verifyAccessToken(accessToken)
+
+  if (!decoded) {
+    const responseData: PostResponseError = {
+      status: API_CODE.ERROR,
+      errors: [API_CODE.ERROR_INVALID_ACCESS_TOKEN],
+    }
+    return reply.send(responseData)
+  }
+
+  const { userUuid } = decoded
+
+  const result = await pg('page').where({ createdBy: userUuid })
+  await sleep(1000)
+  return convertListToIdAndObject(result, 'pageUuid')
 })
 
 //

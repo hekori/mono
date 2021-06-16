@@ -1,4 +1,5 @@
 import { KeyToStringArray } from './generic'
+import { Page } from '../dbModels/types'
 
 export interface PageEditErrors {
   count: number
@@ -48,3 +49,8 @@ export interface PostLoginRequest extends PostResponseBase {
 }
 
 export interface PostLoginResponse extends PostResponseBase {}
+
+export interface GetListResponse extends PostResponseBase {
+  ids: string[]
+  idToItem: Record<string, Page>
+}

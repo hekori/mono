@@ -4,7 +4,7 @@ export const readJson = (res: HttpResponse, cb: any, err: any) => {
   let buffer: Buffer = Buffer.concat([])
 
   res.onData((ab, isLast) => {
-    let chunk = Buffer.from(ab)
+    const chunk = Buffer.from(ab)
 
     buffer = Buffer.concat([buffer, chunk])
 
@@ -34,4 +34,16 @@ export const log = (...args: string[]) => {
 
 export const getFileExtension = (p: string) => {
   return p.split('.').pop()
+}
+
+export const convertListToIdAndObject = (rows: any[], identifier: string) => {
+  const returnValue = {
+    ids: [],
+    idToItem: {},
+  }
+  for (const row of rows) {
+    returnValue.ids.push(row[identifier])
+    returnValue.idToItem[row[identifier]] = row
+  }
+  return returnValue
 }
