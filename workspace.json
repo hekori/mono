@@ -151,7 +151,6 @@
             "polyfills": "apps/traqrcode/src/polyfills.ts",
             "tsConfig": "apps/traqrcode/tsconfig.app.json",
             "assets": [
-              "apps/traqrcode/src/favicon.ico",
               "apps/traqrcode/src/assets"
             ],
             "styles": ["apps/traqrcode/src/styles.css"],

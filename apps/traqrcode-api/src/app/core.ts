@@ -23,6 +23,7 @@ import { shortuuid, getUuid } from '@hekori/traqrcode-common'
 import { sync as writeFileAtomicSync } from 'write-file-atomic'
 import { pg } from '../pg'
 import jwt = require('jsonwebtoken')
+import { FastifyRequest } from 'fastify'
 
 export const createAccessToken = (
   {
@@ -35,6 +36,10 @@ export const createAccessToken = (
   return jwt.sign({ userUuid }, privateKey, {
     expiresIn: 90 * 24 * 60 * 60,
   })
+}
+
+export const getAccessTokenFromRequest = (request: FastifyRequest) => {
+  return request.headers?.authorization.replace('Bearer ', '')
 }
 
 export const verifyAccessToken = (

@@ -82,6 +82,10 @@ export const getBackendPdfUrl = (
   return `${addBaseUrl ? BACKEND_URL : ''}/pdf/${routeInfo.shortHash}`
 }
 
+export const getBackendListGetUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/list`
+}
+
 export const getBackendCreatePostUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/create`
 }
