@@ -1,4 +1,4 @@
-export * from './lib/interfaces/api'
+export * from './lib/apiSpecs/api'
 export * from './lib/interfaces/generic'
 export * from './lib/interfaces/models'
 export * from './lib/constants'
