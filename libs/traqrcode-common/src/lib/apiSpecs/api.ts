@@ -1,4 +1,4 @@
-import { KeyToStringArray } from './generic'
+import { KeyToStringArray } from '../interfaces/generic'
 import { Page } from '../dbModels/types'
 
 export interface PageEditErrors {

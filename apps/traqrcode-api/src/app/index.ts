@@ -234,8 +234,10 @@ api.get(getBackendListGetUrl(), async (request, reply) => {
 
   const { userUuid } = decoded
 
-  const result = await pg('page').where({ createdBy: userUuid })
-  await sleep(1000)
+  const result = await pg('page')
+    .where({ createdBy: userUuid })
+    .orderBy('createdAt', 'ASC')
+  await sleep(3000)
   return convertListToIdAndObject(result, 'pageUuid')
 })
 
