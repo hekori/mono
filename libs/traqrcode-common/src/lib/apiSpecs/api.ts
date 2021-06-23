@@ -38,6 +38,11 @@ export interface PostCreateResponse extends PostResponseBase {
   pageUuid: string
 }
 
+export interface PostDeletePageRequest {
+  pageUuid: string
+}
+export interface PostDeletePageResponse extends PostResponseBase {}
+
 export interface PostEditRequest {}
 
 export interface PostEditResponse extends PostResponseBase {

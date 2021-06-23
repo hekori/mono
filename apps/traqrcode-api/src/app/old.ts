@@ -41,8 +41,8 @@ import {
   API_CODE,
   BACKEND_URL,
   FRONTEND_URL,
-  getBackendCreatePostUrl,
-  getBackendEditPostUrl,
+  getBackendCreatePagePostUrl,
+  getBackendEditPagePostUrl,
   getBackendLoginPostUrl,
   getFrontendActUrl,
   getFrontendReadUrl,
@@ -122,7 +122,7 @@ const api = new Api(false, PORT)
 // })
 
 api.post(
-  getBackendCreatePostUrl(),
+  getBackendCreatePagePostUrl(),
   async (res: MyHttpResponse, req: MyHttpRequest) => {
     console.log(`${req.getMethod()}: ${req.getUrl()} ${req.getQuery()}`)
     const [, response] = await to(toJson(res))
@@ -252,7 +252,7 @@ api.get('/view/:shortHash/:accessToken', async (res, req) => {
   }
 })
 
-api.post(getBackendEditPostUrl(), async (res, req) => {
+api.post(getBackendEditPagePostUrl(), async (res, req) => {
   console.log(`${req.getMethod()}: ${req.getUrl()} ${req.getQuery()}`)
 
   const [, response] = await to(toJson(res))

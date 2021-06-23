@@ -9,7 +9,7 @@ import { PageError404 } from './error404'
 import { Loading } from '../components/Loading'
 import {
   API_CODE,
-  getBackendEditPostUrl,
+  getBackendEditPagePostUrl,
   getUuid,
   InitialPageEditErrors,
   PageEditErrors,
@@ -229,7 +229,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
               e.preventDefault()
               const [err, res] = await to(
                 api.post<PostEditResponse, PostEditRequest>(
-                  getBackendEditPostUrl(),
+                  getBackendEditPagePostUrl(),
                   {}
                 )
               )

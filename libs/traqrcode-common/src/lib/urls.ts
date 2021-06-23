@@ -86,12 +86,24 @@ export const getBackendListGetUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/list`
 }
 
-export const getBackendCreatePostUrl = (addBaseUrl = false): string => {
+export const getBackendCreatePagePostUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/create`
 }
 
-export const getBackendEditPostUrl = (addBaseUrl = false): string => {
+export const getBackendEditPagePostUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/edit`
+}
+
+export const getBackendPageDeleteUrl = ({
+  addBaseUrl = false,
+  pageUuid,
+}: {
+  addBaseUrl?: boolean
+  pageUuid?: string
+}): string => {
+  const retval = `${addBaseUrl ? BACKEND_URL : ''}/page/:pageUuid`
+  if (pageUuid) return retval.replace(':pageUuid', pageUuid)
+  return retval
 }
 
 export const getBackendLoginPostUrl = (addBaseUrl = false): string => {
