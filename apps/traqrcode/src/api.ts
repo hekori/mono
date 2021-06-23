@@ -42,4 +42,18 @@ export class Api {
     const returnValue = await response.json()
     return returnValue as Promise<ReturnType>
   }
+
+  async delete(url: string) {
+    const response = await fetch(BACKEND_URL + url, {
+      method: 'delete',
+      headers: {
+        'Content-type': 'application/json; charset=UTF-8',
+        Authorization: `Bearer ${localStorage.getItem(
+          environment.getAccessTokenLocalStorageKey()
+        )}`,
+      },
+    })
+    const returnValue = await response.json()
+    return returnValue
+  }
 }

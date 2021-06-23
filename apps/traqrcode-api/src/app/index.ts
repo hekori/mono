@@ -22,8 +22,9 @@ import {
   API_CODE,
   BACKEND_URL,
   FRONTEND_URL,
-  getBackendCreatePostUrl,
+  getBackendCreatePagePostUrl,
   getBackendListGetUrl,
+  getBackendPageDeleteUrl,
   getBackendSignupPostUrl,
   InitialPageEditErrors,
   PostCreateRequest,
@@ -164,7 +165,7 @@ api.post('/signup', async (request, reply) => {
   return {}
 })
 
-api.post(getBackendCreatePostUrl(), async (request, reply) => {
+api.post(getBackendCreatePagePostUrl(), async (request, reply) => {
   console.log(request.body)
   console.log(request.headers)
   console.log(request.headers?.authorization)
@@ -237,9 +238,58 @@ api.get(getBackendListGetUrl(), async (request, reply) => {
   const result = await pg('page')
     .where({ createdBy: userUuid })
     .orderBy('createdAt', 'ASC')
-  await sleep(3000)
+  await sleep(20)
   return convertListToIdAndObject(result, 'pageUuid')
 })
+
+interface IParams {
+  pageUuid: string
+}
+
+interface IHeaders {
+  Authorization: string
+}
+
+api.delete<{ Params: IParams; Headers: IHeaders }>(
+  getBackendPageDeleteUrl({}),
+  {},
+  async (request, reply) => {
+    const pageUuid = request.params.pageUuid
+
+    const accessToken = getAccessTokenFromRequest(request)
+    const decoded = verifyAccessToken(accessToken)
+
+    if (!decoded) {
+      const responseData: PostResponseError = {
+        status: API_CODE.ERROR,
+        errors: [API_CODE.ERROR_INVALID_ACCESS_TOKEN],
+      }
+      return reply.send(responseData)
+    }
+
+    const { userUuid } = decoded
+
+    await pg('page').where({ createdBy: userUuid, pageUuid }).delete()
+
+    return reply.status(200).send({ status: API_CODE.OK, pageUuid })
+  }
+)
+
+// api.route({
+//   method: 'DELETE',
+//   url: getBackendPageDeleteUrl(),
+//   schema: {
+//     response: {
+//       204: {
+//         type: null,
+//       },
+//     },
+//   },
+//   handler: async (request, reply) => {
+//     const pageUuid = request.params.pageUuid
+//   },
+// })
+//
 
 //
 // api.get('/view/:shortHash/:accessToken', async (request, reply) => {

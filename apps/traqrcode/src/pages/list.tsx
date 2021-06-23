@@ -5,8 +5,9 @@ import { ShellPublic } from '../components/ShellPublic'
 import { editRoute, ListRouteInfo } from '../routings'
 import {
   API_CODE,
-  getBackendCreatePostUrl,
+  getBackendCreatePagePostUrl,
   getBackendListGetUrl,
+  getBackendPageDeleteUrl,
   GetListResponse,
   PostCreateRequest,
   PostCreateResponse,
@@ -37,7 +38,7 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
     async () => {
       const data: PostCreateRequest = {}
       const response = await api.post<PostCreateResponse, PostCreateRequest>(
-        getBackendCreatePostUrl(),
+        getBackendCreatePagePostUrl(),
         data
       )
       return response
@@ -47,8 +48,43 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
         console.log('response=', response)
         if (response.status === API_CODE.OK) {
           await queryClient.invalidateQueries('pages')
-          history.push(editRoute({ pageUuid: response.pageUuid }))
+          // history.push(editRoute({ pageUuid: response.pageUuid }))
         }
+      },
+    }
+  )
+  // optimistic update https://react-query.tanstack.com/guides/optimistic-updates
+  const deleteMutation = useMutation(
+    async ({ pageUuid }: { pageUuid: string }) => {
+      console.log(
+        'called deleteMutation with pageUuid',
+        pageUuid,
+        getBackendPageDeleteUrl({ pageUuid })
+      )
+      const response = await api.delete(getBackendPageDeleteUrl({ pageUuid }))
+      return response
+    },
+
+    {
+      onMutate: async ({ pageUuid }) => {
+        // Cancel any outgoing refetches (so they don't overwrite our optimistic update)
+        await queryClient.cancelQueries('todos')
+
+        // Snapshot the previous value
+        const previous = queryClient.getQueryData('pages')
+
+        // Optimistically update to the new value
+        await queryClient.setQueryData('pages', (old: any) => {
+          console.log('old=', old)
+          const newState = { ...old }
+          newState.ids = newState.ids.filter((id: string) => id !== pageUuid)
+          return newState
+        })
+
+        return previous
+      },
+      onSettled: async () => {
+        await queryClient.invalidateQueries('todos')
       },
     }
   )
@@ -67,12 +103,14 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
               return (
                 <li
                   className="p-4 flex flex-col lg:flex-row lg:items-center justify-between cursor-pointer hover:bg-touchableHighlight"
-                  onClick={() => {
-                    history.push(editRoute({ pageUuid }))
-                  }}
+                  // onClick={() => {
+                  //   history.push(editRoute({ pageUuid }))
+                  // }}
                 >
                   {pageUuid} {page.createdAt} {page.createdBy}
-                  <ButtonFlat onClick={() => {}}>
+                  <ButtonFlat
+                    onClick={() => deleteMutation.mutate({ pageUuid })}
+                  >
                     <TrashIcon className="h-5 w-5" />
                   </ButtonFlat>
                 </li>
