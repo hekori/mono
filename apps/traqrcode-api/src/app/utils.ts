@@ -47,3 +47,7 @@ export const convertListToIdAndObject = (rows: any[], identifier: string) => {
   }
   return returnValue
 }
+
+function sleep(ms) {
+  return new Promise((resolve) => setTimeout(resolve, ms))
+}

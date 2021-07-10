@@ -5,10 +5,14 @@ import {
   readFileSync,
   unlinkSync,
 } from 'fs'
-import { FRONTEND_URL, JWT_PRIVATE_KEY, STORE_DIR } from './settings'
-import path = require('path')
-import moment = require('moment')
-import { Req, Task, TaskStep, to } from '@hekori/traqrcode-common'
+import { STORE_DIR } from './settings'
+import {
+  getUuid,
+  Req,
+  shortuuid,
+  Task,
+  TaskStep,
+} from '@hekori/traqrcode-common'
 import {
   getDate,
   isoDateFilesystemFormatter,
@@ -18,47 +22,11 @@ import {
   MOMENTJS_FILESYSTEM_DATE_FORMAT,
   MyDate,
 } from '@hekori/dates'
-import { shortuuid, getUuid } from '@hekori/traqrcode-common'
 
 import { sync as writeFileAtomicSync } from 'write-file-atomic'
 import { pg } from '../pg'
-import jwt = require('jsonwebtoken')
-import { FastifyRequest } from 'fastify'
-
-export const createAccessToken = (
-  {
-    userUuid,
-  }: {
-    userUuid: string
-  },
-  privateKey = JWT_PRIVATE_KEY
-): string => {
-  return jwt.sign({ userUuid }, privateKey, {
-    expiresIn: 90 * 24 * 60 * 60,
-  })
-}
-
-export const getAccessTokenFromRequest = (request: FastifyRequest) => {
-  return request.headers?.authorization.replace('Bearer ', '')
-}
-
-export const verifyAccessToken = (
-  accessToken: string,
-  privateKey = JWT_PRIVATE_KEY
-): { userUuid: string } | undefined => {
-  try {
-    const s = jwt.verify(accessToken, privateKey)
-    console.log(s)
-    return s
-  } catch (e) {
-    console.error(e)
-    return undefined
-  }
-}
-
-export const getLoginUrlForAccessToken = (accessToken: string): string => {
-  return `${FRONTEND_URL}/login/${accessToken}`
-}
+import path = require('path')
+import moment = require('moment')
 
 export const createShortHash = () => {
   const now = getDate()
@@ -87,11 +55,11 @@ export const writeReq = async (shortHash: string, data: Req) => {
   console.log('start transaction')
   const trx = await pg.transaction()
   try {
-    await pg('user').insert({ email: data.admin })
-    await trx.commit()
+    pg('user').insert({ email: data.admin })
+    trx.commit()
     console.log('end transaction')
   } catch (e) {
-    await trx.rollback(e)
+    trx.rollback(e)
     console.error(e)
   }
 }

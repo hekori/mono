@@ -1,4 +1,4 @@
-import { BrowserRouter as Router } from 'react-router-dom'
+import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 import * as React from 'react'
 import { useEffect, useLayoutEffect } from 'react'
 import { KeyToString } from '../../../libs/traqrcode-common/src/lib/interfaces/generic'
@@ -31,7 +31,7 @@ export interface State {
 
 export type StateContext = {
   state: State
-  setState: any
+  setState: (arg0: State) => void
   api: Api
 }
 
@@ -52,6 +52,7 @@ export const useGlobal = () => {
 export const Provider = ({ children }: ProviderProps) => {
   const [state, setState] = React.useState<State>(initialState)
   const api = new Api()
+  const history = useHistory()
 
   const queryClient = new QueryClient()
 

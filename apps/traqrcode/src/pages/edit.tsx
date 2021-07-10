@@ -9,20 +9,22 @@ import { PageError404 } from './error404'
 import { Loading } from '../components/Loading'
 import {
   API_CODE,
+  getBackendEditPageGetUrl,
   getBackendEditPagePostUrl,
+  GetEditResponse,
   getUuid,
   InitialPageEditErrors,
   PageEditErrors,
+  PageItemInitializer,
   PostEditRequest,
   PostEditResponse,
-  shortuuid,
   to,
 } from '@hekori/traqrcode-common'
 import { ButtonFlat, ButtonSecondary, Input, TextSubtitle } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
 import { EditRouteInfo } from '../routings'
-import { PageItemInitializer } from '../../../../libs/traqrcode-common/src/lib/dbModels/types'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
+import { useQuery } from 'react-query'
 
 type PropsPageEdit = {
   routeInfo: EditRouteInfo
@@ -34,6 +36,7 @@ interface CreateNewItemArgs {
 
 export interface PageEditState {
   pageUuid: string
+  title: string
   pageItemUuids: string[]
   uuidToPageItem: Record<string, PageItemInitializer>
   pageWorkerUuids: string[]
@@ -62,6 +65,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
   const [loading, setLoading] = useState<boolean>(false)
 
   const [state, setState] = useState<PageEditState>({
+    title: '',
     pageUuid: routeInfo.pageUuid,
     pageItemUuids: [],
     uuidToPageItem: {},
@@ -71,43 +75,17 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
 
   console.log('errors=', errors)
   console.log('API_CODE=', API_CODE)
-  // const needLoad = state.shortHash !== routeInfo.shortHash
 
-  // useLayoutEffect(() => {
-  //   const t = async () => {
-  //     setErrors(InitialPageEditErrors)
-  //     setLoading(true)
-  //     const [err, res] = await to(
-  //       api.get(`/view/${routeInfo.shortHash}/${routeInfo.accessToken}`)
-  //     )
-  //     setLoading(false)
-  //
-  //     if (err) {
-  //       console.log(err, res)
-  //       // setErrors({global: [ERRORS.NOT_FOUND]})
-  //       return
-  //     }
-  //
-  //     if (res.status === 'ERROR') {
-  //       console.log('error', res.errors)
-  //       setErrors({
-  //         ...errors,
-  //         global: [...(errors.global || []), ...res.errors],
-  //       })
-  //     } else {
-  //       console.log(res)
-  //       let newState = { ...state, ...res.data }
-  //
-  //       if (Object.keys(newState.idToItem).length === 0) {
-  //         newState = createNewItem({ state: newState })
-  //       }
-  //
-  //       setState(newState)
-  //     }
-  //   }
-  //
-  //   void t()
-  // }, [])
+  const { isLoading, error, data } = useQuery<GetEditResponse>(
+    `page--${routeInfo.pageUuid}`,
+    async () => {
+      const data = await api.get(getBackendEditPageGetUrl(routeInfo.pageUuid))
+      setState((state) => ({ ...state, title: data.page.title }))
+      return data
+    }
+  )
+
+  console.log('data', data)
 
   if (loading) return <Loading />
 
@@ -118,7 +96,18 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
     <ShellPublic>
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
         <div className="mt-8">
-          <TextSubtitle>Describe your QR code</TextSubtitle>
+          <TextSubtitle>Name your print</TextSubtitle>
+
+          <Input
+            placeholder={'Enter title'}
+            className={'text-xl'}
+            onChange={(e) => {}}
+            value={state.title}
+          />
+
+          <br />
+          <br />
+          <TextSubtitle>Add QR codes</TextSubtitle>
 
           <div className="bg-document2 text-onDocument2 shadow overflow-hidden sm:rounded-md">
             <ul className="divide-y divide-divider">
