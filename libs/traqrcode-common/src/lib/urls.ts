@@ -94,6 +94,13 @@ export const getBackendEditPagePostUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/edit`
 }
 
+export const getBackendEditPageGetUrl = (
+  pageUuid: string = '',
+  addBaseUrl = false
+): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/edit/${pageUuid}`
+}
+
 export const getBackendPageDeleteUrl = ({
   addBaseUrl = false,
   pageUuid,

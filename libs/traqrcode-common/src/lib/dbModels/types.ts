@@ -12,6 +12,8 @@ export interface UserInitializer {
 
 export interface Page {
   pageUuid: string
+  title: string
+  subTitle: string
   createdBy: string
   createdAt: string
 }
@@ -38,8 +40,14 @@ export interface PageItemInitializer {
   subTitle: string
 }
 
-export interface m2mPageUser {
-  userUuid: string
+export interface PageWorker {
+  email: string
   pageUuid: string
   createdAt: string
+}
+
+export interface PageWorkerInitializer {
+  email: string
+  pageUuid: string
+  createdAt?: string
 }

@@ -1,6 +1,7 @@
 export * from './lib/apiSpecs/api'
 export * from './lib/interfaces/generic'
 export * from './lib/interfaces/models'
+export * from './lib/dbModels/types'
 export * from './lib/constants'
 export * from './lib/errors'
 export * from './lib/misc'
