@@ -13,9 +13,7 @@ import {
   getBackendEditPagePostUrl,
   GetEditResponse,
   getUuid,
-  InitialPageEditErrors,
   PageEditErrors,
-  PageItemInitializer,
   PostEditRequest,
   PostEditResponse,
   to,
@@ -25,6 +23,7 @@ import { TrashIcon } from '@heroicons/react/outline'
 import { EditRouteInfo } from '../routings'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { useQuery } from 'react-query'
+import { PageEditState } from '../../../../libs/traqrcode-common/src/lib/apiSpecs/edit'
 
 type PropsPageEdit = {
   routeInfo: EditRouteInfo
@@ -32,15 +31,6 @@ type PropsPageEdit = {
 
 interface CreateNewItemArgs {
   state: PageEditState
-}
-
-export interface PageEditState {
-  pageUuid: string
-  title: string
-  pageItemUuids: string[]
-  uuidToPageItem: Record<string, PageItemInitializer>
-  pageWorkerUuids: string[]
-  uuidToPageWorker: Record<string, string>
 }
 
 export const createNewItem = ({ state }: CreateNewItemArgs): PageEditState => {
@@ -56,6 +46,12 @@ export const createNewItem = ({ state }: CreateNewItemArgs): PageEditState => {
   return newState
 }
 
+export const InitialPageEditErrors: PageEditErrors = {
+  count: 0,
+  idToWorker: {},
+  idToItem: {},
+  global: [],
+}
 export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
   useCheckLoggedIn()
 
