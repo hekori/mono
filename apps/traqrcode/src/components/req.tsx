@@ -12,7 +12,7 @@ import {
 } from '@hekori/traqrcode-common'
 import { ButtonFlat, Input, themes } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
-import { PageEditState } from '../pages/edit'
+import { PageEditState } from '../../../../libs/traqrcode-common/src/lib/apiSpecs/edit'
 
 type ReqProps = {
   pageItemUuid: string
