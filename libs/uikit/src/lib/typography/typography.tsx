@@ -16,7 +16,7 @@ export const TextNormal: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
 export const TextSmall: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({
   children,
 }) => {
-  return <span className="text-sm font-bold mb-8 text-primary">{children}</span>
+  return <span className="text-sm mb-8 text-primary">{children}</span>
 }
 
 export const TextTitle: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({

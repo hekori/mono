@@ -31,6 +31,14 @@ export const getEdit = async (request, reply) => {
     .orderBy('createdAt', 'ASC')
     .first()
 
+  if (!page) {
+    const responseData: PostResponseError = {
+      status: API_CODE.ERROR,
+      errors: [API_CODE.ERROR_NOT_FOUND],
+    }
+    return reply.status(404).send(responseData)
+  }
+
   const pageItems = await pg('pageItem')
     .where({ pageUuid: request.params.pageUuid })
     .orderBy('createdAt', 'ASC')
@@ -39,11 +47,9 @@ export const getEdit = async (request, reply) => {
     .where({ pageUuid: request.params.pageUuid })
     .orderBy('createdAt', 'ASC')
 
-  page.title = createRandomName()
-
-  console.log(page)
-  console.log(pageItems)
-  console.log(pageWorker)
+  console.log('page', page)
+  console.log('pageItems', pageItems)
+  console.log('pageWorker', pageWorker)
 
   reply.send({ page, pageItems, pageWorker })
 }

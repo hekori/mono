@@ -13,8 +13,14 @@ import {
   PostCreateResponse,
 } from '@hekori/traqrcode-common'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import { ButtonFlat, Input } from '@hekori/uikit'
-import { TrashIcon } from '@heroicons/react/outline'
+import {
+  ButtonFlat,
+  Input,
+  TextLarge,
+  TextSmall,
+  TextSubtitle,
+} from '@hekori/uikit'
+import { PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import { useHistory } from 'react-router-dom'
 import { dateFormatter, timeFormatter } from '@hekori/dates'
 
@@ -107,17 +113,30 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
             {data?.ids.map((pageUuid) => {
               const page = data.idToItem[pageUuid]
               return (
-                <li
-                  className="p-4 flex flex-col lg:flex-row lg:items-center justify-between cursor-pointer hover:bg-touchableHighlight"
-                  onClick={() => {
-                    history.push(editRoute({ pageUuid }))
-                  }}
-                >
-                  {page.title || '<no title>'}
-                  {dateFormatter(page.createdAt)}{' '}
-                  {timeFormatter(page.createdAt)}
+                <li className="p-4 flex flex-col md:flex-row md:items-center justify-between cursor-pointer hover:bg-touchableHighlight">
+                  <div>
+                    <TextLarge>{page.title || '<no title>'}</TextLarge>
+                    <br />
+                    <TextSmall>
+                      {dateFormatter(page.createdAt)}{' '}
+                      {timeFormatter(page.createdAt)}
+                    </TextSmall>
+                  </div>
+
+                  <div className={'md:flex-1'} />
                   <ButtonFlat
-                    onClick={() => deleteMutation.mutate({ pageUuid })}
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      history.push(editRoute({ pageUuid }))
+                    }}
+                  >
+                    <PencilIcon className="h-5 w-5" />
+                  </ButtonFlat>
+                  <ButtonFlat
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      deleteMutation.mutate({ pageUuid })
+                    }}
                   >
                     <TrashIcon className="h-5 w-5" />
                   </ButtonFlat>
@@ -127,7 +146,7 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
             {createMutation.isLoading ? (
               <li
                 className={
-                  'lg:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-default px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-button2Hover bg-button2Hover relative'
+                  'md:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-default px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-button2Hover bg-button2Hover relative'
                 }
               >
                 <div className="spinner" />
@@ -135,7 +154,7 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
             ) : (
               <li
                 className={
-                  'lg:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-pointer px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-button2Hover bg-button2'
+                  'md:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-pointer px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-button2Hover bg-button2'
                 }
                 onClick={() => {
                   createMutation.mutate()

@@ -9,6 +9,7 @@ import {
   PostResponseError,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
+import { createRandomName } from '../randomNames'
 
 export const postCreate = async (request, reply) => {
   console.log(request.body)
@@ -34,7 +35,7 @@ export const postCreate = async (request, reply) => {
   try {
     const [pageUuid] = await trx('page')
       .insert({
-        title: '',
+        title: createRandomName(),
         createdBy,
       })
       .returning('pageUuid')
