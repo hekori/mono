@@ -23,7 +23,7 @@ import { TrashIcon } from '@heroicons/react/outline'
 import { EditRouteInfo } from '../routings'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { useQuery } from 'react-query'
-import { PageEditState } from '../../../../libs/traqrcode-common/src/lib/apiSpecs/edit'
+import { PageEditState } from '../../../../libs/traqrcode-common/src/lib/interfaces/edit'
 
 type PropsPageEdit = {
   routeInfo: EditRouteInfo
@@ -38,7 +38,6 @@ export const createNewItem = ({ state }: CreateNewItemArgs): PageEditState => {
   const pageItemUuid = getUuid()
   newState.pageItemUuids.push(pageItemUuid)
   newState.uuidToPageItem[pageItemUuid] = {
-    pageUuid: state.pageUuid,
     pageItemUuid,
     title: '',
     subTitle: '',
@@ -61,12 +60,12 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
   const [loading, setLoading] = useState<boolean>(false)
 
   const [state, setState] = useState<PageEditState>({
+    uuidToPageWorker: {},
+    pageItemUuids: [],
+    pageWorkerUuids: [],
+    uuidToPageItem: {},
     title: '',
     pageUuid: routeInfo.pageUuid,
-    pageItemUuids: [],
-    uuidToPageItem: {},
-    pageWorkerUuids: [],
-    uuidToPageWorker: {},
   })
 
   console.log('errors=', errors)
@@ -76,7 +75,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
     `page--${routeInfo.pageUuid}`,
     async () => {
       const data = await api.get(getBackendEditPageGetUrl(routeInfo.pageUuid))
-      setState((state) => ({ ...state, title: data.page.title }))
+      setState((state) => ({ ...state, ...data }))
       return data
     }
   )
@@ -97,7 +96,11 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
           <Input
             placeholder={'Enter title'}
             className={'text-xl'}
-            onChange={(e) => {}}
+            onChange={(e) => {
+              setState((state) => {
+                return { ...state, title: e.target.value }
+              })
+            }}
             value={state.title}
           />
 
@@ -162,12 +165,14 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
                           ...state,
                           uuidToPageWorker: {
                             ...state.uuidToPageWorker,
-                            [pageWorkerUuid]: e.target.value,
+                            [pageWorkerUuid]: {
+                              email: e.target.value,
+                            },
                           },
                         })
                       }}
                       errors={errors?.idToWorker?.[pageWorkerUuid] ?? []}
-                      value={state.uuidToPageWorker[pageWorkerUuid]}
+                      value={state.uuidToPageWorker[pageWorkerUuid].email}
                     />
 
                     <ButtonFlat
@@ -194,7 +199,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
                     pageWorkerUuids: [...state.pageWorkerUuids, pageWorkerUuid],
                     uuidToPageWorker: {
                       ...state.uuidToPageWorker,
-                      [pageWorkerUuid]: '',
+                      [pageWorkerUuid]: { email: '' },
                     },
                   })
                 }}

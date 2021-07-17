@@ -2,9 +2,17 @@ import {
   getAccessTokenFromRequest,
   verifyAccessToken,
 } from '../middleware/auth'
-import { API_CODE, PostResponseError } from '@hekori/traqrcode-common'
+import {
+  API_CODE,
+  GetEditResponse,
+  Page,
+  PageItem,
+  PageWorker,
+  PostResponseError,
+} from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
 import { createRandomName } from '../randomNames'
+import { convertListToIdAndObject } from '../utils'
 
 export const getEdit = async (request, reply) => {
   console.log(request.body)
@@ -26,7 +34,7 @@ export const getEdit = async (request, reply) => {
 
   const { userUuid } = decoded
 
-  const page = await pg('page')
+  const page: Page = await pg('page')
     .where({ createdBy: userUuid, pageUuid: request.params.pageUuid })
     .orderBy('createdAt', 'ASC')
     .first()
@@ -39,17 +47,35 @@ export const getEdit = async (request, reply) => {
     return reply.status(404).send(responseData)
   }
 
-  const pageItems = await pg('pageItem')
+  const pageItems: PageItem[] = await pg('pageItem')
     .where({ pageUuid: request.params.pageUuid })
     .orderBy('createdAt', 'ASC')
 
-  const pageWorker = await pg('pageWorker')
+  const pageWorkers: PageWorker[] = await pg('pageWorker')
     .where({ pageUuid: request.params.pageUuid })
     .orderBy('createdAt', 'ASC')
 
   console.log('page', page)
   console.log('pageItems', pageItems)
-  console.log('pageWorker', pageWorker)
+  console.log('pageWorker', pageWorkers)
 
-  reply.send({ page, pageItems, pageWorker })
+  const pageItemData = convertListToIdAndObject<PageItem>(
+    pageItems,
+    'pageItemUuid'
+  )
+  const pageWorkerData = convertListToIdAndObject<PageWorker>(
+    pageWorkers,
+    'eamil'
+  )
+
+  const returnValue: GetEditResponse = {
+    pageUuid: page.pageUuid,
+    title: page.title,
+    pageItemUuids: pageItemData.ids,
+    uuidToPageItem: pageItemData.idToItem,
+    pageWorkerEmails: pageWorkerData.ids,
+    uuidToPageWorker: pageWorkerData.idToItem,
+  }
+
+  reply.send(returnValue)
 }

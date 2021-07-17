@@ -112,15 +112,17 @@ export const PageSignup = () => {
                 e.preventDefault()
 
                 // front end validation
-                if (!state.admin || submitting) return
+                if (!state.email || submitting) return
 
                 setSubmitting(true)
                 const [err, res] = await to(
                   api.post(getBackendSignupPostUrl(), {
-                    email: state.admin,
+                    email: state.email,
                   })
                 )
                 setSubmitting(false)
+
+                console.log(err, res)
 
                 if (err) {
                   console.log(err, res)
@@ -146,11 +148,11 @@ export const PageSignup = () => {
                 onChange={(e) => {
                   setState({
                     ...state,
-                    admin: e.target.value,
+                    email: e.target.value,
                   })
                 }}
-                value={state.admin}
-                errors={errors.admin ? [errors.admin] : []}
+                value={state.email}
+                errors={errors.email ? [errors.email] : []}
               />
               <div className={'h-2'} />
               <div className="text-red-500">{errors.global}</div>
@@ -163,7 +165,7 @@ export const PageSignup = () => {
               <ButtonPrimary
                 type="submit"
                 className={`min-w-full ${
-                  !state.admin || submitting ? 'disabled' : ''
+                  !state.email || submitting ? 'disabled' : ''
                 }`}
                 data-testid="button-create"
               >
