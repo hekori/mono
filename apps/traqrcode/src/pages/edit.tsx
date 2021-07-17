@@ -57,7 +57,6 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
   const { api } = useGlobal()
   const history = useHistory()
   const [errors, setErrors] = useState<PageEditErrors>(InitialPageEditErrors)
-  const [loading, setLoading] = useState<boolean>(false)
 
   const [state, setState] = useState<PageEditState>({
     uuidToPageWorker: {},
@@ -68,21 +67,17 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
     pageUuid: routeInfo.pageUuid,
   })
 
-  console.log('errors=', errors)
-  console.log('API_CODE=', API_CODE)
-
-  const { isLoading, error, data } = useQuery<GetEditResponse>(
+  const { isLoading, isFetching, error, data } = useQuery<GetEditResponse>(
     `page--${routeInfo.pageUuid}`,
     async () => {
       const data = await api.get(getBackendEditPageGetUrl(routeInfo.pageUuid))
       setState((state) => ({ ...state, ...data }))
       return data
-    }
+    },
+    { refetchOnWindowFocus: false }
   )
 
-  console.log('data', data)
-
-  if (loading) return <Loading />
+  if (isLoading) return <Loading />
 
   if ((errors?.global || []).includes(API_CODE.ERROR_NOT_FOUND))
     return <PageError404 />
@@ -140,7 +135,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
             </ul>
           </div>
 
-          {errors.global.includes(API_CODE.ERROR_EMPTY_ITEMS_LIST) && (
+          {errors?.global?.includes(API_CODE.ERROR_EMPTY_ITEMS_LIST) && (
             <div className={'text-error'}>Please add at least one QR code.</div>
           )}
 
@@ -209,7 +204,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
               </li>
             </ul>
           </div>
-          {errors.global.includes(API_CODE.ERROR_EMPTY_WORKER_LIST) && (
+          {errors?.global?.includes(API_CODE.ERROR_EMPTY_WORKER_LIST) && (
             <div className={'text-error'}>Add at least one receiver.</div>
           )}
 
@@ -219,8 +214,8 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
               e.preventDefault()
               const [err, res] = await to(
                 api.post<PostEditResponse, PostEditRequest>(
-                  getBackendEditPagePostUrl(),
-                  {}
+                  getBackendEditPagePostUrl(routeInfo.pageUuid),
+                  state
                 )
               )
 
@@ -236,8 +231,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
 
               console.log('res', res)
               if (res.status === 'ERROR') {
-                console.log('error', res.errors)
-                setErrors(res.errors)
+                setErrors(res)
               } else {
                 history.push(`/view/${routeInfo.pageUuid}`)
               }
@@ -245,11 +239,19 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
           >
             Save
           </ButtonSecondary>
-          {errors.count > 0 && (
+          {(errors?.count ?? 0) > 0 && (
             <div className={'text-onError bg-error rounded p-2 mt-4'}>
               There were errors. Go up and correct them.
             </div>
           )}
+
+          {(errors?.global || []).map((errorCode) => {
+            return (
+              <div className={'text-onError bg-error rounded p-2 mt-4'}>
+                {errorCode}
+              </div>
+            )
+          })}
         </div>
       </div>
     </ShellPublic>

@@ -2,7 +2,6 @@
 import fastify0 from 'fastify'
 import {
   EMAIL_DEFAULT_SENDER,
-  JWT_PRIVATE_KEY,
   PGDATABASE,
   PGHOST,
   PGPORT,
@@ -23,40 +22,17 @@ import {
   BACKEND_URL,
   FRONTEND_URL,
   getBackendCreatePagePostUrl,
-  getBackendEditPageGetUrl,
   getBackendListGetUrl,
   getBackendPageDeleteUrl,
-  getBackendSignupPostUrl,
-  InitialPageEditErrors,
-  PostCreateRequest,
-  PostCreateResponse,
-  PostResponseError,
-  PostSignupRequest,
-  PostSignupResponse,
-  Req,
-  shortuuid,
   STAGE,
-  to,
 } from '@hekori/traqrcode-common'
 import fastify_cors from 'fastify-cors'
-import { getDate, isoDatetimeFormatter, getNow } from '@hekori/dates'
-import { createHash, getUnusedShortHash, readReq, writeReq } from './core'
-import { pg } from '../pg'
-import { UserInitializer } from '../../../../libs/traqrcode-common/src/lib/dbModels/types'
-import { sendMail } from './mail'
-import { emailLoginBody, emailLoginSubject } from './templates'
-import { convertListToIdAndObject } from './utils'
-import {
-  createAccessToken,
-  getAccessTokenFromRequest,
-  getLoginUrlForAccessToken,
-  verifyAccessToken,
-} from './middleware/auth'
 import { postSignup } from './endpoints/postSignup'
 import { getEdit } from './endpoints/getEdit'
 import { postCreate } from './endpoints/postCreate'
 import { getList } from './endpoints/getList'
 import { deletePage } from './endpoints/deletePage'
+import { postEdit } from './endpoints/postEdit'
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -97,13 +73,14 @@ api.ready(() => {
 })
 
 api.setErrorHandler((error, request, reply) => {
-  reply.status(500).send({ error })
+  reply.status(500).send({ status: API_CODE.ERROR, error })
 })
 
 api.post('/signup', postSignup)
 api.get('/edit/:pageUuid', getEdit)
-api.post(getBackendCreatePagePostUrl(), postCreate)
-api.get(getBackendListGetUrl(), getList)
+api.post('/edit/:pageUuid', postEdit)
+api.post('/create', postCreate)
+api.get('/list', getList)
 api.delete<{
   Params: {
     pageUuid: string
@@ -111,7 +88,7 @@ api.delete<{
   Headers: {
     Authorization: string
   }
-}>(getBackendPageDeleteUrl({}), {}, deletePage)
+}>('/page/:pageUuid', deletePage)
 
 // Run the server!
 const start = async () => {

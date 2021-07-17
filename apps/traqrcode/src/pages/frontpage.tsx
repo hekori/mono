@@ -7,7 +7,7 @@ import { SectionHeader } from '../components/SectionHeader'
 import { SIGNUP_ROUTE } from '../routings'
 
 export type TypeErrors = {
-  admin?: string
+  email?: string
   global?: string
 }
 

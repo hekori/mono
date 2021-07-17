@@ -113,15 +113,15 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
             {data?.ids.map((pageUuid) => {
               const page = data.idToItem[pageUuid]
               return (
-                <li className="p-4 flex flex-col md:flex-row md:items-center justify-between cursor-pointer hover:bg-touchableHighlight">
-                  <div>
+                <li className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-touchableHighlight">
+                  <span className="md:text-left">
                     <TextLarge>{page.title || '<no title>'}</TextLarge>
                     <br />
                     <TextSmall>
                       {dateFormatter(page.createdAt)}{' '}
                       {timeFormatter(page.createdAt)}
                     </TextSmall>
-                  </div>
+                  </span>
 
                   <div className={'md:flex-1'} />
                   <ButtonFlat
