@@ -28,6 +28,5 @@ export interface GetEditResponse extends PageEditState {}
 export interface PageEditErrors {
   count: number
   global: string[]
-  idToWorker: KeyToStringArray
-  idToItem: KeyToStringArray
+  field: Record<string, string[]>
 }

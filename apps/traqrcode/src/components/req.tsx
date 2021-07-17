@@ -34,13 +34,20 @@ export const Req = ({
   const { state: globalState } = useGlobal()
   const item = state.uuidToPageItem[pageItemUuid]
   console.log('errors', errors)
-  let titleErrors = errors?.idToItem?.[pageItemUuid]
-  if (item.title.length > MAX_QR_TITLE_LENGTH)
-    titleErrors = [API_CODE.ERROR_TITLE_TOO_LONG]
+  const titleErrors = errors?.field?.[`${pageItemUuid}---title`] ?? []
+  const subTitleErrors = errors?.field?.[`${pageItemUuid}---subTitle`] ?? []
 
-  let subTitleErrors = errors?.idToItem?.[pageItemUuid]
-  if (item.subTitle.length > MAX_QR_TITLE_LENGTH)
-    subTitleErrors = [API_CODE.ERROR_SUBTITLE_TOO_LONG]
+  // if (
+  //   item.title.length > MAX_QR_TITLE_LENGTH &&
+  //   !titleErrors.includes(API_CODE.ERROR_TITLE_TOO_LONG)
+  // )
+  //   titleErrors = [API_CODE.ERROR_TITLE_TOO_LONG]
+  //
+  // if (
+  //   item.subTitle.length > MAX_QR_TITLE_LENGTH &&
+  //   !titleErrors.includes(API_CODE.ERROR_SUBTITLE_TOO_LONG)
+  // )
+  //   subTitleErrors = [API_CODE.ERROR_SUBTITLE_TOO_LONG]
 
   return (
     <li className="px-4 py-4">
@@ -67,7 +74,11 @@ export const Req = ({
             // reset errors
             const newErrors = {
               ...errors,
-              ...{ ...errors.idToItem, [pageItemUuid]: undefined },
+              ...{
+                ...errors.field,
+                [`${pageItemUuid}---title`]: undefined,
+                [`${pageItemUuid}---subTitle`]: undefined,
+              },
             }
             setErrors(newErrors)
           }}
