@@ -4,6 +4,8 @@ import {
 } from '../middleware/auth'
 import {
   API_CODE,
+  MAX_QR_SUBTITLE_LENGTH,
+  MAX_QR_TITLE_LENGTH,
   PageEditErrors,
   PageItemInitializer,
   PageWorkerInitializer,
@@ -27,8 +29,7 @@ export const postEdit = async (request, reply) => {
   if (!decoded) {
     const responseData: PageEditErrors & PostResponseBase = {
       count: 1,
-      idToItem: {},
-      idToWorker: {},
+      field: {},
       status: API_CODE.ERROR,
       global: [API_CODE.ERROR_INVALID_ACCESS_TOKEN],
     }
@@ -45,8 +46,7 @@ export const postEdit = async (request, reply) => {
   if (!page) {
     const responseData: PageEditErrors & PostResponseBase = {
       count: 1,
-      idToItem: {},
-      idToWorker: {},
+      field: {},
       status: API_CODE.ERROR,
       global: [API_CODE.ERROR_NOT_FOUND],
     }
@@ -56,8 +56,7 @@ export const postEdit = async (request, reply) => {
   // input validation
   let inputValidationErrors: PageEditErrors = {
     count: 0,
-    idToItem: {},
-    idToWorker: {},
+    field: {},
     global: [],
   }
 
@@ -80,29 +79,44 @@ export const postEdit = async (request, reply) => {
   // check that all workers have a valid email address
   for (const pageWorkerUuid of body.pageWorkerUuids) {
     if (!body.uuidToPageWorker[pageWorkerUuid].email.includes('@')) {
-      inputValidationErrors = {
-        ...inputValidationErrors,
-        count: inputValidationErrors.count + 1,
-        idToWorker: {
-          ...inputValidationErrors.idToWorker,
-          [pageWorkerUuid]: [API_CODE.ERROR_INVALID_EMAIL],
-        },
-      }
+      inputValidationErrors.count += 1
+      inputValidationErrors.field[pageWorkerUuid] = [
+        API_CODE.ERROR_INVALID_EMAIL,
+      ]
     }
   }
 
   // check that all pageItems are valid
-  for (const pageWorkerUuid of body.pageWorkerUuids) {
-    if (!body.uuidToPageWorker[pageWorkerUuid].email.includes('@')) {
-      inputValidationErrors = {
-        ...inputValidationErrors,
-        count: inputValidationErrors.count + 1,
-        idToWorker: {
-          ...inputValidationErrors.idToWorker,
-          [pageWorkerUuid]: [API_CODE.ERROR_INVALID_EMAIL],
-        },
-      }
+  for (const pageItemUuid of body.pageItemUuids) {
+    const pageItem = body.uuidToPageItem[pageItemUuid]
+    console.log('pageItem', pageItem)
+
+    if (pageItem.title.length === 0) {
+      inputValidationErrors.count += 1
+      inputValidationErrors.field[`${pageItemUuid}---title`] = [
+        API_CODE.ERROR_EMPTY_TITLE,
+      ]
     }
+    if (pageItem.title.length > MAX_QR_TITLE_LENGTH) {
+      inputValidationErrors.count += 1
+      inputValidationErrors.field[`${pageItemUuid}---title`] = [
+        API_CODE.ERROR_TITLE_TOO_LONG,
+      ]
+    }
+
+    if (pageItem.subTitle.length > MAX_QR_SUBTITLE_LENGTH) {
+      inputValidationErrors.count += 1
+      inputValidationErrors.field[`${pageItemUuid}---subTitle`] = [
+        API_CODE.ERROR_SUBTITLE_TOO_LONG,
+      ]
+    }
+  }
+  if (body.pageItemUuids.length === 0) {
+    inputValidationErrors.count += 1
+    inputValidationErrors.global = [
+      ...inputValidationErrors.global,
+      API_CODE.ERROR_EMPTY_ITEMS_LIST,
+    ]
   }
 
   if (inputValidationErrors.count > 0) {
@@ -113,7 +127,6 @@ export const postEdit = async (request, reply) => {
   }
 
   // update
-
   await pg('page')
     .where({ createdBy: userUuid, pageUuid: request.params.pageUuid })
     .update({ title: body.title })

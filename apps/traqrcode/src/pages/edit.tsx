@@ -47,8 +47,7 @@ export const createNewItem = ({ state }: CreateNewItemArgs): PageEditState => {
 
 export const InitialPageEditErrors: PageEditErrors = {
   count: 0,
-  idToWorker: {},
-  idToItem: {},
+  field: {},
   global: [],
 }
 export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
@@ -166,7 +165,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
                           },
                         })
                       }}
-                      errors={errors?.idToWorker?.[pageWorkerUuid] ?? []}
+                      errors={errors?.field?.[pageWorkerUuid]}
                       value={state.uuidToPageWorker[pageWorkerUuid].email}
                     />
 
