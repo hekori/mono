@@ -8,7 +8,7 @@ import {
   PostResponseBase,
 } from '@hekori/traqrcode-common'
 
-export interface PostEditRequest {}
+export interface PostEditRequest extends PageEditState {}
 
 export interface PostEditResponse extends PostResponseBase {
   // pageUuid: string

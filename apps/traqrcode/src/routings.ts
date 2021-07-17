@@ -35,6 +35,10 @@ export type EditRouteInfo = {
   pageUuid: string
 }
 
+export type ViewRouteInfo = {
+  pageUuid: string
+}
+
 export const editRoute = ({ pageUuid }: EditRouteInfo) => {
   return `/edit/${pageUuid}`
 }
@@ -55,14 +59,13 @@ export const viewRoute = ({ shortHash, accessToken }: AdminRouteInfo) => {
   return `/view/${shortHash}/${accessToken}`
 }
 
-export const viewRegex = (pathname: string): AdminRouteInfo | null => {
-  const pattern = /\/view\/(?<shortHash>.*)\/(?<accessToken>.*)/
+export const viewRegex = (pathname: string): ViewRouteInfo | null => {
+  const pattern = /\/view\/(?<pageUuid>.*)/
   // console.log(pathname.match(pattern));
   const groups = pathname.match(pattern)?.groups
   if (groups) {
     return {
-      shortHash: groups.shortHash,
-      accessToken: groups.accessToken,
+      pageUuid: groups.pageUuid,
     }
   }
   return null

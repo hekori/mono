@@ -4,14 +4,13 @@ import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
 import { dl } from '../dl'
 import { Loading } from '../components/Loading'
-import { BACKEND_URL } from '../../../../libs/traqrcode-common/src/lib/settings'
-import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
+import { BACKEND_URL, to } from '@hekori/traqrcode-common'
 import { ButtonSecondary } from '@hekori/uikit'
-import { AdminRouteInfo } from '../routings'
+import { ViewRouteInfo } from '../routings'
 import { useGlobal } from '../index.provider'
 
 type PropsPageView = {
-  routeInfo: AdminRouteInfo
+  routeInfo: ViewRouteInfo
 }
 
 export const PageView = ({ routeInfo }: PropsPageView) => {
@@ -20,12 +19,12 @@ export const PageView = ({ routeInfo }: PropsPageView) => {
 
   const download = async () => {
     setLoading(true)
-    const [err, res] = await to(api.getBlob(`/pdf/${routeInfo.shortHash}`))
+    const [err, res] = await to(api.getBlob(`/pdf/${routeInfo.pageUuid}`))
     setLoading(false)
     if (err) {
       console.log('error', err)
     } else {
-      await dl(res, `${routeInfo.shortHash}.pdf`)
+      await dl(res, `${routeInfo.pageUuid}.pdf`)
     }
   }
 
@@ -37,32 +36,28 @@ export const PageView = ({ routeInfo }: PropsPageView) => {
 
   return (
     <ShellPublic>
-      <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
-        <div className="container max-w-5xl mx-auto m-8 p-4">
-          <ButtonSecondary className="min-w-full mb-4" onClick={download}>
-            Download PDF
-          </ButtonSecondary>
+      <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen mt-12">
+        <ButtonSecondary className="min-w-full mb-4" onClick={download}>
+          Download PDF
+        </ButtonSecondary>
 
-          <ButtonSecondary
-            className="min-w-full mb-4"
-            onClick={() => {
-              window.location.href = `${BACKEND_URL}/pdf/${routeInfo.shortHash}`
-            }}
-          >
-            View PDF
-          </ButtonSecondary>
+        <ButtonSecondary
+          className="min-w-full mb-4"
+          onClick={() => {
+            window.location.href = `${BACKEND_URL}/pdf/${routeInfo.pageUuid}`
+          }}
+        >
+          View PDF
+        </ButtonSecondary>
 
-          <ButtonSecondary
-            className="min-w-full mb-4"
-            onClick={() => {
-              history.push(
-                `/edit/${routeInfo.shortHash}/${routeInfo.accessToken}`
-              )
-            }}
-          >
-            Edit
-          </ButtonSecondary>
-        </div>
+        <ButtonSecondary
+          className="min-w-full mb-4"
+          onClick={() => {
+            history.push(`/edit/${routeInfo.pageUuid}`)
+          }}
+        >
+          Edit
+        </ButtonSecondary>
       </div>
     </ShellPublic>
   )

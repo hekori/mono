@@ -65,15 +65,15 @@ export const getEdit = async (request, reply) => {
   )
   const pageWorkerData = convertListToIdAndObject<PageWorker>(
     pageWorkers,
-    'eamil'
+    'pageWorkerUuid'
   )
 
   const returnValue: GetEditResponse = {
     pageUuid: page.pageUuid,
     title: page.title,
     pageItemUuids: pageItemData.ids,
+    pageWorkerUuids: pageWorkerData.ids,
     uuidToPageItem: pageItemData.idToItem,
-    pageWorkerEmails: pageWorkerData.ids,
     uuidToPageWorker: pageWorkerData.idToItem,
   }
 

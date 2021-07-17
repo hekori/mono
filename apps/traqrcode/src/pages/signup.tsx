@@ -1,12 +1,10 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { GlobalContext, useGlobal } from '../index.provider'
+import { useGlobal } from '../index.provider'
 import { ShellPublic } from '../components/ShellPublic'
 import { TypeErrors } from './frontpage'
 import {
-  getBackendLoginPostUrl,
   getBackendSignupPostUrl,
-  PostLoginResponse,
   PostSignupResponse,
   to,
 } from '@hekori/traqrcode-common'
@@ -17,8 +15,13 @@ import {
   TextNormal,
 } from '@hekori/uikit'
 import { ExclamationIcon } from '@heroicons/react/outline'
-import { humanReadableTimeDifference, getNow } from '@hekori/dates'
+import { getNow, humanReadableTimeDifference } from '@hekori/dates'
 import { Container } from '../components/Container'
+import { useForm } from 'react-hook-form'
+
+interface FormInput {
+  email: string
+}
 
 export const Step2: React.FC<
   Required<Pick<PostSignupResponse, 'email' | 'emailSentAt'>> & {
@@ -76,6 +79,12 @@ export const PageSignup = () => {
   const { state, setState, api } = useGlobal()
   const [errors, setErrors] = useState<TypeErrors>({})
   const [submitting, setSubmitting] = useState<boolean>(false)
+  const {
+    register,
+    handleSubmit,
+    watch,
+    formState: { errors: formErrors },
+  } = useForm()
 
   const [serverResponse, setServerResponse] = useState<
     PostSignupResponse | undefined
@@ -93,7 +102,41 @@ export const PageSignup = () => {
         setServerResponse={setServerResponse}
       />
     )
-  else
+  else {
+    const onSubmit = async (e: FormInput) => {
+      console.log('submitting')
+
+      // front end validation
+      if (!state.email || submitting) return
+
+      setSubmitting(true)
+      const [err, res] = await to(
+        api.post(getBackendSignupPostUrl(), {
+          email: state.email,
+        })
+      )
+      setSubmitting(false)
+
+      console.log(err, res)
+
+      if (err) {
+        console.log(err, res)
+        setErrors({
+          ...errors,
+          global: 'UNKNOWN_ERROR',
+        })
+        return
+      }
+
+      if (res.status === 'ERROR') {
+        console.log('error', res.errors)
+        setErrors(res.errors)
+      } else {
+        setServerResponse(res)
+        // history.push(`/edit/${res.shortHash}/${res.accessToken}`)
+      }
+    }
+
     return (
       <ShellPublic>
         <Container>
@@ -105,43 +148,7 @@ export const PageSignup = () => {
           </h3>
 
           <div className="flex-1 flex justify-start flex-col mt-12">
-            <form
-              className="flex-1 flex-col"
-              onSubmit={async (e) => {
-                console.log('submitting')
-                e.preventDefault()
-
-                // front end validation
-                if (!state.email || submitting) return
-
-                setSubmitting(true)
-                const [err, res] = await to(
-                  api.post(getBackendSignupPostUrl(), {
-                    email: state.email,
-                  })
-                )
-                setSubmitting(false)
-
-                console.log(err, res)
-
-                if (err) {
-                  console.log(err, res)
-                  setErrors({
-                    ...errors,
-                    global: 'UNKNOWN_ERROR',
-                  })
-                  return
-                }
-
-                if (res.status === 'ERROR') {
-                  console.log('error', res.errors)
-                  setErrors(res.errors)
-                } else {
-                  setServerResponse(res)
-                  // history.push(`/edit/${res.shortHash}/${res.accessToken}`)
-                }
-              }}
-            >
+            <form className="flex-1 flex-col" onSubmit={handleSubmit(onSubmit)}>
               <Input
                 placeholder={'Enter your email'}
                 className="text-xl"
@@ -177,4 +184,5 @@ export const PageSignup = () => {
         </Container>{' '}
       </ShellPublic>
     )
+  }
 }
