@@ -6,7 +6,7 @@ import {
   to,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
-import { UserInitializer } from '../../../../../libs/traqrcode-common/src/lib/dbModels/types'
+import { UserInitializer } from '@hekori/traqrcode-common'
 import {
   createAccessToken,
   getLoginUrlForAccessToken,
@@ -33,7 +33,7 @@ export const postSignup = async (request, reply) => {
   }
 
   if (Object.keys(errors).length > 0) {
-    reply.code(400).send({
+    return reply.code(422).send({
       [API_CODE.status]: API_CODE.ERROR,
       [API_CODE.errors]: errors,
     })

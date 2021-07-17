@@ -36,7 +36,10 @@ export const getFileExtension = (p: string) => {
   return p.split('.').pop()
 }
 
-export const convertListToIdAndObject = (rows: any[], identifier: string) => {
+export const convertListToIdAndObject = <T>(
+  rows: T[],
+  identifier: string
+): { ids: string[]; idToItem: Record<string, T> } => {
   const returnValue = {
     ids: [],
     idToItem: {},

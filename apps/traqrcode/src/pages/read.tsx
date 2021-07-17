@@ -4,7 +4,7 @@ import { GlobalContext, useGlobal } from '../index.provider'
 import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
 import { Loading } from '../components/Loading'
-import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/models'
+import { Task } from '../../../../libs/traqrcode-common/src/lib/interfaces/old'
 import { to } from '../../../../libs/traqrcode-common/src/lib/misc'
 import { ReadRouteInfo } from '../routings'
 

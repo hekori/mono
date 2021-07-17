@@ -41,12 +41,14 @@ export interface PageItemInitializer {
 }
 
 export interface PageWorker {
+  pageWorkerUuid: string
   email: string
   pageUuid: string
   createdAt: string
 }
 
 export interface PageWorkerInitializer {
+  pageWorkerUuid?: string
   email: string
   pageUuid: string
   createdAt?: string

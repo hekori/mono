@@ -2,7 +2,7 @@ import { BrowserRouter as Router, useHistory } from 'react-router-dom'
 import * as React from 'react'
 import { useEffect, useLayoutEffect } from 'react'
 import { KeyToString } from '../../../libs/traqrcode-common/src/lib/interfaces/generic'
-import { Item } from '../../../libs/traqrcode-common/src/lib/interfaces/models'
+import { Item } from '../../../libs/traqrcode-common/src/lib/interfaces/old'
 import { applyTheme } from '@hekori/uikit'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Api } from './api'
@@ -10,7 +10,7 @@ import { Api } from './api'
 export const initialState: State = {
   shortHash: '',
   accessToken: '',
-  admin: '',
+  email: '',
   workerIds: [],
   idToWorker: {},
   idToItem: {},
@@ -21,7 +21,7 @@ export const initialState: State = {
 export interface State {
   shortHash: string
   accessToken: string
-  admin: string
+  email: string
   idToWorker: KeyToString
   workerIds: string[]
   idToItem: { [index: string]: Item }
