@@ -1,3 +1,7 @@
+export interface GetResponseBase {
+  status: string
+}
+
 export interface PostResponseBase {
   status: string
 }

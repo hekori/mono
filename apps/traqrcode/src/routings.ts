@@ -71,20 +71,19 @@ export const viewRegex = (pathname: string): ViewRouteInfo | null => {
   return null
 }
 export type ReadRouteInfo = {
-  shortHash: string
-  itemId: string
+  pageItemUuid: string
 }
 
-export const readRoute = ({ shortHash, itemId }: ReadRouteInfo) => {
-  return `/read/${shortHash}/${itemId}`
+export const readRoute = ({ pageItemUuid }: ReadRouteInfo) => {
+  return `/read/${pageItemUuid}`
 }
 
 export const readRegex = (pathname: string): ReadRouteInfo | null => {
-  const pattern = /\/read\/(?<shortHash>.*)\/(?<itemId>.*)/
+  const pattern = /\/read\/(?<pageItemUuid>.*)/
   // console.log(pathname.match(pattern));
   const groups = pathname.match(pattern)?.groups
   if (groups) {
-    return { shortHash: groups.shortHash, itemId: groups.itemId }
+    return { pageItemUuid: groups.pageItemUuid }
   }
   return null
 }
