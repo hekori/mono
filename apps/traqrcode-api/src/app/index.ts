@@ -34,6 +34,7 @@ import { getList } from './endpoints/getList'
 import { deletePage } from './endpoints/deletePage'
 import { postEdit } from './endpoints/postEdit'
 import { getPdf } from './endpoints/getPdf'
+import { getRead } from './endpoints/getRead'
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -74,12 +75,15 @@ api.ready(() => {
 })
 
 api.setErrorHandler((error, request, reply) => {
+  console.error(error)
+
   reply.status(500).send({ status: API_CODE.ERROR, error })
 })
 
 api.get('/list', getList)
 api.get('/edit/:pageUuid', getEdit)
 api.get('/pdf/:pageUuid', getPdf)
+api.get('/read/:pageItemUuid', getRead)
 api.post('/signup', postSignup)
 api.post('/edit/:pageUuid', postEdit)
 api.post('/create', postCreate)

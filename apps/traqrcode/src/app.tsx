@@ -34,6 +34,7 @@ import {
   TaskRouteInfo,
   TERMS_ROUTE,
   viewRegex,
+  ViewRouteInfo,
 } from './routings'
 
 export const App = () => {
@@ -72,7 +73,7 @@ export const App = () => {
   if (editRouteInfo) return <PageEdit routeInfo={editRouteInfo} />
 
   // page view
-  const viewRouteInfo: AdminRouteInfo | null = viewRegex(location.pathname)
+  const viewRouteInfo: ViewRouteInfo | null = viewRegex(location.pathname)
   if (viewRouteInfo) return <PageView routeInfo={viewRouteInfo} />
 
   // page read

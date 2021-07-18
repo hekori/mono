@@ -13,7 +13,7 @@ type PropsPageView = {
   routeInfo: ViewRouteInfo
 }
 
-export const PageView = ({ routeInfo }: PropsPageView) => {
+export const PageView: React.FC<PropsPageView> = ({ routeInfo }) => {
   const { api } = useGlobal()
   const [loading, setLoading] = useState<boolean>(false)
 
