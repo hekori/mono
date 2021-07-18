@@ -22,8 +22,7 @@ export interface TaskRouteInfo {
 }
 
 export interface ReadRouteInfo {
-  shortHash: string
-  itemId: string
+  pageItemUuid: string
 }
 
 export interface EditRouteInfo {
@@ -52,9 +51,7 @@ export const getFrontendReadUrl = (
   routeInfo: ReadRouteInfo,
   addBaseUrl = false
 ): string => {
-  return `${addBaseUrl ? FRONTEND_URL : ''}/read/${routeInfo.shortHash}/${
-    routeInfo.itemId
-  }`
+  return `${addBaseUrl ? FRONTEND_URL : ''}/read/${routeInfo.pageItemUuid}`
 }
 
 export const getFrontendTaskUrl = (
