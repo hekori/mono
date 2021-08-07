@@ -14,10 +14,9 @@ import { PageSignup } from './pages/signup'
 import { ActRouteInfo } from '@hekori/traqrcode-common'
 import { PagePricing } from './pages/pricing'
 import { PageCheckLogin } from './pages/checklogin'
-import { PageList } from './pages/list'
+import { PageList } from './pages/PageList'
 import {
   actRegex,
-  AdminRouteInfo,
   CheckLoginRouteInfo,
   editRegex,
   EditRouteInfo,

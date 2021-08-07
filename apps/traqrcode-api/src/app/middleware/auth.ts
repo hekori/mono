@@ -1,5 +1,6 @@
 import { FRONTEND_URL, JWT_PRIVATE_KEY } from '../settings'
 import { FastifyRequest } from 'fastify'
+import { AuthenticationError } from '../errors'
 import jwt = require('jsonwebtoken')
 
 export const createAccessToken = (
@@ -20,14 +21,15 @@ export const getAccessTokenFromRequest = (request: FastifyRequest) => {
 export const verifyAccessToken = (
   accessToken: string,
   privateKey = JWT_PRIVATE_KEY
-): { userUuid: string } | undefined => {
+): { userUuid: string } => {
   try {
     const s = jwt.verify(accessToken, privateKey)
     console.log(s)
     return s
   } catch (e) {
     console.error(e)
-    return undefined
+    console.error('throwing AuthenticationError')
+    throw new AuthenticationError()
   }
 }
 export const getLoginUrlForAccessToken = (accessToken: string): string => {

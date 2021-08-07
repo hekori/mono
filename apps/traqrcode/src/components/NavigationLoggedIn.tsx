@@ -2,12 +2,13 @@ import { useHistory } from 'react-router-dom'
 import * as React from 'react'
 import { useState } from 'react'
 import { LogoTraqrcode } from '../assets/LogoTraqrcode'
-import { ButtonFlat, ButtonPrimary, themes } from '@hekori/uikit'
+import { ButtonFlat, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
-import { HOMEPAGE_ROUTE, PRICING_ROUTE, SIGNUP_ROUTE } from '../routings'
+import { logout } from '../utils'
+import { listRoute } from '../routings'
 
-export const NavigationPublic = () => {
+export const NavigationLoggedIn = () => {
   const history = useHistory()
   const { state, setState } = useGlobal()
 
@@ -84,51 +85,28 @@ export const NavigationPublic = () => {
 
           <li className="mr-3">
             <ButtonFlat
-              aria-label="Go to home page"
+              aria-label="List"
               className={
-                window.location.pathname === HOMEPAGE_ROUTE ? 'underline' : ''
+                window.location.pathname.startsWith(listRoute())
+                  ? 'underline'
+                  : ''
               }
-              onClick={() => history.push(HOMEPAGE_ROUTE)}
+              onClick={() => history.push(listRoute())}
             >
-              Home
+              List
             </ButtonFlat>
           </li>
 
           <li className="mr-3">
             <ButtonFlat
-              aria-label="Go to pricing page"
-              className={
-                window.location.pathname.startsWith(PRICING_ROUTE)
-                  ? 'underline'
-                  : ''
-              }
-              onClick={() => history.push(PRICING_ROUTE)}
+              aria-label="Logout"
+              onClick={() => {
+                logout()
+                setState({ ...state })
+              }}
             >
-              Pricing
+              Logout
             </ButtonFlat>
-          </li>
-
-          <li className="mr-3">
-            <ButtonFlat
-              aria-label="Login"
-              className={
-                window.location.pathname.startsWith(SIGNUP_ROUTE)
-                  ? 'underline'
-                  : ''
-              }
-              onClick={() => history.push(SIGNUP_ROUTE)}
-            >
-              Login
-            </ButtonFlat>
-          </li>
-
-          <li className="mr-3">
-            <ButtonPrimary
-              aria-label="Create QR Code"
-              onClick={() => history.push(SIGNUP_ROUTE)}
-            >
-              Create QR Code
-            </ButtonPrimary>
           </li>
         </ul>
       </div>

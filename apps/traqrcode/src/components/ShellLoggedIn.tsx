@@ -1,16 +1,16 @@
 import * as React from 'react'
 import { Footer } from './Footer'
-import { NavigationPublic } from './NavigationPublic'
 import { useScrollToTop } from '../hooks/scrollToTop'
 import { Helmet } from 'react-helmet'
 import { LoadingContent } from './LoadingContent'
+import { NavigationLoggedIn } from './NavigationLoggedIn'
 
 type ShellProps = {
   children: any
   loading?: boolean
 }
 
-export const ShellPublic = ({ children, loading = false }: ShellProps) => {
+export const ShellLoggedIn = ({ children, loading = false }: ShellProps) => {
   useScrollToTop()
 
   return (
@@ -19,7 +19,7 @@ export const ShellPublic = ({ children, loading = false }: ShellProps) => {
         <title>TRAQRCODE</title>
         <meta name="description" content="Track QR code scans." />
       </Helmet>
-      <NavigationPublic />
+      <NavigationLoggedIn />
       {loading ? <LoadingContent /> : children}
       <Footer />
     </div>
