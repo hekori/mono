@@ -21,9 +21,6 @@ import {
   API_CODE,
   BACKEND_URL,
   FRONTEND_URL,
-  getBackendCreatePagePostUrl,
-  getBackendListGetUrl,
-  getBackendPageDeleteUrl,
   STAGE,
 } from '@hekori/traqrcode-common'
 import fastify_cors from 'fastify-cors'
@@ -35,6 +32,7 @@ import { deletePage } from './endpoints/deletePage'
 import { postEdit } from './endpoints/postEdit'
 import { getPdf } from './endpoints/getPdf'
 import { getRead } from './endpoints/getRead'
+import { AuthenticationError } from './errors'
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -77,7 +75,13 @@ api.ready(() => {
 api.setErrorHandler((error, request, reply) => {
   console.error(error)
 
-  reply.status(500).send({ status: API_CODE.ERROR, error })
+  if (error instanceof AuthenticationError) {
+    return reply
+      .status(401)
+      .send({ status: API_CODE.ERROR_INVALID_ACCESS_TOKEN })
+  }
+
+  return reply.status(500).send({ status: API_CODE.ERROR, error })
 })
 
 api.get('/list', getList)

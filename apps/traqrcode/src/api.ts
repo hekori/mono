@@ -1,7 +1,25 @@
 import { BACKEND_URL } from '../../../libs/traqrcode-common/src/lib/settings'
 import { environment } from './environments/environment'
+import { API_CODE, ResponseBase } from '@hekori/traqrcode-common'
 
 export class Api {
+  redirectToHome() {
+    window.location.href = '/'
+  }
+
+  logout() {
+    localStorage.removeItem(environment.getAccessTokenLocalStorageKey())
+  }
+
+  checkLoggedIn(response: ResponseBase) {
+    if (response.status == API_CODE.ERROR_INVALID_ACCESS_TOKEN) {
+      this.logout()
+      this.redirectToHome()
+      return false
+    }
+    return true
+  }
+
   async get(url: string) {
     const response = await fetch(BACKEND_URL + url, {
       method: 'get',
@@ -12,7 +30,9 @@ export class Api {
         )}`,
       },
     })
-    return response.json()
+    const returnValue = await response.json()
+    this.checkLoggedIn(returnValue)
+    return returnValue
   }
 
   async getBlob(url: string) {
@@ -40,6 +60,7 @@ export class Api {
       body: JSON.stringify(json),
     })
     const returnValue = await response.json()
+    this.checkLoggedIn(returnValue)
     return returnValue as Promise<ReturnType>
   }
 
@@ -54,6 +75,7 @@ export class Api {
       },
     })
     const returnValue = await response.json()
+    this.checkLoggedIn(returnValue)
     return returnValue
   }
 }

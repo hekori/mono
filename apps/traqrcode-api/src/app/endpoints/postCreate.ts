@@ -7,6 +7,7 @@ import {
   PostCreateRequest,
   PostCreateResponse,
   PostResponseError,
+  ResponseBase,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
 import { createRandomName } from '../randomNames'
@@ -20,12 +21,13 @@ export const postCreate = async (request, reply) => {
   const decoded = verifyAccessToken(accessToken)
 
   if (!decoded) {
-    const responseData: PostResponseError = {
-      status: API_CODE.ERROR,
-      errors: [API_CODE.ERROR_INVALID_ACCESS_TOKEN],
+    const responseData: ResponseBase = {
+      status: API_CODE.ERROR_INVALID_ACCESS_TOKEN,
     }
     return reply.status(422).send(responseData)
   }
+
+  console.log('decoded', decoded)
 
   const data = request.body as PostCreateRequest
   const createdBy = decoded.userUuid
@@ -56,6 +58,6 @@ export const postCreate = async (request, reply) => {
       errors: [e.toString()],
     }
 
-    return reply.status(422).send(responseData)
+    return reply.status(400).send(responseData)
   }
 }

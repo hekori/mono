@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { useGlobal } from '../index.provider'
 import { Container } from '../components/Container'
-import { ShellPublic } from '../components/ShellPublic'
 import { editRoute, ListRouteInfo } from '../routings'
 import {
   API_CODE,
@@ -13,16 +12,11 @@ import {
   PostCreateResponse,
 } from '@hekori/traqrcode-common'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
-import {
-  ButtonFlat,
-  Input,
-  TextLarge,
-  TextSmall,
-  TextSubtitle,
-} from '@hekori/uikit'
+import { ButtonFlat, TextLarge, TextSmall } from '@hekori/uikit'
 import { PencilIcon, TrashIcon } from '@heroicons/react/outline'
 import { useHistory } from 'react-router-dom'
 import { dateFormatter, timeFormatter } from '@hekori/dates'
+import { ShellLoggedIn } from '../components/ShellLoggedIn'
 
 interface PropsPageList {
   routeInfo: ListRouteInfo
@@ -104,13 +98,13 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
   console.log('isLoading', isLoading)
 
   return (
-    <ShellPublic loading={isLoading}>
+    <ShellLoggedIn loading={isLoading}>
       <Container>
         <div className="bg-document2 text-onDocument2 shadow overflow-hidden sm:rounded-md">
           <ul className="divide-y divide-divider">
             {error && <div>An error has occurred: {error}</div>}
 
-            {data?.ids.map((pageUuid) => {
+            {data?.ids?.map((pageUuid) => {
               const page = data.idToItem[pageUuid]
               return (
                 <li className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-touchableHighlight">
@@ -167,6 +161,6 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
           </ul>
         </div>
       </Container>
-    </ShellPublic>
+    </ShellLoggedIn>
   )
 }
