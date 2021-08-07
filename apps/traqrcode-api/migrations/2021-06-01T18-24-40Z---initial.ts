@@ -22,22 +22,23 @@ ALTER TABLE "pageItem" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time 
 ALTER TABLE "pageItem" ADD COLUMN IF NOT EXISTS "title" VARCHAR(26) NOT NULL;
 ALTER TABLE "pageItem" ADD COLUMN IF NOT EXISTS "subTitle" VARCHAR(512) NOT NULL DEFAULT '';
 
-CREATE TABLE IF NOT EXISTS "pageItemProgress"();
-ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "pageItemProgressUuid" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
-ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "pageItemUuid" UUID REFERENCES "pageItem" ("pageItemUuid");
-ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "status" VARCHAR(8) NOT NULL;
-
 CREATE TABLE IF NOT EXISTS "pageWorker"();
 ALTER TABLE "pageWorker" ADD COLUMN IF NOT EXISTS "pageWorkerUuid" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
 ALTER TABLE "pageWorker" ADD COLUMN IF NOT EXISTS "pageUuid" UUID REFERENCES "page" ("pageUuid");
 ALTER TABLE "pageWorker" ADD COLUMN IF NOT EXISTS "email" VARCHAR(256) NOT NULL;
 ALTER TABLE "pageWorker" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP;
 
+CREATE TABLE IF NOT EXISTS "pageItemProgress"();
+ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "pageItemProgressUuid" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
+ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "pageItemUuid" UUID REFERENCES "pageItem" ("pageItemUuid");
+ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "pageWorkerUuid" UUID REFERENCES "pageWorker" ("pageWorkerUuid");
+ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP;
+ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "startedAt" timestamp with time zone NULL DEFAULT NULL;
+ALTER TABLE "pageItemProgress" ADD COLUMN IF NOT EXISTS "finishedAt" timestamp with time zone NULL DEFAULT NULL;
+
+
 ALTER TABLE "user" ADD CONSTRAINT unique_user_email UNIQUE ("email");
-
 `
-
   await trx.raw(cmd)
 }
 
