@@ -2,7 +2,7 @@ import * as React from 'react'
 import { useEffect, useState } from 'react'
 import { useGlobal } from '../index.provider'
 import { ShellPublic } from '../components/ShellPublic'
-import { TypeErrors } from './frontpage'
+import { TypeErrors } from './PageFrontpage'
 import {
   getBackendSignupPostUrl,
   PostSignupResponse,

@@ -1,11 +1,10 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { ShellPublic } from '../components/ShellPublic'
 import { useGlobal } from '../index.provider'
 import { Req } from '../components/req'
 
 import { useHistory } from 'react-router-dom'
-import { PageError404 } from './error404'
+import { PageError404 } from './PageError404'
 import { Loading } from '../components/Loading'
 import {
   API_CODE,
@@ -24,6 +23,7 @@ import { EditRouteInfo } from '../routings'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { useQuery } from 'react-query'
 import { PageEditState } from '../../../../libs/traqrcode-common/src/lib/interfaces/edit'
+import { ShellLoggedIn } from '../components/ShellLoggedIn'
 
 type PropsPageEdit = {
   routeInfo: EditRouteInfo
@@ -82,7 +82,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
     return <PageError404 />
 
   return (
-    <ShellPublic>
+    <ShellLoggedIn>
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
         <div className="mt-8">
           <TextSubtitle>Name your print</TextSubtitle>
@@ -253,6 +253,6 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
           })}
         </div>
       </div>
-    </ShellPublic>
+    </ShellLoggedIn>
   )
 }

@@ -5,7 +5,13 @@ import { LogoTraqrcode } from '../assets/LogoTraqrcode'
 import { ButtonFlat, ButtonPrimary, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
-import { HOMEPAGE_ROUTE, PRICING_ROUTE, SIGNUP_ROUTE } from '../routings'
+import { isLoggedIn, logout } from '../utils'
+import {
+  HOMEPAGE_ROUTE,
+  listRoute,
+  PRICING_ROUTE,
+  SIGNUP_ROUTE,
+} from '../routings'
 
 export const NavigationPublic = () => {
   const history = useHistory()
@@ -108,28 +114,62 @@ export const NavigationPublic = () => {
             </ButtonFlat>
           </li>
 
-          <li className="mr-3">
-            <ButtonFlat
-              aria-label="Login"
-              className={
-                window.location.pathname.startsWith(SIGNUP_ROUTE)
-                  ? 'underline'
-                  : ''
-              }
-              onClick={() => history.push(SIGNUP_ROUTE)}
-            >
-              Login
-            </ButtonFlat>
-          </li>
+          {!isLoggedIn() && (
+            <li className="mr-3">
+              <ButtonFlat
+                aria-label="Login"
+                className={
+                  window.location.pathname.startsWith(SIGNUP_ROUTE)
+                    ? 'underline'
+                    : ''
+                }
+                onClick={() => history.push(SIGNUP_ROUTE)}
+              >
+                Login
+              </ButtonFlat>
+            </li>
+          )}
 
-          <li className="mr-3">
-            <ButtonPrimary
-              aria-label="Create QR Code"
-              onClick={() => history.push(SIGNUP_ROUTE)}
-            >
-              Create QR Code
-            </ButtonPrimary>
-          </li>
+          {isLoggedIn() && (
+            <li className="mr-3">
+              <ButtonFlat
+                aria-label="List"
+                className={
+                  window.location.pathname.startsWith(listRoute())
+                    ? 'underline'
+                    : ''
+                }
+                onClick={() => history.push(listRoute())}
+              >
+                List
+              </ButtonFlat>
+            </li>
+          )}
+
+          {!isLoggedIn() && (
+            <li className="mr-3">
+              <ButtonPrimary
+                aria-label="Create QR Code"
+                onClick={() => history.push(SIGNUP_ROUTE)}
+              >
+                Create QR Code
+              </ButtonPrimary>
+            </li>
+          )}
+
+          {isLoggedIn() && (
+            <li className="mr-3">
+              <ButtonFlat
+                aria-label="Logout"
+                onClick={() => {
+                  logout()
+                  setState({ ...state })
+                }}
+              >
+                Logout
+              </ButtonFlat>
+            </li>
+          )}
         </ul>
       </div>
     </nav>

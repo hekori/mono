@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useLayoutEffect, useState } from 'react'
-import { GlobalContext, useGlobal } from '../index.provider'
-import { TypeErrors } from './frontpage'
+import { useGlobal } from '../index.provider'
+import { TypeErrors } from './PageFrontpage'
 import { ShellPublic } from '../components/ShellPublic'
 import { Container } from '../components/Container'
 import { environment } from '../environments/environment'
@@ -11,6 +11,7 @@ import { CheckLoginRouteInfo } from '../routings'
 interface PropsPageCheckLogin {
   routeInfo: CheckLoginRouteInfo
 }
+
 export const PageCheckLogin: React.FC<PropsPageCheckLogin> = ({
   routeInfo,
 }) => {
