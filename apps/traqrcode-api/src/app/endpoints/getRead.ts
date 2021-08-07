@@ -2,12 +2,9 @@ import {
   API_CODE,
   GetReadResponseError,
   GetReadResponseOk,
-  PageItem,
-  PostResponseError,
   to,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
-import { isValidUuid } from '../validators'
 
 export const getRead = async (request, reply) => {
   console.log(request.body)
@@ -16,7 +13,7 @@ export const getRead = async (request, reply) => {
   console.log(request.headers)
   console.log(request.headers?.authorization)
 
-  let [err, pageItem] = await to(
+  const [err, pageItem] = await to(
     pg('pageItem').where({ pageItemUuid: request.params.pageItemUuid }).first()
   )
 
@@ -28,9 +25,20 @@ export const getRead = async (request, reply) => {
     return reply.status(404).send(responseData)
   }
 
-  [err, pageItem] = await to(
-    pg('pageItem').where({ pageItemUuid: request.params.pageItemUuid }).first()
-  )
+  let pageItemProgress = await pg('pageItemProgress')
+    .where({
+      pageItemUuid: request.params.pageItemUuid,
+      startedAt: null,
+      finishedAt: null,
+    })
+    .first()
+
+  if (!pageItemProgress)
+    pageItemProgress = await pg('pageItemProgress')
+      .insert({
+        pageItemUuid: request.params.pageItemUuid,
+      })
+      .returning('*')
 
   const responseData: GetReadResponseOk = {
     pageItemProgressUuid: 'asdf',
