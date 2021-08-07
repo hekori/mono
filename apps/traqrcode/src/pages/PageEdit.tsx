@@ -232,7 +232,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
               if (res.status === 'ERROR') {
                 setErrors(res)
               } else {
-                history.push(`/view/${routeInfo.pageUuid}`)
+                history.push(`/list`)
               }
             }}
           >
