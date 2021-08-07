@@ -6,8 +6,8 @@ import { Loading } from '../components/Loading'
 import { ReadRouteInfo } from '../routings'
 import { useQuery } from 'react-query'
 import {
+  API_CODE,
   GetReadResponse,
-  isGetReadResponseError,
   isGetReadResponseOk,
 } from '@hekori/traqrcode-common'
 
@@ -54,15 +54,17 @@ export const PageRead: React.FC<PropsPageRead> = ({ routeInfo }) => {
   // }, [])
 
   if (isLoading || !data) return <Loading />
+  if (error) return <div>Error</div>
+  if (data?.status === API_CODE.ERROR) return <div>Error</div>
 
   let content
   if (isGetReadResponseOk(data)) {
-    history.push(`/task/${data.pageItemProgressUuid}`)
+    // history.push(`/task/${data.pageItemProgressUuid}`)
   } else {
     console.log('data', data)
     content = (
       <ul>
-        {data.errors.map((error) => (
+        {data?.errors?.map((error) => (
           <li key={error}>{error}</li>
         ))}
       </ul>
