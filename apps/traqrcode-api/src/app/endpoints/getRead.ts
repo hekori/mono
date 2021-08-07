@@ -16,7 +16,7 @@ export const getRead = async (request, reply) => {
   console.log(request.headers)
   console.log(request.headers?.authorization)
 
-  const [err, pageItem] = await to(
+  let [err, pageItem] = await to(
     pg('pageItem').where({ pageItemUuid: request.params.pageItemUuid }).first()
   )
 
@@ -27,6 +27,10 @@ export const getRead = async (request, reply) => {
     }
     return reply.status(404).send(responseData)
   }
+
+  [err, pageItem] = await to(
+    pg('pageItem').where({ pageItemUuid: request.params.pageItemUuid }).first()
+  )
 
   const responseData: GetReadResponseOk = {
     pageItemProgressUuid: 'asdf',
