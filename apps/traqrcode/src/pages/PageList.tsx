@@ -4,19 +4,27 @@ import { Container } from '../components/Container'
 import { editRoute, ListRouteInfo } from '../routings'
 import {
   API_CODE,
+  BACKEND_URL,
   getBackendCreatePagePostUrl,
   getBackendListGetUrl,
   getBackendPageDeleteUrl,
   GetListResponse,
   PostCreateRequest,
   PostCreateResponse,
+  to,
 } from '@hekori/traqrcode-common'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import { ButtonFlat, TextLarge, TextSmall } from '@hekori/uikit'
-import { PencilIcon, TrashIcon } from '@heroicons/react/outline'
+import {
+  DocumentDownloadIcon,
+  EyeIcon,
+  PencilIcon,
+  TrashIcon,
+} from '@heroicons/react/outline'
 import { useHistory } from 'react-router-dom'
 import { dateFormatter, timeFormatter } from '@hekori/dates'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
+import { dl } from '../dl'
 
 interface PropsPageList {
   routeInfo: ListRouteInfo
@@ -97,6 +105,15 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
 
   console.log('isLoading', isLoading)
 
+  const download = async (pageUuid: string) => {
+    const [err, res] = await to(api.getBlob(`/pdf/${pageUuid}`))
+    if (err) {
+      console.log('error', err)
+    } else {
+      await dl(res, `${pageUuid}.pdf`)
+    }
+  }
+
   return (
     <ShellLoggedIn loading={isLoading}>
       <Container>
@@ -107,7 +124,10 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
             {data?.ids?.map((pageUuid) => {
               const page = data.idToItem[pageUuid]
               return (
-                <li className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-touchableHighlight">
+                <li
+                  key={pageUuid}
+                  className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-touchableHighlight"
+                >
                   <span className="md:text-left">
                     <TextLarge>{page.title || '<no title>'}</TextLarge>
                     <br />
@@ -118,6 +138,20 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
                   </span>
 
                   <div className={'md:flex-1'} />
+
+                  <ButtonFlat onClick={() => download(page.pageUuid)}>
+                    <DocumentDownloadIcon className="h-5 w-5" />
+                  </ButtonFlat>
+
+                  <ButtonFlat
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      window.location.href = `${BACKEND_URL}/pdf/${pageUuid}`
+                    }}
+                  >
+                    <EyeIcon className="h-5 w-5" />
+                  </ButtonFlat>
+
                   <ButtonFlat
                     onClick={(e) => {
                       e.stopPropagation()
