@@ -2,6 +2,7 @@ import {
   API_CODE,
   GetReadResponseError,
   GetReadResponseOk,
+  PageItemProgress,
   to,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
@@ -25,7 +26,7 @@ export const getRead = async (request, reply) => {
     return reply.status(404).send(responseData)
   }
 
-  let pageItemProgress = await pg('pageItemProgress')
+  let pageItemProgress: PageItemProgress = await pg('pageItemProgress')
     .where({
       pageItemUuid: request.params.pageItemUuid,
       startedAt: null,
@@ -39,9 +40,10 @@ export const getRead = async (request, reply) => {
         pageItemUuid: request.params.pageItemUuid,
       })
       .returning('*')
+      .first()
 
   const responseData: GetReadResponseOk = {
-    pageItemProgressUuid: 'asdf',
+    pageItemProgressUuid: pageItemProgress.pageItemProgressUuid,
     status: 'OK',
   }
   return reply.send(responseData)

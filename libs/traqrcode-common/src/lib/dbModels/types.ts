@@ -53,3 +53,21 @@ export interface PageWorkerInitializer {
   pageUuid: string
   createdAt?: string
 }
+
+export interface PageItemProgress {
+  pageItemProgressUuid: string
+  pageItemUuid: string
+  pageWorkerUuid?: string
+  createdAt?: string
+  startedAt?: string
+  finishedAt?: string
+}
+
+export interface PageItemProgressInitializer {
+  pageItemProgressUuid: string
+  pageItemUuid: string
+  pageWorkerUuid?: string
+  createdAt?: string
+  startedAt?: string
+  finishedAt?: string
+}

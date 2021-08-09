@@ -59,7 +59,7 @@ export const PageRead: React.FC<PropsPageRead> = ({ routeInfo }) => {
 
   let content
   if (isGetReadResponseOk(data)) {
-    // history.push(`/task/${data.pageItemProgressUuid}`)
+    history.push(`/task/${data.pageItemProgressUuid}`)
   } else {
     console.log('data', data)
     content = (
