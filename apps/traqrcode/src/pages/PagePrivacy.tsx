@@ -33,11 +33,15 @@ export const PagePrivacy = () => {
           <h2 className="text-xl mb-2 mt-4">
             How long will my data be stored?
           </h2>
-          We delete entries after 1 year.
+          We delete data when we no longer need it to provide our service. This
+          implies that we might delete data after a certain time of inactivity.
+          E.g., when a QR code has not been scanned in two years, we delete it
+          and associated email addresses. Backups of our databases are typically
+          stored for
           <h2 className="text-xl mb-2 mt-4">
             Which other services do you use?
           </h2>
-          We are hosted on hosteurope.de and use Google mail to send emails.
+          We are hosted on servers in the EU.
         </div>
       </div>
     </ShellPublic>
