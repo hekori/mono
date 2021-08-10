@@ -1,4 +1,4 @@
-import { ActRouteInfo } from '@hekori/traqrcode-common'
+import { ActRouteInfo, PageItemProgress } from '@hekori/traqrcode-common'
 
 export type AdminRouteInfo = {
   shortHash: string
@@ -87,24 +87,18 @@ export const readRegex = (pathname: string): ReadRouteInfo | null => {
   }
   return null
 }
-export type TaskRouteInfo = {
-  shortHash: string
-  itemId: string
-  taskId: string
-}
+export type TaskRouteInfo = Pick<PageItemProgress, 'pageItemProgressUuid'>
 
-export const taskRoute = ({ shortHash, itemId, taskId }: TaskRouteInfo) => {
-  return `/task/${shortHash}/${itemId}/${taskId}`
+export const taskRoute = ({ pageItemProgressUuid }: TaskRouteInfo) => {
+  return `/task/${pageItemProgressUuid}`
 }
 
 export const taskRegex = (pathname: string): TaskRouteInfo | null => {
-  const pattern = /\/task\/(?<shortHash>.*)\/(?<itemId>.*)\/(?<taskId>.*)/
+  const pattern = /\/task\/(?<pageItemProgressUuid>.*)/
   const groups = pathname.match(pattern)?.groups
   if (groups) {
     return {
-      shortHash: groups.shortHash,
-      itemId: groups.itemId,
-      taskId: groups.taskId,
+      pageItemProgressUuid: groups.pageItemProgressUuid,
     }
   }
   return null

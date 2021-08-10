@@ -3,9 +3,17 @@ import {
   GetReadResponseError,
   GetReadResponseOk,
   PageItemProgress,
+  PageWorker,
   to,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
+import { log } from '../utils'
+import { sendMail } from '../mail'
+import { EMAIL_DEFAULT_SENDER } from '../settings'
+import {
+  email_notify_receiver_of_new_task_body,
+  email_notify_receiver_of_new_task_subject,
+} from '../templates'
 
 export const getRead = async (request, reply) => {
   console.log(request.body)
@@ -34,13 +42,46 @@ export const getRead = async (request, reply) => {
     })
     .first()
 
-  if (!pageItemProgress)
+  if (!pageItemProgress) {
     pageItemProgress = await pg('pageItemProgress')
       .insert({
         pageItemUuid: request.params.pageItemUuid,
       })
       .returning('*')
       .first()
+  }
+
+  // send out emails
+  const pageWorkers: PageWorker[] = await pg('pageWorker').where({
+    pageUuid: pageItem.pageUuid,
+  })
+
+  log('notify receiver_ids')
+  for (const pageWorker of pageWorkers) {
+    log('send email')
+    await sendMail({
+      sender: EMAIL_DEFAULT_SENDER,
+      receiver: pageWorker.email,
+      subject: email_notify_receiver_of_new_task_subject(),
+      body: email_notify_receiver_of_new_task_body(
+        pageItem.title,
+        pageItem.subTitle,
+        'todo',
+        'todo'
+        // getFrontendActUrl(
+        //     {
+        //       action: Action.start,
+        //       shortHash,
+        //       itemId,
+        //       taskId: task.id,
+        //       workerId,
+        //     },
+        //     true
+        // ),
+        // getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true)
+      ),
+    })
+  }
 
   const responseData: GetReadResponseOk = {
     pageItemProgressUuid: pageItemProgress.pageItemProgressUuid,
@@ -48,33 +89,6 @@ export const getRead = async (request, reply) => {
   }
   return reply.send(responseData)
 
-  //   if (task.step === TaskStep.created) {
-  //     log('notify receiver_ids')
-  //     for (const workerId of r.workerIds) {
-  //       log('send email')
-  //       sendMail({
-  //         sender: EMAIL_DEFAULT_SENDER,
-  //         receiver: r.idToWorker[workerId],
-  //         subject: email_notify_receiver_of_new_task_subject(),
-  //         body: email_notify_receiver_of_new_task_body(
-  //           item.title,
-  //           item.subTitle,
-  //           getFrontendActUrl(
-  //             {
-  //               action: Action.start,
-  //               shortHash,
-  //               itemId,
-  //               taskId: task.id,
-  //               workerId,
-  //             },
-  //             true
-  //           ),
-  //           getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true)
-  //         ),
-  //       })
-  //     }
-  //   }
-  //
   //   task.notifiedAt = isoDatetimeFormatter(getDate())
   //   task.step = TaskStep.notified
   //

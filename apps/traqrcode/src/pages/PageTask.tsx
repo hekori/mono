@@ -1,16 +1,15 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
-import { GlobalContext, useGlobal } from '../index.provider'
+import { useGlobal } from '../index.provider'
 import { ShellPublic } from '../components/ShellPublic'
-import { Task } from '@hekori/traqrcode-common'
 import {
   dateFormatter,
   MyDate,
   shortDayNameFormatter,
   timeFormatter,
 } from '@hekori/dates'
-import { to } from '@hekori/traqrcode-common'
 import { TaskRouteInfo } from '../routings'
+import { useQuery } from 'react-query'
+import { GetTaskResponseOk } from '../../../../libs/traqrcode-common/src/lib/interfaces/task'
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo
@@ -73,103 +72,72 @@ const ProgressInfoConnector: React.FC<{ done: boolean }> = ({ done }) => {
 
 export const PageTask = ({ routeInfo }: PropsPageTask) => {
   const { state, api } = useGlobal()
-
-  const [errors, setErrors] = useState<string[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
-  const [task, setTask] = useState<
-    Task & { itemTitle?: string; itemSubtitle?: string }
-  >({
-    itemTitle: '',
-    itemSubtitle: '',
-    id: '',
-    step: 0,
-    createdAt: '',
-    notifiedAt: '',
-    startedAt: '',
-    doneAt: '',
-  })
-
-  useEffect(() => {
-    const t = async () => {
-      setLoading(true)
-      const [err, res] = await to(
-        api.get(
-          `/task/${routeInfo.shortHash}/${routeInfo.itemId}/${routeInfo.taskId}`
-        )
-      )
-      setLoading(false)
-
-      if (err) {
-        console.log(err, res)
-        setErrors(['SOME_ERROR'])
-        return
-      }
-
-      if (res.status === 'OK') {
-        setTask(res.task as Task)
-      } else if (res.status === 'ERROR') {
-        setErrors(res.errors)
-      }
-    }
-    void t()
-  }, [])
+  const {
+    isLoading,
+    isFetching,
+    error,
+    data: task,
+  } = useQuery<GetTaskResponseOk>(
+    `pageItem--${routeInfo.pageItemProgressUuid}`,
+    async () => {
+      return api.get(`/task/${routeInfo.pageItemProgressUuid}`)
+    },
+    { refetchOnWindowFocus: false }
+  )
 
   console.log(state)
 
-  if (loading)
+  if (isLoading || !task)
     return (
       <ShellPublic>
         <div className="spinner" />
       </ShellPublic>
     )
 
-  if (errors.length > 0)
-    return (
-      <ShellPublic>
-        <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
-          <div className="container max-w-5xl mx-auto sm:p-8 p-4">
-            <ul>
-              {errors.map((error) => (
-                <li>{error}</li>
-              ))}
-            </ul>
-          </div>
-        </div>
-      </ShellPublic>
-    )
+  // if (errors.length > 0)
+  //   return (
+  //     <ShellPublic>
+  //       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
+  //         <div className="container max-w-5xl mx-auto sm:p-8 p-4">
+  //           <ul>
+  //             {errors.map((error) => (
+  //               <li>{error}</li>
+  //             ))}
+  //           </ul>
+  //         </div>
+  //       </div>
+  //     </ShellPublic>
+  //   )
 
   return (
     <ShellPublic>
-      <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
-        <div className="container max-w-5xl mx-auto sm:p-8 p-4">
-          {/*<div className="flex flex-1 flex-col sm:p-8 p-4">*/}
-          <ProgressInfo
-            done={task.step >= 1}
-            mdiIcon="mdi-email"
-            date={task.notifiedAt || ''}
-            textPending={'Waiting ...'}
-            textDone={`Request for "${task.itemTitle}" ${
-              task.itemSubtitle ? `"${task.itemSubtitle}"` : ''
-            } has been received`}
-          />
-          <ProgressInfoConnector done={task.step >= 2} />
-          <ProgressInfo
-            done={task.step >= 2}
-            mdiIcon="mdi-progress-clock"
-            date={task.startedAt || ''}
-            textPending={'Task is in progress'}
-            textDone={'Task is in progress'}
-          />
+      <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
+        <ProgressInfo
+          done={!!task.createdAt}
+          mdiIcon="mdi-email"
+          date={task.createdAt || ''}
+          textPending={'Waiting ...'}
+          textDone={`Request for "${task.title}" ${
+            task.subTitle ? `"${task.subTitle}"` : ''
+          } has been received`}
+        />
+        <ProgressInfoConnector done={!!task.startedAt} />
+        <ProgressInfo
+          done={!!task.startedAt}
+          mdiIcon="mdi-progress-clock"
+          date={task.startedAt || ''}
+          textPending={'Task is in progress'}
+          textDone={'Task is in progress'}
+        />
 
-          <ProgressInfoConnector done={task.step >= 3} />
-          <ProgressInfo
-            done={task.step >= 3}
-            mdiIcon="mdi-check"
-            date={task.doneAt || ''}
-            textPending={'Work is done '}
-            textDone={'Work is done'}
-          />
-        </div>
+        <ProgressInfoConnector done={!!task.finishedAt} />
+        <ProgressInfo
+          done={!!task.finishedAt}
+          mdiIcon="mdi-check"
+          date={task.finishedAt || ''}
+          textPending={'Work is done '}
+          textDone={'Work is done'}
+        />
       </div>
     </ShellPublic>
   )
