@@ -12,7 +12,7 @@ export class Api {
   }
 
   checkLoggedIn(response: ResponseBase) {
-    if (response.status == API_CODE.ERROR_INVALID_ACCESS_TOKEN) {
+    if (response.status === API_CODE.ERROR_INVALID_ACCESS_TOKEN) {
       this.logout()
       this.redirectToHome()
       return false

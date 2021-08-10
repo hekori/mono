@@ -84,8 +84,8 @@ export const App = () => {
   if (taskRouteInfo) return <PageTask routeInfo={taskRouteInfo} />
 
   // page action
-  const actionRouteInfo: ActRouteInfo | null = actRegex(location.pathname)
-  if (actionRouteInfo) return <PageAction routeInfo={actionRouteInfo} />
+  const actRouteInfo: ActRouteInfo | null = actRegex(location.pathname)
+  if (actRouteInfo) return <PageAction routeInfo={actRouteInfo} />
 
   // default
   return <PageError404 />

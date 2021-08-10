@@ -1,16 +1,16 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
-import { GlobalContext, useGlobal } from '../index.provider'
+import { useGlobal } from '../index.provider'
 import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
 import { Loading } from '../components/Loading'
 import {
+  Action,
   ActRouteInfo,
   getFrontendActUrl,
-  getFrontendTaskUrl,
-  Task,
-  to,
+  getFrontendPageItemProgressUrl,
 } from '@hekori/traqrcode-common'
+import { useQuery } from 'react-query'
+import { GetActResponse } from '../../../../libs/traqrcode-common/src/lib/interfaces/act'
 
 type PropsPageAction = {
   routeInfo: ActRouteInfo
@@ -21,58 +21,25 @@ export const PageAction = ({ routeInfo }: PropsPageAction) => {
 
   const history = useHistory()
 
-  const [errors, setErrors] = useState<string[]>([])
-  const [loading, setLoading] = useState<boolean>(true)
-  const [task, setTask] = useState<Task>({
-    id: '',
-    step: 0,
-    createdAt: '',
-    notifiedAt: '',
-    startedAt: '',
-    doneAt: '',
-  })
+  const { isLoading, isFetching, error, data } = useQuery<GetActResponse>(
+    `pageAct--${routeInfo.pageItemProgressUuid}--${routeInfo.pageWorkerUuid}`,
+    async () => {
+      return api.get(getFrontendActUrl(routeInfo))
+    },
+    { refetchOnWindowFocus: false }
+  )
 
-  useEffect(() => {
-    const t = async () => {
-      setLoading(true)
-      const [err, res] = await to(api.get(getFrontendActUrl(routeInfo)))
-      setLoading(false)
+  console.log('data', data)
 
-      if (err) {
-        console.log(err, res)
-        setErrors(res.errors)
-        return
-      }
-
-      if (res.status === 'OK') {
-        setTask(res.task as Task)
-      } else if (res.status === 'ERROR') {
-        setErrors(res.errors)
-      }
-    }
-    void t()
-  }, [])
-
-  console.log(state)
-
-  if (loading) return <Loading />
+  if (isLoading) return <Loading />
+  if (error) return <div> error </div>
 
   let content = null
 
-  if (task.doneAt) {
+  if (routeInfo.action === Action.stop) {
     content = <h1>You have finished the task</h1>
-  } else if (task.startedAt) {
+  } else if (routeInfo.action === Action.start) {
     content = <h1>You have successfully accepted the task</h1>
-  }
-
-  if (errors.length > 0) {
-    content = (
-      <>
-        {errors.map((error) => (
-          <h1 key={error}>{error}</h1>
-        ))}
-      </>
-    )
   }
 
   return (
@@ -84,7 +51,7 @@ export const PageAction = ({ routeInfo }: PropsPageAction) => {
           <button
             className="button"
             onClick={() => {
-              history.push(getFrontendTaskUrl(routeInfo))
+              history.push(getFrontendPageItemProgressUrl(routeInfo))
             }}
           >
             View
