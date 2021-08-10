@@ -34,6 +34,7 @@ import { getPdf } from './endpoints/getPdf'
 import { getRead } from './endpoints/getRead'
 import { AuthenticationError } from './errors'
 import { getTask } from './endpoints/getTask'
+import { getAct } from './endpoints/getAct'
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -90,6 +91,7 @@ api.get('/edit/:pageUuid', getEdit)
 api.get('/pdf/:pageUuid', getPdf)
 api.get('/read/:pageItemUuid', getRead)
 api.get('/task/:pageItemProgressUuid', getTask)
+api.get('/act/:action/:pageItemProgressUuid/:pageWorkerUuid', getAct)
 api.post('/signup', postSignup)
 api.post('/edit/:pageUuid', postEdit)
 api.post('/create', postCreate)

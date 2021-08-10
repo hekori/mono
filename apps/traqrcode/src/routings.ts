@@ -112,25 +112,20 @@ export enum Action {
 
 export const actRoute = ({
   action,
-  shortHash,
-  itemId,
-  taskId,
-  workerId,
+  pageItemProgressUuid,
+  pageWorkerUuid,
 }: ActRouteInfo) => {
-  return `/act/${action}/${shortHash}/${itemId}/${taskId}/${workerId}`
+  return `/act/${action}/${pageItemProgressUuid}/${pageWorkerUuid}`
 }
 
 export const actRegex = (pathname: string): ActRouteInfo | null => {
-  const pattern = /\/act\/(?<action>.*)\/(?<shortHash>.*)\/(?<itemId>.*)\/(?<taskId>.*)\/(?<workerId>.*)/
-  // console.log(pathname.match(pattern));
+  const pattern = /\/act\/(?<action>.*)\/(?<pageItemProgressUuid>.*)\/(?<pageWorkerUuid>.*)/
   const groups = pathname.match(pattern)?.groups
   if (groups) {
     return {
       action: groups.action as Action,
-      shortHash: groups.shortHash,
-      itemId: groups.itemId,
-      taskId: groups.taskId,
-      workerId: groups.workerId,
+      pageItemProgressUuid: groups.pageItemProgressUuid,
+      pageWorkerUuid: groups.pageWorkerUuid,
     }
   }
   return null

@@ -8,17 +8,13 @@ export enum Action {
 
 export interface ActRouteInfo {
   action: Action
-  shortHash: string
-  itemId: string
-  taskId: string
-  workerId: string
+  pageItemProgressUuid: string
+  pageWorkerUuid: string
 }
 
 // FIXME: there should be only one interface
 export interface TaskRouteInfo {
-  shortHash: string
-  itemId: string
-  taskId: string
+  pageItemProgressUuid: string
 }
 
 export interface ReadRouteInfo {
@@ -54,13 +50,13 @@ export const getFrontendReadUrl = (
   return `${addBaseUrl ? FRONTEND_URL : ''}/read/${routeInfo.pageItemUuid}`
 }
 
-export const getFrontendTaskUrl = (
+export const getFrontendPageItemProgressUrl = (
   routeInfo: TaskRouteInfo,
   addBaseUrl = false
 ): string => {
-  return `${addBaseUrl ? FRONTEND_URL : ''}/task/${routeInfo.shortHash}/${
-    routeInfo.itemId
-  }/${routeInfo.taskId}`
+  return `${addBaseUrl ? FRONTEND_URL : ''}/task/${
+    routeInfo.pageItemProgressUuid
+  }`
 }
 
 export const getFrontendActUrl = (
@@ -68,8 +64,8 @@ export const getFrontendActUrl = (
   addBaseUrl = false
 ): string => {
   return `${addBaseUrl ? FRONTEND_URL : ''}/act/${routeInfo.action}/${
-    routeInfo.shortHash
-  }/${routeInfo.itemId}/${routeInfo.taskId}/${routeInfo.workerId}`
+    routeInfo.pageItemProgressUuid
+  }/${routeInfo.pageWorkerUuid}`
 }
 
 export const getBackendPdfUrl = (

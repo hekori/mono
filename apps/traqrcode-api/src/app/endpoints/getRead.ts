@@ -1,5 +1,8 @@
 import {
+  Action,
   API_CODE,
+  getFrontendActUrl,
+  getFrontendPageItemProgressUrl,
   GetReadResponseError,
   GetReadResponseOk,
   PageItemProgress,
@@ -66,19 +69,18 @@ export const getRead = async (request, reply) => {
       body: email_notify_receiver_of_new_task_body(
         pageItem.title,
         pageItem.subTitle,
-        'todo',
-        'todo'
-        // getFrontendActUrl(
-        //     {
-        //       action: Action.start,
-        //       shortHash,
-        //       itemId,
-        //       taskId: task.id,
-        //       workerId,
-        //     },
-        //     true
-        // ),
-        // getFrontendTaskUrl({ shortHash, itemId, taskId: task.id }, true)
+        getFrontendActUrl(
+          {
+            action: Action.start,
+            pageItemProgressUuid: pageItemProgress.pageItemProgressUuid,
+            pageWorkerUuid: pageWorker.pageWorkerUuid,
+          },
+          true
+        ),
+        getFrontendPageItemProgressUrl(
+          { pageItemProgressUuid: pageItemProgress.pageItemProgressUuid },
+          true
+        )
       ),
     })
   }

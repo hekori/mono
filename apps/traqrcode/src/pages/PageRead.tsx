@@ -27,32 +27,6 @@ export const PageRead: React.FC<PropsPageRead> = ({ routeInfo }) => {
     { refetchOnWindowFocus: false }
   )
 
-  // useEffect(() => {
-  //   const t = async () => {
-  //     setLoading(true)
-  //     const [err, res] = await to(
-  //       api.get(`/read/${routeInfo.shortHash}/${routeInfo.itemId}`)
-  //     )
-  //     setLoading(false)
-  //
-  //     if (err) {
-  //       console.log(err, res)
-  //       setErrors(['SOME_ERROR'])
-  //       return
-  //     }
-  //
-  //     if (res.status === 'OK') {
-  //       const task: Task = res.task
-  //       history.push(
-  //         `/task/${routeInfo.shortHash}/${routeInfo.itemId}/${task.id}`
-  //       )
-  //     } else if (res.status === 'ERROR') {
-  //       setErrors(res.errors)
-  //     }
-  //   }
-  //   void t()
-  // }, [])
-
   if (isLoading || !data) return <Loading />
   if (error) return <div>Error</div>
   if (data?.status === API_CODE.ERROR) return <div>Error</div>
