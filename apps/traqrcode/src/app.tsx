@@ -13,7 +13,7 @@ import { PageRead } from './pages/PageRead'
 import { PageSignup } from './pages/PageSignup'
 import { ActRouteInfo } from '@hekori/traqrcode-common'
 import { PagePricing } from './pages/PagePricing'
-import { PageCheckLogin } from './pages/PageCheckLogin'
+import { PageLoginFromUrl } from './pages/PageLoginFromUrl'
 import { PageList } from './pages/PageList'
 import {
   actRegex,
@@ -61,7 +61,7 @@ export const App = () => {
   const loginRouteInfo: CheckLoginRouteInfo | null = loginRegex(
     location.pathname
   )
-  if (loginRouteInfo) return <PageCheckLogin routeInfo={loginRouteInfo} />
+  if (loginRouteInfo) return <PageLoginFromUrl routeInfo={loginRouteInfo} />
 
   // page list
   const listRouteInfo: ListRouteInfo | null = listRegex(location.pathname)
