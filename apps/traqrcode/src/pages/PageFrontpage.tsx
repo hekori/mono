@@ -162,7 +162,7 @@ export const PageFront = () => {
 request new towels or the room service on demand. All requests
 are automatically logged and your personnel is notified.`}
             onClick={() => {
-              history.push('/create')
+              history.push('/signup')
             }}
           />
           <BenefitsCard
@@ -170,7 +170,7 @@ are automatically logged and your personnel is notified.`}
             title={'Reduce costs'}
             text={`Fix things on demand when your employees need it.`}
             onClick={() => {
-              history.push('/create')
+              history.push('/signup')
             }}
           />
           <BenefitsCard
@@ -178,7 +178,7 @@ are automatically logged and your personnel is notified.`}
             title={'Improve quality'}
             text={`Prevent bad customer experience. Be in touch with your customers.`}
             onClick={() => {
-              history.push('/create')
+              history.push('/signup')
             }}
           />
         </div>

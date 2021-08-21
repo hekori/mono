@@ -10,6 +10,7 @@ import {
 import { TaskRouteInfo } from '../routings'
 import { useQuery } from 'react-query'
 import { GetTaskResponseOk } from '../../../../libs/traqrcode-common/src/lib/interfaces/task'
+import { Loading } from '../components/Loading'
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo
@@ -87,30 +88,11 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
 
   console.log(state)
 
-  if (isLoading || !task)
-    return (
-      <ShellPublic>
-        <div className="spinner" />
-      </ShellPublic>
-    )
+  let content
 
-  // if (errors.length > 0)
-  //   return (
-  //     <ShellPublic>
-  //       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
-  //         <div className="container max-w-5xl mx-auto sm:p-8 p-4">
-  //           <ul>
-  //             {errors.map((error) => (
-  //               <li>{error}</li>
-  //             ))}
-  //           </ul>
-  //         </div>
-  //       </div>
-  //     </ShellPublic>
-  //   )
-
-  return (
-    <ShellPublic>
+  if (isLoading || !task) content = <Loading />
+  else {
+    content = (
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
         <ProgressInfo
           done={!!task.createdAt}
@@ -139,6 +121,23 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
           textDone={'Work is done'}
         />
       </div>
-    </ShellPublic>
-  )
+    )
+  }
+
+  // if (errors.length > 0)
+  //   return (
+  //     <ShellPublic>
+  //       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
+  //         <div className="container max-w-5xl mx-auto sm:p-8 p-4">
+  //           <ul>
+  //             {errors.map((error) => (
+  //               <li>{error}</li>
+  //             ))}
+  //           </ul>
+  //         </div>
+  //       </div>
+  //     </ShellPublic>
+  //   )
+
+  return <ShellPublic>{content}</ShellPublic>
 }

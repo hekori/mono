@@ -1,7 +1,5 @@
 import * as React from 'react'
-import { useLayoutEffect, useState } from 'react'
-import { useGlobal } from '../index.provider'
-import { TypeErrors } from './PageFrontpage'
+import { useLayoutEffect } from 'react'
 import { ShellPublic } from '../components/ShellPublic'
 import { Container } from '../components/Container'
 import { environment } from '../environments/environment'
@@ -12,14 +10,9 @@ interface PropsPageCheckLogin {
   routeInfo: CheckLoginRouteInfo
 }
 
-export const PageCheckLogin: React.FC<PropsPageCheckLogin> = ({
+export const PageLoginFromUrl: React.FC<PropsPageCheckLogin> = ({
   routeInfo,
 }) => {
-  const { state, setState } = useGlobal()
-  const [errors, setErrors] = useState<TypeErrors>({})
-  const [submitting, setSubmitting] = useState<boolean>(false)
-  const [emailSentAt, setEmailSentAt] = useState<string | undefined>(undefined)
-
   const history = useHistory()
   useLayoutEffect(() => {
     const runEffect = async () => {

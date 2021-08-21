@@ -10,6 +10,7 @@ import {
   GetReadResponse,
   isGetReadResponseOk,
 } from '@hekori/traqrcode-common'
+import { Error500 } from '../components/Error500'
 
 type PropsPageRead = {
   routeInfo: ReadRouteInfo
@@ -27,31 +28,29 @@ export const PageRead: React.FC<PropsPageRead> = ({ routeInfo }) => {
     { refetchOnWindowFocus: false }
   )
 
-  if (isLoading || !data) return <Loading />
-  if (error) return <div>Error</div>
-  if (data?.status === API_CODE.ERROR) return <div>Error</div>
-
   let content
-  if (isGetReadResponseOk(data)) {
+
+  if (isLoading || !data) content = <Loading />
+  else if (error) content = <Error500 />
+  else if (data?.status === API_CODE.ERROR) content = <Error500 />
+  else if (isGetReadResponseOk(data)) {
     history.push(`/task/${data.pageItemProgressUuid}`)
   } else {
     console.log('data', data)
     content = (
-      <ul>
-        {data?.errors?.map((error) => (
-          <li key={error}>{error}</li>
-        ))}
-      </ul>
+      <div className="w-full mx-auto text-center pt-6 pb-12 min-h-screen">
+        <div className="container max-w-5xl mx-auto m-8">
+          <ul>
+            {data?.errors?.map((error) => (
+              <li key={error}>{error}</li>
+            ))}
+          </ul>
+        </div>
+      </div>
     )
   }
 
   console.log(state)
 
-  return (
-    <ShellPublic>
-      <div className="w-full mx-auto text-center pt-6 pb-12 min-h-screen">
-        <div className="container max-w-5xl mx-auto m-8">{content}</div>
-      </div>
-    </ShellPublic>
-  )
+  return <ShellPublic>{content}</ShellPublic>
 }
