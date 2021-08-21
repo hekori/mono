@@ -35,6 +35,7 @@ import { getRead } from './endpoints/getRead'
 import { AuthenticationError } from './errors'
 import { getTask } from './endpoints/getTask'
 import { getAct } from './endpoints/getAct'
+import { getDetails } from './endpoints/getDetails'
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -87,6 +88,7 @@ api.setErrorHandler((error, request, reply) => {
 })
 
 api.get('/list', getList)
+api.get('/details', getDetails)
 api.get('/edit/:pageUuid', getEdit)
 api.get('/pdf/:pageUuid', getPdf)
 api.get('/read/:pageItemUuid', getRead)

@@ -6,7 +6,7 @@ import { ButtonFlat, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
 import { logout } from '../utils'
-import { listRoute } from '../routings'
+import { detailsRoute, listRoute } from '../routings'
 
 export const NavigationLoggedIn = () => {
   const history = useHistory()
@@ -80,6 +80,20 @@ export const NavigationLoggedIn = () => {
               ) : (
                 <SunIcon width={24} height={24} />
               )}
+            </ButtonFlat>
+          </li>
+
+          <li className="mr-3">
+            <ButtonFlat
+              aria-label="List"
+              className={
+                window.location.pathname.startsWith(detailsRoute())
+                  ? 'underline'
+                  : ''
+              }
+              onClick={() => history.push(detailsRoute())}
+            >
+              Details
             </ButtonFlat>
           </li>
 

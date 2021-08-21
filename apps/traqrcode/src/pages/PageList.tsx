@@ -139,6 +139,15 @@ export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
 
                   <div className={'md:flex-1'} />
 
+                  {/*<ButtonFlat*/}
+                  {/*  onClick={(e) => {*/}
+                  {/*    e.stopPropagation()*/}
+                  {/*    history.push(detailsRoute({ pageUuid }))*/}
+                  {/*  }}*/}
+                  {/*>*/}
+                  {/*  <FastForwardIcon className="h-5 w-5" />*/}
+                  {/*</ButtonFlat>*/}
+
                   <ButtonFlat onClick={() => download(page.pageUuid)}>
                     <DocumentDownloadIcon className="h-5 w-5" />
                   </ButtonFlat>

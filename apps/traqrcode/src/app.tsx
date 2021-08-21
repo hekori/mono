@@ -18,6 +18,8 @@ import { PageList } from './pages/PageList'
 import {
   actRegex,
   CheckLoginRouteInfo,
+  detailsRegex,
+  DetailsRouteInfo,
   editRegex,
   EditRouteInfo,
   IMPRINT_ROUTE,
@@ -35,6 +37,7 @@ import {
   viewRegex,
   ViewRouteInfo,
 } from './routings'
+import { PageDetails } from './pages/PageDetails'
 
 export const App = () => {
   const location = useLocation()
@@ -66,6 +69,12 @@ export const App = () => {
   // page list
   const listRouteInfo: ListRouteInfo | null = listRegex(location.pathname)
   if (listRouteInfo) return <PageList routeInfo={listRouteInfo} />
+
+  // page details
+  const detailsRouteInfo: DetailsRouteInfo | null = detailsRegex(
+    location.pathname
+  )
+  if (detailsRouteInfo) return <PageDetails routeInfo={detailsRouteInfo} />
 
   // page edit
   const editRouteInfo: EditRouteInfo | null = editRegex(location.pathname)
