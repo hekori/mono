@@ -39,8 +39,20 @@ export type ViewRouteInfo = {
   pageUuid: string
 }
 
+export type DetailsRouteInfo = {}
+
 export const editRoute = ({ pageUuid }: EditRouteInfo) => {
   return `/edit/${pageUuid}`
+}
+
+export const detailsRoute = () => {
+  return `/details`
+}
+
+export const detailsRegex = (pathname: string): DetailsRouteInfo | null => {
+  if (pathname.startsWith('/details')) {
+    return {}
+  } else return null
 }
 
 export const editRegex = (pathname: string): EditRouteInfo | null => {
