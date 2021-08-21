@@ -46,12 +46,12 @@ export const getRead = async (request, reply) => {
     .first()
 
   if (!pageItemProgress) {
-    pageItemProgress = await pg('pageItemProgress')
+    let rest: unknown[]
+    ;[pageItemProgress, ...rest] = await pg('pageItemProgress')
       .insert({
         pageItemUuid: request.params.pageItemUuid,
       })
       .returning('*')
-      .first()
   }
 
   // send out emails
