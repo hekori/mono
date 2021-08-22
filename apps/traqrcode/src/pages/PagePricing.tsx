@@ -48,6 +48,8 @@ export const PagePricing: React.FC = () => {
                   Pro (Cloud)
                 </div>
                 <ul className="w-full text-center text-base font-bold">
+                  <li className="border-b py-4">Use your own domain</li>
+                  <li className="border-b py-4">Use your own email address</li>
                   <li className="border-b py-4">
                     Admin dashboard and analytics
                   </li>
@@ -73,14 +75,11 @@ export const PagePricing: React.FC = () => {
                   On Premise
                 </div>
                 <ul className="w-full text-center text-sm">
-                  <li className="border-b py-4">Host on on premise</li>
+                  <li className="border-b py-4">Host on your own server</li>
                   <li className="border-b py-4">
                     Easy installation on Azure, AWS or Linux
                   </li>
-                  <li className="border-b py-4">
-                    Ready to use Docker container for Kubernetes
-                  </li>
-                  <li className="border-b py-4">100% White labelling </li>
+                  <li className="border-b py-4">Docker images available</li>
                   <li className="border-b py-4">
                     Use your own domain, logo and color theme
                   </li>
