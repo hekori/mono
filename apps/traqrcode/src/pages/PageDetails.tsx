@@ -45,25 +45,24 @@ export const PageDetails = ({ routeInfo }: PropsPageDetails) => {
   else if (error) content = <Error500 />
   else {
     content = (
-      <div className="bg-document2 text-onDocument2 shadow overflow-hidden sm:rounded-md">
+      <div className="bg-document2 text-onDocument2 shadow sm:rounded-md">
         <ul className="divide-y divide-divider">
           {data.ids.map((pageProgressUuid) => {
             const item = data.idToItem[pageProgressUuid]
             return (
               <li
                 key={pageProgressUuid}
-                className="p-4 flex flex-col md:flex-row md:items-center justify-between  hover:bg-touchableHighlight"
+                className="p-4 grid lg:grid-cols-12 grid-cols-1 gap-1 hover:bg-touchableHighlight"
               >
-                <span className="text-left flex-1">
+                <span className="text-left col-span-2">
                   <TextLarge>{item.pageTitle}</TextLarge> <br />
                   <TextLarge>{item.pageItemTitle}</TextLarge>
                   <br />
                   <TextSmall>{item.pageItemSubTitle}</TextSmall>
                 </span>
-                <div className={'w-2'} />
 
                 <ProgressInfo
-                  className="flex-1"
+                  className="col-span-3"
                   done={!!item.pageItemProgressCreatedAt}
                   mdiIcon="mdi-email"
                   date={item.pageItemProgressCreatedAt || ''}
@@ -71,7 +70,7 @@ export const PageDetails = ({ routeInfo }: PropsPageDetails) => {
                   textDone={`Task created`}
                 />
                 <ProgressInfo
-                  className="flex-1"
+                  className="col-span-3"
                   done={!!item.pageItemProgressStartedAt}
                   mdiIcon="mdi-progress-clock"
                   date={item.pageItemProgressStartedAt || ''}
@@ -79,7 +78,7 @@ export const PageDetails = ({ routeInfo }: PropsPageDetails) => {
                   textDone={`Accepted by ${item.pageWorkerEmail}`}
                 />
                 <ProgressInfo
-                  className="flex-1"
+                  className="col-span-3"
                   done={!!item.pageItemProgressFinishedAt}
                   mdiIcon="mdi-progress-check"
                   date={item.pageItemProgressFinishedAt || ''}
@@ -88,6 +87,7 @@ export const PageDetails = ({ routeInfo }: PropsPageDetails) => {
                 />
 
                 <ButtonFlat
+                  className="col-span-1"
                   onClick={(e) => {
                     e.stopPropagation()
                     history.push(editRoute({ pageUuid: item.pageUuid }))

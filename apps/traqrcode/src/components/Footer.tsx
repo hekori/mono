@@ -8,9 +8,9 @@ export const Footer = () => {
   const history = useHistory()
   const { state } = useGlobal()
   return (
-    <footer className="relative max-w-screen-xl container mx-auto bg-document text-onDocument flex flex-wrap justify-between px-6 py-2 min-h-24">
+    <footer className="relative max-w-screen-xl container mx-auto bg-document text-onDocument flex flex-wrap justify-between px-6 py-8 min-h-24">
       <div
-        className="font-mono text-white cursor-pointer"
+        className="font-mono text-white cursor-pointer flex-1"
         onClick={() => history.push('/')}
       >
         <LogoTraqrcode color={themes[state.theme]?.onDocument} height={32} />

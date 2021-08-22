@@ -29,7 +29,7 @@ export const ProgressInfo: React.FC<ProgressInfoProps> = ({
   return (
     <div
       className={classNames(
-        `flex flex-row items-start text-left h-16 ${done ? '' : 'opacity-20'}`,
+        `flex flex-row items-start text-left ${done ? '' : 'opacity-20'}`,
         props.className
       )}
     >
@@ -41,7 +41,7 @@ export const ProgressInfo: React.FC<ProgressInfoProps> = ({
         <i className={`mdi ${mdiIcon} text-white text-3xl`} />
       </div>
 
-      <div className="flex-1 pl-4">
+      <div className="flex-1 pl-4 overflow-hidden">
         <div className="text-lg">
           {done ? `${humanReadableTimeDifference(date, getNow())} ago` : '...'}
         </div>
