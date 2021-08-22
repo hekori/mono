@@ -7,6 +7,13 @@ import { applyTheme } from '@hekori/uikit'
 import { QueryClient, QueryClientProvider } from 'react-query'
 import { Api } from './api'
 
+const isDarkThemeSystemPreference = (): boolean => {
+  return (
+    window.matchMedia &&
+    window.matchMedia('(prefers-color-scheme: dark)').matches
+  )
+}
+
 export const initialState: State = {
   shortHash: '',
   accessToken: '',
@@ -15,7 +22,7 @@ export const initialState: State = {
   idToWorker: {},
   idToItem: {},
   itemIds: [],
-  theme: 'DarkTheme',
+  theme: isDarkThemeSystemPreference() ? 'DarkTheme' : 'LightTheme',
 }
 
 export interface State {
