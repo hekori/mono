@@ -1,75 +1,18 @@
 import * as React from 'react'
-import { useGlobal } from '../index.provider'
-import { ShellPublic } from '../components/ShellPublic'
-import {
-  dateFormatter,
-  MyDate,
-  shortDayNameFormatter,
-  timeFormatter,
-} from '@hekori/dates'
-import { TaskRouteInfo } from '../routings'
-import { useQuery } from 'react-query'
-import { GetTaskResponseOk } from '../../../../libs/traqrcode-common/src/lib/interfaces/task'
-import { Loading } from '../components/Loading'
+import {useGlobal} from '../index.provider'
+import {ShellPublic} from '../components/ShellPublic'
+import {MyDate,} from '@hekori/dates'
+import {TaskRouteInfo} from '../routings'
+import {useQuery} from 'react-query'
+import {GetTaskResponseOk} from '../../../../libs/traqrcode-common/src/lib/interfaces/task'
+import {Loading} from '../components/Loading'
+import {ProgressInfo, ProgressInfoConnector} from "../components/ProgressInfo";
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo
 }
 
-interface ProgressInfoProps {
-  date: MyDate
-  textPending: string
-  textDone: string
-  mdiIcon: string
-  done: boolean
-}
 
-const ProgressInfo: React.FC<ProgressInfoProps> = ({
-  date,
-  textPending,
-  textDone,
-  mdiIcon,
-  done,
-}) => {
-  return (
-    <div
-      className={`flex flex-row items-start h-16 ${done ? '' : 'opacity-20'}`}
-    >
-      <div
-        className={`${
-          done ? 'bg-green-500' : 'bg-gray-400'
-        } rounded-full flex w-16 h-16 items-center justify-center`}
-      >
-        <i className={`mdi ${mdiIcon} text-white text-3xl`} />
-      </div>
-
-      <div className="flex-1 pl-4">
-        <div className="text-lg">
-          {done
-            ? `${shortDayNameFormatter(date)} ${dateFormatter(
-                date
-              )} ${timeFormatter(date)}`
-            : '...'}
-        </div>
-        <div className="text-md">{done ? textDone : textPending}</div>
-      </div>
-    </div>
-  )
-}
-
-const ProgressInfoConnector: React.FC<{ done: boolean }> = ({ done }) => {
-  return (
-    <div className={`flex flex-row ${done ? '' : 'opacity-20'} mt-4 mb-4`}>
-      <div className="h-10 w-16 flex flex-row justify-center">
-        <div
-          className={`h-10 w-1 rounded-full ${
-            done ? 'bg-green-500' : 'bg-gray-400'
-          }`}
-        />
-      </div>
-    </div>
-  )
-}
 
 export const PageTask = ({ routeInfo }: PropsPageTask) => {
   const { state, api } = useGlobal()

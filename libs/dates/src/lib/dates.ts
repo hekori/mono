@@ -82,6 +82,21 @@ export const humanReadableTimeDifference = (
   const mStart = moment(start)
   const differenceInSeconds = mStop.diff(mStart, 'seconds')
 
-  if (differenceInSeconds < 60) return `${differenceInSeconds} seconds ago`
-  else return `${mStop.diff(mStart, 'minutes')} minutes ago`
+  if (differenceInSeconds < 60) {
+    const amount = mStop.diff(mStart, 'seconds')
+    const unit = amount === 1 ? 'second' : 'seconds'
+    return `${amount} ${unit}`
+  } else if (differenceInSeconds < 3600) {
+    const amount = mStop.diff(mStart, 'minutes')
+    const unit = amount === 1 ? 'minute' : 'minutes'
+    return `${amount} ${unit}`
+  } else if (differenceInSeconds < 3600 * 24) {
+    const amount = mStop.diff(mStart, 'hours')
+    const unit = amount === 1 ? 'hour' : 'hours'
+    return `${amount} ${unit}`
+  } else {
+    const amount = mStop.diff(mStart, 'days')
+    const unit = amount === 1 ? 'day' : 'days'
+    return `${amount} ${unit}`
+  }
 }

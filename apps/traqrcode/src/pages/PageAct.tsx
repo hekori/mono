@@ -11,6 +11,8 @@ import {
 } from '@hekori/traqrcode-common'
 import { useQuery } from 'react-query'
 import { GetActResponse } from '../../../../libs/traqrcode-common/src/lib/interfaces/act'
+import { Container } from '../components/Container'
+import { ButtonPrimary, ButtonSecondary } from '@hekori/uikit'
 
 type PropsPageAction = {
   routeInfo: ActRouteInfo
@@ -39,25 +41,23 @@ export const PageAction = ({ routeInfo }: PropsPageAction) => {
   if (routeInfo.action === Action.stop) {
     content = <h1>You have finished the task</h1>
   } else if (routeInfo.action === Action.start) {
-    content = <h1>You have successfully accepted the task</h1>
+    content = <h1>You have accepted the task</h1>
   }
 
   return (
     <ShellPublic>
-      <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
-        <div className="container max-w-5xl mx-auto m-8">
-          {content}
+      <Container>
+        {content}
 
-          <button
-            className="button"
-            onClick={() => {
-              history.push(getFrontendPageItemProgressUrl(routeInfo))
-            }}
-          >
-            View
-          </button>
-        </div>
-      </div>
+        <ButtonSecondary
+          className="min-w-full mt-8"
+          onClick={() => {
+            history.push(getFrontendPageItemProgressUrl(routeInfo))
+          }}
+        >
+          View
+        </ButtonSecondary>
+      </Container>
     </ShellPublic>
   )
 }

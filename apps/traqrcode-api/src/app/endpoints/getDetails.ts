@@ -27,7 +27,8 @@ export const getDetails = async (request, reply) => {
       'pageItemProgress.createdAt as pageItemProgressCreatedAt',
       'pageItemProgress.startedAt as pageItemProgressStartedAt',
       'pageItemProgress.finishedAt as pageItemProgressFinishedAt',
-      'pageItemProgress.pageWorkerUuid as pageWorkerUuid'
+      'pageItemProgress.pageWorkerUuid as pageWorkerUuid',
+      'pageWorker.email as pageWorkerEmail'
     )
     .from<DetailsDatabaseResponse>('page')
     .innerJoin('pageItem', 'page.pageUuid', 'pageItem.pageUuid')
@@ -35,6 +36,11 @@ export const getDetails = async (request, reply) => {
       'pageItemProgress',
       'pageItem.pageItemUuid',
       'pageItemProgress.pageItemUuid'
+    )
+    .leftJoin(
+      'pageWorker',
+      'pageItemProgress.pageWorkerUuid',
+      'pageWorker.pageWorkerUuid'
     )
     .where({ 'page.createdBy': userUuid })
     .orderBy([{ column: 'pageItemProgress.createdAt', order: 'ASC' }])
