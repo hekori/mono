@@ -29,7 +29,7 @@ export const Step2: React.FC<
   }
 > = ({ emailSentAt, email, setServerResponse }) => {
   const [ago, setAgo] = useState<string>(
-    humanReadableTimeDifference(emailSentAt, getNow())
+    `${humanReadableTimeDifference(emailSentAt, getNow())} ago`
   )
 
   useEffect(() => {
