@@ -76,13 +76,12 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
     { refetchOnWindowFocus: false }
   )
 
-  if (isLoading) return <Loading />
-
-  if ((errors?.global || []).includes(API_CODE.ERROR_NOT_FOUND))
+  let content
+  if (isLoading || isFetching || !data) content = <Loading />
+  else if ((errors?.global || []).includes(API_CODE.ERROR_NOT_FOUND))
     return <PageError404 />
-
-  return (
-    <ShellLoggedIn>
+  else
+    content = (
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
         <div className="mt-8">
           <TextSubtitle>Name your print</TextSubtitle>
@@ -253,6 +252,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
           })}
         </div>
       </div>
-    </ShellLoggedIn>
-  )
+    )
+
+  return <ShellLoggedIn>{content}</ShellLoggedIn>
 }

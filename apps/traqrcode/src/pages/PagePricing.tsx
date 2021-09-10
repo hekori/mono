@@ -17,12 +17,9 @@ export const PagePricing: React.FC = () => {
               <div className="flex-1 overflow-hidden">
                 <div className="p-8 text-3xl font-bold text-center">Free</div>
                 <ul className="w-full text-center text-sm">
-                  <li className="border-b py-4">
-                    Everything of the pro account
-                  </li>
                   <li className="border-b py-4">Try without risk</li>
                   <li className="border-b py-4">
-                    Maximum validity of QR codes: 1 year
+                    QR codes are valid for twelve months
                   </li>
                 </ul>
               </div>
@@ -48,14 +45,14 @@ export const PagePricing: React.FC = () => {
                   Pro (Cloud)
                 </div>
                 <ul className="w-full text-center text-base font-bold">
+                  <li className="border-b py-4">Everything of the free tier</li>
                   <li className="border-b py-4">Use your own domain</li>
-                  <li className="border-b py-4">Use your own email address</li>
+                  <li className="border-b py-4">
+                    Send emails from your own email address
+                  </li>
+                  <li className="border-b py-4">QR codes are valid forever</li>
                   <li className="border-b py-4">
                     Admin dashboard and analytics
-                  </li>
-                  <li className="border-b py-4">Unlimited emails</li>
-                  <li className="border-b py-4">
-                    Unlimited validity of QR Codes
                   </li>
                 </ul>
               </div>

@@ -79,6 +79,10 @@ export const getBackendDetailsGetUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/details`
 }
 
+export const getBackendDashboardGetUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/dashboard`
+}
+
 export const getBackendListGetUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/list`
 }
