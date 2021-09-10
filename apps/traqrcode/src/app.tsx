@@ -18,6 +18,8 @@ import { PageList } from './pages/PageList'
 import {
   actRegex,
   CheckLoginRouteInfo,
+  dashboardRegex,
+  DashboardRouteInfo,
   detailsRegex,
   DetailsRouteInfo,
   editRegex,
@@ -38,6 +40,7 @@ import {
   ViewRouteInfo,
 } from './routings'
 import { PageDetails } from './pages/PageDetails'
+import { PageDashboard } from './pages/PageDashboard'
 
 export const App = () => {
   const location = useLocation()
@@ -65,6 +68,14 @@ export const App = () => {
     location.pathname
   )
   if (loginRouteInfo) return <PageLoginFromUrl routeInfo={loginRouteInfo} />
+
+  // page dashboard
+  const dashboardRouteInfo: DashboardRouteInfo | null = dashboardRegex(
+    location.pathname
+  )
+  // eslint-disable-next-line react/jsx-no-undef
+  if (dashboardRouteInfo)
+    return <PageDashboard routeInfo={dashboardRouteInfo} />
 
   // page list
   const listRouteInfo: ListRouteInfo | null = listRegex(location.pathname)

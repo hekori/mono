@@ -36,6 +36,7 @@ import { AuthenticationError } from './errors'
 import { getTask } from './endpoints/getTask'
 import { getAct } from './endpoints/getAct'
 import { getDetails } from './endpoints/getDetails'
+import { getDashboard } from './endpoints/getDashboard'
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -87,6 +88,7 @@ api.setErrorHandler((error, request, reply) => {
   return reply.status(500).send({ status: API_CODE.ERROR, error })
 })
 
+api.get('/dashboard', getDashboard)
 api.get('/list', getList)
 api.get('/details', getDetails)
 api.get('/edit/:pageUuid', getEdit)

@@ -6,7 +6,7 @@ import { ButtonFlat, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
 import { logout } from '../utils'
-import { detailsRoute, listRoute } from '../routings'
+import { dashboardRoute, detailsRoute, listRoute } from '../routings'
 
 export const NavigationLoggedIn = () => {
   const history = useHistory()
@@ -20,7 +20,7 @@ export const NavigationLoggedIn = () => {
     >
       <div
         className="font-mono text-white cursor-pointer"
-        onClick={() => history.push('/')}
+        onClick={() => history.push('/dashboard')}
       >
         <LogoTraqrcode color={themes[state.theme]?.onDocument} height={32} />
       </div>
@@ -85,6 +85,20 @@ export const NavigationLoggedIn = () => {
 
           <li className="mr-3">
             <ButtonFlat
+              aria-label="Dashboard"
+              className={
+                window.location.pathname.startsWith(dashboardRoute())
+                  ? 'underline'
+                  : ''
+              }
+              onClick={() => history.push(dashboardRoute())}
+            >
+              Dashboard
+            </ButtonFlat>
+          </li>
+
+          <li className="mr-3">
+            <ButtonFlat
               aria-label="List"
               className={
                 window.location.pathname.startsWith(detailsRoute())
@@ -93,7 +107,7 @@ export const NavigationLoggedIn = () => {
               }
               onClick={() => history.push(detailsRoute())}
             >
-              Details
+              Progress
             </ButtonFlat>
           </li>
 
@@ -107,7 +121,7 @@ export const NavigationLoggedIn = () => {
               }
               onClick={() => history.push(listRoute())}
             >
-              List
+              PDFs
             </ButtonFlat>
           </li>
 

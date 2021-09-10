@@ -55,10 +55,28 @@ export const Footer = () => {
         <ul className="list-reset mb-6">
           <li className="mt-2 inline-block mr-2 md:block md:mr-0">
             <a
+              href="/"
+              className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
+            >
+              Home
+            </a>
+          </li>
+
+          <li className="mt-2 inline-block mr-2 md:block md:mr-0">
+            <a
+              href="/pricing"
+              className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
+            >
+              Pricing
+            </a>
+          </li>
+
+          <li className="mt-2 inline-block mr-2 md:block md:mr-0">
+            <a
               href="https://www.hekori.com"
               className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
             >
-              Official Website
+              Company Website
             </a>
           </li>
         </ul>

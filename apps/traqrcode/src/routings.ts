@@ -7,6 +7,8 @@ export type AdminRouteInfo = {
 export type CheckLoginRouteInfo = {
   accessToken: string
 }
+
+export type DashboardRouteInfo = Record<string, never>
 export type ListRouteInfo = Record<string, never>
 
 export const loginRegex = (pathname: string): CheckLoginRouteInfo | null => {
@@ -19,6 +21,16 @@ export const loginRegex = (pathname: string): CheckLoginRouteInfo | null => {
     }
   }
   return null
+}
+
+export const dashboardRoute = () => {
+  return `/dashboard`
+}
+
+export const dashboardRegex = (pathname: string): DashboardRouteInfo | null => {
+  if (pathname.startsWith('/dashboard')) {
+    return {}
+  } else return null
 }
 
 export const listRoute = () => {
@@ -46,11 +58,11 @@ export const editRoute = ({ pageUuid }: EditRouteInfo) => {
 }
 
 export const detailsRoute = () => {
-  return `/details`
+  return `/progress`
 }
 
 export const detailsRegex = (pathname: string): DetailsRouteInfo | null => {
-  if (pathname.startsWith('/details')) {
+  if (pathname.startsWith('/progress')) {
     return {}
   } else return null
 }
