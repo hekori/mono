@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useGlobal } from '../index.provider'
 import { Container } from '../components/Container'
-import { editRoute, ListRouteInfo } from '../routings'
+import { editRoute, PdfRouteInfo } from '../routings'
 import {
   API_CODE,
   BACKEND_URL,
@@ -27,7 +27,7 @@ import { ShellLoggedIn } from '../components/ShellLoggedIn'
 import { dl } from '../dl'
 
 interface PropsPageList {
-  routeInfo: ListRouteInfo
+  routeInfo: PdfRouteInfo
 }
 export const PageList: React.FC<PropsPageList> = ({ routeInfo }) => {
   const { api } = useGlobal()

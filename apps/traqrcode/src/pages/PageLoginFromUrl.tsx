@@ -4,7 +4,7 @@ import { ShellPublic } from '../components/ShellPublic'
 import { Container } from '../components/Container'
 import { environment } from '../environments/environment'
 import { useHistory } from 'react-router-dom'
-import { CheckLoginRouteInfo } from '../routings'
+import { CheckLoginRouteInfo, PDF_ROUTE } from '../routings'
 
 interface PropsPageCheckLogin {
   routeInfo: CheckLoginRouteInfo
@@ -18,7 +18,7 @@ export const PageLoginFromUrl: React.FC<PropsPageCheckLogin> = ({
     const runEffect = async () => {
       const key = environment.getAccessTokenLocalStorageKey()
       localStorage.setItem(key, routeInfo.accessToken)
-      history.push('/list')
+      history.push(PDF_ROUTE)
     }
 
     void runEffect()

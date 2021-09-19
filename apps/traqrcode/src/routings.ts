@@ -1,5 +1,15 @@
 import { ActRouteInfo, PageItemProgress } from '@hekori/traqrcode-common'
 
+export const FRONTPAGE_ROUTE = '/frontpage'
+export const PRICING_ROUTE = '/pricing'
+export const TERMS_ROUTE = '/terms'
+export const IMPRINT_ROUTE = '/imprint'
+export const PRIVACY_ROUTE = '/privacy'
+export const HOMEPAGE_ROUTE = '/'
+export const SIGNUP_ROUTE = '/signup'
+export const DASHBOARD_ROUTE = '/dashboard'
+export const PDF_ROUTE = '/pdf'
+
 export type AdminRouteInfo = {
   shortHash: string
   accessToken: string
@@ -9,7 +19,7 @@ export type CheckLoginRouteInfo = {
 }
 
 export type DashboardRouteInfo = Record<string, never>
-export type ListRouteInfo = Record<string, never>
+export type PdfRouteInfo = Record<string, never>
 
 export const loginRegex = (pathname: string): CheckLoginRouteInfo | null => {
   const pattern = /\/login\/(?<accessToken>.*)/
@@ -23,22 +33,14 @@ export const loginRegex = (pathname: string): CheckLoginRouteInfo | null => {
   return null
 }
 
-export const dashboardRoute = () => {
-  return `/dashboard`
-}
-
 export const dashboardRegex = (pathname: string): DashboardRouteInfo | null => {
-  if (pathname.startsWith('/dashboard')) {
+  if (pathname.startsWith(DASHBOARD_ROUTE)) {
     return {}
   } else return null
 }
 
-export const listRoute = () => {
-  return `/list`
-}
-
-export const listRegex = (pathname: string): ListRouteInfo | null => {
-  if (pathname.startsWith('/list')) {
+export const pdfRegex = (pathname: string): PdfRouteInfo | null => {
+  if (pathname.startsWith(PDF_ROUTE)) {
     return {}
   } else return null
 }
@@ -154,10 +156,3 @@ export const actRegex = (pathname: string): ActRouteInfo | null => {
   }
   return null
 }
-
-export const PRICING_ROUTE = '/pricing'
-export const TERMS_ROUTE = '/terms'
-export const IMPRINT_ROUTE = '/imprint'
-export const PRIVACY_ROUTE = '/privacy'
-export const HOMEPAGE_ROUTE = '/'
-export const SIGNUP_ROUTE = '/signup'

@@ -1,11 +1,11 @@
 import * as React from 'react'
-import { ShellPublic } from '../components/ShellPublic'
 import { Error500 } from '../components/Error500'
+import { Shell } from '../components/Shell'
 
 export const PageError500 = () => {
   return (
-    <ShellPublic>
+    <Shell>
       <Error500 />
-    </ShellPublic>
+    </Shell>
   )
 }

@@ -6,11 +6,13 @@ import { Helmet } from 'react-helmet'
 import { LoadingContent } from './LoadingContent'
 
 type ShellProps = {
-  children: any
   loading?: boolean
 }
 
-export const ShellPublic = ({ children, loading = false }: ShellProps) => {
+export const ShellPublic: React.FC<ShellProps> = ({
+  children,
+  loading = false,
+}) => {
   useScrollToTop()
 
   return (

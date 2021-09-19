@@ -1,10 +1,11 @@
 import { useHistory } from 'react-router-dom'
 import * as React from 'react'
-import { ShellPublic } from '../components/ShellPublic'
 import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
 import { ButtonPrimary, ButtonSecondary, TextSubtitle } from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
-import { SIGNUP_ROUTE } from '../routings'
+import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../routings'
+import { Shell } from '../components/Shell'
+import { isLoggedIn } from '../utils'
 
 export type TypeErrors = {
   email?: string
@@ -53,7 +54,7 @@ export const PageFront = () => {
   const history = useHistory()
 
   return (
-    <ShellPublic>
+    <Shell>
       <div className="md:h-128 border-b border-divider py-16">
         <div className="text-center px-3 lg:px-0 md:my-32">
           <h1 className="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
@@ -65,7 +66,11 @@ export const PageFront = () => {
 
           <ButtonPrimary
             aria-label="Create QR Code"
-            onClick={() => history.push(SIGNUP_ROUTE)}
+            onClick={() =>
+              isLoggedIn()
+                ? history.push(DASHBOARD_ROUTE)
+                : history.push(SIGNUP_ROUTE)
+            }
           >
             Create QR Code
           </ButtonPrimary>
@@ -183,6 +188,6 @@ are automatically logged and your personnel is notified.`}
           />
         </div>
       </section>
-    </ShellPublic>
+    </Shell>
   )
 }

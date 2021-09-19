@@ -1,4 +1,4 @@
-import { useLocation } from 'react-router-dom'
+import { useHistory, useLocation } from 'react-router-dom'
 import { PageFront } from './pages/PageFrontpage'
 import { PageEdit } from './pages/PageEdit'
 import { PageError404 } from './pages/PageError404'
@@ -18,15 +18,17 @@ import { PageList } from './pages/PageList'
 import {
   actRegex,
   CheckLoginRouteInfo,
+  DASHBOARD_ROUTE,
   dashboardRegex,
   DashboardRouteInfo,
   detailsRegex,
   DetailsRouteInfo,
   editRegex,
   EditRouteInfo,
+  FRONTPAGE_ROUTE,
   IMPRINT_ROUTE,
-  listRegex,
-  ListRouteInfo,
+  pdfRegex,
+  PdfRouteInfo,
   loginRegex,
   PRICING_ROUTE,
   PRIVACY_ROUTE,
@@ -41,12 +43,19 @@ import {
 } from './routings'
 import { PageDetails } from './pages/PageDetails'
 import { PageDashboard } from './pages/PageDashboard'
+import { isLoggedIn } from './utils'
 
 export const App = () => {
   const location = useLocation()
+  const history = useHistory()
+
+  if (location.pathname === '/') {
+    if (isLoggedIn()) history.push(DASHBOARD_ROUTE)
+    else history.push(FRONTPAGE_ROUTE)
+  }
 
   // page front
-  if (location.pathname === '/') return <PageFront />
+  if (location.pathname === FRONTPAGE_ROUTE) return <PageFront />
 
   // imprint
   if (location.pathname === IMPRINT_ROUTE) return <PageImprint />
@@ -78,7 +87,7 @@ export const App = () => {
     return <PageDashboard routeInfo={dashboardRouteInfo} />
 
   // page list
-  const listRouteInfo: ListRouteInfo | null = listRegex(location.pathname)
+  const listRouteInfo: PdfRouteInfo | null = pdfRegex(location.pathname)
   if (listRouteInfo) return <PageList routeInfo={listRouteInfo} />
 
   // page details
