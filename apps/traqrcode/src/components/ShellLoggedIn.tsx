@@ -6,11 +6,13 @@ import { LoadingContent } from './LoadingContent'
 import { NavigationLoggedIn } from './NavigationLoggedIn'
 
 type ShellProps = {
-  children: any
   loading?: boolean
 }
 
-export const ShellLoggedIn = ({ children, loading = false }: ShellProps) => {
+export const ShellLoggedIn: React.FC<ShellProps> = ({
+  children,
+  loading = false,
+}) => {
   useScrollToTop()
 
   return (

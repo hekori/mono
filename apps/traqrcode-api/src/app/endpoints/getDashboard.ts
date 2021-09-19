@@ -3,10 +3,60 @@ import {
   verifyAccessToken,
 } from '../middleware/auth'
 import { pg } from '../../pg'
-import { convertListToIdAndObject } from '../utils'
-import { DetailsDatabaseResponse } from '../../../../../libs/traqrcode-common/src/lib/interfaces/details'
-import { GetDashboardResponse } from '../../../../../libs/traqrcode-common/src/lib/interfaces/dashboard'
-import { STATUS_CODES } from 'http'
+import {
+  GetDashboardResponse,
+  NumberByStatus,
+  TimeCount,
+} from '../../../../../libs/traqrcode-common/src/lib/interfaces/dashboard'
+import { Page, PageItem, PageItemProgress } from '@hekori/traqrcode-common'
+
+type CombinedPageProgress = Page & PageItem & PageItemProgress
+
+type GetPageItemProgressStatusDto = 'finished' | 'inProgress' | 'open'
+export const getPageItemProgressStatus = (
+  pageItemProgress: PageItemProgress
+): GetPageItemProgressStatusDto => {
+  if (pageItemProgress.finishedAt) return 'finished'
+  else if (pageItemProgress.startedAt) return 'inProgress'
+  else if (pageItemProgress.createdAt) return 'open'
+  else throw new Error('Invalid status. createdAt must not be null')
+}
+
+export const getNumberByStatus = (
+  result: CombinedPageProgress[]
+): NumberByStatus => {
+  let numberOfFinishedTasks = 0
+  let numberOfInProgressTasks = 0
+  let numberOfOpenTasks = 0
+
+  for (const row of result) {
+    const status = getPageItemProgressStatus(row)
+    switch (status) {
+      case 'finished':
+        numberOfFinishedTasks += 1
+        break
+      case 'inProgress':
+        numberOfInProgressTasks += 1
+        break
+      case 'open':
+        numberOfOpenTasks += 1
+        break
+      default:
+        break
+    }
+  }
+  return { numberOfFinishedTasks, numberOfInProgressTasks, numberOfOpenTasks }
+}
+
+export const getOpenToInProgressTimingHistogram = (
+  result: CombinedPageProgress[]
+): TimeCount[] => {
+  const retval: TimeCount[] = []
+  for (let i = 0; i < 100; i++) {
+    retval.push({ time: i, count: i + 1 })
+  }
+  return retval
+}
 
 export const getDashboard = async (request, reply) => {
   console.log(request.body)
@@ -19,36 +69,31 @@ export const getDashboard = async (request, reply) => {
   const { userUuid } = decoded
 
   const result = await pg
-    .from<{
-      numberOfCreatedTasks: number
-      numberOfStartedTasks: number
-      numberOfFinishedTasks: number
-    }>('page')
+    .from<CombinedPageProgress>('page')
     .innerJoin('pageItem', 'page.pageUuid', 'pageItem.pageUuid')
     .innerJoin(
       'pageItemProgress',
       'pageItem.pageItemUuid',
       'pageItemProgress.pageItemUuid'
     )
-    .where({ 'page.createdBy': userUuid })
-    .count({
-      numberOfCreatedTasks: 'pageItemProgress.createdAt',
-      numberOfStartedTasks: 'pageItemProgress.startedAt',
-      numberOfFinishedTasks: 'pageItemProgress.finishedAt',
-    })
+    .orderBy([{ column: 'pageItemProgress.createdAt', order: 'ASC' }])
 
-  const numberOfFinishedTasks = +result[0].numberOfFinishedTasks
-  const numberOfInProgressTasks =
-    result[0].numberOfStartedTasks - numberOfFinishedTasks
-  const numberOfOpenTasks =
-    result[0].numberOfCreatedTasks -
-    numberOfInProgressTasks -
-    numberOfFinishedTasks
+  console.log('result=', result)
+  const {
+    numberOfFinishedTasks,
+    numberOfInProgressTasks,
+    numberOfOpenTasks,
+  } = getNumberByStatus(result)
+
+  const openToInProgressTimingHistogram = getOpenToInProgressTimingHistogram(
+    result
+  )
 
   const returnDto: GetDashboardResponse = {
     numberOfFinishedTasks,
     numberOfInProgressTasks,
     numberOfOpenTasks,
+    openToInProgressTimingHistogram,
     status: 'OK',
   }
 

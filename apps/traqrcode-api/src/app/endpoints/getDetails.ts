@@ -43,7 +43,7 @@ export const getDetails = async (request, reply) => {
       'pageWorker.pageWorkerUuid'
     )
     .where({ 'page.createdBy': userUuid })
-    .orderBy([{ column: 'pageItemProgress.createdAt', order: 'ASC' }])
+    .orderBy([{ column: 'pageItemProgress.createdAt', order: 'DESC' }])
 
   return convertListToIdAndObject(result, 'pageItemProgressUuid')
 }

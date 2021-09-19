@@ -6,9 +6,9 @@ import { ButtonFlat, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
 import { logout } from '../utils'
-import { dashboardRoute, detailsRoute, listRoute } from '../routings'
+import { DASHBOARD_ROUTE, detailsRoute, PDF_ROUTE } from '../routings'
 
-export const NavigationLoggedIn = () => {
+export const NavigationLoggedIn: React.FC = () => {
   const history = useHistory()
   const { state, setState } = useGlobal()
 
@@ -20,7 +20,7 @@ export const NavigationLoggedIn = () => {
     >
       <div
         className="font-mono text-white cursor-pointer"
-        onClick={() => history.push('/dashboard')}
+        onClick={() => history.push(DASHBOARD_ROUTE)}
       >
         <LogoTraqrcode color={themes[state.theme]?.onDocument} height={32} />
       </div>
@@ -87,11 +87,11 @@ export const NavigationLoggedIn = () => {
             <ButtonFlat
               aria-label="Dashboard"
               className={
-                window.location.pathname.startsWith(dashboardRoute())
+                window.location.pathname.startsWith(DASHBOARD_ROUTE)
                   ? 'underline'
                   : ''
               }
-              onClick={() => history.push(dashboardRoute())}
+              onClick={() => history.push(DASHBOARD_ROUTE)}
             >
               Dashboard
             </ButtonFlat>
@@ -115,11 +115,11 @@ export const NavigationLoggedIn = () => {
             <ButtonFlat
               aria-label="List"
               className={
-                window.location.pathname.startsWith(listRoute())
+                window.location.pathname.startsWith(PDF_ROUTE)
                   ? 'underline'
                   : ''
               }
-              onClick={() => history.push(listRoute())}
+              onClick={() => history.push(PDF_ROUTE)}
             >
               PDFs
             </ButtonFlat>

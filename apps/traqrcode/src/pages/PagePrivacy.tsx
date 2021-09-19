@@ -1,10 +1,10 @@
 import * as React from 'react'
-import { ShellPublic } from '../components/ShellPublic'
-import { APP_NAME } from '../../../../libs/traqrcode-common/src/lib/settings'
+import { Shell } from '../components/Shell'
+import { APP_NAME } from '@hekori/traqrcode-common'
 
 export const PagePrivacy = () => {
   return (
-    <ShellPublic>
+    <Shell>
       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
         <div className="container max-w-5xl mx-auto m-8 px-4">
           {' '}
@@ -44,6 +44,6 @@ export const PagePrivacy = () => {
           We are hosted on servers in the EU.
         </div>
       </div>
-    </ShellPublic>
+    </Shell>
   )
 }

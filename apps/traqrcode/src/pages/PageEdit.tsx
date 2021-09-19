@@ -19,7 +19,7 @@ import {
 } from '@hekori/traqrcode-common'
 import { ButtonFlat, ButtonSecondary, Input, TextSubtitle } from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
-import { EditRouteInfo } from '../routings'
+import { EditRouteInfo, PDF_ROUTE } from '../routings'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { useQuery } from 'react-query'
 import { PageEditState } from '../../../../libs/traqrcode-common/src/lib/interfaces/edit'
@@ -231,7 +231,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
               if (res.status === 'ERROR') {
                 setErrors(res)
               } else {
-                history.push(`/list`)
+                history.push(PDF_ROUTE)
               }
             }}
           >

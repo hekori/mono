@@ -3,6 +3,7 @@ import { LogoTraqrcode } from '../assets/LogoTraqrcode'
 import * as React from 'react'
 import { themes } from '@hekori/uikit'
 import { useGlobal } from '../index.provider'
+import { FRONTPAGE_ROUTE, PRICING_ROUTE } from '../routings'
 
 export const Footer = () => {
   const history = useHistory()
@@ -54,21 +55,21 @@ export const Footer = () => {
         </p>
         <ul className="list-reset mb-6">
           <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-            <a
-              href="/"
+            <Link
+              to={FRONTPAGE_ROUTE}
               className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
             >
               Home
-            </a>
+            </Link>
           </li>
 
           <li className="mt-2 inline-block mr-2 md:block md:mr-0">
-            <a
-              href="/pricing"
+            <Link
+              to={PRICING_ROUTE}
               className="font-light no-underline text-onDocument2 hover:text-onDocumentHighlight focus:text-onDocumentHighlight"
             >
               Pricing
-            </a>
+            </Link>
           </li>
 
           <li className="mt-2 inline-block mr-2 md:block md:mr-0">
