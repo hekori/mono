@@ -1,6 +1,5 @@
 import * as React from 'react'
 import { useGlobal } from '../index.provider'
-import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
 import { Loading } from '../components/Loading'
 import { ReadRouteInfo } from '../routings'
@@ -11,6 +10,7 @@ import {
   isGetReadResponseOk,
 } from '@hekori/traqrcode-common'
 import { Error500 } from '../components/Error500'
+import { Shell } from '../components/Shell'
 
 type PropsPageRead = {
   routeInfo: ReadRouteInfo
@@ -52,5 +52,5 @@ export const PageRead: React.FC<PropsPageRead> = ({ routeInfo }) => {
 
   console.log(state)
 
-  return <ShellPublic>{content}</ShellPublic>
+  return <Shell>{content}</Shell>
 }
