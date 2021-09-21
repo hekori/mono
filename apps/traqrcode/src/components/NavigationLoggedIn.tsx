@@ -131,6 +131,7 @@ export const NavigationLoggedIn: React.FC = () => {
               onClick={() => {
                 logout()
                 setState({ ...state })
+                history.push('/')
               }}
             >
               Logout

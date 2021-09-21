@@ -1,18 +1,15 @@
 import * as React from 'react'
-import {useGlobal} from '../index.provider'
-import {ShellPublic} from '../components/ShellPublic'
-import {MyDate,} from '@hekori/dates'
-import {TaskRouteInfo} from '../routings'
-import {useQuery} from 'react-query'
-import {GetTaskResponseOk} from '../../../../libs/traqrcode-common/src/lib/interfaces/task'
-import {Loading} from '../components/Loading'
-import {ProgressInfo, ProgressInfoConnector} from "../components/ProgressInfo";
+import { useGlobal } from '../index.provider'
+import { TaskRouteInfo } from '../routings'
+import { useQuery } from 'react-query'
+import { GetTaskResponseOk } from '../../../../libs/traqrcode-common/src/lib/interfaces/task'
+import { Loading } from '../components/Loading'
+import { ProgressInfo, ProgressInfoConnector } from '../components/ProgressInfo'
+import { Shell } from '../components/Shell'
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo
 }
-
-
 
 export const PageTask = ({ routeInfo }: PropsPageTask) => {
   const { state, api } = useGlobal()
@@ -82,5 +79,5 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
   //     </ShellPublic>
   //   )
 
-  return <ShellPublic>{content}</ShellPublic>
+  return <Shell>{content}</Shell>
 }

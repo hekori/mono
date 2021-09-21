@@ -11,27 +11,20 @@ import { useQuery, useQueryClient } from 'react-query'
 import { useHistory } from 'react-router-dom'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
 import { Card } from '../components/Card'
-import { ReactElement } from 'react'
+import { TextLarge, TextNormal } from '@hekori/uikit'
+import { ChangeIndicatorPill } from '../components/ChangeIndicatorPill'
 
 interface PropsPageDashboard {
   routeInfo: DashboardRouteInfo
 }
 
-const Histogram: React.FC<{
-  data: TimeCount[] | undefined
-}> = ({ data }) => {
-  if (!data) return <></>
-
-  const result = []
-
-  for (const item of data) {
-    result.push(
-      <div key={item.time}>
-        {item.time} {item.count}
-      </div>
-    )
-  }
-  return <>{result}</>
+const computePercentage = (
+  currentValue: number | undefined,
+  previousValue: number | undefined
+) => {
+  if (currentValue === 0) return 0
+  if (previousValue === 0) return 100
+  return ((currentValue ?? 0) - (previousValue ?? 0)) / (currentValue || 1)
 }
 
 export const PageDashboard: React.FC<PropsPageDashboard> = ({ routeInfo }) => {
@@ -51,22 +44,69 @@ export const PageDashboard: React.FC<PropsPageDashboard> = ({ routeInfo }) => {
   return (
     <ShellLoggedIn loading={isLoading}>
       <Container>
-        <div className="grid grid-cols-3 gap-4 text-3xl">
-          <Card>
-            <i className={`mdi mdi-email`} />
-            Open tasks: {data?.numberOfOpenTasks}
-            <br />
-            <Histogram data={data?.openToInProgressTimingHistogram} />
-          </Card>
-          <Card>
-            <i className={`mdi mdi-progress-clock`} />
-            In progress tasks: {data?.numberOfInProgressTasks}
-          </Card>
-          <Card>
-            <i className={`mdi mdi-progress-check`} />
-            Finished tasks: {data?.numberOfFinishedTasks}
-          </Card>
-        </div>
+        <dl className="mt-5 grid grid-cols-1 rounded-lg bg-document2 overflow-hidden shadow divide-y divide-inputBorder md:grid-cols-3 md:divide-y-0 md:divide-x">
+          <div className="px-4 py-5 sm:p-6">
+            <TextNormal className="text-onDocument2">Finished tasks</TextNormal>
+            <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+              <div className="flex items-baseline text-2xl font-semibold text-onDocumentHighlight">
+                {data?.numberOfFinishedTasks}
+                <span className="ml-2 text-sm font-medium text-gray-500">
+                  from {data?.lastMonthNumberOfFinishedTasks} last month
+                </span>
+              </div>
+              <ChangeIndicatorPill
+                percentage={computePercentage(
+                  data?.numberOfFinishedTasks,
+                  data?.lastMonthNumberOfFinishedTasks
+                )}
+              />
+            </dd>
+          </div>
+
+          <div className="px-4 py-5 sm:p-6">
+            <TextNormal className="text-onDocument2">
+              Number of in Progress Tasks
+            </TextNormal>
+
+            <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+              <div className="flex items-baseline text-2xl font-semibold text-onDocumentHighlight">
+                {data?.numberOfInProgressTasks}
+
+                <span className="ml-2 text-sm font-medium text-gray-500">
+                  from {data?.lastMonthNumberOfInProgressTasks} last month
+                </span>
+              </div>
+              <ChangeIndicatorPill
+                percentage={computePercentage(
+                  data?.numberOfInProgressTasks,
+                  data?.lastMonthNumberOfInProgressTasks
+                )}
+              />
+            </dd>
+          </div>
+
+          <div className="px-4 py-5 sm:p-6">
+            <TextNormal className="text-onDocument2">
+              Number of open tasks
+            </TextNormal>
+
+            <dd className="mt-1 flex justify-between items-baseline md:block lg:flex">
+              <div className="flex items-baseline text-2xl font-semibold text-onDocumentHighlight">
+                {data?.numberOfOpenTasks}
+                <span className="ml-2 text-sm font-medium text-gray-500">
+                  from {data?.lastMonthNumberOfOpenTasks} last month
+                </span>
+              </div>
+
+              <ChangeIndicatorPill
+                percentage={computePercentage(
+                  data?.numberOfOpenTasks,
+                  data?.lastMonthNumberOfOpenTasks
+                )}
+              />
+            </dd>
+          </div>
+        </dl>
       </Container>
     </ShellLoggedIn>
   )

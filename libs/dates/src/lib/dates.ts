@@ -74,6 +74,14 @@ export const fromNow = (date: MyDate): string => {
   return moment(date).fromNow()
 }
 
+export const timeDifference = (
+  start: MyDate,
+  end: MyDate,
+  unitOfTime: string
+): number => {
+  return moment(end).diff(moment.utc(isoDateFormatter(start)), unitOfTime)
+}
+
 export const humanReadableTimeDifference = (
   start: MyDate,
   stop: MyDate
