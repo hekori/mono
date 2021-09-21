@@ -2,6 +2,7 @@ import { GetResponseBase } from './api'
 
 export interface DetailsDatabaseResponse {
   pageUuid: string
+  pageItemProgressUuid: string
   pageTitle: string
   pageItemUuid: string
   pageItemTitle: string

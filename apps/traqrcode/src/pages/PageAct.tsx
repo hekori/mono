@@ -13,6 +13,7 @@ import { useQuery } from 'react-query'
 import { GetActResponse } from '../../../../libs/traqrcode-common/src/lib/interfaces/act'
 import { Container } from '../components/Container'
 import { ButtonPrimary, ButtonSecondary } from '@hekori/uikit'
+import { Shell } from '../components/Shell'
 
 type PropsPageAction = {
   routeInfo: ActRouteInfo
@@ -45,7 +46,7 @@ export const PageAction = ({ routeInfo }: PropsPageAction) => {
   }
 
   return (
-    <ShellPublic>
+    <Shell>
       <Container>
         {content}
 
@@ -58,6 +59,6 @@ export const PageAction = ({ routeInfo }: PropsPageAction) => {
           View
         </ButtonSecondary>
       </Container>
-    </ShellPublic>
+    </Shell>
   )
 }

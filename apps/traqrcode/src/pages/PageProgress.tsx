@@ -4,7 +4,7 @@ import { useGlobal } from '../index.provider'
 import { useHistory } from 'react-router-dom'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
-import { DetailsRouteInfo, editRoute } from '../routings'
+import { DetailsRouteInfo, editRoute, taskRoute } from '../routings'
 import { useQuery } from 'react-query'
 import {
   getBackendDetailsGetUrl,
@@ -14,7 +14,7 @@ import { Container } from '../components/Container'
 import { Loading } from '../components/Loading'
 import { Error500 } from '../components/Error500'
 import { ButtonFlat, TextLarge, TextSmall } from '@hekori/uikit'
-import { PencilIcon } from '@heroicons/react/outline'
+import { EyeIcon, PencilIcon } from '@heroicons/react/outline'
 import { ProgressInfo } from '../components/ProgressInfo'
 
 type PropsPageDetails = {
@@ -86,16 +86,29 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   textPending={'Waiting ...'}
                   textDone={`Task done!`}
                 />
+                <div className="col-span-1 flex flex-row">
+                  <ButtonFlat
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      history.push(
+                        taskRoute({
+                          pageItemProgressUuid: item.pageItemProgressUuid,
+                        })
+                      )
+                    }}
+                  >
+                    <EyeIcon className="h-5 w-5" />
+                  </ButtonFlat>
 
-                <ButtonFlat
-                  className="col-span-1"
-                  onClick={(e) => {
-                    e.stopPropagation()
-                    history.push(editRoute({ pageUuid: item.pageUuid }))
-                  }}
-                >
-                  <PencilIcon className="h-5 w-5" />
-                </ButtonFlat>
+                  <ButtonFlat
+                    onClick={(e) => {
+                      e.stopPropagation()
+                      history.push(editRoute({ pageUuid: item.pageUuid }))
+                    }}
+                  >
+                    <PencilIcon className="h-5 w-5" />
+                  </ButtonFlat>
+                </div>
                 {/*<div className={'md:flex-1'} />*/}
               </li>
             )
