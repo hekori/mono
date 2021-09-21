@@ -7,8 +7,9 @@ import {
   GetDashboardResponse,
   NumberByStatus,
   TimeCount,
-} from '../../../../../libs/traqrcode-common/src/lib/interfaces/dashboard'
+} from '@hekori/traqrcode-common'
 import { Page, PageItem, PageItemProgress } from '@hekori/traqrcode-common'
+import { getNow, timeDifference } from '@hekori/dates'
 
 type CombinedPageProgress = Page & PageItem & PageItemProgress
 
@@ -29,23 +30,42 @@ export const getNumberByStatus = (
   let numberOfInProgressTasks = 0
   let numberOfOpenTasks = 0
 
+  let lastMonthNumberOfFinishedTasks = 0
+  let lastMonthNumberOfInProgressTasks = 0
+  let lastMonthNumberOfOpenTasks = 0
+
+  const now = getNow()
+
   for (const row of result) {
     const status = getPageItemProgressStatus(row)
     switch (status) {
       case 'finished':
         numberOfFinishedTasks += 1
+        if (timeDifference(row.finishedAt, now, 'months') >= 1)
+          lastMonthNumberOfFinishedTasks += 1
         break
       case 'inProgress':
         numberOfInProgressTasks += 1
+        if (timeDifference(row.startedAt, now, 'months') >= 1)
+          lastMonthNumberOfInProgressTasks += 1
         break
       case 'open':
         numberOfOpenTasks += 1
+        if (timeDifference(row.createdAt, now, 'months') >= 1)
+          lastMonthNumberOfOpenTasks += 1
         break
       default:
         break
     }
   }
-  return { numberOfFinishedTasks, numberOfInProgressTasks, numberOfOpenTasks }
+  return {
+    numberOfFinishedTasks,
+    numberOfInProgressTasks,
+    numberOfOpenTasks,
+    lastMonthNumberOfFinishedTasks,
+    lastMonthNumberOfInProgressTasks,
+    lastMonthNumberOfOpenTasks,
+  }
 }
 
 export const getOpenToInProgressTimingHistogram = (
@@ -83,6 +103,9 @@ export const getDashboard = async (request, reply) => {
     numberOfFinishedTasks,
     numberOfInProgressTasks,
     numberOfOpenTasks,
+    lastMonthNumberOfFinishedTasks,
+    lastMonthNumberOfInProgressTasks,
+    lastMonthNumberOfOpenTasks,
   } = getNumberByStatus(result)
 
   const openToInProgressTimingHistogram = getOpenToInProgressTimingHistogram(
@@ -93,6 +116,9 @@ export const getDashboard = async (request, reply) => {
     numberOfFinishedTasks,
     numberOfInProgressTasks,
     numberOfOpenTasks,
+    lastMonthNumberOfFinishedTasks,
+    lastMonthNumberOfInProgressTasks,
+    lastMonthNumberOfOpenTasks,
     openToInProgressTimingHistogram,
     status: 'OK',
   }

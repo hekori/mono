@@ -116,7 +116,7 @@ export const NavigationPublic = () => {
 
           <li className="mr-3">
             <ButtonFlat
-              aria-label="Login"
+              aria-label="Sign up"
               className={
                 window.location.pathname.startsWith(SIGNUP_ROUTE)
                   ? 'underline'
@@ -124,7 +124,7 @@ export const NavigationPublic = () => {
               }
               onClick={() => history.push(SIGNUP_ROUTE)}
             >
-              Login
+              Sign up
             </ButtonFlat>
           </li>
 

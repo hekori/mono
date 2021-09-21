@@ -4,7 +4,7 @@ import { PageEdit } from './pages/PageEdit'
 import { PageError404 } from './pages/PageError404'
 import * as React from 'react'
 import { PageView } from './pages/PageView'
-import { PageTask } from './pages/PageTask'
+import { PageProgress } from './pages/PageProgress'
 import { PageImprint } from './pages/PageImprint'
 import { PagePrivacy } from './pages/PagePrivacy'
 import { PageTerms } from './pages/PageTerms'
@@ -14,7 +14,7 @@ import { PageSignup } from './pages/PageSignup'
 import { ActRouteInfo } from '@hekori/traqrcode-common'
 import { PagePricing } from './pages/PagePricing'
 import { PageLoginFromUrl } from './pages/PageLoginFromUrl'
-import { PageList } from './pages/PageList'
+import { PagePdfs } from './pages/PagePdfs'
 import {
   actRegex,
   CheckLoginRouteInfo,
@@ -27,9 +27,9 @@ import {
   EditRouteInfo,
   FRONTPAGE_ROUTE,
   IMPRINT_ROUTE,
+  loginRegex,
   pdfRegex,
   PdfRouteInfo,
-  loginRegex,
   PRICING_ROUTE,
   PRIVACY_ROUTE,
   readRegex,
@@ -41,9 +41,9 @@ import {
   viewRegex,
   ViewRouteInfo,
 } from './routings'
-import { PageDetails } from './pages/PageDetails'
 import { PageDashboard } from './pages/PageDashboard'
 import { isLoggedIn } from './utils'
+import { PageTask } from './pages/PageTask'
 
 export const App = () => {
   const location = useLocation()
@@ -88,13 +88,13 @@ export const App = () => {
 
   // page list
   const listRouteInfo: PdfRouteInfo | null = pdfRegex(location.pathname)
-  if (listRouteInfo) return <PageList routeInfo={listRouteInfo} />
+  if (listRouteInfo) return <PagePdfs routeInfo={listRouteInfo} />
 
   // page details
   const detailsRouteInfo: DetailsRouteInfo | null = detailsRegex(
     location.pathname
   )
-  if (detailsRouteInfo) return <PageDetails routeInfo={detailsRouteInfo} />
+  if (detailsRouteInfo) return <PageProgress routeInfo={detailsRouteInfo} />
 
   // page edit
   const editRouteInfo: EditRouteInfo | null = editRegex(location.pathname)
