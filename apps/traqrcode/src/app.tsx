@@ -18,6 +18,7 @@ import { PagePdfs } from './pages/PagePdfs'
 import {
   actRegex,
   CheckLoginRouteInfo,
+  CREATE_QR_ROUTE,
   DASHBOARD_ROUTE,
   dashboardRegex,
   DashboardRouteInfo,
@@ -69,8 +70,13 @@ export const App = () => {
   // terms
   if (location.pathname === TERMS_ROUTE) return <PageTerms />
 
+  // page signup
+  if (location.pathname === SIGNUP_ROUTE)
+    return <PageSignup variant={'signup'} />
+
   // page create
-  if (location.pathname === SIGNUP_ROUTE) return <PageSignup />
+  if (location.pathname === CREATE_QR_ROUTE)
+    return <PageSignup variant={'createQr'} />
 
   // page login
   const loginRouteInfo: CheckLoginRouteInfo | null = loginRegex(

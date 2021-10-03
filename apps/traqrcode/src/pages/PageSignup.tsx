@@ -9,15 +9,20 @@ import {
   to,
 } from '@hekori/traqrcode-common'
 import {
+  ButtonFlat,
   ButtonPrimary,
   ButtonSecondary,
   Input,
   TextNormal,
+  TextSmall,
 } from '@hekori/uikit'
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { getNow, humanReadableTimeDifference } from '@hekori/dates'
 import { Container } from '../components/Container'
-import { useForm } from 'react-hook-form'
+import { set, useForm } from 'react-hook-form'
+import { Link, useHistory } from 'react-router-dom'
+import { SIGNUP_ROUTE, TERMS_ROUTE } from '../routings'
+import { ButtonLink } from '../../../../libs/uikit/src/lib/buttons/ButtonLink'
 
 interface FormInput {
   email: string
@@ -53,8 +58,8 @@ export const Step2: React.FC<
             </div>
             <div className="ml-3 text-onDocument2 flex flex-col justify-center">
               <TextNormal>
-                We sent an email to {email} <b>{ago}</b>. It should arrive in
-                seconds. <br />
+                We sent an email to {email} <b>{ago}</b> ago. It should arrive
+                in seconds. <br />
                 Please check your inbox. If you do not receive an email within
                 30 seconds, check your spam folder and retry sending the email.
               </TextNormal>
@@ -75,7 +80,13 @@ export const Step2: React.FC<
   )
 }
 
-export const PageSignup = () => {
+interface PageSignupProps {
+  variant: 'signup' | 'createQr'
+}
+
+export const PageSignup: React.FC<PageSignupProps> = ({ variant }) => {
+  const history = useHistory()
+
   const { state, setState, api } = useGlobal()
   const [errors, setErrors] = useState<TypeErrors>({})
   const [submitting, setSubmitting] = useState<boolean>(false)
@@ -144,7 +155,8 @@ export const PageSignup = () => {
             Enter your email
           </h2>
           <h3 className="w-full my-2 text-xl leading-tight text-center text-onDocument2">
-            to manage your QR code
+            {variant === 'signup' && 'to log in or sign up'}
+            {variant === 'createQr' && 'to manage your QR code'}
           </h3>
 
           <div className="flex-1 flex justify-start flex-col mt-12">
@@ -157,6 +169,7 @@ export const PageSignup = () => {
                     ...state,
                     email: e.target.value,
                   })
+                  setErrors({})
                 }}
                 value={state.email}
                 errors={errors.email ? [errors.email] : []}
@@ -181,7 +194,20 @@ export const PageSignup = () => {
               </ButtonPrimary>
             </form>
           </div>
-        </Container>{' '}
+          <div className="text-left text-onDocument3 mt-4">
+            <TextSmall>
+              {variant === 'signup' &&
+                'This will send you a login token via email and create an account if you do not have one yet.'}
+              {variant === 'createQr' &&
+                'This will create an account and send you a login token via email.'}{' '}
+              By entering your email address you accept the{' '}
+              <ButtonLink aria-label="terms & conditions" to={TERMS_ROUTE}>
+                terms and conditions
+              </ButtonLink>
+              .
+            </TextSmall>
+          </div>
+        </Container>
       </ShellPublic>
     )
   }

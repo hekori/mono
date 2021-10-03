@@ -7,6 +7,7 @@ export const IMPRINT_ROUTE = '/imprint'
 export const PRIVACY_ROUTE = '/privacy'
 export const HOMEPAGE_ROUTE = '/'
 export const SIGNUP_ROUTE = '/signup'
+export const CREATE_QR_ROUTE = '/create-qr'
 export const DASHBOARD_ROUTE = '/dashboard'
 export const PDF_ROUTE = '/pdf'
 
