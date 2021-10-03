@@ -7,6 +7,7 @@ import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
 import { logout } from '../utils'
 import {
+  CREATE_QR_ROUTE,
   HOMEPAGE_ROUTE,
   PDF_ROUTE,
   PRICING_ROUTE,
@@ -116,7 +117,7 @@ export const NavigationPublic = () => {
 
           <li className="mr-3">
             <ButtonFlat
-              aria-label="Sign up"
+              aria-label="Log in / Sign up"
               className={
                 window.location.pathname.startsWith(SIGNUP_ROUTE)
                   ? 'underline'
@@ -124,14 +125,14 @@ export const NavigationPublic = () => {
               }
               onClick={() => history.push(SIGNUP_ROUTE)}
             >
-              Sign up
+              Log in / Sign up
             </ButtonFlat>
           </li>
 
           <li className="mr-3">
             <ButtonPrimary
               aria-label="Create QR Code"
-              onClick={() => history.push(SIGNUP_ROUTE)}
+              onClick={() => history.push(CREATE_QR_ROUTE)}
             >
               Create QR Code
             </ButtonPrimary>
