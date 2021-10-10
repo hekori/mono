@@ -12,6 +12,9 @@ import {
   PostEditRequest,
   PostResponseBase,
   PostResponseError,
+  to,
+  User,
+  UserInitializer,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
 
@@ -65,7 +68,7 @@ export const postEdit = async (request, reply) => {
   // process pageWorkers
 
   // check that there is at least one worker
-  if (body.pageWorkerUuids.length === 0) {
+  if (body.emails.length === 0) {
     inputValidationErrors = {
       ...inputValidationErrors,
       count: inputValidationErrors.count + 1,
@@ -77,12 +80,10 @@ export const postEdit = async (request, reply) => {
   }
 
   // check that all workers have a valid email address
-  for (const pageWorkerUuid of body.pageWorkerUuids) {
-    if (!body.uuidToPageWorker[pageWorkerUuid].email.includes('@')) {
+  for (const email of body.emails) {
+    if (!email.includes('@')) {
       inputValidationErrors.count += 1
-      inputValidationErrors.field[pageWorkerUuid] = [
-        API_CODE.ERROR_INVALID_EMAIL,
-      ]
+      inputValidationErrors.field[email] = [API_CODE.ERROR_INVALID_EMAIL]
     }
   }
 
@@ -152,24 +153,35 @@ export const postEdit = async (request, reply) => {
     .whereNotIn('pageItemUuid', body.pageItemUuids)
     .delete()
 
-  // PageWorkers
-  // insert or update
-  for (const pageWorkerUuid of body.pageWorkerUuids) {
+  const userUuids = []
+  for (const email of body.emails) {
     // https://dev.to/vvo/upserts-in-knex-js-1h4o
-    await pg('pageWorker')
+
+    // create user account if necessary
+    const users = await pg<User>('user')
       .insert({
-        pageUuid: page.pageUuid,
-        pageWorkerUuid,
-        email: body.uuidToPageWorker[pageWorkerUuid].email,
-      } as PageWorkerInitializer)
-      .onConflict('pageWorkerUuid')
+        email,
+      })
+      .onConflict('email')
       .merge()
       .returning('*')
+
+    const user = users[0]
+    userUuids.push(user.userUuid)
+
+    // create pageWorker if necessary
+    await to(
+      pg('pageWorker').insert({
+        pageUuid: page.pageUuid,
+        userUuid: user.userUuid,
+      } as PageWorkerInitializer)
+    )
   }
+
   // delete others
   await pg('pageWorker')
     .where({ pageUuid: page.pageUuid })
-    .whereNotIn('pageWorkerUuid', body.pageWorkerUuids)
+    .whereNotIn('userUuid', userUuids)
     .delete()
 
   // const responseData: PageEditErrors & PostResponseBase = {

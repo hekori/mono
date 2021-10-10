@@ -9,7 +9,7 @@ export enum Action {
 export interface ActRouteInfo {
   action: Action
   pageItemProgressUuid: string
-  pageWorkerUuid: string
+  userUuid: string
 }
 
 // FIXME: there should be only one interface
@@ -65,7 +65,7 @@ export const getFrontendActUrl = (
 ): string => {
   return `${addBaseUrl ? FRONTEND_URL : ''}/act/${routeInfo.action}/${
     routeInfo.pageItemProgressUuid
-  }/${routeInfo.pageWorkerUuid}`
+  }/${routeInfo.userUuid}`
 }
 
 export const getBackendPdfUrl = (

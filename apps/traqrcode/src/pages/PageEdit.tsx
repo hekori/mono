@@ -13,6 +13,7 @@ import {
   GetEditResponse,
   getUuid,
   PageEditErrors,
+  PageEditState,
   PostEditRequest,
   PostEditResponse,
   to,
@@ -22,7 +23,6 @@ import { TrashIcon } from '@heroicons/react/outline'
 import { EditRouteInfo, PDF_ROUTE } from '../routings'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { useQuery } from 'react-query'
-import { PageEditState } from '../../../../libs/traqrcode-common/src/lib/interfaces/edit'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
 
 type PropsPageEdit = {
@@ -58,10 +58,9 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
   const [errors, setErrors] = useState<PageEditErrors>(InitialPageEditErrors)
 
   const [state, setState] = useState<PageEditState>({
-    uuidToPageWorker: {},
     pageItemUuids: [],
-    pageWorkerUuids: [],
     uuidToPageItem: {},
+    emails: [],
     title: '',
     pageUuid: routeInfo.pageUuid,
   })
@@ -148,33 +147,30 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
 
           <div className="bg-document2 text-onDocument2 shadow overflow-hidden sm:rounded-md">
             <ul className="divide-y divide-divider">
-              {state.pageWorkerUuids.map((pageWorkerUuid) => {
+              {state.emails.map((email, index) => {
                 return (
                   <li className="p-4 flex flex-col lg:flex-row lg:items-center justify-between">
                     <Input
-                      key={pageWorkerUuid}
+                      key={`email-${index}`}
                       placeholder={'Enter email'}
                       className={'text-xl'}
                       onChange={(e) => {
+                        const newEmails = [...state.emails]
+                        newEmails[index] = e.target.value
                         setState({
                           ...state,
-                          uuidToPageWorker: {
-                            ...state.uuidToPageWorker,
-                            [pageWorkerUuid]: {
-                              email: e.target.value,
-                            },
-                          },
+                          emails: newEmails,
                         })
                       }}
-                      errors={errors?.field?.[pageWorkerUuid]}
-                      value={state.uuidToPageWorker[pageWorkerUuid].email}
+                      errors={errors?.field?.[email]}
+                      value={email}
                     />
 
                     <ButtonFlat
                       onClick={() => {
                         const newState = { ...state }
-                        newState.pageWorkerUuids = state.pageWorkerUuids.filter(
-                          (itemId) => itemId !== pageWorkerUuid
+                        newState.emails = state.emails.filter(
+                          (stateEmail) => email !== stateEmail
                         )
                         setState(newState)
                       }}
@@ -188,14 +184,9 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
               <li
                 className="lg:h-16 h-32 flex flex-wrap content-center items-center justify-center cursor-pointer px-8 py-4 text-base font-medium text-onDocument focus:text-onDocument focus:outline-none min-w-full hover:bg-touchableHighlight"
                 onClick={() => {
-                  const pageWorkerUuid = getUuid()
                   setState({
                     ...state,
-                    pageWorkerUuids: [...state.pageWorkerUuids, pageWorkerUuid],
-                    uuidToPageWorker: {
-                      ...state.uuidToPageWorker,
-                      [pageWorkerUuid]: { email: '' },
-                    },
+                    emails: [...state.emails, ''],
                   })
                 }}
               >

@@ -8,6 +8,7 @@ import {
   PageItemProgress,
   PageWorker,
   to,
+  User,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
 import { log } from '../utils'
@@ -55,9 +56,11 @@ export const getRead = async (request, reply) => {
   }
 
   // send out emails
-  const pageWorkers: PageWorker[] = await pg('pageWorker').where({
-    pageUuid: pageItem.pageUuid,
-  })
+  const pageWorkers: (PageWorker & User)[] = await pg('pageWorker')
+    .innerJoin('user', 'pageWorker.userUuid', 'user.userUuid')
+    .where({
+      pageUuid: pageItem.pageUuid,
+    })
 
   log('notify receiver_ids')
   for (const pageWorker of pageWorkers) {
@@ -73,7 +76,7 @@ export const getRead = async (request, reply) => {
           {
             action: Action.start,
             pageItemProgressUuid: pageItemProgress.pageItemProgressUuid,
-            pageWorkerUuid: pageWorker.pageWorkerUuid,
+            userUuid: pageWorker.userUuid,
           },
           true
         ),

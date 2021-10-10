@@ -20,7 +20,8 @@ import { Error500 } from '../components/Error500'
 import { ButtonFlat, TextLarge, TextSmall } from '@hekori/uikit'
 import { EyeIcon, PencilIcon } from '@heroicons/react/outline'
 import { ProgressInfo } from '../components/ProgressInfo'
-import { GetActResponse } from '../../../../libs/traqrcode-common/src/lib/interfaces/act'
+import { GetActResponse } from '@hekori/traqrcode-common'
+import { getLoggedInUserUuid } from '../utils'
 
 type PropsPageDetails = {
   routeInfo: DetailsRouteInfo
@@ -28,6 +29,7 @@ type PropsPageDetails = {
 
 export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
   useCheckLoggedIn()
+  const loggedInUserUuid = getLoggedInUserUuid()
 
   const { api } = useGlobal()
   const history = useHistory()
@@ -37,15 +39,15 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
     GetActResponse,
     unknown,
     {
+      action: 'start' | 'stop'
       pageItemProgressUuid: string
-      pageWorkerUuid: string
+      userUuid: string
     }
   >(
-    async ({ pageItemProgressUuid, pageWorkerUuid }) => {
+    async ({ action, pageItemProgressUuid, userUuid }) => {
       console.log('called mutationFn')
-      const action = 'stop'
       const response = await api.get(
-        `/act/${action}/${pageItemProgressUuid}/${pageWorkerUuid}`
+        `/act/${action}/${pageItemProgressUuid}/${userUuid}`
       )
       console.log('response=', response)
       return response
@@ -79,7 +81,7 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
 
   let content
   if (isLoading || !data) content = <Loading />
-  else if (error) content = <Error500 />
+  else if (error || data.status === 'ERROR') content = <Error500 />
   else {
     content = (
       <div className="bg-document2 text-onDocument2 shadow sm:rounded-md">
@@ -129,11 +131,15 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   textPending={'Waiting ...'}
                   textDone={`Accepted by ${item.pageWorkerEmail}`}
                   onClick={
-                    item.pageItemProgressStartedAt
+                    item.pageItemProgressFinishedAt
                       ? undefined
                       : (e) => {
                           e.stopPropagation()
-                          console.log('bla')
+                          setTaskDoneMutation.mutate({
+                            action: 'start',
+                            userUuid: loggedInUserUuid,
+                            pageItemProgressUuid: item.pageItemProgressUuid,
+                          })
                         }
                   }
                 />
@@ -143,14 +149,15 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   mdiIcon="mdi-progress-check"
                   date={item.pageItemProgressFinishedAt || ''}
                   textPending={'Waiting ...'}
-                  textDone={`Task done!`}
+                  textDone={`Task done by ${item.pageWorkerEmail}`}
                   onClick={
                     item.pageItemProgressFinishedAt
                       ? undefined
                       : (e) => {
                           e.stopPropagation()
                           setTaskDoneMutation.mutate({
-                            pageWorkerUuid: item.pageWorkerUuid,
+                            action: 'stop',
+                            userUuid: loggedInUserUuid,
                             pageItemProgressUuid: item.pageItemProgressUuid,
                           })
                         }

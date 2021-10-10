@@ -118,7 +118,7 @@ export const PageFront = () => {
           <div className="flex flex-wrap text-onDocument2">
             <div className="w-5/6 sm:w-1/2 p-6">
               <TextSubtitle>As a Manager I can</TextSubtitle>
-              <p className="mb-8">
+              <span className="mb-8">
                 <ol className="list-disc">
                   <li>create one or many PDFs in DIN A4 format.</li>
                   <li>produce high-quality print outs.</li>
@@ -127,7 +127,7 @@ export const PageFront = () => {
                     assign responsibilities to my team and track their progress.
                   </li>
                 </ol>
-              </p>
+              </span>
             </div>
             <div className="w-full sm:w-1/2 p-6">
               <img

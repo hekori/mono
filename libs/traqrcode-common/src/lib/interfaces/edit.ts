@@ -19,8 +19,7 @@ export interface PageEditState {
   title: string
   pageItemUuids: string[]
   uuidToPageItem: Record<string, Omit<PageItemInitializer, 'pageUuid'>>
-  pageWorkerUuids: string[]
-  uuidToPageWorker: Record<string, Omit<PageWorkerInitializer, 'pageUuid'>>
+  emails: string[]
 }
 
 export interface GetEditResponse extends PageEditState {}

@@ -4,7 +4,7 @@ import {
 } from '../middleware/auth'
 import { pg } from '../../pg'
 import { convertListToIdAndObject } from '../utils'
-import { DetailsDatabaseResponse } from '../../../../../libs/traqrcode-common/src/lib/interfaces/details'
+import { DetailsDatabaseResponse } from '@hekori/traqrcode-common'
 
 export const getDetails = async (request, reply) => {
   console.log(request.body)
@@ -27,8 +27,7 @@ export const getDetails = async (request, reply) => {
       'pageItemProgress.createdAt as pageItemProgressCreatedAt',
       'pageItemProgress.startedAt as pageItemProgressStartedAt',
       'pageItemProgress.finishedAt as pageItemProgressFinishedAt',
-      'pageItemProgress.pageWorkerUuid as pageWorkerUuid',
-      'pageWorker.email as pageWorkerEmail'
+      'user.email as userEmail'
     )
     .from<DetailsDatabaseResponse>('page')
     .innerJoin('pageItem', 'page.pageUuid', 'pageItem.pageUuid')
@@ -37,11 +36,7 @@ export const getDetails = async (request, reply) => {
       'pageItem.pageItemUuid',
       'pageItemProgress.pageItemUuid'
     )
-    .leftJoin(
-      'pageWorker',
-      'pageItemProgress.pageWorkerUuid',
-      'pageWorker.pageWorkerUuid'
-    )
+    .leftJoin('user', 'pageItemProgress.userUuid', 'user.userUuid')
     .where({ 'page.createdBy': userUuid })
     .orderBy([{ column: 'pageItemProgress.createdAt', order: 'DESC' }])
 
