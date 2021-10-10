@@ -134,7 +134,9 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
           </div>
 
           {errors?.global?.includes(API_CODE.ERROR_EMPTY_ITEMS_LIST) && (
-            <div className={'text-error'}>Please add at least one QR code.</div>
+            <div className={'text-onError bg-error rounded p-2 mt-4'}>
+              Please add at least one QR code.
+            </div>
           )}
 
           <br />

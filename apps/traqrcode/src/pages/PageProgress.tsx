@@ -5,10 +5,14 @@ import { useHistory } from 'react-router-dom'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
 import { DetailsRouteInfo, editRoute, taskRoute } from '../routings'
-import { useQuery } from 'react-query'
+import { useMutation, useQuery, useQueryClient } from 'react-query'
 import {
+  API_CODE,
+  getBackendCreatePagePostUrl,
   getBackendDetailsGetUrl,
   GetDetailsResponse,
+  PostCreateRequest,
+  PostCreateResponse,
 } from '@hekori/traqrcode-common'
 import { Container } from '../components/Container'
 import { Loading } from '../components/Loading'
@@ -16,6 +20,7 @@ import { Error500 } from '../components/Error500'
 import { ButtonFlat, TextLarge, TextSmall } from '@hekori/uikit'
 import { EyeIcon, PencilIcon } from '@heroicons/react/outline'
 import { ProgressInfo } from '../components/ProgressInfo'
+import { GetActResponse } from '../../../../libs/traqrcode-common/src/lib/interfaces/act'
 
 type PropsPageDetails = {
   routeInfo: DetailsRouteInfo
@@ -26,6 +31,44 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
 
   const { api } = useGlobal()
   const history = useHistory()
+  const queryClient = useQueryClient()
+
+  const setTaskDoneMutation = useMutation<
+    GetActResponse,
+    unknown,
+    {
+      pageItemProgressUuid: string
+      pageWorkerUuid: string
+    }
+  >(
+    async ({ pageItemProgressUuid, pageWorkerUuid }) => {
+      console.log('called mutationFn')
+      const action = 'stop'
+      const response = await api.get(
+        `/act/${action}/${pageItemProgressUuid}/${pageWorkerUuid}`
+      )
+      console.log('response=', response)
+      return response
+    },
+    {
+      onSettled: async () => {
+        await queryClient.invalidateQueries('details')
+      },
+
+      onSuccess: async (response, variables, context) => {
+        console.log('called onSuccess')
+        console.log('response=', response)
+        if (response.status === API_CODE.OK) {
+          // await queryClient.invalidateQueries('pages')
+          // history.push(editRoute({ pageUuid: response.pageUuid }))
+        }
+      },
+      onError: (error, variables, context) => {
+        console.log('called onError')
+        console.log(error)
+      },
+    }
+  )
 
   const { isLoading, error, data } = useQuery<GetDetailsResponse>(
     `details`,
@@ -69,6 +112,14 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   date={item.pageItemProgressCreatedAt || ''}
                   textPending={'Task created'}
                   textDone={`Task created`}
+                  onClick={
+                    item.pageItemProgressCreatedAt
+                      ? undefined
+                      : (e) => {
+                          e.stopPropagation()
+                          console.log('bla')
+                        }
+                  }
                 />
                 <ProgressInfo
                   className="col-span-3"
@@ -77,6 +128,14 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   date={item.pageItemProgressStartedAt || ''}
                   textPending={'Waiting ...'}
                   textDone={`Accepted by ${item.pageWorkerEmail}`}
+                  onClick={
+                    item.pageItemProgressStartedAt
+                      ? undefined
+                      : (e) => {
+                          e.stopPropagation()
+                          console.log('bla')
+                        }
+                  }
                 />
                 <ProgressInfo
                   className="col-span-3"
@@ -85,6 +144,17 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   date={item.pageItemProgressFinishedAt || ''}
                   textPending={'Waiting ...'}
                   textDone={`Task done!`}
+                  onClick={
+                    item.pageItemProgressFinishedAt
+                      ? undefined
+                      : (e) => {
+                          e.stopPropagation()
+                          setTaskDoneMutation.mutate({
+                            pageWorkerUuid: item.pageWorkerUuid,
+                            pageItemProgressUuid: item.pageItemProgressUuid,
+                          })
+                        }
+                  }
                 />
                 <div className="col-span-1 flex flex-row">
                   <ButtonFlat
