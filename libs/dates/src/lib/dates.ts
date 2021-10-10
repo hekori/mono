@@ -79,7 +79,10 @@ export const timeDifference = (
   end: MyDate,
   unitOfTime: string
 ): number => {
-  return moment(end).diff(moment.utc(isoDateFormatter(start)), unitOfTime)
+  if (!start || !end) return NaN
+  return moment
+    .utc(isoDatetimeFormatter(end))
+    .diff(moment.utc(isoDatetimeFormatter(start)), unitOfTime)
 }
 
 export const humanReadableTimeDifference = (

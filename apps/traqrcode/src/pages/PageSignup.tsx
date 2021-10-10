@@ -197,7 +197,7 @@ export const PageSignup: React.FC<PageSignupProps> = ({ variant }) => {
           <div className="text-left text-onDocument3 mt-4">
             <TextSmall>
               {variant === 'signup' &&
-                'This will send you a login token via email and create an account if you do not have one yet.'}
+                'This will send you a login token via email. If you do not have an account, it will automatically create an account first.'}
               {variant === 'createQr' &&
                 'This will create an account and send you a login token via email.'}{' '}
               By entering your email address you accept the{' '}

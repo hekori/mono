@@ -24,12 +24,16 @@ export const ProgressInfo: React.FC<ProgressInfoProps> = ({
   textDone,
   mdiIcon,
   done,
+  onClick,
   ...props
 }) => {
   return (
     <div
+      onClick={onClick}
       className={classNames(
-        `flex flex-row items-start text-left ${done ? '' : 'opacity-20'}`,
+        `flex flex-row items-start text-left ${done ? '' : 'opacity-20'} ${
+          onClick ? 'cursor-pointer' : ''
+        }`,
         props.className
       )}
     >
