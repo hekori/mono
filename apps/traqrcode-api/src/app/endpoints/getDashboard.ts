@@ -4,11 +4,14 @@ import {
 } from '../middleware/auth'
 import { pg } from '../../pg'
 import {
+  ComputePercentiles,
   GetDashboardResponse,
   NumberByStatus,
+  Page,
+  PageItem,
+  PageItemProgress,
   TimeCount,
 } from '@hekori/traqrcode-common'
-import { Page, PageItem, PageItemProgress } from '@hekori/traqrcode-common'
 import { getNow, timeDifference } from '@hekori/dates'
 
 type CombinedPageProgress = Page & PageItem & PageItemProgress
@@ -68,6 +71,48 @@ export const getNumberByStatus = (
   }
 }
 
+export const computePercentiles = (
+  result: CombinedPageProgress[]
+): ComputePercentiles => {
+  const sorted = [...result].sort((a, b) => {
+    return timeDifference(a.finishedAt, b.finishedAt, 'seconds')
+  })
+
+  const now = getNow()
+
+  const percentile50Index = Math.ceil(sorted.length * 0.5) * sorted.length
+  const atLeast50PercentFinishedWithin = timeDifference(
+    sorted[percentile50Index]?.finishedAt,
+    now,
+    'minutes'
+  )
+
+  const percentile90Index = Math.ceil(sorted.length * 0.9) * sorted.length
+  const atLeast90PercentFinishedWithin = timeDifference(
+    sorted[percentile90Index]?.finishedAt,
+    now,
+    'minutes'
+  )
+
+  const percentile99Index = Math.ceil(sorted.length * 0.99) * sorted.length
+  const atLeast99PercentFinishedWithin = timeDifference(
+    sorted[percentile99Index]?.finishedAt,
+    now,
+    'minutes'
+  )
+
+  const retval: ComputePercentiles = {
+    atLeast50PercentFinishedWithin,
+    atLeast90PercentFinishedWithin,
+    atLeast99PercentFinishedWithin,
+  }
+  console.log('percentiles')
+  console.log(result)
+  console.log(retval)
+
+  return retval
+}
+
 export const getOpenToInProgressTimingHistogram = (
   result: CombinedPageProgress[]
 ): TimeCount[] => {
@@ -112,6 +157,8 @@ export const getDashboard = async (request, reply) => {
     result
   )
 
+  const percentiles = computePercentiles(result)
+
   const returnDto: GetDashboardResponse = {
     numberOfFinishedTasks,
     numberOfInProgressTasks,
@@ -120,6 +167,7 @@ export const getDashboard = async (request, reply) => {
     lastMonthNumberOfInProgressTasks,
     lastMonthNumberOfOpenTasks,
     openToInProgressTimingHistogram,
+    percentiles,
     status: 'OK',
   }
 
