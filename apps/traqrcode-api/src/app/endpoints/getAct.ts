@@ -16,6 +16,7 @@ import {
   PageItem,
   PageItemProgress,
   PageWorker,
+  User,
 } from '@hekori/traqrcode-common'
 
 export const getAct = async (request, reply) => {
@@ -26,12 +27,10 @@ export const getAct = async (request, reply) => {
   console.log(request.headers?.authorization)
 
   const pageItemProgressUuid = request.params.pageItemProgressUuid
-  const pageWorkerUuid = request.params.pageWorkerUuid
+  const userUuid = request.params.userUuid
   const action = request.params.action
 
-  const pageWorker: PageWorker = await pg('pageWorker')
-    .where({ pageWorkerUuid })
-    .first()
+  const user: User = await pg('user').where({ userUuid }).first()
   const pageItemProgress: PageItemProgress = await pg('pageItemProgress')
     .where({ pageItemProgressUuid })
     .first()
@@ -43,13 +42,13 @@ export const getAct = async (request, reply) => {
 
   if (action === 'start') {
     await pg('pageItemProgress').where({ pageItemProgressUuid }).update({
-      pageWorkerUuid: pageWorker.pageWorkerUuid,
+      userUuid: user.userUuid,
       startedAt: getNow(),
     })
 
     await sendMail({
       sender: EMAIL_DEFAULT_SENDER,
-      receiver: pageWorker.email,
+      receiver: user.email,
       subject: email_notify_accept_task_subject(),
       body: email_notify_accept_task_body(
         pageItem.title,
@@ -58,7 +57,7 @@ export const getAct = async (request, reply) => {
           {
             action: Action.stop,
             pageItemProgressUuid: pageItemProgress.pageItemProgressUuid,
-            pageWorkerUuid: pageWorker.pageWorkerUuid,
+            userUuid: user.userUuid,
           },
           true
         ),
@@ -70,13 +69,13 @@ export const getAct = async (request, reply) => {
     })
   } else if (action === 'stop') {
     await pg('pageItemProgress').where({ pageItemProgressUuid }).update({
-      pageWorkerUuid: pageWorkerUuid,
+      userUuid: user.userUuid,
       finishedAt: getNow(),
     })
 
     await sendMail({
       sender: EMAIL_DEFAULT_SENDER,
-      receiver: pageWorker.email,
+      receiver: user.email,
       subject: email_notify_done_task_subject(),
       body: email_notify_done_task_body(
         pageItem.title,

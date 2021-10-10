@@ -9,6 +9,7 @@ import {
   PageItem,
   PageWorker,
   PostResponseError,
+  User,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
 import { createRandomName } from '../randomNames'
@@ -51,9 +52,10 @@ export const getEdit = async (request, reply) => {
     .where({ pageUuid: request.params.pageUuid })
     .orderBy('createdAt', 'ASC')
 
-  const pageWorkers: PageWorker[] = await pg('pageWorker')
+  const pageWorkers: (PageWorker & User)[] = await pg('pageWorker')
+    .innerJoin('user', 'pageWorker.userUuid', 'user.userUuid')
     .where({ pageUuid: request.params.pageUuid })
-    .orderBy('createdAt', 'ASC')
+    .orderBy('pageWorker.createdAt', 'ASC')
 
   console.log('page', page)
   console.log('pageItems', pageItems)
@@ -63,18 +65,17 @@ export const getEdit = async (request, reply) => {
     pageItems,
     'pageItemUuid'
   )
-  const pageWorkerData = convertListToIdAndObject<PageWorker>(
+  const pageWorkerData = convertListToIdAndObject<PageWorker & User>(
     pageWorkers,
-    'pageWorkerUuid'
+    'userUuid'
   )
 
   const returnValue: GetEditResponse = {
     pageUuid: page.pageUuid,
     title: page.title,
     pageItemUuids: pageItemData.ids,
-    pageWorkerUuids: pageWorkerData.ids,
     uuidToPageItem: pageItemData.idToItem,
-    uuidToPageWorker: pageWorkerData.idToItem,
+    emails: pageWorkerData.ids.map((id) => pageWorkerData.idToItem[id].email),
   }
 
   reply.send(returnValue)

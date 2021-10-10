@@ -41,15 +41,13 @@ export interface PageItemInitializer {
 }
 
 export interface PageWorker {
-  pageWorkerUuid: string
-  email: string
+  userUuid: string
   pageUuid: string
   createdAt: string
 }
 
 export interface PageWorkerInitializer {
-  pageWorkerUuid?: string
-  email: string
+  userUuid?: string
   pageUuid: string
   createdAt?: string
 }
@@ -57,7 +55,7 @@ export interface PageWorkerInitializer {
 export interface PageItemProgress {
   pageItemProgressUuid: string
   pageItemUuid: string
-  pageWorkerUuid?: string
+  userUuid?: string
   createdAt?: string
   startedAt?: string
   finishedAt?: string
@@ -66,7 +64,7 @@ export interface PageItemProgress {
 export interface PageItemProgressInitializer {
   pageItemProgressUuid: string
   pageItemUuid: string
-  pageWorkerUuid?: string
+  userUuid?: string
   createdAt?: string
   startedAt?: string
   finishedAt?: string
