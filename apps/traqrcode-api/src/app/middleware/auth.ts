@@ -23,7 +23,7 @@ export const verifyAccessToken = (
   privateKey = JWT_PRIVATE_KEY
 ): { userUuid: string } => {
   try {
-    const s = jwt.verify(accessToken, privateKey)
+    const s = jwt.verify(accessToken, privateKey) as { userUuid: string }
     console.log(s)
     return s
   } catch (e) {
