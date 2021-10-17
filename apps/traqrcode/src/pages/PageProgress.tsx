@@ -129,7 +129,7 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   mdiIcon="mdi-progress-clock"
                   date={item.pageItemProgressStartedAt || ''}
                   textPending={'Waiting ...'}
-                  textDone={`Accepted by ${item.pageWorkerEmail}`}
+                  textDone={`Accepted by ${item.userEmail}`}
                   onClick={
                     item.pageItemProgressFinishedAt
                       ? undefined
@@ -149,7 +149,7 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   mdiIcon="mdi-progress-check"
                   date={item.pageItemProgressFinishedAt || ''}
                   textPending={'Waiting ...'}
-                  textDone={`Task done by ${item.pageWorkerEmail}`}
+                  textDone={`Task done by ${item.userEmail}`}
                   onClick={
                     item.pageItemProgressFinishedAt
                       ? undefined
