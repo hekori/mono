@@ -11,7 +11,7 @@ export interface DetailsDatabaseResponse {
   pageItemProgressStartedAt: string
   pageItemProgressFinishedAt: string
   pageWorkerUuid: string
-  pageWorkerEmail: string
+  userEmail: string
 }
 
 export interface GetDetailsResponse extends GetResponseBase {
