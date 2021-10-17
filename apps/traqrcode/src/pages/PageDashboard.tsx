@@ -107,6 +107,56 @@ export const PageDashboard: React.FC<PropsPageDashboard> = ({ routeInfo }) => {
             </dd>
           </div>
         </dl>
+
+        <dl className="mt-5 grid grid-cols-1 rounded-lg bg-document2 overflow-hidden shadow divide-y divide-inputBorder md:grid-cols-3 md:divide-y-0 md:divide-x">
+          <div className="px-4 py-5 sm:p-6">
+            <TextNormal className="text-onDocument2">
+              50% of the tasks were finished in
+            </TextNormal>
+            <dd className="mt-1 flex justify-start items-baseline md:block lg:flex">
+              <div className="flex items-baseline text-2xl font-semibold text-onDocumentHighlight">
+                {data?.percentiles.atLeast50PercentFinishedWithin ?? 'n/a'}
+              </div>
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                {data?.percentiles.atLeast50PercentFinishedWithin !== undefined
+                  ? 'minutes'
+                  : 'not enough data'}
+              </span>
+            </dd>
+          </div>
+
+          <div className="px-4 py-5 sm:p-6">
+            <TextNormal className="text-onDocument2">
+              90% of the tasks were finished in
+            </TextNormal>
+            <dd className="mt-1 flex justify-start items-baseline md:block lg:flex">
+              <div className="flex items-baseline text-2xl font-semibold text-onDocumentHighlight">
+                {data?.percentiles.atLeast90PercentFinishedWithin ?? 'n/a'}
+              </div>
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                {data?.percentiles.atLeast90PercentFinishedWithin !== undefined
+                  ? 'minutes'
+                  : 'not enough data yet'}
+              </span>
+            </dd>
+          </div>
+
+          <div className="px-4 py-5 sm:p-6">
+            <TextNormal className="text-onDocument2">
+              99% of the tasks were finished in
+            </TextNormal>
+            <dd className="mt-1 flex justify-start items-baseline md:block lg:flex">
+              <div className="flex items-baseline text-2xl font-semibold text-onDocumentHighlight">
+                {data?.percentiles.atLeast99PercentFinishedWithin ?? 'n/a'}
+              </div>
+              <span className="ml-2 text-sm font-medium text-gray-500">
+                {data?.percentiles.atLeast99PercentFinishedWithin !== undefined
+                  ? 'minutes'
+                  : 'not enough data yet'}
+              </span>
+            </dd>
+          </div>
+        </dl>
       </Container>
     </ShellLoggedIn>
   )
