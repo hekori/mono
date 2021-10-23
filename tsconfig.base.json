@@ -20,7 +20,7 @@
       "@hekori/mail": ["libs/mail/src/index.ts"],
       "@hekori/dates": ["libs/dates/src/index.ts"],
       "@hekori/knexutils": ["libs/knexutils/src/index.ts"],
-      "@hekori/traqrcode-common": ["libs/traqrcode-common/src/index.ts"]
+      "@hekori/traqrcode-common": ["projects/traqrcode/traqrcode-common/src/index.ts"]
 
     }
   },

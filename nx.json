@@ -25,18 +25,15 @@
     "cli": {
       "tags": []
     },
-    "hereismyfeedback-api": {
-      "tags": []
-    },
     "mail": {
       "tags": []
     },
-    "traqrcode": {
+    "traqrcode-ui": {
       "tags": []
     },
     "traqrcode-e2e": {
       "tags": [],
-      "implicitDependencies": ["traqrcode"]
+      "implicitDependencies": ["traqrcode-ui"]
     },
     "traqrcode-api": {
       "tags": []

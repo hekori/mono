@@ -1,0 +1,78 @@
+@import "@mdi/font/css/materialdesignicons.css";
+@import "components/progressIndicators.css";
+
+
+.h-screen-50{
+    height: 50vh;
+}
+
+.min-h-screen-50{
+    min-height: 50vh;
+}
+
+.footer-link {
+    @apply text-white;
+}
+
+.footer-link:hover {
+    @apply text-blue-300;
+}
+
+h1 {
+    @apply mt-2 mb-3 text-3xl;
+}
+
+h2 {
+    @apply mt-2 mb-3 text-2xl;
+}
+
+h3 {
+    @apply mt-2 mb-3 text-xl;
+}
+
+body {
+    @apply text-sm;
+}
+
+
+/*.button:hover {*/
+/*  @apply bg-blue-500;*/
+/*}*/
+
+/*button:active {*/
+/*  @apply border-0;*/
+/*}*/
+
+.disabled {
+    @apply opacity-50 cursor-not-allowed;
+}
+
+.text-input {
+    @apply shadow appearance-none border rounded h-16 w-full py-2 px-3 text-gray-500 leading-tight;
+}
+
+.req {
+    @apply flex flex-col border p-2;
+}
+
+.gradient {
+    background-image: linear-gradient(-225deg, #cbbacc 0%, #2580b3 100%);
+}
+
+.gradient2 {
+    background-color: #f39f86;
+    background-image: linear-gradient(315deg, #f39f86 0%, #f9d976 74%);
+}
+
+
+.button{
+    @apply gradient2 py-4 px-8 text-gray-800 font-extrabold rounded py-4 px-8 shadow-lg;
+}
+
+.buttonFlat{
+    @apply py-4 px-8 text-gray-800 font-extrabold rounded py-4 px-8;
+}
+
+.button:hover, .buttonFlat:hover {
+    @apply underline;
+}
