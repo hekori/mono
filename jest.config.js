@@ -1,15 +1,14 @@
 module.exports = {
   projects: [
-    ,
-    '<rootDir>/libs/traqrcode-common',
     '<rootDir>/libs/uikit',
     '<rootDir>/libs/cli',
-    '<rootDir>/apps/hereismyfeedback-api',
     '<rootDir>/libs/mail',
-    '<rootDir>/apps/traqrcode',
-    '<rootDir>/apps/traqrcode-api',
+    '<rootDir>/projects/traqrcode/traqrcode-frontend',
+    '<rootDir>/projects/traqrcode/traqrcode-backend',
+    '<rootDir>/projects/traqrcode/traqrcode-common',
     '<rootDir>/libs/dates',
     '<rootDir>/apps/uibook',
     '<rootDir>/libs/knexutils',
+    '<rootDir>/apps/projects/traqrcode/traqrcode-deploy',
   ],
 }

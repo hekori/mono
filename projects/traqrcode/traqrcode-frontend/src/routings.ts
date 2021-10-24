@@ -54,7 +54,7 @@ export type ViewRouteInfo = {
   pageUuid: string
 }
 
-export type DetailsRouteInfo = {}
+export type DetailsRouteInfo = Record<string, unknown>
 
 export const editRoute = ({ pageUuid }: EditRouteInfo) => {
   return `/edit/${pageUuid}`
@@ -140,9 +140,9 @@ export enum Action {
 export const actRoute = ({
   action,
   pageItemProgressUuid,
-  pageWorkerUuid,
+  userUuid,
 }: ActRouteInfo) => {
-  return `/act/${action}/${pageItemProgressUuid}/${pageWorkerUuid}`
+  return `/act/${action}/${pageItemProgressUuid}/${userUuid}`
 }
 
 export const actRegex = (pathname: string): ActRouteInfo | null => {
@@ -152,7 +152,7 @@ export const actRegex = (pathname: string): ActRouteInfo | null => {
     return {
       action: groups.action as Action,
       pageItemProgressUuid: groups.pageItemProgressUuid,
-      pageWorkerUuid: groups.pageWorkerUuid,
+      userUuid: groups.userUuid,
     }
   }
   return null
