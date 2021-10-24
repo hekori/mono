@@ -1,0 +1,39 @@
+version: "3.9"
+
+# first load env variables then
+# dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file docker-compose.prod.yml up -d postgres
+# dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file docker-compose.prod.yml up -d backend
+
+services:
+
+  # database service
+  postgres:
+    image: "postgres:13.3-alpine"
+    container_name: traqrcode_postgres
+    environment:
+      POSTGRES_DB: ${PGDATABASE}
+      POSTGRES_USER: ${PGUSER}
+      POSTGRES_PASSWORD: ${PGPASSWORD}
+    command:
+      [
+          'postgres',
+          '-c',
+          'logging_collector=off',
+          '-c',
+          'log_destination=stderr',
+          '-c',
+          'log_statement=all'
+      ]
+    ports:
+      - "${PGPORT}:5432"
+    volumes:
+      - ./pgdata:/var/lib/postgresql/data
+    restart: always
+
+  backend:
+    image: node:14.5.0-alpine
+    container_name: traqrcode_backend
+    working_dir: /app
+    volumes:
+      - "./traqrcode-api:/app"
+    command: ["ts-node", "--transpile-only ./src/index.ts"]

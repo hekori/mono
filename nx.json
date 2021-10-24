@@ -28,14 +28,14 @@
     "mail": {
       "tags": []
     },
-    "traqrcode-ui": {
+    "traqrcode-frontend": {
       "tags": []
     },
     "traqrcode-e2e": {
       "tags": [],
-      "implicitDependencies": ["traqrcode-ui"]
+      "implicitDependencies": ["traqrcode-frontend"]
     },
-    "traqrcode-api": {
+    "traqrcode-backend": {
       "tags": []
     },
     "traqrcode-common": {
@@ -48,6 +48,9 @@
       "tags": []
     },
     "knexutils": {
+      "tags": []
+    },
+    "traqrcode-deploy": {
       "tags": []
     }
   }

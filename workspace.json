@@ -3,6 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
+  "defaultProject": "projects-traqrcode-traqrcode-deploy",
   "generators": {
     "@nrwl/react": {
       "application": {
@@ -85,24 +86,22 @@
         }
       }
     },
-    "traqrcode-ui": {
-      "root": "projects/traqrcode/traqrcode-ui",
-      "sourceRoot": "projects/traqrcode/traqrcode-ui/src",
+    "traqrcode-frontend": {
+      "root": "projects/traqrcode/traqrcode-frontend",
+      "sourceRoot": "projects/traqrcode/traqrcode-frontend/src",
       "projectType": "application",
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/projects/traqrcode/traqrcode-ui",
-            "index": "projects/traqrcode/traqrcode-ui/src/index.html",
-            "main": "projects/traqrcode/traqrcode-ui/src/main.tsx",
-            "polyfills": "projects/traqrcode/traqrcode-ui/src/polyfills.ts",
-            "tsConfig": "projects/traqrcode/traqrcode-ui/tsconfig.app.json",
-            "assets": [
-              "projects/traqrcode/traqrcode-ui/src/assets"
-            ],
-            "styles": ["projects/traqrcode/traqrcode-ui/src/styles.css"],
+            "outputPath": "dist/projects/traqrcode/traqrcode-frontend",
+            "index": "projects/traqrcode/traqrcode-frontend/src/index.html",
+            "main": "projects/traqrcode/traqrcode-frontend/src/main.tsx",
+            "polyfills": "projects/traqrcode/traqrcode-frontend/src/polyfills.ts",
+            "tsConfig": "projects/traqrcode/traqrcode-frontend/tsconfig.app.json",
+            "assets": ["projects/traqrcode/traqrcode-frontend/src/assets"],
+            "styles": ["projects/traqrcode/traqrcode-frontend/src/styles.css"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -110,8 +109,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "projects/traqrcode/traqrcode-ui/src/environments/environment.ts",
-                  "with": "projects/traqrcode/traqrcode-ui/src/environments/environment.prod.ts"
+                  "replace": "projects/traqrcode/traqrcode-frontend/src/environments/environment.ts",
+                  "with": "projects/traqrcode/traqrcode-frontend/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -125,7 +124,7 @@
                 {
                   "type": "initial",
                   "maximumWarning": "500kb",
-                  "maximumError": "1mb"
+                  "maximumError": "10mb"
                 }
               ]
             }
@@ -134,13 +133,13 @@
         "serve": {
           "executor": "@nrwl/web:dev-server",
           "options": {
-            "buildTarget": "traqrcode-ui:build",
+            "buildTarget": "traqrcode-frontend:build",
             "hmr": true,
             "port": 3002
           },
           "configurations": {
             "production": {
-              "buildTarget": "traqrcode-ui:build:production",
+              "buildTarget": "traqrcode-frontend:build:production",
               "hmr": false
             }
           }
@@ -148,14 +147,16 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["projects/traqrcode/traqrcode-ui/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": [
+              "projects/traqrcode/traqrcode-frontend/**/*.{ts,tsx,js,jsx}"
+            ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/projects/traqrcode/traqrcode-ui"],
+          "outputs": ["coverage/projects/traqrcode/traqrcode-frontend"],
           "options": {
-            "jestConfig": "projects/traqrcode/traqrcode-ui/jest.config.js",
+            "jestConfig": "projects/traqrcode/traqrcode-frontend/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -182,24 +183,26 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["projects/traqrcode/traqrcode-e2e/**/*.{js,ts}"]
+            "lintFilePatterns": [
+              "projects/traqrcode/traqrcode-e2e/**/*.{js,ts}"
+            ]
           }
         }
       }
     },
-    "traqrcode-api": {
-      "root": "projects/traqrcode/traqrcode-api",
-      "sourceRoot": "projects/traqrcode/traqrcode-api/src",
+    "traqrcode-backend": {
+      "root": "projects/traqrcode/traqrcode-backend",
+      "sourceRoot": "projects/traqrcode/traqrcode-backend/src",
       "projectType": "application",
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/projects/traqrcode/traqrcode-api",
-            "main": "projects/traqrcode/traqrcode-api/src/main.ts",
-            "tsConfig": "projects/traqrcode/traqrcode-api/tsconfig.app.json",
-            "assets": ["projects/traqrcode/traqrcode-api/src/assets"]
+            "outputPath": "dist/projects/traqrcode/traqrcode-backend",
+            "main": "projects/traqrcode/traqrcode-backend/src/main.ts",
+            "tsConfig": "projects/traqrcode/traqrcode-backend/tsconfig.app.json",
+            "assets": ["projects/traqrcode/traqrcode-backend/src/assets"]
           },
           "configurations": {
             "production": {
@@ -208,8 +211,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "projects/traqrcode/traqrcode-api/src/environments/environment.ts",
-                  "with": "projects/traqrcode/traqrcode-api/src/environments/environment.prod.ts"
+                  "replace": "projects/traqrcode/traqrcode-backend/src/environments/environment.ts",
+                  "with": "projects/traqrcode/traqrcode-backend/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -218,20 +221,20 @@
         "serve": {
           "executor": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "traqrcode-api:build"
+            "buildTarget": "traqrcode-backend:build"
           }
         },
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["projects/traqrcode/traqrcode-api/**/*.ts"]
+            "lintFilePatterns": ["projects/traqrcode/traqrcode-backend/**/*.ts"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/projects/traqrcode/traqrcode-api"],
+          "outputs": ["coverage/projects/traqrcode/traqrcode-backend"],
           "options": {
-            "jestConfig": "projects/traqrcode/traqrcode-api/jest.config.js",
+            "jestConfig": "projects/traqrcode/traqrcode-backend/jest.config.js",
             "passWithNoTests": true
           }
         }
@@ -369,6 +372,58 @@
           "outputs": ["coverage/libs/knexutils"],
           "options": {
             "jestConfig": "libs/knexutils/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
+    },
+    "traqrcode-deploy": {
+      "root": "apps/projects/traqrcode/traqrcode-deploy",
+      "sourceRoot": "apps/projects/traqrcode/traqrcode-deploy/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/apps/projects/traqrcode/traqrcode-deploy",
+            "main": "apps/projects/traqrcode/traqrcode-deploy/src/main.ts",
+            "tsConfig": "apps/projects/traqrcode/traqrcode-deploy/tsconfig.app.json",
+            "assets": ["apps/projects/traqrcode/traqrcode-deploy/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "apps/projects/traqrcode/traqrcode-deploy/src/environments/environment.ts",
+                  "with": "apps/projects/traqrcode/traqrcode-deploy/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "projects-traqrcode-traqrcode-deploy:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "apps/projects/traqrcode/traqrcode-deploy/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/apps/projects/traqrcode/traqrcode-deploy"],
+          "options": {
+            "jestConfig": "apps/projects/traqrcode/traqrcode-deploy/jest.config.js",
             "passWithNoTests": true
           }
         }

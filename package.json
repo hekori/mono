@@ -24,12 +24,19 @@
     "workspace-generator": "nx workspace-generator",
     "dep-graph": "nx dep-graph",
     "help": "nx help",
-    "cli": "dotenv -e env/traqrcode-api.dev.txt -- ts-node --project projects/traqrcode/traqrcode-api/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-api/cli.ts",
     "postcss": "postcss libs/uikit/src/lib/tailwind.css -o libs/uikit/src/lib/App.css",
-    "pg:destroy": "dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file projects/traqrcode/traqrcode-api/docker-compose.yml down --volumes",
-    "pg:start": "dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file projects/traqrcode/traqrcode-api/docker-compose.yml up -d postgres",
-    "pg:stop": "dotenv -e env/traqrcode-api.dev.txt -- docker-compose --file projects/traqrcode/traqrcode-api/docker-compose.yml stop --timeout 1 -- postgres   ",
-    "psql": "docker-compose --file projects/traqrcode/traqrcode-api/docker-compose.yml exec postgres pqsl"
+    "pg:destroy": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--dev.txt -- docker-compose --file projects/traqrcode/traqrcode-docker/docker-compose.postgres.yml down --volumes",
+    "pg:start": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--dev.txt -- docker-compose --file projects/traqrcode/traqrcode-docker/docker-compose.postgres.yml up -d postgres",
+    "pg:stop": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--dev.txt -- docker-compose --file projects/traqrcode/traqrcode-docker/docker-compose.postgres.yml stop --timeout 1 -- postgres   ",
+    "psql": "docker-compose --file projects/traqrcode/traqrcode-api/docker-compose.yml exec postgres pqsl",
+    "traqrcode:cli": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--dev.txt -- ts-node --project projects/traqrcode/traqrcode-api/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-api/cli.ts",
+    "traqrcode:serve:frontend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--frontend--dev.txt -- nx run traqrcode-frontend:serve",
+    "traqrcode:serve:backend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--dev.txt -- nx run traqrcode-backend:serve",
+    "traqrcode:build:frontend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--frontend--prod.txt -- nx run traqrcode-frontend:build --prod",
+    "traqrcode:build:backend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--prod.txt -- nx run traqrcode-backend:build --prod",
+    "traqrcode:provision": "",
+    "traqrcode:deploy:fontend": "",
+    "traqrcode:deploy:backend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--dev.txt -- ts-node --project projects/traqrcode/traqrcode-api/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-api/cli.ts"
   },
   "private": true,
   "dependencies": {
@@ -62,6 +69,7 @@
     "react-query": "^3.17.0",
     "react-router-dom": "^5.2.0",
     "regenerator-runtime": "0.13.7",
+    "slugify": "^1.6.1",
     "socket.io": "^4.0.2",
     "socket.io-client": "^4.0.2",
     "tslib": "^2.0.0",
@@ -104,6 +112,7 @@
     "commander": "^7.2.0",
     "cypress": "^6.0.1",
     "dotenv-cli": "^4.0.0",
+    "env-cmd": "^10.1.0",
     "eslint": "7.22.0",
     "eslint-config-prettier": "8.1.0",
     "eslint-plugin-cypress": "^2.10.3",
@@ -112,6 +121,7 @@
     "eslint-plugin-react": "7.23.1",
     "eslint-plugin-react-hooks": "4.2.0",
     "flightplan": "^0.6.20",
+    "handlebars": "^4.7.7",
     "jest": "26.2.2",
     "postcss": "^8.2.14",
     "postcss-cli": "^8.3.1",
@@ -121,6 +131,7 @@
     "ts-jest": "26.5.5",
     "ts-node": "~9.1.1",
     "tsconfig-paths": "^3.9.0",
-    "typescript": "~4.3.0"
+    "typescript": "~4.3.0",
+    "webpack-bundle-analyzer": "^4.5.0"
   }
 }
