@@ -34,6 +34,7 @@
     "traqrcode:serve:backend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--dev.txt -- nx run traqrcode-backend:serve",
     "traqrcode:build:frontend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--frontend--prod.txt -- nx run traqrcode-frontend:build --prod",
     "traqrcode:build:backend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--prod.txt -- nx run traqrcode-backend:build --prod",
+    "traqrcode:serve:prod:frontend": "npx spa-server-cli -p 3003 dist/projects/traqrcode/traqrcode-frontend",
     "traqrcode:provision": "",
     "traqrcode:deploy:fontend": "",
     "traqrcode:deploy:backend": "dotenv -e projects/traqrcode/traqrcode-env/traqrcode--backend--dev.txt -- ts-node --project projects/traqrcode/traqrcode-api/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-api/cli.ts"

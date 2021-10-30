@@ -63,6 +63,10 @@ export const PageFront = () => {
           <p className="leading-normal text-onDocument2 text-base md:text-xl lg:text-2xl mb-8">
             Get notified by email when your QR code gets scanned.
           </p>
+          <p className="leading-normal text-onDocument2 text-base md:text-xl lg:text-2xl mb-8">
+            No installation necessary! Use your favorite browser and email
+            client.
+          </p>
 
           <ButtonPrimary
             aria-label="Create QR Code"
