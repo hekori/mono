@@ -8,11 +8,9 @@ import { DetailsRouteInfo, editRoute, taskRoute } from '../routings'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import {
   API_CODE,
-  getBackendCreatePagePostUrl,
+  GetActResponse,
   getBackendDetailsGetUrl,
   GetDetailsResponse,
-  PostCreateRequest,
-  PostCreateResponse,
 } from '@hekori/traqrcode-common'
 import { Container } from '../components/Container'
 import { Loading } from '../components/Loading'
@@ -20,8 +18,8 @@ import { Error500 } from '../components/Error500'
 import { ButtonFlat, TextLarge, TextSmall } from '@hekori/uikit'
 import { EyeIcon, PencilIcon } from '@heroicons/react/outline'
 import { ProgressInfo } from '../components/ProgressInfo'
-import { GetActResponse } from '@hekori/traqrcode-common'
 import { getLoggedInUserUuid } from '../utils'
+import { mdiEmail, mdiProgressCheck, mdiProgressClock } from '@mdi/js'
 
 type PropsPageDetails = {
   routeInfo: DetailsRouteInfo
@@ -110,7 +108,7 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                 <ProgressInfo
                   className="col-span-3"
                   done={!!item.pageItemProgressCreatedAt}
-                  mdiIcon="mdi-email"
+                  mdiIcon={mdiEmail}
                   date={item.pageItemProgressCreatedAt || ''}
                   textPending={'Task created'}
                   textDone={`Task created`}
@@ -126,7 +124,7 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                 <ProgressInfo
                   className="col-span-3"
                   done={!!item.pageItemProgressStartedAt}
-                  mdiIcon="mdi-progress-clock"
+                  mdiIcon={mdiProgressClock}
                   date={item.pageItemProgressStartedAt || ''}
                   textPending={'Waiting ...'}
                   textDone={`Accepted by ${item.userEmail}`}
@@ -146,7 +144,7 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                 <ProgressInfo
                   className="col-span-3"
                   done={!!item.pageItemProgressFinishedAt}
-                  mdiIcon="mdi-progress-check"
+                  mdiIcon={mdiProgressCheck}
                   date={item.pageItemProgressFinishedAt || ''}
                   textPending={'Waiting ...'}
                   textDone={`Task done by ${item.userEmail}`}

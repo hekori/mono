@@ -6,6 +6,7 @@ import { GetTaskResponseOk } from '@hekori/traqrcode-common'
 import { Loading } from '../components/Loading'
 import { ProgressInfo, ProgressInfoConnector } from '../components/ProgressInfo'
 import { Shell } from '../components/Shell'
+import { mdiCheck, mdiEmail, mdiProgressClock } from '@mdi/js'
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo
@@ -36,7 +37,7 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
         <ProgressInfo
           done={!!task.createdAt}
-          mdiIcon="mdi-email"
+          mdiIcon={mdiEmail}
           date={task.createdAt || ''}
           textPending={'Waiting ...'}
           textDone={`Request for "${task.title}" ${
@@ -46,7 +47,7 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
         <ProgressInfoConnector done={!!task.startedAt} />
         <ProgressInfo
           done={!!task.startedAt}
-          mdiIcon="mdi-progress-clock"
+          mdiIcon={mdiProgressClock}
           date={task.startedAt || ''}
           textPending={'Task is in progress'}
           textDone={'Task is in progress'}
@@ -55,7 +56,7 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
         <ProgressInfoConnector done={!!task.finishedAt} />
         <ProgressInfo
           done={!!task.finishedAt}
-          mdiIcon="mdi-check"
+          mdiIcon={mdiCheck}
           date={task.finishedAt || ''}
           textPending={'Work is done '}
           textDone={'Work is done'}

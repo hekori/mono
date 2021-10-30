@@ -1,20 +1,14 @@
 import * as React from 'react'
-import {
-  dateFormatter,
-  getNow,
-  humanReadableTimeDifference,
-  MyDate,
-  shortDayNameFormatter,
-  timeFormatter,
-} from '@hekori/dates'
+import { getNow, humanReadableTimeDifference, MyDate } from '@hekori/dates'
 import { classNames } from '@hekori/uikit'
+import Icon from '@mdi/react'
 
 export interface ProgressInfoProps
   extends React.HTMLAttributes<HTMLDivElement> {
   date: MyDate
   textPending: string
   textDone: string
-  mdiIcon: string
+  mdiIcon: any
   done: boolean
 }
 
@@ -40,9 +34,9 @@ export const ProgressInfo: React.FC<ProgressInfoProps> = ({
       <div
         className={`${
           done ? 'bg-green-500' : 'bg-gray-400'
-        } rounded-full flex w-16 h-16 items-center justify-center`}
+        } rounded-full flex w-16 h-16 items-center justify-center text-white`}
       >
-        <i className={`mdi ${mdiIcon} text-white text-3xl`} />
+        <Icon path={mdiIcon} className="h-6" />
       </div>
 
       <div className="flex-1 pl-4 overflow-hidden">

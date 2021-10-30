@@ -6,6 +6,14 @@ import { SectionHeader } from '../components/SectionHeader'
 import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../routings'
 import { Shell } from '../components/Shell'
 import { isLoggedIn } from '../utils'
+import {
+  mdiDocker,
+  mdiLanguageTypescript,
+  mdiLinux,
+  mdiReact,
+  mdiTailwind,
+} from '@mdi/js'
+import Icon from '@mdi/react'
 
 export type TypeErrors = {
   email?: string
@@ -86,27 +94,27 @@ export const PageFront = () => {
 
           <div className="flex flex-1 flex-wrap max-w-4xl mx-auto items-center justify-between text-xl text-onDocument3 font-bold opacity-75">
             <span className="w-1/2 p-4 md:w-auto flex items-center">
-              <i className="mdi mdi-react mr-4 text-4xl" />
+              <Icon path={mdiReact} className="mr-2 h-8 mr-4" />
               React
             </span>
 
             <span className="w-1/2 p-4 md:w-auto flex items-center">
-              <i className="mdi mdi-language-typescript mr-4 text-4xl" />
+              <Icon path={mdiLanguageTypescript} className="mr-2 h-8 mr-4" />
               Typescript
             </span>
 
             <span className="w-1/2 p-4 md:w-auto flex items-center">
-              <i className="mdi mdi-tailwind mr-4 text-4xl" />
+              <Icon path={mdiTailwind} className="mr-2 h-8 mr-4" />
               Tailwind
             </span>
 
             <span className="w-1/2 p-4 md:w-auto flex items-center">
-              <i className="mdi mdi-linux mr-4 text-4xl" />
+              <Icon path={mdiLinux} className="mr-2 h-8 mr-4" />
               Linux
             </span>
 
             <span className="w-1/2 p-4 md:w-auto flex items-center">
-              <i className="mdi mdi-docker mr-4 text-4xl" />
+              <Icon path={mdiDocker} className="mr-2 h-8 mr-4" />
               Docker
             </span>
           </div>
