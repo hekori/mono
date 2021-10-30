@@ -1,7 +1,7 @@
 import { useHistory } from 'react-router-dom'
 import * as React from 'react'
 import { useState } from 'react'
-import { LogoTraqrcode } from '../assets/LogoTraqrcode'
+import { LogoTraqrcode } from './LogoTraqrcode'
 import { ButtonFlat, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'

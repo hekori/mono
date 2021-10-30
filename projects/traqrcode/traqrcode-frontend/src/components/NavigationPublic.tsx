@@ -1,15 +1,13 @@
 import { useHistory } from 'react-router-dom'
 import * as React from 'react'
 import { useState } from 'react'
-import { LogoTraqrcode } from '../assets/LogoTraqrcode'
+import { LogoTraqrcode } from './LogoTraqrcode'
 import { ButtonFlat, ButtonPrimary, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../index.provider'
-import { logout } from '../utils'
 import {
   CREATE_QR_ROUTE,
   HOMEPAGE_ROUTE,
-  PDF_ROUTE,
   PRICING_ROUTE,
   SIGNUP_ROUTE,
 } from '../routings'
