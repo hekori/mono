@@ -1,0 +1,8 @@
+server {
+    listen 80;
+    server_name traqrcode.com;
+    server_tokens off;
+    location / {
+        return 302 https://traqrcode.com$request_uri;
+    }
+}
