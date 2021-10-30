@@ -1,5 +1,5 @@
 upstream backend_server {
-  server localhost:8000 fail_timeout=0;
+  server localhost:{{PORT}} fail_timeout=0;
   # server unix:/webapps/{{HOST_SLUG}}/run/daphne.sock fail_timeout=0;
 }
 
