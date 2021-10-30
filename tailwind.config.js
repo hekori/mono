@@ -1,7 +1,11 @@
 module.exports = {
   purge: {
-    enabled: false, // set to true to remove all unused classes from App.css
-    content: ['./apps/**/*.{js,ts,jsx,tsx}', './libs/**/*.{js,ts,jsx,tsx}'],
+    enabled: true, // set to true to remove all unused classes from App.css
+    content: [
+      './apps/**/*.{js,ts,jsx,tsx}',
+      './libs/**/*.{js,ts,jsx,tsx}',
+      './projects/**/*.{js,ts,jsx,tsx}',
+    ],
   },
   darkMode: 'media', // or 'media' or 'class'
   theme: {
