@@ -91,7 +91,9 @@ flightplan.remote('deploy', (remote) => {
     const TARGET_DIR = `${ROOT_DIR}/assets/available/${getNow()}`
     remote.exec('yarn clean')
     remote.exec('yarn traqrcode:build:prod:frontend')
-    remote.exec(`cp -r dist/projects/traqrcode-frontend ${TARGET_DIR}`)
+    remote.exec(
+      `cp -r dist/projects/traqrcode/traqrcode-frontend ${TARGET_DIR}`
+    )
     remote.exec(`rm -f ${ROOT_DIR}/assets/enabled`)
     remote.exec(`ln -s ${TARGET_DIR} ${ROOT_DIR}/assets/enabled`)
   })
@@ -123,7 +125,7 @@ flightplan.remote('provision', (remote) => {
 
   remote.exec('apt-get update')
   remote.exec(
-    'apt-get install -y nginx yarn git certbot python-certbot-nginx sendmail-bin'
+    'apt-get install -y nginx yarn git certbot python-certbot-nginx sendmail-bin python make g++ postgresql postgresql-contrib'
   )
 
   remote.log('Install npm packages')
