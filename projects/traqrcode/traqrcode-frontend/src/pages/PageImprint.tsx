@@ -1,5 +1,7 @@
 import * as React from 'react'
 import { ShellPublic } from '../components/ShellPublic'
+import { mdiCardAccountMail } from '@mdi/js'
+import Icon from '@mdi/react'
 
 export const PageImprint = () => {
   return (
@@ -16,8 +18,9 @@ export const PageImprint = () => {
           <br />
           Germany
           <br />
-          <span>
-            <i className="mdi mdi-email" /> info@hekori.com
+          <span className="flex flex-row items-center">
+            <Icon path={mdiCardAccountMail} className="mr-2 h-4" />
+            info@hekori.com
           </span>
           <br />
           <p>
