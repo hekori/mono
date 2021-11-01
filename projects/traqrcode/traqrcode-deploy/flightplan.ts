@@ -7,10 +7,10 @@ import * as Handlebars from 'handlebars'
 import { config } from 'dotenv'
 import * as path from 'path'
 
-const DOT_ENV_PATH = path.join(
-  __dirname,
-  '../traqrcode-env/traqrcode--prod.txt'
-)
+const LOCAL_ROOT_DIR = path.join(__dirname, '../../..')
+const LOCAL_PARENT_DIR = path.join(LOCAL_ROOT_DIR, '..')
+
+const DOT_ENV_PATH = path.join(LOCAL_PARENT_DIR, 'traqrcode--prod.txt')
 
 config({ path: DOT_ENV_PATH })
 
@@ -40,6 +40,8 @@ const ROOT_DIR = process.env.ROOT_DIR
 // console.log(process.env.SSH_AUTH_SOCK)
 // console.log(ROOT_DIR)
 
+console.log(`LOCAL_ROOT_DIR = ${LOCAL_ROOT_DIR}`)
+console.log(`LOCAL_PARENT_DIR = ${LOCAL_PARENT_DIR}`)
 console.log(`FRONTEND_URL = ${FRONTEND_URL}`)
 console.log(`BACKEND_URL = ${BACKEND_URL}`)
 console.log(`FRONTEND_HOST = ${FRONTEND_HOST}`)
@@ -75,7 +77,7 @@ flightplan.local('deploy', (local) => {
 
   local.exec(`git push ${HOST_SLUG} master`)
 
-  local.with(`cd ${path.dirname(DOT_ENV_PATH)}`, () => {
+  local.with(`cd ${LOCAL_PARENT_DIR}`, () => {
     local.transfer('traqrcode--prod.txt', `${ROOT_DIR}`)
   })
 })
@@ -84,6 +86,8 @@ flightplan.local('deploy', (local) => {
 flightplan.remote('deploy', (remote) => {
   remote.log('Make dir')
   remote.exec('pwd')
+
+  // deploy frontend
   remote.with(`cd ${ROOT_DIR}/webapp`, () => {
     remote.exec(`git pull`)
     remote.exec('yarn install --frozen-lockfile')
@@ -96,6 +100,10 @@ flightplan.remote('deploy', (remote) => {
     )
     remote.exec(`rm -f ${ROOT_DIR}/assets/enabled`)
     remote.exec(`ln -s ${TARGET_DIR} ${ROOT_DIR}/assets/enabled`)
+  })
+  // migrate database
+  remote.with(`cd ${ROOT_DIR}/webapp`, () => {
+    remote.exec(`yarn traqrcode:cli migrate`)
   })
 
   remote.exec('service nginx stop')
@@ -187,7 +195,7 @@ flightplan.local('provision', (local) => {
   local.log(`Push DOT_ENV file ${DOT_ENV_PATH}`)
   local.exec(`ls -lah ${DOT_ENV_PATH}`)
 
-  local.with(`cd ${path.dirname(DOT_ENV_PATH)}`, () => {
+  local.with(`cd ${LOCAL_PARENT_DIR}`, () => {
     local.transfer('traqrcode--prod.txt', `${ROOT_DIR}`)
   })
 })
@@ -208,12 +216,14 @@ flightplan.remote('provision', (remote) => {
     )
   }
 
+  remote.with(`cd ${ROOT_DIR}`, () => {
+    remote.exec('ln -fs traqrcode--prod.txt .env')
+  })
+
   remote.log('Setup pm2')
   remote.with(`cd ${ROOT_DIR}/webapp`, () => {
     remote.exec('pm2 delete all || true')
-    remote.exec(
-      `pm2 start "yarn traqrcode:serve:prod:backend" --name "${PM2_NAME}"`
-    )
+    remote.exec(`pm2 start "yarn traqrcode:serve:backend" --name "${PM2_NAME}"`)
     remote.exec(`pm2 save`)
     remote.exec(`pm2 startup`)
   })

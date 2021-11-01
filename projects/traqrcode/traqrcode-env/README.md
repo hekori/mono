@@ -1,11 +1,23 @@
 
 
-Dupliate template files and adapt their content
+# Development machine
 
-```text
-traqrcode--dev.template.txt ---> traqrcode--dev.txt
-traqrcode--prod.template.txt ---> traqrcode--prod.txt
+There must be the following files in the project's parent directory (top of where the package.json is).
+
+There should be the following files
+1. traqrcode--dev.txt
+2. traqrcode--prod.txt
+3. .env (symbolic link to traqrcode--dev.txt). I.e.,
+```shell
+ln -s traqrcode--dev.txt .env
 ```
+
+
+# Production server
+
+The flightplan deployment script uploads the traqrcode--prod.txt to the server.
+
+# What are the env vars for?
 
 The files contain environment variables that are necessary for
 
