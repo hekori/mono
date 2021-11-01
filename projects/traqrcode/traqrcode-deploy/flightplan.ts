@@ -28,6 +28,8 @@ const SSL_CERTIFICATE_PATH_CHAINED =
 const SSL_CERTIFICATE_PATH_PRIVKEY =
   process.env.SSL_CERTIFICATE_PATH_PRIVKEY || 'SSL_CERTIFICATE_PATH_PRIVKEY'
 
+const PORT = process.env.PORT || 'PORT'
+
 const HOST_SLUG =
   process.env.HOST_SLUG || slugify(FRONTEND_HOST, { remove: /[*+~.()'"!:@]/g })
 
@@ -127,13 +129,23 @@ flightplan.remote('provision', (remote) => {
   remote.exec(
     'echo "deb https://dl.yarnpkg.com/debian/ stable main" | sudo tee /etc/apt/sources.list.d/yarn.list'
   )
+
+  // install postgres
+  remote.exec('sudo apt -y install gnupg2')
+  remote.exec(
+    'wget --quiet -O - https://www.postgresql.org/media/keys/ACCC4CF8.asc | sudo apt-key add -'
+  )
+  remote.exec(
+    'echo "deb http://apt.postgresql.org/pub/repos/apt/ `lsb_release -cs`-pgdg main" |sudo tee  /etc/apt/sources.list.d/pgdg.list'
+  )
+
   remote.exec('locale-gen en_US.UTF-8')
 
   remote.exec('curl -sL https://deb.nodesource.com/setup_14.x | sudo bash -')
 
   remote.exec('apt-get update')
   remote.exec(
-    'apt-get install -y nginx yarn git certbot python-certbot-nginx sendmail-bin python make g++ postgresql postgresql-contrib'
+    'apt-get install -y nginx yarn git certbot python-certbot-nginx sendmail-bin python make g++ postgresql-14 postgresql-contrib'
   )
 
   remote.log('Install npm packages')
@@ -170,6 +182,7 @@ flightplan.local('provision', (local) => {
     )
     const template = Handlebars.compile(nginx_conf)
     const nginx_conf_replaced = template({
+      PORT,
       HOST_SLUG,
       BACKEND_HOST,
       FRONTEND_HOST,
