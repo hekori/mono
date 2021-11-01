@@ -1,0 +1,24 @@
+# FRONTEND
+NX_STAGE=DEV
+NX_APP_NAME="TRAQRCODE"
+NX_FRONTEND_URL=http://localhost:3002
+NX_BACKEND_URL=http://localhost:8002
+# BACKEND
+STAGE=DEV
+NX_APP_NAME="TRAQRCODE"
+NX_FRONTEND_URL=http://localhost:3002
+NX_BACKEND_URL=http://localhost:8002
+PGUSER=xxx
+PGPASSWORD=xxx
+PGDATABASE=xxx
+PGPORT=5437
+PGHOST=localhost
+ROOT_DIR="/webapps/traqrcode"
+DEPLOY_HOST=traqrcode.com
+PORT=8002
+EMAIL_DEFAULT_SENDER="TRAQRCODE <traqrcode@hekori.com>"
+DKIM_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\nxxx\n-----END RSA PRIVATE KEY-----"
+SSL_CERTIFICATE_PATH_PRIVKEY=/path/to/privkey.pem
+SSL_CERTIFICATE_PATH_CHAINED=/path/to/chained.pem
+APPINSIGHTS_CONNECTION_STRING="InstrumentationKey=xxx;IngestionEndpoint=xxx"
+JWT_PRIVATE_KEY="xxx"
