@@ -22,5 +22,6 @@ export const STAGES = {
   PROD: 'PROD',
 }
 
+export const MAX_TITLE_LENGTH = 128
 export const MAX_QR_TITLE_LENGTH = 25
 export const MAX_QR_SUBTITLE_LENGTH = 100

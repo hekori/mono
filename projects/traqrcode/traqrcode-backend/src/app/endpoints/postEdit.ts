@@ -6,15 +6,14 @@ import {
   API_CODE,
   MAX_QR_SUBTITLE_LENGTH,
   MAX_QR_TITLE_LENGTH,
+  MAX_TITLE_LENGTH,
   PageEditErrors,
   PageItemInitializer,
   PageWorkerInitializer,
   PostEditRequest,
   PostResponseBase,
-  PostResponseError,
   to,
   User,
-  UserInitializer,
 } from '@hekori/traqrcode-common'
 import { pg } from '../../pg'
 
@@ -85,6 +84,12 @@ export const postEdit = async (request, reply) => {
       inputValidationErrors.count += 1
       inputValidationErrors.field[email] = [API_CODE.ERROR_INVALID_EMAIL]
     }
+  }
+
+  // check that page title is ok
+  if (body.title.length > MAX_TITLE_LENGTH) {
+    inputValidationErrors.count += 1
+    inputValidationErrors.field['title'] = [API_CODE.ERROR_TITLE_TOO_LONG]
   }
 
   // check that all pageItems are valid

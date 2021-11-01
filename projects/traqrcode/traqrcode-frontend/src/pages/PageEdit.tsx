@@ -93,6 +93,7 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
                 return { ...state, title: e.target.value }
               })
             }}
+            errors={errors.field.title}
             value={state.title}
           />
 

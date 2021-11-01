@@ -1,5 +1,4 @@
 import { Knex } from 'knex'
-import { pg } from '../src/pg'
 
 export const up = async (trx: Knex.Transaction) => {
   const cmd = `
@@ -12,7 +11,7 @@ CREATE TABLE IF NOT EXISTS "page"();
 ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "pageUuid" UUID PRIMARY KEY DEFAULT uuid_generate_v4();
 ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "createdBy" UUID REFERENCES "user" ("userUuid") ON DELETE CASCADE ON UPDATE CASCADE NOT NULL;
 ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP;
-ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "title" VARCHAR(26) NOT NULL;
+ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "title" VARCHAR(128) NOT NULL;
 ALTER TABLE "page" ADD COLUMN IF NOT EXISTS "subTitle" VARCHAR(512) NOT NULL DEFAULT '';
 
 CREATE TABLE IF NOT EXISTS "pageItem"();
