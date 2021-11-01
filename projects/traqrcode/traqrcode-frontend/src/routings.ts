@@ -146,7 +146,7 @@ export const actRoute = ({
 }
 
 export const actRegex = (pathname: string): ActRouteInfo | null => {
-  const pattern = /\/act\/(?<action>.*)\/(?<pageItemProgressUuid>.*)\/(?<pageWorkerUuid>.*)/
+  const pattern = /\/act\/(?<action>.*)\/(?<pageItemProgressUuid>.*)\/(?<userUuid>.*)/
   const groups = pathname.match(pattern)?.groups
   if (groups) {
     return {
