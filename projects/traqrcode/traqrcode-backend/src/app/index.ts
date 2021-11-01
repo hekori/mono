@@ -89,7 +89,7 @@ api.setErrorHandler((error, request, reply) => {
   return reply.status(500).send({ status: API_CODE.ERROR, error })
 })
 
-api.get('/api/version', getVersion)
+api.get('/api/version2', getVersion)
 api.get('/version', getVersion)
 api.get('/dashboard', getDashboard)
 api.get('/list', getList)
