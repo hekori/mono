@@ -62,6 +62,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS  "${this.tableName}_name_idx" on ${this.tableN
     } catch (e) {
       await trx.rollback(e)
       console.error(e)
+      throw e
     }
   }
 
@@ -86,6 +87,7 @@ CREATE UNIQUE INDEX IF NOT EXISTS  "${this.tableName}_name_idx" on ${this.tableN
     } catch (e) {
       await trx.rollback(e)
       console.error(e)
+      throw e
     }
   }
 
@@ -196,6 +198,7 @@ export const down = async (trx: Knex.Transaction) => {
       console.log(data)
     } catch (err) {
       console.error(err)
+      throw err
     }
   }
 }
