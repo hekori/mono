@@ -65,27 +65,6 @@
         }
       }
     },
-    "mail": {
-      "root": "libs/mail",
-      "sourceRoot": "libs/mail/src",
-      "projectType": "library",
-      "targets": {
-        "lint": {
-          "executor": "@nrwl/linter:eslint",
-          "options": {
-            "lintFilePatterns": ["libs/mail/**/*.ts"]
-          }
-        },
-        "test": {
-          "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/libs/mail"],
-          "options": {
-            "jestConfig": "libs/mail/jest.config.js",
-            "passWithNoTests": true
-          }
-        }
-      }
-    },
     "traqrcode-frontend": {
       "root": "projects/traqrcode/traqrcode-frontend",
       "sourceRoot": "projects/traqrcode/traqrcode-frontend/src",
