@@ -1,6 +1,15 @@
 # uikit
 
-This library was generated with [Nx](https://nx.dev).
+Reusable UI components for projects in this monorepo.
+It is based on Tailwind.
+
+#### Features
+
+- light/dark theme
+- Components
+  - shells
+  - buttons
+  - cards
 
 ## Running unit tests
 
