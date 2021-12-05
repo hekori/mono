@@ -145,7 +145,7 @@ export const PageFront = () => {
               <img
                 alt="QR codes for scanning"
                 className="object-contain h-96 w-full"
-                src="../assets/frontpage/exampe_pdf.png"
+                src="../assets/frontpage/example_pdf.png"
               />
             </div>
           </div>
