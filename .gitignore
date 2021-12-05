@@ -4,5 +4,6 @@ store/
 node_modules/
 pgdata/
 .yarn/
+yarn-error.log
 
 App.css
