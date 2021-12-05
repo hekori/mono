@@ -1,7 +1,12 @@
 import { useHistory } from 'react-router-dom'
 import * as React from 'react'
 import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
-import { ButtonPrimary, ButtonSecondary, TextSubtitle } from '@hekori/uikit'
+import {
+  ButtonPrimary,
+  ButtonSecondary,
+  Link,
+  TextSubtitle,
+} from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
 import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../routings'
 import { Shell } from '../components/Shell'
@@ -198,6 +203,19 @@ are automatically logged and your personnel is notified.`}
               history.push('/signup')
             }}
           />
+        </div>
+      </section>
+      <section
+        className="bg-document text-onDocument border-b border-divider py-8"
+        id="open-source"
+      >
+        <div className="container max-w-5xl mx-auto m-8">
+          <SectionHeader title="Open Source Community Edition" />
+
+          <div className="flex flex-wrap text-onDocument2">
+            <Link href="https://github.com/hekori/mono">Download</Link>
+            &nbsp; and install Traqrcode and run it on your own machine!
+          </div>
         </div>
       </section>
     </Shell>

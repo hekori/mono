@@ -4,6 +4,7 @@ import { NavigationPublic } from './NavigationPublic'
 import { useScrollToTop } from '../hooks/scrollToTop'
 import { Helmet } from 'react-helmet'
 import { LoadingContent } from './LoadingContent'
+import { ForkMeOnGithub } from './ForkMeOnGithub'
 
 type ShellProps = {
   loading?: boolean
@@ -21,7 +22,10 @@ export const ShellPublic: React.FC<ShellProps> = ({
         <title>TRAQRCODE</title>
         <meta name="description" content="Track QR code scans." />
       </Helmet>
+
       <NavigationPublic />
+      <ForkMeOnGithub />
+
       {loading ? <LoadingContent /> : children}
       <Footer />
     </div>
