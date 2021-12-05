@@ -13,6 +13,8 @@ Getting started
 cp projects/traqrcode-env/traqrcode--dev.template.txt ../traqrcode--dev.txt
 vim ../traqrcode--dev.txt
 ln -s ../traqrcode--dev.txt ../.env
+yarn install
+yarn postcss
 yarn traqrcode:pg:start
 yarn traqrcode:cli migrate
 yarn traqrcode:serve:backend
@@ -159,3 +161,21 @@ pm2 start "<cmd>" --name "<name>"
 pm2 log api_traqrcode_com
 ```
 
+### Tailwind and PostCSS
+
+Please note that all the CSS classes are defined in libs/uikit.
+When you run `yarn postcss` all files get scanned for css classes. Everything that cannot be found is purged from the App.css.
+
+The details of the purging an be found in the file `tailwind.config.js`.
+
+```javascript
+module.exports = {
+  purge: {
+    enabled: true, // set to true to remove all unused classes from App.css
+    content: [
+      './apps/**/*.{js,ts,jsx,tsx}',
+      './libs/**/*.{js,ts,jsx,tsx}',
+      './projects/**/*.{js,ts,jsx,tsx}',
+    ],
+  },
+```
