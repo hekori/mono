@@ -4,15 +4,6 @@ Track & act on QR code scans
 
 ```
 Licence: see LICENSE.md
-
-Author and copyright
-Sebastian F. Walter
-sebastian.walter@hekori.com
-
-hekori GmbH
-Kastellweg 29
-D-69120 Heidelberg
-Germany
 ```
 
 
