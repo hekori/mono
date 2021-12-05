@@ -5,7 +5,7 @@ This repository contains
 - web projects (React + NodeJS applications)
 - libraries (npm packages)
 
-The code is in the folder `./projects` and `./libs`
+The code is in the folders `./projects` and `./libs`
 
 ## Copyright
 
