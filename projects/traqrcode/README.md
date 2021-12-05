@@ -21,6 +21,15 @@ yarn traqrcode:serve:backend
 yarn traqrcode:serve:frontend
 ```
 
+## Deploying
+```shell
+yarn traqrcode:deploy
+```
+This builds the frontend on your local machine and uploads it to the remote server.
+It also performs a git push to the remote server, runs database migrations and then restarts the node server.
+
+
+
 ## Provisioning on {yourdomain}
 
 We assume a fresh Debian 10 system with a passwordless ssh root access.
