@@ -1,102 +1,24 @@
 
+# Monorepo
 
-# Hekori
+This repository contains
+- web projects (React + NodeJS applications)
+- libraries (npm packages)
 
-This project was generated using [Nx](https://nx.dev).
+The code is in the folder `./projects` and `./libs`
 
-<p style="text-align: center;"><img src="https://raw.githubusercontent.com/nrwl/nx/master/images/nx-logo.png" width="450"></p>
+## License
 
-🔎 **Powerful, Extensible Dev Tools**
+See the LICENSE.md files of libraries and projects.
 
-## Adding capabilities to your workspace
+Everything else is proprietary. All rights reserved.
 
-Nx supports many plugins which add capabilities for developing different types of applications and different tools.
+## Projects
 
-These capabilities include generating applications, libraries, etc as well as the devtools to test, and build projects as well.
+### Traqrcode
 
-Below are our core plugins:
+![projects/traqrcode/traqrcode-raw/screenshot_frontpage.png](projects/traqrcode/traqrcode-raw/screenshot_frontpage.png)
 
-- [React](https://reactjs.org)
-  - `npm install --save-dev @nrwl/react`
-- Web (no framework frontends)
-  - `npm install --save-dev @nrwl/web`
-- [Angular](https://angular.io)
-  - `npm install --save-dev @nrwl/angular`
-- [Nest](https://nestjs.com)
-  - `npm install --save-dev @nrwl/nest`
-- [Express](https://expressjs.com)
-  - `npm install --save-dev @nrwl/express`
-- [Node](https://nodejs.org)
-  - `npm install --save-dev @nrwl/node`
-
-There are also many [community plugins](https://nx.dev/nx-community) you could add.
-
-## Generate an application
-
-Run `nx g @nrwl/react:app my-app` to generate an application.
-
-> You can use any of the plugins above to generate applications as well.
-
-When using Nx, you can create multiple applications and libraries in the same workspace.
-
-## Generate a library
-
-Run `nx g @nrwl/react:lib my-lib` to generate a library.
-
-> You can also use any of the plugins above to generate libraries as well.
-
-Libraries are shareable across libraries and applications. They can be imported from `@hekori/mylib`.
-
-## Development server
-
-Run `yarn nx run hereismyfeedback:serve` for a dev server for the React app.
-The port is defined in `workspace.json`
-Navigate to http://localhost:3001/.
-The app will automatically reload if you change any of the source files.
-
-Run `yarn nx run hereismyfeedback-api:serve` to startup the backend server for the React app.
+![projects/traqrcode/traqrcode-frontend/src/assets/example_pdf.png](projects/traqrcode/traqrcode-frontend/src/assets/frontpage/example_pdf.png)
 
 
-## Code scaffolding
-
-Run `nx g @nrwl/react:component my-component --project=my-app` to generate a new component.
-
-## Build
-
-Run `nx build my-app` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `nx test my-app` to execute the unit tests via [Jest](https://jestjs.io).
-
-Run `nx affected:test` to execute the unit tests affected by a change.
-
-## Running end-to-end tests
-
-Run `ng e2e my-app` to execute the end-to-end tests via [Cypress](https://www.cypress.io).
-
-Run `nx affected:e2e` to execute the end-to-end tests affected by a change.
-
-## Understand your workspace
-
-Run `nx dep-graph` to see a diagram of the dependencies of your projects.
-
-## Further help
-
-Visit the [Nx Documentation](https://nx.dev) to learn more.
-
-## Generate, move
-
-```
-# Node Library
-nx generate @nrwl/node:library <node-lib>
-
-# Node Application
-nx generate @nrwl/node:app <node-app>
-
-# React Application
-nx generate @nrwl/react:app <react-app>
-
-# Move
-nx g move --project some-library shared/some-library
-```
