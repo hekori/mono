@@ -7,6 +7,19 @@ This repository contains
 
 The code is in the folder `./projects` and `./libs`
 
+## Copyright
+
+```text
+Author and copyright
+Sebastian F. Walter
+sebastian.walter@hekori.com
+
+hekori GmbH
+Kastellweg 29
+D-69120 Heidelberg
+Germany
+```
+
 ## License
 
 See the LICENSE.md files of libraries and projects.
