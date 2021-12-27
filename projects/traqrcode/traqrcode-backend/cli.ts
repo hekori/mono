@@ -4,7 +4,7 @@ import { Command } from 'commander'
 
 import * as path from 'path'
 import { Migrate, pgBackup } from '@hekori/knexutils'
-import { pg } from './src/app/database/pg'
+import { pg } from './src/database/pg'
 
 const program = new Command()
 
