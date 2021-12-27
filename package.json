@@ -39,7 +39,7 @@
     "traqrcode:deploy:backend": "dotenv -e ../.env -- ts-node --project projects/traqrcode/traqrcode-backend/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-backend/cli.ts",
     "traqrcode:serve:frontend": "dotenv -e ../.env -- nx run traqrcode-frontend:serve",
     "traqrcode:serve:backend": "dotenv -e ../.env -- nx run traqrcode-backend:serve",
-    "traqrcode:depcruise": "depcruise --include-only \"src\" --output-type dot projects/traqrcode/traqrcode-backend/ | dot -T svg > dependencygraph.svg  "
+    "traqrcode:depcruise": "depcruise --exclude \".*\\.spec\\..*\" --include-only \"src\" --output-type dot projects/traqrcode | dot -T svg > dependencygraph.svg  "
   },
   "private": true,
   "dependencies": {
