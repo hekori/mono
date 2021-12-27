@@ -407,6 +407,58 @@
           }
         }
       }
+    },
+    "projects-traqrcode-traqrcode-mailer": {
+      "root": "projects/traqrcode/traqrcode-mailer",
+      "sourceRoot": "projects/traqrcode/traqrcode-mailer/src",
+      "projectType": "application",
+      "targets": {
+        "build": {
+          "executor": "@nrwl/node:build",
+          "outputs": ["{options.outputPath}"],
+          "options": {
+            "outputPath": "dist/projects/traqrcode/traqrcode-mailer",
+            "main": "projects/traqrcode/traqrcode-mailer/src/main.ts",
+            "tsConfig": "projects/traqrcode/traqrcode-mailer/tsconfig.app.json",
+            "assets": ["projects/traqrcode/traqrcode-mailer/src/assets"]
+          },
+          "configurations": {
+            "production": {
+              "optimization": true,
+              "extractLicenses": true,
+              "inspect": false,
+              "fileReplacements": [
+                {
+                  "replace": "projects/traqrcode/traqrcode-mailer/src/environments/environment.ts",
+                  "with": "projects/traqrcode/traqrcode-mailer/src/environments/environment.prod.ts"
+                }
+              ]
+            }
+          }
+        },
+        "serve": {
+          "executor": "@nrwl/node:execute",
+          "options": {
+            "buildTarget": "projects-traqrcode-traqrcode-mailer:build"
+          }
+        },
+        "lint": {
+          "executor": "@nrwl/linter:eslint",
+          "options": {
+            "lintFilePatterns": [
+              "projects/traqrcode/traqrcode-mailer/**/*.ts"
+            ]
+          }
+        },
+        "test": {
+          "executor": "@nrwl/jest:jest",
+          "outputs": ["coverage/projects/traqrcode/traqrcode-mailer"],
+          "options": {
+            "jestConfig": "projects/traqrcode/traqrcode-mailer/jest.config.js",
+            "passWithNoTests": true
+          }
+        }
+      }
     }
   }
 }

@@ -10,5 +10,6 @@ module.exports = {
     '<rootDir>/apps/uibook',
     '<rootDir>/libs/knexutils',
     '<rootDir>/apps/projects/traqrcode/traqrcode-deploy',
+    '<rootDir>/apps/projects/traqrcode/traqrcode-mailer',
   ],
 }
