@@ -1,4 +1,4 @@
-import { createAccessToken, verifyAccessToken } from './middleware/auth'
+import { createAccessToken, verifyAccessToken } from './auth'
 
 describe('jwt signing', () => {
   it('should verify correctly signed tokens', () => {

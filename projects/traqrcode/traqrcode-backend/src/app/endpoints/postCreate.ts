@@ -9,8 +9,8 @@ import {
   PostResponseError,
   ResponseBase,
 } from '@hekori/traqrcode-common'
-import { pg } from '../../pg'
-import { createRandomName } from '../randomNames'
+import { pg } from '../database/pg'
+import { createRandomName } from '../utils/randomNames'
 
 export const postCreate = async (request, reply) => {
   console.log(request.body)

@@ -1,6 +1,6 @@
 import { FRONTEND_URL, JWT_PRIVATE_KEY } from '../settings'
 import { FastifyRequest } from 'fastify'
-import { AuthenticationError } from '../errors'
+import { AuthenticationError } from '../endpoints/errors'
 import jwt = require('jsonwebtoken')
 
 export const createAccessToken = (

@@ -4,16 +4,16 @@ import {
   PostSignupRequest,
   PostSignupResponse,
   to,
+  UserInitializer,
 } from '@hekori/traqrcode-common'
-import { pg } from '../../pg'
-import { UserInitializer } from '@hekori/traqrcode-common'
+import { pg } from '../database/pg'
 import {
   createAccessToken,
   getLoginUrlForAccessToken,
 } from '../middleware/auth'
-import { sendMail } from '../mail'
+import { sendMail } from '../email/mail'
 import { EMAIL_DEFAULT_SENDER } from '../settings'
-import { emailLoginBody, emailLoginSubject } from '../templates'
+import { emailLoginBody, emailLoginSubject } from '../email/emailTemplates'
 import { getNow } from '@hekori/dates'
 
 export const postSignup = async (request, reply) => {

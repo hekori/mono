@@ -3,7 +3,7 @@ import {
   verifyAccessToken,
 } from '../middleware/auth'
 import { API_CODE, PostResponseError } from '@hekori/traqrcode-common'
-import { pg } from '../../pg'
+import { pg } from '../database/pg'
 
 export const deletePage = async (request, reply) => {
   const pageUuid = request.params.pageUuid

@@ -2,7 +2,7 @@ import {
   getAccessTokenFromRequest,
   verifyAccessToken,
 } from '../middleware/auth'
-import { pg } from '../../pg'
+import { pg } from '../database/pg'
 import {
   ComputePercentiles,
   GetDashboardResponse,

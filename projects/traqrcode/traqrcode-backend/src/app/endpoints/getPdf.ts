@@ -7,7 +7,7 @@ import {
   PostResponseError,
   to,
 } from '@hekori/traqrcode-common'
-import { pg } from '../../pg'
+import { pg } from '../database/pg'
 import * as QRCode from 'qrcode'
 import pdfkit = require('pdfkit')
 

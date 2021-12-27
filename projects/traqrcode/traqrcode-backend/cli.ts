@@ -4,7 +4,8 @@ import { Command } from 'commander'
 
 import * as path from 'path'
 import { Migrate, pgBackup } from '@hekori/knexutils'
-import { pg } from './src/pg'
+import { pg } from './src/app/database/pg'
+
 const program = new Command()
 
 const absolutePathToMigrationsDirectory = path.join(__dirname, 'migrations')

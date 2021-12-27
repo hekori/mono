@@ -10,14 +10,14 @@ import {
   to,
   User,
 } from '@hekori/traqrcode-common'
-import { pg } from '../../pg'
-import { log } from '../utils'
-import { sendMail } from '../mail'
+import { pg } from '../database/pg'
+import { log } from '../utils/utils'
+import { sendMail } from '../email/mail'
 import { EMAIL_DEFAULT_SENDER } from '../settings'
 import {
   email_notify_receiver_of_new_task_body,
   email_notify_receiver_of_new_task_subject,
-} from '../templates'
+} from '../email/emailTemplates'
 
 export const getRead = async (request, reply) => {
   console.log(request.body)

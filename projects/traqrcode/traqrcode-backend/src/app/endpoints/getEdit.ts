@@ -11,9 +11,8 @@ import {
   PostResponseError,
   User,
 } from '@hekori/traqrcode-common'
-import { pg } from '../../pg'
-import { createRandomName } from '../randomNames'
-import { convertListToIdAndObject } from '../utils'
+import { pg } from '../database/pg'
+import { convertListToIdAndObject } from '../utils/utils'
 
 export const getEdit = async (request, reply) => {
   console.log(request.body)

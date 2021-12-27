@@ -32,7 +32,7 @@ import { deletePage } from './endpoints/deletePage'
 import { postEdit } from './endpoints/postEdit'
 import { getPdf } from './endpoints/getPdf'
 import { getRead } from './endpoints/getRead'
-import { AuthenticationError } from './errors'
+import { AuthenticationError } from './endpoints/errors'
 import { getTask } from './endpoints/getTask'
 import { getAct } from './endpoints/getAct'
 import { getDetails } from './endpoints/getDetails'
@@ -111,8 +111,8 @@ api.delete<{
   }
 }>('/page/:pageUuid', deletePage)
 
-// Run the server!
-const start = async () => {
+// Run the HTTP server!
+const startHttpServer = async () => {
   try {
     console.info('starting server')
     await api.listen(PORT)
@@ -121,4 +121,5 @@ const start = async () => {
     process.exit(1)
   }
 }
-void start()
+
+void startHttpServer()

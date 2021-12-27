@@ -2,8 +2,8 @@ import {
   getAccessTokenFromRequest,
   verifyAccessToken,
 } from '../middleware/auth'
-import { pg } from '../../pg'
-import { convertListToIdAndObject } from '../utils'
+import { pg } from '../database/pg'
+import { convertListToIdAndObject } from '../utils/utils'
 
 export const getList = async (request, reply) => {
   console.log(request.body)

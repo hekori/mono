@@ -1,11 +1,11 @@
 import {
   API_CODE,
   GetReadResponseError,
+  GetTaskResponseOk,
   PageItem,
   PageItemProgress,
 } from '@hekori/traqrcode-common'
-import { pg } from '../../pg'
-import { GetTaskResponseOk } from '@hekori/traqrcode-common'
+import { pg } from '../database/pg'
 
 export const getTask = async (request, reply) => {
   console.log(request.body)

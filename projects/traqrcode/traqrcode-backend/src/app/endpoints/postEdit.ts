@@ -15,7 +15,7 @@ import {
   to,
   User,
 } from '@hekori/traqrcode-common'
-import { pg } from '../../pg'
+import { pg } from '../database/pg'
 
 export const postEdit = async (request, reply) => {
   console.log('body', request.body)

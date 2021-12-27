@@ -1,5 +1,5 @@
-import { log } from './utils'
-import { SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER } from './settings'
+import { log } from '../utils/utils'
+import { SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER } from '../settings'
 
 import * as nodemailer from 'nodemailer'
 import { STAGE } from '@hekori/traqrcode-common'

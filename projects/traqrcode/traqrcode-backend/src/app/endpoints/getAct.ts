@@ -1,4 +1,4 @@
-import { pg } from '../../pg'
+import { pg } from '../database/pg'
 import {
   Action,
   GetActResponseOk,
@@ -9,14 +9,14 @@ import {
   User,
 } from '@hekori/traqrcode-common'
 import { getNow } from '@hekori/dates'
-import { sendMail } from '../mail'
+import { sendMail } from '../email/mail'
 import { EMAIL_DEFAULT_SENDER } from '../settings'
 import {
   email_notify_accept_task_body,
   email_notify_accept_task_subject,
   email_notify_done_task_body,
   email_notify_done_task_subject,
-} from '../templates'
+} from '../email/emailTemplates'
 
 export const getAct = async (request, reply) => {
   console.log(request.body)
