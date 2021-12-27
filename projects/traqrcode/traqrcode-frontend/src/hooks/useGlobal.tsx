@@ -4,7 +4,7 @@ import { useLayoutEffect } from 'react'
 import { Item, KeyToString } from '@hekori/traqrcode-common'
 import { applyTheme } from '@hekori/uikit'
 import { QueryClient, QueryClientProvider } from 'react-query'
-import { Api } from './api'
+import { Api } from '../api'
 
 const isDarkThemeSystemPreference = (): boolean => {
   return (
@@ -55,7 +55,7 @@ export const useGlobal = () => {
   return React.useContext(GlobalContext)
 }
 
-export const Provider = ({ children }: ProviderProps) => {
+export const GlobalProvider = ({ children }: ProviderProps) => {
   const [state, setState] = React.useState<State>(initialState)
   const api = new Api()
   const history = useHistory()

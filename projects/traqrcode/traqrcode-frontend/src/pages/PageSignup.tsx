@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useEffect, useState } from 'react'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 import { ShellPublic } from '../components/ShellPublic'
 import { TypeErrors } from './PageFrontpage'
 import {
@@ -9,7 +9,6 @@ import {
   to,
 } from '@hekori/traqrcode-common'
 import {
-  ButtonFlat,
   ButtonPrimary,
   ButtonSecondary,
   Input,
@@ -19,9 +18,9 @@ import {
 import { ExclamationIcon } from '@heroicons/react/outline'
 import { getNow, humanReadableTimeDifference } from '@hekori/dates'
 import { Container } from '../components/Container'
-import { set, useForm } from 'react-hook-form'
-import { Link, useHistory } from 'react-router-dom'
-import { SIGNUP_ROUTE, TERMS_ROUTE } from '../routings'
+import { useForm } from 'react-hook-form'
+import { useHistory } from 'react-router-dom'
+import { TERMS_ROUTE } from '../routings'
 import { ButtonLink } from '../../../../../libs/uikit/src/lib/buttons/ButtonLink'
 
 interface FormInput {

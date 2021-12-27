@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { SyntheticEvent } from 'react'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 
 import QRCode from 'qrcode.react'
 import {

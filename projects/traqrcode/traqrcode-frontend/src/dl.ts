@@ -3,7 +3,7 @@ import fileDownload from 'js-file-download'
 export const dl = async (
   data: Buffer,
   fileName: string,
-  contentType: string = 'application/pdf',
+  contentType = 'application/pdf'
 ) => {
   console.log('called fileDownload')
   console.log('data', data)

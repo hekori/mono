@@ -2,7 +2,7 @@ import { Link, useHistory } from 'react-router-dom'
 import { LogoTraqrcode } from './LogoTraqrcode'
 import * as React from 'react'
 import { themes } from '@hekori/uikit'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 import { FRONTPAGE_ROUTE, PRICING_ROUTE } from '../routings'
 
 export const Footer = () => {

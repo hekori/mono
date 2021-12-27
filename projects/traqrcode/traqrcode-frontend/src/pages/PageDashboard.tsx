@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 import { Container } from '../components/Container'
 import { DashboardRouteInfo } from '../routings'
 import {

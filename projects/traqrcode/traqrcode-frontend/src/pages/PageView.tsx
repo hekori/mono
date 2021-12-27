@@ -7,7 +7,7 @@ import { Loading } from '../components/Loading'
 import { BACKEND_URL, to } from '@hekori/traqrcode-common'
 import { ButtonSecondary } from '@hekori/uikit'
 import { ViewRouteInfo } from '../routings'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 
 type PropsPageView = {
   routeInfo: ViewRouteInfo

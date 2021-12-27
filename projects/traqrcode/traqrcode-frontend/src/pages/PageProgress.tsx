@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 
 import { useHistory } from 'react-router-dom'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'

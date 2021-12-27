@@ -4,7 +4,7 @@ import { useState } from 'react'
 import { LogoTraqrcode } from './LogoTraqrcode'
 import { ButtonFlat, ButtonPrimary, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 import {
   CREATE_QR_ROUTE,
   HOMEPAGE_ROUTE,

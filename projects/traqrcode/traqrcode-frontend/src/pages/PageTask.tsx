@@ -1,5 +1,5 @@
 import * as React from 'react'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 import { TaskRouteInfo } from '../routings'
 import { useQuery } from 'react-query'
 import { GetTaskResponseOk } from '@hekori/traqrcode-common'

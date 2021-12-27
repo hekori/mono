@@ -1,6 +1,6 @@
 import * as React from 'react'
 import { useState } from 'react'
-import { useGlobal } from '../index.provider'
+import { useGlobal } from '../hooks/useGlobal'
 import { Req } from '../components/req'
 
 import { useHistory } from 'react-router-dom'
