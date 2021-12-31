@@ -408,7 +408,7 @@
         }
       }
     },
-    "projects-traqrcode-traqrcode-mailer": {
+    "traqrcode-mailer": {
       "root": "projects/traqrcode/traqrcode-mailer",
       "sourceRoot": "projects/traqrcode/traqrcode-mailer/src",
       "projectType": "application",
@@ -439,7 +439,7 @@
         "serve": {
           "executor": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "projects-traqrcode-traqrcode-mailer:build"
+            "buildTarget": "traqrcode-mailer:build"
           }
         },
         "lint": {
