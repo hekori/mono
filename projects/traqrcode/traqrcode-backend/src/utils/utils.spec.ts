@@ -1,4 +1,4 @@
-import { sendMail } from '../email/mail'
+import { sendMail } from '../email/sendMail'
 import { log } from './utils'
 import { SMTP_HOST, SMTP_PORT, SMTP_USER } from '../settings'
 import { STAGE } from '@hekori/traqrcode-common'

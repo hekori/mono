@@ -11,7 +11,7 @@ import {
   createAccessToken,
   getLoginUrlForAccessToken,
 } from '../middleware/auth'
-import { sendMail } from '../email/mail'
+import { sendMail } from '../email/sendMail'
 import { EMAIL_DEFAULT_SENDER } from '../settings'
 import { emailLoginBody, emailLoginSubject } from '../email/emailTemplates'
 import { getNow } from '@hekori/dates'

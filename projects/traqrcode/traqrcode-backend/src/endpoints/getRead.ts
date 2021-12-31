@@ -12,7 +12,7 @@ import {
 } from '@hekori/traqrcode-common'
 import { pg } from '../database/pg'
 import { log } from '../utils/utils'
-import { sendMail } from '../email/mail'
+import { sendMail } from '../email/sendMail'
 import { EMAIL_DEFAULT_SENDER } from '../settings'
 import {
   email_notify_receiver_of_new_task_body,

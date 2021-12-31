@@ -9,7 +9,7 @@ import {
   User,
 } from '@hekori/traqrcode-common'
 import { getNow } from '@hekori/dates'
-import { sendMail } from '../email/mail'
+import { sendMail } from '../email/sendMail'
 import { EMAIL_DEFAULT_SENDER } from '../settings'
 import {
   email_notify_accept_task_body,
