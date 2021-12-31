@@ -1,4 +1,4 @@
-import { environment } from './environments/environment'
+import { environment } from '../environments/environment'
 import jwt_decode from 'jwt-decode'
 
 export const isLoggedIn = (): boolean => {

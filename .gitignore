@@ -6,5 +6,6 @@ pgdata/
 .yarn/
 yarn-error.log
 .git.bfg-report/
+dependencygraph.*.svg
 dependencygraph.svg
 App.css

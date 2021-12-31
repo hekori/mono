@@ -16,35 +16,39 @@ import { PagePricing } from './pages/PagePricing'
 import { PageLoginFromUrl } from './pages/PageLoginFromUrl'
 import { PagePdfs } from './pages/PagePdfs'
 import {
-  actRegex,
-  CheckLoginRouteInfo,
   CREATE_QR_ROUTE,
   DASHBOARD_ROUTE,
-  dashboardRegex,
-  DashboardRouteInfo,
-  detailsRegex,
-  DetailsRouteInfo,
-  editRegex,
-  EditRouteInfo,
   FRONTPAGE_ROUTE,
   IMPRINT_ROUTE,
-  loginRegex,
-  pdfRegex,
-  PdfRouteInfo,
   PRICING_ROUTE,
   PRIVACY_ROUTE,
-  readRegex,
-  ReadRouteInfo,
   SIGNUP_ROUTE,
-  taskRegex,
-  TaskRouteInfo,
   TERMS_ROUTE,
-  viewRegex,
-  ViewRouteInfo,
-} from './routings'
+} from './routing/routingPaths'
 import { PageDashboard } from './pages/PageDashboard'
-import { isLoggedIn } from './utils'
+import { isLoggedIn } from './utils/utilsUserLoggedIn'
 import { PageTask } from './pages/PageTask'
+import {
+  CheckLoginRouteInfo,
+  DashboardRouteInfo,
+  DetailsRouteInfo,
+  EditRouteInfo,
+  PdfRouteInfo,
+  ReadRouteInfo,
+  TaskRouteInfo,
+  ViewRouteInfo,
+} from './routing/routingTypes'
+import {
+  actRegex,
+  dashboardRegex,
+  detailsRegex,
+  editRegex,
+  routingRegex,
+  pdfRegex,
+  readRegex,
+  taskRegex,
+  viewRegex,
+} from './routing/routingRegex'
 
 export const App = () => {
   const location = useLocation()
@@ -79,7 +83,7 @@ export const App = () => {
     return <PageSignup variant={'createQr'} />
 
   // page login
-  const loginRouteInfo: CheckLoginRouteInfo | null = loginRegex(
+  const loginRouteInfo: CheckLoginRouteInfo | null = routingRegex(
     location.pathname
   )
   if (loginRouteInfo) return <PageLoginFromUrl routeInfo={loginRouteInfo} />

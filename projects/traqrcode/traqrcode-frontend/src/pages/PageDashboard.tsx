@@ -1,7 +1,6 @@
 import * as React from 'react'
 import { useGlobal } from '../hooks/useGlobal'
 import { Container } from '../components/Container'
-import { DashboardRouteInfo } from '../routings'
 import {
   getBackendDashboardGetUrl,
   GetDashboardResponse,
@@ -11,6 +10,7 @@ import { useHistory } from 'react-router-dom'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
 import { TextNormal } from '@hekori/uikit'
 import { ChangeIndicatorPill } from '../components/ChangeIndicatorPill'
+import { DashboardRouteInfo } from '../routing/routingTypes'
 
 interface PropsPageDashboard {
   routeInfo: DashboardRouteInfo

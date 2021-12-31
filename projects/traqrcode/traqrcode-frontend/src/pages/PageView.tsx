@@ -2,12 +2,12 @@ import * as React from 'react'
 import { useState } from 'react'
 import { ShellPublic } from '../components/ShellPublic'
 import { useHistory } from 'react-router-dom'
-import { dl } from '../dl'
+import { dl } from '../utils/dl'
 import { Loading } from '../components/Loading'
 import { BACKEND_URL, to } from '@hekori/traqrcode-common'
 import { ButtonSecondary } from '@hekori/uikit'
-import { ViewRouteInfo } from '../routings'
 import { useGlobal } from '../hooks/useGlobal'
+import { ViewRouteInfo } from '../routing/routingTypes'
 
 type PropsPageView = {
   routeInfo: ViewRouteInfo

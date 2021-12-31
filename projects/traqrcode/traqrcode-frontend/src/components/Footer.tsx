@@ -3,7 +3,7 @@ import { LogoTraqrcode } from './LogoTraqrcode'
 import * as React from 'react'
 import { themes } from '@hekori/uikit'
 import { useGlobal } from '../hooks/useGlobal'
-import { FRONTPAGE_ROUTE, PRICING_ROUTE } from '../routings'
+import { FRONTPAGE_ROUTE, PRICING_ROUTE } from '../routing/routingPaths'
 
 export const Footer = () => {
   const history = useHistory()

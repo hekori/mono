@@ -4,7 +4,6 @@ import { useGlobal } from '../hooks/useGlobal'
 import { Req } from '../components/req'
 
 import { useHistory } from 'react-router-dom'
-import { PageError404 } from './PageError404'
 import { Loading } from '../components/Loading'
 import {
   API_CODE,
@@ -18,12 +17,20 @@ import {
   PostEditResponse,
   to,
 } from '@hekori/traqrcode-common'
-import { ButtonFlat, ButtonSecondary, Input, TextSubtitle } from '@hekori/uikit'
+import {
+  ButtonFlat,
+  ButtonSecondary,
+  Input,
+  TextLarge,
+  TextSmall,
+  TextSubtitle,
+} from '@hekori/uikit'
 import { TrashIcon } from '@heroicons/react/outline'
-import { EditRouteInfo, PDF_ROUTE } from '../routings'
+import { PDF_ROUTE } from '../routing/routingPaths'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { useQuery } from 'react-query'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
+import { EditRouteInfo } from '../routing/routingTypes'
 
 type PropsPageEdit = {
   routeInfo: EditRouteInfo
@@ -78,7 +85,14 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
   let content
   if (isLoading || isFetching || !data) content = <Loading />
   else if ((errors?.global || []).includes(API_CODE.ERROR_NOT_FOUND))
-    return <PageError404 />
+    content = (
+      <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
+        <div className="mt-8">
+          <TextLarge>Could not find the page.</TextLarge>
+          <TextSmall>Perhaps it has been deleted?</TextSmall>
+        </div>
+      </div>
+    )
   else
     content = (
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">

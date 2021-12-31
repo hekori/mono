@@ -1,7 +1,7 @@
 import * as React from 'react'
 import { useGlobal } from '../hooks/useGlobal'
 import { Container } from '../components/Container'
-import { editRoute, PdfRouteInfo } from '../routings'
+import { editRoute } from '../routing/routingPaths'
 import {
   API_CODE,
   BACKEND_URL,
@@ -24,7 +24,8 @@ import {
 import { useHistory } from 'react-router-dom'
 import { dateFormatter, timeFormatter } from '@hekori/dates'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
-import { dl } from '../dl'
+import { dl } from '../utils/dl'
+import { PdfRouteInfo } from '../routing/routingTypes'
 
 interface PropsPageList {
   routeInfo: PdfRouteInfo

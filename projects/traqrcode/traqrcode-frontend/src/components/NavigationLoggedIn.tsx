@@ -5,8 +5,12 @@ import { LogoTraqrcode } from './LogoTraqrcode'
 import { ButtonFlat, themes } from '@hekori/uikit'
 import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../hooks/useGlobal'
-import { logout } from '../utils'
-import { DASHBOARD_ROUTE, detailsRoute, PDF_ROUTE } from '../routings'
+import { logout } from '../utils/utilsUserLoggedIn'
+import {
+  DASHBOARD_ROUTE,
+  detailsRoute,
+  PDF_ROUTE,
+} from '../routing/routingPaths'
 
 export const NavigationLoggedIn: React.FC = () => {
   const history = useHistory()

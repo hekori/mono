@@ -8,9 +8,9 @@ import {
   TextSubtitle,
 } from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
-import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../routings'
+import { DASHBOARD_ROUTE, SIGNUP_ROUTE } from '../routing/routingPaths'
 import { Shell } from '../components/Shell'
-import { isLoggedIn } from '../utils'
+import { isLoggedIn } from '../utils/utilsUserLoggedIn'
 import {
   mdiDocker,
   mdiLanguageTypescript,

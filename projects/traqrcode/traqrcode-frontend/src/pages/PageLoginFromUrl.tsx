@@ -4,7 +4,8 @@ import { ShellPublic } from '../components/ShellPublic'
 import { Container } from '../components/Container'
 import { environment } from '../environments/environment'
 import { useHistory } from 'react-router-dom'
-import { CheckLoginRouteInfo, PDF_ROUTE } from '../routings'
+import { PDF_ROUTE } from '../routing/routingPaths'
+import { CheckLoginRouteInfo } from '../routing/routingTypes'
 
 interface PropsPageCheckLogin {
   routeInfo: CheckLoginRouteInfo

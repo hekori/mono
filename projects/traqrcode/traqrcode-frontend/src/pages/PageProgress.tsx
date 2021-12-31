@@ -4,7 +4,7 @@ import { useGlobal } from '../hooks/useGlobal'
 import { useHistory } from 'react-router-dom'
 import { useCheckLoggedIn } from '../hooks/useCheckLoggedIn'
 import { ShellLoggedIn } from '../components/ShellLoggedIn'
-import { DetailsRouteInfo, editRoute, taskRoute } from '../routings'
+import { editRoute, taskRoute } from '../routing/routingPaths'
 import { useMutation, useQuery, useQueryClient } from 'react-query'
 import {
   API_CODE,
@@ -18,8 +18,9 @@ import { Error500 } from '../components/Error500'
 import { ButtonFlat, TextLarge, TextSmall } from '@hekori/uikit'
 import { EyeIcon, PencilIcon } from '@heroicons/react/outline'
 import { ProgressInfo } from '../components/ProgressInfo'
-import { getLoggedInUserUuid } from '../utils'
+import { getLoggedInUserUuid } from '../utils/utilsUserLoggedIn'
 import { mdiEmail, mdiProgressCheck, mdiProgressClock } from '@mdi/js'
+import { DetailsRouteInfo } from '../routing/routingTypes'
 
 type PropsPageDetails = {
   routeInfo: DetailsRouteInfo

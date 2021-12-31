@@ -20,7 +20,7 @@ import { getNow, humanReadableTimeDifference } from '@hekori/dates'
 import { Container } from '../components/Container'
 import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
-import { TERMS_ROUTE } from '../routings'
+import { TERMS_ROUTE } from '../routing/routingPaths'
 import { ButtonLink } from '../../../../../libs/uikit/src/lib/buttons/ButtonLink'
 
 interface FormInput {

@@ -1,4 +1,4 @@
-import { isLoggedIn } from '../utils'
+import { isLoggedIn } from '../utils/utilsUserLoggedIn'
 import { ShellLoggedIn } from './ShellLoggedIn'
 import { ShellPublic } from './ShellPublic'
 

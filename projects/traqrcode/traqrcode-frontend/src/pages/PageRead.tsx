@@ -2,7 +2,6 @@ import * as React from 'react'
 import { useGlobal } from '../hooks/useGlobal'
 import { useHistory } from 'react-router-dom'
 import { Loading } from '../components/Loading'
-import { ReadRouteInfo } from '../routings'
 import { useQuery } from 'react-query'
 import {
   API_CODE,
@@ -11,6 +10,7 @@ import {
 } from '@hekori/traqrcode-common'
 import { Error500 } from '../components/Error500'
 import { Shell } from '../components/Shell'
+import { ReadRouteInfo } from '../routing/routingTypes'
 
 type PropsPageRead = {
   routeInfo: ReadRouteInfo

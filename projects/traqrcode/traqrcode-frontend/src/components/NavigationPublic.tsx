@@ -10,7 +10,7 @@ import {
   HOMEPAGE_ROUTE,
   PRICING_ROUTE,
   SIGNUP_ROUTE,
-} from '../routings'
+} from '../routing/routingPaths'
 
 export const NavigationPublic = () => {
   const history = useHistory()
