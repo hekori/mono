@@ -3090,7 +3090,7 @@ bluebird@3.7.1:
   version "3.7.1"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.1.tgz#df70e302b471d7473489acf26a93d63b53f874de"
 
-bluebird@^3.5.5, bluebird@^3.7.2:
+bluebird@^3.5.4, bluebird@^3.5.5, bluebird@^3.7.2:
   version "3.7.2"
   resolved "https://registry.yarnpkg.com/bluebird/-/bluebird-3.7.2.tgz#9f229c15be272454ffa973ace0dbee79a1b0c36f"
 
@@ -4853,6 +4853,11 @@ elliptic@^6.5.3:
     inherits "^2.0.4"
     minimalistic-assert "^1.0.1"
     minimalistic-crypto-utils "^1.0.1"
+
+emitter-component@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/emitter-component/-/emitter-component-1.1.1.tgz#065e2dbed6959bf470679edabeaf7981d1003ab6"
+  integrity sha1-Bl4tvtaVm/RwZ57avq95gdEAOrY=
 
 emittery@^0.7.1:
   version "0.7.2"
@@ -8733,6 +8738,11 @@ neo-async@^2.5.0, neo-async@^2.6.0, neo-async@^2.6.1:
   version "2.6.2"
   resolved "https://registry.yarnpkg.com/neo-async/-/neo-async-2.6.2.tgz#b4aafb93e3aeb2d8174ca53cf163ab7d7308305f"
 
+net@^1.0.2:
+  version "1.0.2"
+  resolved "https://registry.yarnpkg.com/net/-/net-1.0.2.tgz#d1757ec9a7fb2371d83cf4755ce3e27e10829388"
+  integrity sha1-0XV+yaf7I3HYPPR1XOPifhCCk4g=
+
 next-tick@~1.0.0:
   version "1.0.0"
   resolved "https://registry.yarnpkg.com/next-tick/-/next-tick-1.0.0.tgz#ca86d1fe8828169b0120208e3dc8424b9db8342c"
@@ -11714,6 +11724,13 @@ stream-shift@^1.0.0:
   version "1.0.1"
   resolved "https://registry.yarnpkg.com/stream-shift/-/stream-shift-1.0.1.tgz#d7088281559ab2778424279b0877da3c392d5a3d"
 
+stream@^0.0.2:
+  version "0.0.2"
+  resolved "https://registry.yarnpkg.com/stream/-/stream-0.0.2.tgz#7f5363f057f6592c5595f00bc80a27f5cec1f0ef"
+  integrity sha1-f1Nj8Ff2WSxVlfALyAon9c7B8O8=
+  dependencies:
+    emitter-component "^1.1.1"
+
 streamsearch@~0.1.2:
   version "0.1.2"
   resolved "https://registry.yarnpkg.com/streamsearch/-/streamsearch-0.1.2.tgz#808b9d0e56fc273d809ba57338e929919a1a9f1a"
@@ -12033,6 +12050,15 @@ teamcity-service-messages@0.1.12:
   version "0.1.12"
   resolved "https://registry.yarnpkg.com/teamcity-service-messages/-/teamcity-service-messages-0.1.12.tgz#5b62381fa9e91ea518ef3dc2c474bc7633c9fd6f"
   integrity sha512-qHip+zg7/ZdZiK5OeSYxnxD3iUjPnVyRmnyNd+oB3XVTn5PQoEqydYspDmOFaFex3OlaAFaNl/VoNWttTgEqAA==
+
+telnet-client@^1.4.11:
+  version "1.4.11"
+  resolved "https://registry.yarnpkg.com/telnet-client/-/telnet-client-1.4.11.tgz#7eb2f9db2290ae1ba7392317edb11f8b419b2c8e"
+  integrity sha512-m15pRh7F74ZzWmqjUtOg3SYp8iSnH7xY1lD9hWk8icjuLRSItABPk1vRJFwSM7op6TgZuEXOWOSbiK9nknloSw==
+  dependencies:
+    bluebird "^3.5.4"
+    net "^1.0.2"
+    stream "^0.0.2"
 
 terminal-link@^2.0.0:
   version "2.1.1"
