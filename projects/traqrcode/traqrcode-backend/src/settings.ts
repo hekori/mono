@@ -23,3 +23,6 @@ export const PGPORT = parseInt(process.env.PGPORT ?? '5432')
 export const FRONTEND_URL = process.env.NX_FRONTEND_URL
 export const BACKEND_URL = process.env.NX_BACKEND_URL
 export const JWT_PRIVATE_KEY = process.env.JWT_PRIVATE_KEY
+
+export const DKIM_DOMAIN_NAME = process.env.DKIM_DOMAIN_NAME
+export const DKIM_PRIVATE_KEY = process.env.DKIM_PRIVATE_KEY

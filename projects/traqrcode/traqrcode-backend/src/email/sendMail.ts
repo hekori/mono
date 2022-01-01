@@ -1,5 +1,12 @@
 import { log } from '../utils/utils'
-import { SMTP_HOST, SMTP_PASS, SMTP_PORT, SMTP_USER } from '../settings'
+import {
+  DKIM_DOMAIN_NAME,
+  DKIM_PRIVATE_KEY,
+  SMTP_HOST,
+  SMTP_PASS,
+  SMTP_PORT,
+  SMTP_USER,
+} from '../settings'
 
 import * as nodemailer from 'nodemailer'
 import { STAGE } from '@hekori/traqrcode-common'
@@ -13,6 +20,8 @@ interface SendMailArgs {
   port?: string
   user?: string
   pass?: string
+  dkimDomainName?: string
+  dkimPrivateKey?: string
 }
 
 export const sendMail = async ({
@@ -24,6 +33,8 @@ export const sendMail = async ({
   port = SMTP_PORT,
   user = SMTP_USER,
   pass = SMTP_PASS,
+  dkimDomainName = DKIM_DOMAIN_NAME,
+  dkimPrivateKey = DKIM_PRIVATE_KEY,
 }: SendMailArgs) => {
   log('='.repeat(80))
   log('EMAIL:', subject)
@@ -38,10 +49,9 @@ export const sendMail = async ({
     log('create transporter')
     log('using dkim private key')
     log('using dkim selector "mail"')
-    log(`using DKIM_DOMAIN_NAME=${process.env.DKIM_DOMAIN_NAME}`)
+    log(`using DKIM_DOMAIN_NAME=${dkimDomainName}`)
 
-    if (process.env.DKIM_PRIVATE_KEY === undefined)
-      log('process.env.DKIM_PRIVATE_KEY is undefined')
+    if (dkimDomainName === undefined) log('dkimDomainName is undefined')
 
     // https://nodemailer.com/transports/sendmail/
     // https://nodemailer.com/dkim/
@@ -51,9 +61,9 @@ export const sendMail = async ({
       newline: 'unix',
       path: '/usr/sbin/sendmail',
       dkim: {
-        domainName: process.env.DKIM_DOMAIN_NAME,
+        domainName: dkimDomainName,
         keySelector: 'mail',
-        privateKey: process.env.DKIM_PRIVATE_KEY,
+        privateKey: dkimPrivateKey,
       },
     })
 
