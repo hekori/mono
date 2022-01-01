@@ -10,6 +10,7 @@ import {
 
 import * as nodemailer from 'nodemailer'
 import { STAGE } from '@hekori/traqrcode-common'
+import { randomUUID } from 'crypto'
 
 interface SendMailArgs {
   sender: string
@@ -79,6 +80,14 @@ export const sendMail = async ({
 
       // plaintext body
       text: body,
+
+      // delivery status notifications
+      dsn: {
+        id: randomUUID(),
+        return: 'headers',
+        notify: ['failure', 'delay'],
+        recipient: 'info@traqrcode.com',
+      },
     }
 
     log('send message')
