@@ -1,16 +1,8 @@
 import * as nodemailer from 'nodemailer'
+import { SendMailArgs } from './sendEmail.types'
 
 const log = (...args: string[]) => {
   process.stdout.write(args.join(' ') + '\n')
-}
-
-interface SendMailArgs {
-  sender: string
-  receiver: string
-  subject: string
-  body: string
-  dkimDomainName?: string
-  dkimPrivateKey?: string
 }
 
 export const sendMail = async ({
@@ -32,9 +24,13 @@ export const sendMail = async ({
   // https://nodemailer.com/transports/sendmail/
   // https://nodemailer.com/dkim/
   const transporter = nodemailer.createTransport({
-    sendmail: true,
-    newline: 'unix',
-    path: '/usr/sbin/sendmail',
+    // sendmail: true,
+    // newline: 'unix',
+    // path: '/usr/sbin/sendmail',
+    host: 'localhost',
+    port: 8025,
+    secure: false,
+    ignoreTLS: true,
   })
 
   log('prepare message')

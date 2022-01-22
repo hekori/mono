@@ -408,19 +408,19 @@
         }
       }
     },
-    "traqrcode-mailer": {
-      "root": "projects/traqrcode/traqrcode-mailer",
-      "sourceRoot": "projects/traqrcode/traqrcode-mailer/src",
+    "pmailer": {
+      "root": "projects/pmailer",
+      "sourceRoot": "projects/pmailer/src",
       "projectType": "application",
       "targets": {
         "build": {
           "executor": "@nrwl/node:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/projects/traqrcode/traqrcode-mailer",
-            "main": "projects/traqrcode/traqrcode-mailer/src/main.ts",
-            "tsConfig": "projects/traqrcode/traqrcode-mailer/tsconfig.app.json",
-            "assets": ["projects/traqrcode/traqrcode-mailer/src/assets"]
+            "outputPath": "dist/projects/pmailer",
+            "main": "projects/pmailer/src/main.ts",
+            "tsConfig": "projects/pmailer/tsconfig.app.json",
+            "assets": ["projects/pmailer/src/assets"]
           },
           "configurations": {
             "production": {
@@ -429,8 +429,8 @@
               "inspect": false,
               "fileReplacements": [
                 {
-                  "replace": "projects/traqrcode/traqrcode-mailer/src/environments/environment.ts",
-                  "with": "projects/traqrcode/traqrcode-mailer/src/environments/environment.prod.ts"
+                  "replace": "projects/pmailer/src/environments/environment.ts",
+                  "with": "projects/pmailer/src/environments/environment.prod.ts"
                 }
               ]
             }
@@ -446,15 +446,15 @@
           "executor": "@nrwl/linter:eslint",
           "options": {
             "lintFilePatterns": [
-              "projects/traqrcode/traqrcode-mailer/**/*.ts"
+              "projects/pmailer/**/*.ts"
             ]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/projects/traqrcode/traqrcode-mailer"],
+          "outputs": ["coverage/projects/pmailer"],
           "options": {
-            "jestConfig": "projects/traqrcode/traqrcode-mailer/jest.config.js",
+            "jestConfig": "projects/pmailer/jest.config.js",
             "passWithNoTests": true
           }
         }

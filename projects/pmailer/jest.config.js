@@ -1,6 +1,6 @@
 module.exports = {
-  displayName: 'projects-traqrcode-traqrcode-mailer',
-  preset: '../../../../jest.preset.js',
+  displayName: 'projects-tpmailer',
+  preset: '../../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -10,6 +10,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory:
-    '../../../../coverage/apps/projects/traqrcode/traqrcode-mailer',
+  coverageDirectory: '../../../../coverage/apps/projects/pmailer',
 }
