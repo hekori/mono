@@ -61,7 +61,7 @@ export const sendTelnet = async ({
   res = await connection.send(cmd)
   console.log('async result:', res)
 
-  cmd = `From: <${sender}>${CRLF}To: <${receiver}>${CRLF}Subject: ${subject}${CRLF}${CRLF}${body}${CRLF}.${CRLF}`
+  cmd = `From: <${sender}>${CRLF}To: <${receiver}>${CRLF}Subject: ${subject}${CRLF}Date: Sat, 29 Jan 2022 03:08:50 +0200${CRLF}${CRLF}${body}${CRLF}${CRLF}.${CRLF}`
 
   res = await connection.send(cmd)
   console.log('async result:', res)
