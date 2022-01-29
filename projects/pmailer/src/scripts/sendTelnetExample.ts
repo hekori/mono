@@ -13,7 +13,8 @@ export const sendTelnet = async ({
   const connection = new Telnet()
 
   const DOMAIN = sender.split('@')[1]
-  const MXSERVER = 'alt1.aspmx.l.google.com'
+  // const MXSERVER = 'alt1.aspmx.l.google.com' // google
+  const MXSERVER = 'smtp.ethereal.email'
 
   // these parameters are just examples and most probably won't work for your use-case.
   const params = {
@@ -21,7 +22,7 @@ export const sendTelnet = async ({
     port: HTTP_SMTP_PORT,
     negotiationMandatory: false,
     // shellPrompt: '/ # ', // or negotiationMandatory: false
-    timeout: 1500,
+    timeout: 3500,
   }
 
   console.log('connecting to server...')
@@ -35,6 +36,8 @@ export const sendTelnet = async ({
   console.log('Done.')
 
   await delay(100)
+
+  const CRLF = '\r\n'
 
   let res, cmd
 
@@ -58,31 +61,9 @@ export const sendTelnet = async ({
   res = await connection.send(cmd)
   console.log('async result:', res)
 
-  cmd = `Subject: ${subject}`
-  console.log(`Sending:`, cmd)
-  res = await connection.send(cmd)
-  console.log('async result:', res)
+  cmd = `From: <${sender}>${CRLF}To: <${receiver}>${CRLF}Subject: ${subject}${CRLF}${CRLF}${body}${CRLF}.${CRLF}`
 
-  // blank line after subject
-  cmd = ``
-  console.log(`Sending:`, cmd)
   res = await connection.send(cmd)
-  console.log('async result:', res)
-
-  // send body
-  cmd = `${body}`
-  console.log(`Sending:`, cmd)
-  res = await connection.send(cmd)
-  console.log('async result:', res)
-
-  // blank line
-  res = await connection.send('')
-  console.log('async result:', res)
-  // .
-  res = await connection.send('.')
-  console.log('async result:', res)
-  // blank line
-  res = await connection.send('')
   console.log('async result:', res)
 
   res = await connection.send('QUIT')

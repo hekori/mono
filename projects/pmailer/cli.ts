@@ -9,7 +9,7 @@ program.version('0.0.1').description('Send emails manually')
 
 program
   .command('sendTelnet')
-  .arguments('<subject> <body>')
+  .arguments('<sender> <receiver> <subject> <body>')
   .description('send an email via sendmail', {
     sender: 'Sender of the email',
     receiver: 'receiver of the email',
