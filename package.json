@@ -27,6 +27,7 @@
     "clean": "rimraf ./dist",
     "postcss": "postcss libs/uikit/src/lib/tailwind.css -o libs/uikit/src/lib/App.css",
     "pmailer:cli": "dotenv -e ../.env -- ts-node --project projects/pmailer/tsconfig.app.json -r tsconfig-paths/register projects/pmailer/cli.ts",
+    "pmailer:serve": "dotenv -e ../.env -- nx run pmailer:serve",
     "traqrcode:pg:destroy": "dotenv -e ../.env -- docker-compose --file projects/traqrcode/traqrcode-docker/docker-compose.postgres.yml down --volumes",
     "traqrcode:pg:start": "dotenv -e ../.env -- docker-compose --file projects/traqrcode/traqrcode-docker/docker-compose.postgres.yml up -d postgres",
     "traqrcode:pg:stop": "dotenv -e ../.env -- docker-compose --file projects/traqrcode/traqrcode-docker/docker-compose.postgres.yml stop --timeout 1 -- postgres   ",

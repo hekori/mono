@@ -1,6 +1,6 @@
 module.exports = {
   displayName: 'projects-tpmailer',
-  preset: '../../../jest.preset.js',
+  preset: '../../jest.preset.js',
   globals: {
     'ts-jest': {
       tsconfig: '<rootDir>/tsconfig.spec.json',
@@ -10,5 +10,5 @@ module.exports = {
     '^.+\\.[tj]s$': 'ts-jest',
   },
   moduleFileExtensions: ['ts', 'js', 'html'],
-  coverageDirectory: '../../../../coverage/apps/projects/pmailer',
+  coverageDirectory: '../../../coverage/apps/projects/pmailer',
 }

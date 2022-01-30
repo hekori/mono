@@ -439,7 +439,7 @@
         "serve": {
           "executor": "@nrwl/node:execute",
           "options": {
-            "buildTarget": "traqrcode-mailer:build"
+            "buildTarget": "pmailer:build"
           }
         },
         "lint": {

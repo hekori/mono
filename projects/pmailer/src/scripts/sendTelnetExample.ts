@@ -14,7 +14,11 @@ export const sendTelnet = async ({
 
   const DOMAIN = sender.split('@')[1]
   // const MXSERVER = 'alt1.aspmx.l.google.com' // google
-  const MXSERVER = 'smtp.ethereal.email'
+  // const MXSERVER = 'smtp.ethereal.email'
+  const MXSERVER = 'localhost'
+
+  // const DATE = 'Date: Sat, 29 Jan 2022 03:08:50 +0200'
+  const DATE = 'Date: 2022-01-17T03:08:50+0200'
 
   // these parameters are just examples and most probably won't work for your use-case.
   const params = {
@@ -61,12 +65,14 @@ export const sendTelnet = async ({
   res = await connection.send(cmd)
   console.log('async result:', res)
 
-  cmd = `From: <${sender}>${CRLF}To: <${receiver}>${CRLF}Subject: ${subject}${CRLF}Date: Sat, 29 Jan 2022 03:08:50 +0200${CRLF}${CRLF}${body}${CRLF}${CRLF}.${CRLF}`
-
+  cmd = `From: <${sender}>${CRLF}To: <${receiver}>${CRLF}Subject: ${subject}${CRLF}${DATE}${CRLF}${CRLF}${body}${CRLF}${CRLF}.${CRLF}`
+  console.log(`Sending:`, cmd)
   res = await connection.send(cmd)
   console.log('async result:', res)
 
-  res = await connection.send('QUIT')
+  cmd = 'QUIT'
+  console.log(`Sending:`, cmd)
+  res = await connection.send(cmd)
   console.log('async result:', res)
 
   // MAIL From: <myemail@mydomain>
