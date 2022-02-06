@@ -2,18 +2,17 @@ import * as util from 'util'
 import { exec as exec0 } from 'child_process'
 
 const exec = util.promisify(exec0)
-export const execLog = async (command: string) => {
-    try {
-        const { stdout, stderr } = await exec(command)
-        if (stderr) {
-            console.log(`stderr: ${stderr}`)
-            return
-        }
-        console.log(`stdout: ${stdout}`)
-    } catch (error) {
-        console.log(`error: ${error.message}`)
-        return
-    }
+
+interface ExecLogReturnValue {
+  stdout?: string
+  stderr?: string
 }
 
-export default execLog
+export const execLog = async (command: string): Promise<ExecLogReturnValue> => {
+  const { stdout, stderr } = await exec(command)
+  if (stderr) {
+    console.log(`stderr: ${stderr}`)
+  }
+  console.log(`stdout: ${stdout}`)
+  return { stdout, stderr }
+}
