@@ -1,6 +1,6 @@
 import * as net from 'net'
-import { AddressInfo } from 'net'
-import { HTTP_SMTP_PORT } from './settings'
+import {AddressInfo} from 'net'
+import {HTTP_SMTP_PORT} from './settings'
 import {
   deleteAllObjectAttributes,
   extractCommand,
@@ -51,7 +51,7 @@ class SmtpServer {
       | 'DONE'
 
     const checkList: Checklist = {}
-    let state = 'EHLO'
+    let state:State = 'EHLO'
 
     socket.write(response220ServiceReady)
 
