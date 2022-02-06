@@ -16,3 +16,5 @@ export const execLog = async (command: string): Promise<ExecLogReturnValue> => {
   console.log(`stdout: ${stdout}`)
   return { stdout, stderr }
 }
+
+export default execLog
