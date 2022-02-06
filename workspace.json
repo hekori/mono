@@ -151,11 +151,11 @@
           "options": {
             "cypressConfig": "projects/traqrcode/traqrcode-e2e/cypress.json",
             "tsConfig": "projects/traqrcode/traqrcode-e2e/tsconfig.e2e.json",
-            "devServerTarget": "traqrcode:serve"
+            "devServerTarget": "traqrcode-frontend:serve"
           },
           "configurations": {
             "production": {
-              "devServerTarget": "traqrcode:serve:production"
+              "devServerTarget": "traqrcode-frontend:serve:production"
             }
           }
         },

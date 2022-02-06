@@ -39,7 +39,7 @@
     "traqrcode:deploy:backend": "dotenv -e ../.env -- ts-node --project projects/traqrcode/traqrcode-backend/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-backend/cli.ts",
     "traqrcode:serve:frontend": "dotenv -e ../.env -- nx run traqrcode-frontend:serve",
     "traqrcode:serve:backend": "dotenv -e ../.env -- nx run traqrcode-backend:serve",
-    "traqrcode:serve:mailer": "dotenv -e ../.env -- nx run traqrcode-mailer:serve",
+    "traqrcode:e2e": "dotenv -e ../.env -- nx run traqrcode-e2e:e2e",
     "traqrcode:cli:mailer": "dotenv -e ../.env -- ts-node --project projects/traqrcode/traqrcode-mailer/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-mailer/cli.ts",
     "traqrcode:depcruise": "depcruise --exclude \"(assets|environment.ts|.*\\.spec\\..*)\"  --include-only \"src\" --output-type dot projects/traqrcode | dot -T svg > dependencygraph.`git rev-parse HEAD`.svg  && cp dependencygraph.`git rev-parse HEAD`.svg dependencygraph.svg"
   },
