@@ -5,7 +5,20 @@ This repository contains
 - web projects (React + NodeJS applications)
 - libraries (npm packages)
 
-The code is in the folders `./projects` and `./libs`
+## Projects
+
+### Traqrcode
+
+Create DIN A4 PDFs showing QR codes.
+Receive email notifications when the QR code is scanned.
+![projects/traqrcode/traqrcode-frontend/src/assets/example_pdf.png](projects/traqrcode/traqrcode-frontend/src/assets/frontpage/example_pdf.png)
+
+This is a React / Node application. See [www.traqrcode.com](www.traqrcode.com) for a demo.
+![projects/traqrcode/traqrcode-raw/screenshot_frontpage.png](projects/traqrcode/traqrcode-raw/screenshot_frontpage.png)
+
+
+
+
 
 ## Copyright
 
@@ -25,13 +38,4 @@ Germany
 See the LICENSE.md files of libraries and projects.
 
 Everything else is proprietary. All rights reserved.
-
-## Projects
-
-### Traqrcode
-
-![projects/traqrcode/traqrcode-raw/screenshot_frontpage.png](projects/traqrcode/traqrcode-raw/screenshot_frontpage.png)
-
-![projects/traqrcode/traqrcode-frontend/src/assets/example_pdf.png](projects/traqrcode/traqrcode-frontend/src/assets/frontpage/example_pdf.png)
-
 
