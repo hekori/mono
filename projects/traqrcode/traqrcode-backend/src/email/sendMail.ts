@@ -18,7 +18,7 @@ interface SendMailArgs {
   subject: string
   body: string
   host?: string
-  port?: string
+  port?: number
   user?: string
   pass?: string
   dkimDomainName?: string
@@ -48,25 +48,40 @@ export const sendMail = async ({
 
   if (STAGE !== 'DEV') {
     log('create transporter')
-    log('using dkim private key')
-    log('using dkim selector "mail"')
-    log(`using DKIM_DOMAIN_NAME=${dkimDomainName}`)
-
-    if (dkimDomainName === undefined) log('dkimDomainName is undefined')
 
     // https://nodemailer.com/transports/sendmail/
     // https://nodemailer.com/dkim/
 
-    const transporter = nodemailer.createTransport({
-      sendmail: true,
-      newline: 'unix',
-      path: '/usr/sbin/sendmail',
-      dkim: {
-        domainName: dkimDomainName,
-        keySelector: 'mail',
-        privateKey: dkimPrivateKey,
-      },
-    })
+    let transporter
+    if (host && port && user && pass) {
+      transporter = nodemailer.createTransport({
+        pool: true,
+        host,
+        port,
+        secure: true, // use TLS
+        auth: {
+          user,
+          pass,
+        },
+      })
+    } else {
+      log('using dkim private key')
+      log('using dkim selector "mail"')
+      log(`using DKIM_DOMAIN_NAME=${dkimDomainName}`)
+
+      if (dkimDomainName === undefined) log('dkimDomainName is undefined')
+
+      transporter = nodemailer.createTransport({
+        sendmail: true,
+        newline: 'unix',
+        path: '/usr/sbin/sendmail',
+        dkim: {
+          domainName: dkimDomainName,
+          keySelector: 'mail',
+          privateKey: dkimPrivateKey,
+        },
+      })
+    }
 
     log('prepare message')
     const message = {
