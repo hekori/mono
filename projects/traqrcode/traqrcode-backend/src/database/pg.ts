@@ -1,13 +1,14 @@
 import knex from 'knex'
+import { PGDATABASE, PGHOST, PGPASSWORD, PGPORT, PGUSER } from '../settings'
 
 export const pg = knex({
   client: 'pg',
   connection: {
-    user: process.env.PGUSER,
-    host: process.env.PGHOST,
-    database: process.env.PGDATABASE,
-    password: process.env.PGPASSWORD,
-    port: parseInt(process.env.PGPORT ?? '5432'),
+    user: PGUSER,
+    host: PGHOST,
+    database: PGDATABASE,
+    password: PGPASSWORD,
+    port: PGPORT,
     pool: { min: 0 },
   },
 })

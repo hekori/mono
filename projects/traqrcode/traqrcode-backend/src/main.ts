@@ -2,6 +2,7 @@
 import fastify0 from 'fastify'
 import {
   EMAIL_DEFAULT_SENDER,
+  JWT_PRIVATE_KEY,
   PGDATABASE,
   PGHOST,
   PGPORT,
@@ -58,7 +59,7 @@ console.log('PGUSER=', PGUSER)
 console.log('PGHOST=', PGHOST)
 console.log('PGDATABASE=', PGDATABASE)
 console.log('PGPORT=', PGPORT)
-console.log('JWT_PRIVATE_KEY=', process.env.JWT_PRIVATE_KEY)
+console.log('JWT_PRIVATE_KEY=', JWT_PRIVATE_KEY)
 
 console.log('-'.repeat(80))
 
