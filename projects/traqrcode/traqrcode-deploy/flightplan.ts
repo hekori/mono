@@ -113,8 +113,9 @@ flightplan.remote('deploy', (remote) => {
   remote.exec('service nginx start')
 
   remote.with(`cd ${ROOT_DIR}/webapp`, () => {
-    const now = getNow()
-    remote.exec(`git tag v${now}`)
+    const tag = `v${getNow()}`
+    remote.exec(`git tag ${tag}`)
+    remote.exec(`git push origin ${tag}`)
   })
 })
 
