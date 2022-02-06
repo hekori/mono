@@ -29,7 +29,6 @@ This builds the frontend on your local machine and uploads it to the remote serv
 It also performs a git push to the remote server, runs database migrations and then restarts the node server.
 
 
-
 ## Provisioning on {yourdomain}
 
 We assume a fresh Debian 10 system with a passwordless ssh root access.
@@ -121,7 +120,8 @@ There are two options:
 For 1. you need to add the SMTP credentials to the `../traqrcode--prod.txt` file.
 For 2. you need to setup SPF and DKIM DNS records. Otherwise, your emails will get flagged as spam.
 
-> Note: Option 1) is currently not fully supported.
+> If the SMTP_HOST, SMTP_PORT, SMTP_USER and SMTP_PASS variables are defined, the system will ignore the DKIM
+> environment variables DKIM_DOMAIN_NAME, DKIM_PRIVATE_KEY.
 
 #### Add SPF TXT record to your DNS records
 
