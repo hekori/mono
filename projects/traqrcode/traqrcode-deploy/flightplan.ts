@@ -111,6 +111,11 @@ flightplan.remote('deploy', (remote) => {
   remote.exec('service nginx stop')
   remote.exec(`pm2 restart "${PM2_NAME}"`)
   remote.exec('service nginx start')
+
+  remote.with(`cd ${ROOT_DIR}/webapp`, () => {
+    const now = getNow()
+    remote.exec(`git tag v${now}`)
+  })
 })
 
 flightplan.local('push-ssh-key', (local) => {
