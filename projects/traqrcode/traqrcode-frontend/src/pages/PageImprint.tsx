@@ -96,6 +96,7 @@ export const PageImprint = () => {
             <br />
             <h2 className="text-xl font-medium mb-3">Version</h2>
             <p> {process.env.NX_VERSION_TAG ?? 'unknown'}</p>
+            <br />
           </div>
           <div className="p-4" />
           <div className="flex-1" />

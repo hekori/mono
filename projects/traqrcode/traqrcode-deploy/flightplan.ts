@@ -91,21 +91,23 @@ flightplan.remote('deploy', (remote) => {
   const versionTag = `v${getNow()}`
 
   // deploy frontend
-  remote.with(`cd ${ROOT_DIR}/webapp`, () => {
-    remote.exec(`git pull`)
-    remote.exec('yarn install --frozen-lockfile')
+  remote.with(
+    `cd ${ROOT_DIR}/webapp && export NX_VERSION_TAG=${versionTag}`,
+    () => {
+      remote.exec(`git pull`)
+      remote.exec('yarn install --frozen-lockfile')
 
-    const TARGET_DIR = `${ROOT_DIR}/assets/available/${getNow()}`
+      const TARGET_DIR = `${ROOT_DIR}/assets/available/${getNow()}`
 
-    remote.exec(`export NX_VERSION_TAG=${versionTag}`)
-    remote.exec('yarn clean')
-    remote.exec('yarn traqrcode:build:prod:frontend')
-    remote.exec(
-      `cp -r dist/projects/traqrcode/traqrcode-frontend ${TARGET_DIR}`
-    )
-    remote.exec(`rm -f ${ROOT_DIR}/assets/enabled`)
-    remote.exec(`ln -s ${TARGET_DIR} ${ROOT_DIR}/assets/enabled`)
-  })
+      remote.exec('yarn clean')
+      remote.exec('yarn traqrcode:build:prod:frontend')
+      remote.exec(
+        `cp -r dist/projects/traqrcode/traqrcode-frontend ${TARGET_DIR}`
+      )
+      remote.exec(`rm -f ${ROOT_DIR}/assets/enabled`)
+      remote.exec(`ln -s ${TARGET_DIR} ${ROOT_DIR}/assets/enabled`)
+    }
+  )
   // migrate database
   remote.with(`cd ${ROOT_DIR}/webapp`, () => {
     remote.exec(`yarn traqrcode:cli migrate`)
