@@ -1,16 +1,23 @@
 # FRONTEND
+
 NX_STAGE=PROD
 NX_APP_NAME="TRAQRCODE"
 NX_FRONTEND_URL=https://traqrcode.com
 NX_BACKEND_URL=https://traqrcode.com/api
 # BACKEND
+
+
 STAGE=PROD
-APP_NAME=TRAQRCODE
+
 ROOT_DIR="/webapps/traqrcode_com"
 DEPLOY_HOST=traqrcode.com
 HOST_SLUG=traqrcode_com
 FRONTEND_URL=https://traqrcode.com
 BACKEND_URL=https://traqrcode.com/api
+SMTP_HOST=smtp.gmail.com
+SMTP_PORT=587
+SMTP_USER=email_address
+SMTP_PASS=xxx
 PORT=8002
 PGUSER=xxx
 PGPASSWORD=xxx
@@ -23,3 +30,4 @@ DKIM_PRIVATE_KEY="-----BEGIN RSA PRIVATE KEY-----\nxxx\n-----END RSA PRIVATE KEY
 SSL_CERTIFICATE_PATH_PRIVKEY=/etc/letsencrypt/live/traqrcode.com/privkey.pem
 SSL_CERTIFICATE_PATH_CHAINED=/etc/letsencrypt/live/traqrcode.com/fullchain.pem
 APPINSIGHTS_CONNECTION_STRING="InstrumentationKey=xxx;IngestionEndpoint=xxx"
+JWT_PRIVATE_KEY="xxx"
