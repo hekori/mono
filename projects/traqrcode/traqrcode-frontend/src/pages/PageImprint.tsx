@@ -93,8 +93,9 @@ export const PageImprint = () => {
           <div className="flex-1">
             <h2 className="text-xl font-medium mb-3">Referenzen</h2>
             <p>Artwork teilweise von https://undraw.co adaptiert.</p>
+            <br />
             <h2 className="text-xl font-medium mb-3">Version</h2>
-            <p>v{process.env.npm_package_version}</p>
+            <p> {process.env.NX_VERSION_TAG ?? 'unknown'}</p>
           </div>
           <div className="p-4" />
           <div className="flex-1" />

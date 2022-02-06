@@ -88,6 +88,7 @@ flightplan.local('deploy', (local) => {
 flightplan.remote('deploy', (remote) => {
   remote.log('Make dir')
   remote.exec('pwd')
+  const versionTag = `v${getNow()}`
 
   // deploy frontend
   remote.with(`cd ${ROOT_DIR}/webapp`, () => {
@@ -95,6 +96,8 @@ flightplan.remote('deploy', (remote) => {
     remote.exec('yarn install --frozen-lockfile')
 
     const TARGET_DIR = `${ROOT_DIR}/assets/available/${getNow()}`
+
+    remote.exec(`export NX_VERSION_TAG=${versionTag}`)
     remote.exec('yarn clean')
     remote.exec('yarn traqrcode:build:prod:frontend')
     remote.exec(
@@ -113,9 +116,8 @@ flightplan.remote('deploy', (remote) => {
   remote.exec('service nginx start')
 
   remote.with(`cd ${ROOT_DIR}/webapp`, () => {
-    const tag = `v${getNow()}`
-    remote.exec(`git tag ${tag}`)
-    remote.exec(`git push origin ${tag}`)
+    remote.exec(`git tag ${versionTag}`)
+    remote.exec(`git push origin ${versionTag}`)
   })
 })
 
