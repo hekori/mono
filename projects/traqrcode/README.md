@@ -2,6 +2,15 @@
 
 Track & act on QR code scans!
 
+Create DIN A4 PDFs showing QR codes.
+Receive email notifications when the QR code is scanned.
+![Screenshot TRAQRCODE Example PDF](./traqrcode-frontend/src/assets/frontpage/example_pdf.png)
+
+This is a React / Node application. See [www.traqrcode.com](www.traqrcode.com) for a demo.
+![Screenshot TRAQRCODE Frontpage](./traqrcode-raw/screenshot_frontpage.png)
+
+
+
 ## Develop locally
 
 Assumptions and prequisites

@@ -7,17 +7,7 @@ This repository contains
 
 ## Projects
 
-### Traqrcode
-
-Create DIN A4 PDFs showing QR codes.
-Receive email notifications when the QR code is scanned.
-![projects/traqrcode/traqrcode-frontend/src/assets/example_pdf.png](projects/traqrcode/traqrcode-frontend/src/assets/frontpage/example_pdf.png)
-
-This is a React / Node application. See [www.traqrcode.com](www.traqrcode.com) for a demo.
-![projects/traqrcode/traqrcode-raw/screenshot_frontpage.png](projects/traqrcode/traqrcode-raw/screenshot_frontpage.png)
-
-
-
+- [Traqrcode](./projects/traqrcode) - Track your QR code scans and get notified via email
 
 
 ## Copyright
