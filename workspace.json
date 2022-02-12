@@ -262,21 +262,21 @@
       }
     },
     "uibook": {
-      "root": "apps/uibook",
-      "sourceRoot": "apps/uibook/src",
+      "root": "projects/uibook",
+      "sourceRoot": "projects/uibook/src",
       "projectType": "application",
       "targets": {
         "build": {
           "executor": "@nrwl/web:build",
           "outputs": ["{options.outputPath}"],
           "options": {
-            "outputPath": "dist/apps/uibook",
-            "index": "apps/uibook/src/index.html",
-            "main": "apps/uibook/src/main.tsx",
-            "polyfills": "apps/uibook/src/polyfills.ts",
-            "tsConfig": "apps/uibook/tsconfig.app.json",
-            "assets": ["apps/uibook/src/favicon.ico", "apps/uibook/src/assets"],
-            "styles": ["apps/uibook/src/styles.css"],
+            "outputPath": "dist/projects/uibook",
+            "index": "projects/uibook/src/index.html",
+            "main": "projects/uibook/src/main.tsx",
+            "polyfills": "projects/uibook/src/polyfills.ts",
+            "tsConfig": "projects/uibook/tsconfig.app.json",
+            "assets": ["projects/uibook/src/favicon.ico", "projects/uibook/src/assets"],
+            "styles": ["projects/uibook/src/styles.css"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
           },
@@ -284,8 +284,8 @@
             "production": {
               "fileReplacements": [
                 {
-                  "replace": "apps/uibook/src/environments/environment.ts",
-                  "with": "apps/uibook/src/environments/environment.prod.ts"
+                  "replace": "projects/uibook/src/environments/environment.ts",
+                  "with": "projects/uibook/src/environments/environment.prod.ts"
                 }
               ],
               "optimization": true,
@@ -322,14 +322,14 @@
         "lint": {
           "executor": "@nrwl/linter:eslint",
           "options": {
-            "lintFilePatterns": ["apps/uibook/**/*.{ts,tsx,js,jsx}"]
+            "lintFilePatterns": ["projects/uibook/**/*.{ts,tsx,js,jsx}"]
           }
         },
         "test": {
           "executor": "@nrwl/jest:jest",
-          "outputs": ["coverage/apps/uibook"],
+          "outputs": ["coverage/projects/uibook"],
           "options": {
-            "jestConfig": "apps/uibook/jest.config.js",
+            "jestConfig": "projects/uibook/jest.config.js",
             "passWithNoTests": true
           }
         }

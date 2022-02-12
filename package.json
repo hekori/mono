@@ -25,6 +25,7 @@
     "dep-graph": "nx dep-graph",
     "help": "nx help",
     "clean": "rimraf ./dist",
+    "uibook:serve": "dotenv -e ../.env -- nx run uibook:serve",
     "postcss": "postcss libs/uikit/src/lib/tailwind.css -o libs/uikit/src/lib/App.css",
     "traqrcode:pg:destroy": "dotenv -e ../.env -- docker-compose --file projects/traqrcode/traqrcode-docker/docker-compose.postgres.yml down --volumes",
     "traqrcode:pg:start": "dotenv -e ../.env -- docker-compose --file projects/traqrcode/traqrcode-docker/docker-compose.postgres.yml up -d postgres",
