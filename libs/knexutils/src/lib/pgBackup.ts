@@ -1,31 +1,17 @@
 import { createInterface } from 'readline'
-
-import execa from 'execa'
 import * as path from 'path'
 import * as chalk from 'chalk'
-import execLog from '../../../cli/src/lib/execLog'
 import { formatFileSystemSaveISO, printPostgresEnvVars } from './utils'
+import { execLog } from '@hekori/cli'
 import dayjs = require('dayjs')
 
-const ROOT_DIR = path.dirname(path.dirname(__dirname))
+const ROOT_DIR = path.dirname(
+  path.dirname(path.dirname(path.dirname(path.dirname(__dirname))))
+)
 
 enum Action {
   save = 'save',
   restore = 'restore',
-}
-
-/// programmatic version of unix pipes: sh -c "firstCommand | secondCommand"
-const pipeShellCommands = async (firstCommand, secondCommand) => {
-  const firstProcess = execa.command(firstCommand, { shell: true })
-  const secondProcess = execa.command(secondCommand, { shell: true })
-  if (secondProcess.stdin) {
-    firstProcess.stdout?.pipe(secondProcess.stdin)
-  }
-
-  firstProcess.stderr?.pipe(process.stderr)
-  secondProcess.stderr?.pipe(process.stderr)
-
-  return firstProcess
 }
 
 const checkInput = async (message: string, passphrase = 'yes') => {
@@ -49,9 +35,13 @@ const checkInput = async (message: string, passphrase = 'yes') => {
 export const pgBackup = async (action, backupPath): Promise<void> => {
   const dir = path.join(ROOT_DIR, 'backups')
 
+  console.log('dir=', dir)
+
   switch (action) {
     case 'save': {
       console.log(chalk.green('Saving postgres backup'))
+      console.log('backupPath=', backupPath)
+
       printPostgresEnvVars()
       await execLog(`mkdir -p ${dir}`)
 
@@ -64,9 +54,8 @@ export const pgBackup = async (action, backupPath): Promise<void> => {
 
       const pgDumpCommand = `pg_dump --no-owner --no-acl --host=${process.env.PGHOST} --username ${process.env.PGUSER} --port ${process.env.PGPORT} ${process.env.PGDATABASE}`
       const gzipCommand = `gzip > '${backupPath}'`
-
       try {
-        await pipeShellCommands(pgDumpCommand, gzipCommand)
+        await execLog(`${pgDumpCommand} | ${gzipCommand}`)
       } catch (err) {
         console.error(chalk.red('An error has occurred.'))
         console.error('Please check that')
@@ -74,12 +63,7 @@ export const pgBackup = async (action, backupPath): Promise<void> => {
           '1: you have exported the necessary env variables (PGUSER, PGPASSWORD, PGHOST, ...)'
         )
         console.error('2: You can connect to the database')
-        console.error(
-          'for an OKD backup: oc login https://console.dev02-emea.hck8s.me:443 --token=****'
-        )
-        console.error(
-          'for an OKD backup: oc port-forward svc/postgres-postgresql 5432:5432'
-        )
+        console.error(err)
       }
 
       break
@@ -93,8 +77,7 @@ export const pgBackup = async (action, backupPath): Promise<void> => {
       await execLog(`createdb ${process.env.PGDATABASE}`)
       const gzipCommand = `gzip -cd ${backupPath}`
       const psqlCommand = `psql ${process.env.PGDATABASE}`
-      await pipeShellCommands(gzipCommand, psqlCommand)
-
+      await execLog(`${gzipCommand} | ${psqlCommand}`)
       break
     }
     default:
