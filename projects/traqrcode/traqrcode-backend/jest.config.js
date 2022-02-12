@@ -1,14 +1,14 @@
 module.exports = {
-    displayName: 'traqrcode-api',
-    preset: '../../jest.preset.js',
-    globals: {
-        'ts-jest': {
-            tsconfig: '<rootDir>/tsconfig.spec.json',
-        },
+  displayName: 'traqrcode-api',
+  preset: '../../../jest.preset.js',
+  globals: {
+    'ts-jest': {
+      tsconfig: '<rootDir>/tsconfig.spec.json',
     },
-    transform: {
-        '^.+\\.[tj]s$': 'ts-jest',
-    },
-    moduleFileExtensions: ['ts', 'js', 'html'],
-    coverageDirectory: '../../coverage/apps/traqrcode-api',
+  },
+  transform: {
+    '^.+\\.[tj]s$': 'ts-jest',
+  },
+  moduleFileExtensions: ['ts', 'js', 'html'],
+  coverageDirectory: '../../coverage/apps/traqrcode-api',
 }

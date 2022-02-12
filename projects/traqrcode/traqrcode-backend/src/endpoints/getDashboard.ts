@@ -14,7 +14,7 @@ import {
 } from '@hekori/traqrcode-common'
 import { getNow, MyDate, timeDifference } from '@hekori/dates'
 
-type CombinedPageProgress = Page & PageItem & PageItemProgress
+export type CombinedPageProgress = Page & PageItem & PageItemProgress
 
 type GetPageItemProgressStatusDto = 'finished' | 'inProgress' | 'open'
 export const getPageItemProgressStatus = (
@@ -71,47 +71,41 @@ export const getNumberByStatus = (
   }
 }
 
-export const compareCombinedPageProgress = (
-  a: { createdAt: MyDate; finishedAt?: MyDate },
-  b: { createdAt: MyDate; finishedAt?: MyDate }
-) => {
-  if (!a.finishedAt) return Infinity
-  if (!b.finishedAt) return -Infinity
-  return (
-    timeDifference(a.createdAt, a.finishedAt, 'seconds') -
-    timeDifference(b.createdAt, b.finishedAt, 'seconds')
-  )
+export const sortByDuration = (
+  a: { duration: number },
+  b: { duration: number }
+) => a.duration - b.duration
+
+export const annotateDuration = (
+  a: CombinedPageProgress
+): CombinedPageProgress & { duration: number } => {
+  const b: CombinedPageProgress & { duration: number } = {
+    ...a,
+    duration: Infinity,
+  }
+  if (b.finishedAt)
+    b.duration = timeDifference(a.createdAt, a.finishedAt, 'seconds')
+  return b
 }
 
 export const computePercentiles = (
   result: CombinedPageProgress[]
 ): ComputePercentiles => {
-  const sorted = [...result].sort(compareCombinedPageProgress)
+  const sorted = [...result.map(annotateDuration)].sort(sortByDuration)
+  console.log('sorted=', sorted)
 
   const now = getNow()
 
   const percentile50Index = Math.ceil(sorted.length * 0.5) - 1
-  const atLeast50PercentFinishedWithin = timeDifference(
-    sorted[percentile50Index]?.createdAt,
-    sorted[percentile50Index]?.finishedAt,
-    'minutes'
-  )
+  const atLeast50PercentFinishedWithin = sorted[percentile50Index]?.duration
 
   console.log('percentile50Index', percentile50Index)
 
   const percentile90Index = Math.ceil(sorted.length * 0.9) - 1
-  const atLeast90PercentFinishedWithin = timeDifference(
-    sorted[percentile90Index]?.createdAt,
-    sorted[percentile90Index]?.finishedAt,
-    'minutes'
-  )
+  const atLeast90PercentFinishedWithin = sorted[percentile90Index]?.duration
 
   const percentile99Index = Math.ceil(sorted.length * 0.99) - 1
-  const atLeast99PercentFinishedWithin = timeDifference(
-    sorted[percentile99Index]?.startedAt,
-    sorted[percentile99Index]?.finishedAt,
-    'minutes'
-  )
+  const atLeast99PercentFinishedWithin = sorted[percentile99Index]?.duration
 
   const retval: ComputePercentiles = {
     atLeast50PercentFinishedWithin,
