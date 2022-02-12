@@ -42,7 +42,9 @@
     "traqrcode:serve:backend": "dotenv -e ../.env -- nx run traqrcode-backend:serve",
     "traqrcode:e2e": "dotenv -e ../.env -- nx run traqrcode-e2e:e2e",
     "traqrcode:cli:mailer": "dotenv -e ../.env -- ts-node --project projects/traqrcode/traqrcode-mailer/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-mailer/cli.ts",
-    "traqrcode:depcruise": "depcruise --exclude \"(assets|environment.ts|.*\\.spec\\..*)\"  --include-only \"src\" --output-type dot projects/traqrcode | dot -T svg > dependencygraph.`git rev-parse HEAD`.svg  && cp dependencygraph.`git rev-parse HEAD`.svg dependencygraph.svg"
+    "traqrcode:depcruise": "depcruise --exclude \"(assets|environment.ts|.*\\.spec\\..*)\"  --include-only \"src\" --output-type dot projects/traqrcode | dot -T svg > dependencygraph.`git rev-parse HEAD`.svg  && cp dependencygraph.`git rev-parse HEAD`.svg dependencygraph.svg",
+    "traqrcode:remote:pgBackupCopyToLocalhost":  "yarn fly -f projects/traqrcode/traqrcode-deploy/flightplan.ts pgBackupCopyToLocalhost:prod",
+    "traqrcode:remote:pgBackupSave":  "yarn fly -f projects/traqrcode/traqrcode-deploy/flightplan.ts pgBackupSave:prod"
   },
   "private": true,
   "dependencies": {

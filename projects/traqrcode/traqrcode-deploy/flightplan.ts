@@ -251,3 +251,38 @@ flightplan.remote('provision', (remote) => {
     remote.exec(`pm2 startup`)
   })
 })
+
+flightplan.remote('pgBackupSave', (remote) => {
+  remote.with(`cd ${ROOT_DIR}/webapp`, () => {
+    remote.exec(`yarn traqrcode:cli pgBackup save`)
+  })
+})
+
+let newestBackupFile
+flightplan.remote('pgBackupCopyToLocalhost', (remote) => {
+  const dir = `${ROOT_DIR}/backups`
+  remote.with(`cd ${dir}`, () => {
+    const output = remote.exec(`ls`, { silent: true })
+    const backupFiles = output.stdout
+      .trim()
+      .split('\n')
+      .sort((a, b) => b.localeCompare(a))
+    newestBackupFile = `${dir}/${backupFiles[0]}`
+    console.log(newestBackupFile)
+  })
+})
+
+flightplan.local('pgBackupCopyToLocalhost', (local) => {
+  const dir = `${LOCAL_PARENT_DIR}/backups`
+  local.exec(`scp root@${DEPLOY_HOST}:${newestBackupFile} ${dir}`)
+})
+
+// flightplan.remote('pgBackup:copyToLocalhost', (remote) => {
+//   remote.with(`cd ${ROOT_DIR}/backups`, () => {
+//     remote.exec(`yarn traqrcode:cli pgBackup save`)
+//
+//     // local.with(`cd ${LOCAL_PARENT_DIR}`, () => {
+//     //   local.transfer('traqrcode--prod.txt', `${ROOT_DIR}`)
+//     // })
+//   })
+// })
