@@ -79,7 +79,7 @@
             "main": "projects/traqrcode/traqrcode-frontend/src/main.tsx",
             "polyfills": "projects/traqrcode/traqrcode-frontend/src/polyfills.ts",
             "tsConfig": "projects/traqrcode/traqrcode-frontend/tsconfig.app.json",
-            "assets": ["projects/traqrcode/traqrcode-frontend/src/assets"],
+            "assets": ["projects/traqrcode/traqrcode-frontend/src/assets/favicon.png" ,"projects/traqrcode/traqrcode-frontend/src/assets"],
             "styles": ["projects/traqrcode/traqrcode-frontend/src/styles.css"],
             "scripts": [],
             "webpackConfig": "@nrwl/react/plugins/webpack"
