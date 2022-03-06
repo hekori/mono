@@ -17,9 +17,9 @@ import { PageLoginFromUrl } from './pages/PageLoginFromUrl'
 import { PagePdfs } from './pages/PagePdfs'
 import {
   CREATE_QR_ROUTE,
-  DASHBOARD_ROUTE,
   FRONTPAGE_ROUTE,
   IMPRINT_ROUTE,
+  PDF_ROUTE,
   PRICING_ROUTE,
   PRIVACY_ROUTE,
   SIGNUP_ROUTE,
@@ -43,9 +43,9 @@ import {
   dashboardRegex,
   detailsRegex,
   editRegex,
-  routingRegex,
   pdfRegex,
   readRegex,
+  routingRegex,
   taskRegex,
   viewRegex,
 } from './routing/routingRegex'
@@ -55,7 +55,7 @@ export const App = () => {
   const history = useHistory()
 
   if (location.pathname === '/') {
-    if (isLoggedIn()) history.push(DASHBOARD_ROUTE)
+    if (isLoggedIn()) history.push(PDF_ROUTE)
     else history.push(FRONTPAGE_ROUTE)
   }
 
