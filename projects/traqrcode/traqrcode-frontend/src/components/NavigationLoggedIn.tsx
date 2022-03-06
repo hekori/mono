@@ -87,19 +87,19 @@ export const NavigationLoggedIn: React.FC = () => {
             </ButtonFlat>
           </li>
 
-          <li className="mr-3">
-            <ButtonFlat
-              aria-label="Dashboard"
-              className={
-                window.location.pathname.startsWith(DASHBOARD_ROUTE)
-                  ? 'underline'
-                  : ''
-              }
-              onClick={() => history.push(DASHBOARD_ROUTE)}
-            >
-              Dashboard
-            </ButtonFlat>
-          </li>
+          {/*<li className="mr-3">*/}
+          {/*  <ButtonFlat*/}
+          {/*    aria-label="Dashboard"*/}
+          {/*    className={*/}
+          {/*      window.location.pathname.startsWith(DASHBOARD_ROUTE)*/}
+          {/*        ? 'underline'*/}
+          {/*        : ''*/}
+          {/*    }*/}
+          {/*    onClick={() => history.push(DASHBOARD_ROUTE)}*/}
+          {/*  >*/}
+          {/*    Dashboard*/}
+          {/*  </ButtonFlat>*/}
+          {/*</li>*/}
 
           <li className="mr-3">
             <ButtonFlat
