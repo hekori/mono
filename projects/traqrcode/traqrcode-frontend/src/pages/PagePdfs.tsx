@@ -149,35 +149,37 @@ export const PagePdfs: React.FC<PropsPageList> = ({ routeInfo }) => {
                   {/*  <FastForwardIcon className="h-5 w-5" />*/}
                   {/*</ButtonFlat>*/}
 
-                  <ButtonFlat onClick={() => download(page.pageUuid)}>
-                    <DocumentDownloadIcon className="h-5 w-5" />
-                  </ButtonFlat>
+                  <div className="flex flex-row justify-center">
+                    <ButtonFlat onClick={() => download(page.pageUuid)}>
+                      <DocumentDownloadIcon className="h-5 w-5" />
+                    </ButtonFlat>
 
-                  <ButtonFlat
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      window.location.href = `${BACKEND_URL}/pdf/${pageUuid}`
-                    }}
-                  >
-                    <EyeIcon className="h-5 w-5" />
-                  </ButtonFlat>
+                    <ButtonFlat
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        window.location.href = `${BACKEND_URL}/pdf/${pageUuid}`
+                      }}
+                    >
+                      <EyeIcon className="h-5 w-5" />
+                    </ButtonFlat>
 
-                  <ButtonFlat
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      history.push(editRoute({ pageUuid }))
-                    }}
-                  >
-                    <PencilIcon className="h-5 w-5" />
-                  </ButtonFlat>
-                  <ButtonFlat
-                    onClick={(e) => {
-                      e.stopPropagation()
-                      deleteMutation.mutate({ pageUuid })
-                    }}
-                  >
-                    <TrashIcon className="h-5 w-5" />
-                  </ButtonFlat>
+                    <ButtonFlat
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        history.push(editRoute({ pageUuid }))
+                      }}
+                    >
+                      <PencilIcon className="h-5 w-5" />
+                    </ButtonFlat>
+                    <ButtonFlat
+                      onClick={(e) => {
+                        e.stopPropagation()
+                        deleteMutation.mutate({ pageUuid })
+                      }}
+                    >
+                      <TrashIcon className="h-5 w-5" />
+                    </ButtonFlat>
+                  </div>
                 </li>
               )
             })}
