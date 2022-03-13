@@ -43,8 +43,8 @@
     "traqrcode:e2e": "dotenv -e ../.env -- nx run traqrcode-e2e:e2e",
     "traqrcode:cli:mailer": "dotenv -e ../.env -- ts-node --project projects/traqrcode/traqrcode-mailer/tsconfig.app.json -r tsconfig-paths/register projects/traqrcode/traqrcode-mailer/cli.ts",
     "traqrcode:depcruise": "depcruise --exclude \"(assets|environment.ts|.*\\.spec\\..*)\"  --include-only \"src\" --output-type dot projects/traqrcode | dot -T svg > dependencygraph.`git rev-parse HEAD`.svg  && cp dependencygraph.`git rev-parse HEAD`.svg dependencygraph.svg",
-    "traqrcode:remote:pgBackupCopyToLocalhost":  "yarn fly -f projects/traqrcode/traqrcode-deploy/flightplan.ts pgBackupCopyToLocalhost:prod",
-    "traqrcode:remote:pgBackupSave":  "yarn fly -f projects/traqrcode/traqrcode-deploy/flightplan.ts pgBackupSave:prod"
+    "traqrcode:remote:pgBackupCopyToLocalhost": "yarn fly -f projects/traqrcode/traqrcode-deploy/flightplan.ts pgBackupCopyToLocalhost:prod",
+    "traqrcode:remote:pgBackupSave": "yarn fly -f projects/traqrcode/traqrcode-deploy/flightplan.ts pgBackupSave:prod"
   },
   "private": true,
   "dependencies": {
@@ -90,9 +90,6 @@
     "write-file-atomic": "^3.0.3"
   },
   "devDependencies": {
-    "@snowpack/plugin-react-refresh": "^2.5.0",
-    "@snowpack/plugin-typescript": "^1.2.1",
-    "snowpack": "^3.3.7",
     "@babel/core": "7.12.13",
     "@babel/preset-env": "7.12.13",
     "@babel/preset-react": "7.12.13",

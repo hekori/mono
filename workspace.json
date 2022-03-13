@@ -3,7 +3,7 @@
   "cli": {
     "defaultCollection": "@nrwl/react"
   },
-  "defaultProject": "projects-traqrcode-traqrcode-deploy",
+  "defaultProject": "traqrcode-backend",
   "generators": {
     "@nrwl/react": {
       "application": {
@@ -357,8 +357,8 @@
       }
     },
     "traqrcode-deploy": {
-      "root": "apps/projects/traqrcode/traqrcode-deploy",
-      "sourceRoot": "apps/projects/traqrcode/traqrcode-deploy/src",
+      "root": "projects/traqrcode/traqrcode-deploy",
+      "sourceRoot": "projects/traqrcode/traqrcode-deploy/src",
       "projectType": "application",
       "targets": {
         "build": {

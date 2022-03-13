@@ -7,7 +7,7 @@ describe('sendMail', () => {
   it('should send email', async () => {
     log('STAGE:', STAGE)
     log('SMTP_HOST:', SMTP_HOST)
-    log('SMTP_PORT:', SMTP_PORT)
+    log('SMTP_PORT:', SMTP_PORT.toString())
     log('SMTP_USER:', SMTP_USER)
 
     await sendMail({
