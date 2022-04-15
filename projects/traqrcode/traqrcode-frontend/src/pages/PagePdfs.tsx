@@ -127,7 +127,11 @@ export const PagePdfs: React.FC<PropsPageList> = ({ routeInfo }) => {
               return (
                 <li
                   key={pageUuid}
-                  className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-touchableHighlight"
+                  className="p-4 flex flex-col md:flex-row md:items-center justify-between hover:bg-touchableHighlight cursor-pointer"
+                  onClick={(e) => {
+                    e.stopPropagation()
+                    history.push(editRoute({ pageUuid }))
+                  }}
                 >
                   <span className="md:text-left">
                     <TextLarge>{page.title || '<no title>'}</TextLarge>
@@ -138,7 +142,7 @@ export const PagePdfs: React.FC<PropsPageList> = ({ routeInfo }) => {
                     </TextSmall>
                   </span>
 
-                  <div className={'md:flex-1'} />
+                  <div className={'md:flex-1  md:h-16 h-32 '} />
 
                   {/*<ButtonFlat*/}
                   {/*  onClick={(e) => {*/}

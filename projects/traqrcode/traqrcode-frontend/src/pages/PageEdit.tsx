@@ -211,7 +211,9 @@ export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
             </ul>
           </div>
           {errors?.global?.includes(API_CODE.ERROR_EMPTY_WORKER_LIST) && (
-            <div className={'text-error'}>Add at least one receiver.</div>
+            <div className={'text-onError bg-error rounded p-2 mt-4'}>
+              Add at least one receiver.
+            </div>
           )}
 
           <ButtonSecondary
