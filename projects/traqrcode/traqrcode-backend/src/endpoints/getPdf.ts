@@ -64,6 +64,9 @@ export const getPdf = async (request, reply) => {
   const writeHeaderAndFooter = async () => {
     // HEADER
     doc.save()
+    doc.fontSize(18)
+    doc.text(page.title, mm(20), mm(10))
+
     doc.fontSize(60)
     doc.text('Scan', mm(20), mm(20))
     doc.fontSize(26)
@@ -82,6 +85,7 @@ export const getPdf = async (request, reply) => {
       .stroke()
 
     doc.fontSize(26)
+
     doc.text('or create your own', QR_X + QR_W + mm(6), QR_Y)
     doc.fontSize(18)
     doc.text(`${FRONTEND_URL}`, QR_X + QR_W + mm(6), QR_Y + mm(12))
