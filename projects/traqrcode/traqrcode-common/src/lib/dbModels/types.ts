@@ -10,6 +10,23 @@ export interface UserInitializer {
   email: string
 }
 
+export interface FederatedCredentials {
+  federatedCredentialsUuid: string
+  createdAt: string
+  userUuid: string
+  provider: string
+  subject: string
+}
+
+export interface FederatedCredentialsInitializer {
+  federatedCredentialsUuid?: string
+  createdAt?: string
+  userUuid: string
+  provider: string
+  subject: string
+}
+
+
 export interface Page {
   pageUuid: string
   title: string

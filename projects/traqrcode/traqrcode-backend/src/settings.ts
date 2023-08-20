@@ -32,3 +32,13 @@ export const SMTP_PASS = process.env.SMTP_PASS || ''
 // The DKIM_*** variables are ignored if SMTP_HOST is defined.
 export const DKIM_DOMAIN_NAME = process.env.DKIM_DOMAIN_NAME
 export const DKIM_PRIVATE_KEY = process.env.DKIM_PRIVATE_KEY
+
+
+export const FASTIFY_SESSION_SECRET_KEY = process.env.FASTIFY_SESSION_SECRET_KEY
+
+// OIDC / OAUTH2 providers
+export const OAUTH2_CLIENT_ID_GOOGLE = process.env.OAUTH2_CLIENT_ID_GOOGLE
+export const OAUTH2_CLIENT_SECRET_GOOGLE = process.env.OAUTH2_CLIENT_SECRET_GOOGLE
+
+export const OAUTH2_LOGIN_URL_GOOGLE = '/login/google'
+export const OAUTH2_REDIRECT_URL_GOOGLE = '/oauth2/redirect/google'
