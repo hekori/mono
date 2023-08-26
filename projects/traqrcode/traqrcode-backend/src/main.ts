@@ -19,7 +19,7 @@ import {
   STORE_DIR,
 } from './settings'
 import {API_CODE, BACKEND_URL, FRONTEND_URL, STAGE,} from '@hekori/traqrcode-common'
-import fastify_cors from '@fastify/cors'
+import fastify_cors from 'fastify-cors'
 import {postSignup} from './endpoints/postSignup'
 import {getEdit} from './endpoints/getEdit'
 import {postCreate} from './endpoints/postCreate'
