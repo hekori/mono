@@ -18,28 +18,23 @@ import {
   STATIC_DIR,
   STORE_DIR,
 } from './settings'
-import {
-  API_CODE,
-  BACKEND_URL,
-  FRONTEND_URL,
-  STAGE,
-} from '@hekori/traqrcode-common'
+import {API_CODE, BACKEND_URL, FRONTEND_URL, STAGE,} from '@hekori/traqrcode-common'
 import fastify_cors from '@fastify/cors'
-import { postSignup } from './endpoints/postSignup'
-import { getEdit } from './endpoints/getEdit'
-import { postCreate } from './endpoints/postCreate'
-import { getList } from './endpoints/getList'
-import { deletePage } from './endpoints/deletePage'
-import { postEdit } from './endpoints/postEdit'
-import { getPdf } from './endpoints/getPdf'
-import { getRead } from './endpoints/getRead'
-import { AuthenticationError } from './endpoints/errors'
-import { getTask } from './endpoints/getTask'
-import { getAct } from './endpoints/getAct'
-import { getDetails } from './endpoints/getDetails'
-import { getDashboard } from './endpoints/getDashboard'
-import { getVersion } from './endpoints/getVersion'
-import {oidcSetup} from "./middleware/oidc";
+import {postSignup} from './endpoints/postSignup'
+import {getEdit} from './endpoints/getEdit'
+import {postCreate} from './endpoints/postCreate'
+import {getList} from './endpoints/getList'
+import {deletePage} from './endpoints/deletePage'
+import {postEdit} from './endpoints/postEdit'
+import {getPdf} from './endpoints/getPdf'
+import {getRead} from './endpoints/getRead'
+import {AuthenticationError} from './endpoints/errors'
+import {getTask} from './endpoints/getTask'
+import {getAct} from './endpoints/getAct'
+import {getDetails} from './endpoints/getDetails'
+import {getDashboard} from './endpoints/getDashboard'
+import {getVersion} from './endpoints/getVersion'
+import {oidcSetup} from "./middleware/oidcGoogle";
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -66,13 +61,13 @@ console.log('-'.repeat(80))
 
 const api = fastify0({ logger: true })
 
-// // https://github.com/fastify/fastify-cors
-// api.register(fastify_cors, {
-//   origin: '*',
-//   methods: ['POST', 'GET', 'OPTIONS', 'DELETE'],
-//   allowedHeaders: ['Content-Type', 'Authorization'],
-//   credentials: true,
-// })
+// https://github.com/fastify/fastify-cors
+api.register(fastify_cors, {
+  origin: '*',
+  methods: ['POST', 'GET', 'OPTIONS', 'DELETE'],
+  allowedHeaders: ['Content-Type', 'Authorization'],
+  credentials: true,
+})
 
 oidcSetup(api)
 
@@ -81,39 +76,39 @@ api.ready(() => {
   console.log(api.printRoutes())
 
 })
-//
-// api.setErrorHandler((error, request, reply) => {
-//   console.error(error)
-//
-//   if (error instanceof AuthenticationError) {
-//     return reply
-//       .status(401)
-//       .send({ status: API_CODE.ERROR_INVALID_ACCESS_TOKEN })
-//   }
-//
-//   return reply.status(500).send({ status: API_CODE.ERROR, error: error.message })
-// })
-//
-// api.get('/version', getVersion)
-// api.get('/dashboard', getDashboard)
-// api.get('/list', getList)
-// api.get('/details', getDetails)
-// api.get('/edit/:pageUuid', getEdit)
-// api.get('/pdf/:pageUuid', getPdf)
-// api.get('/read/:pageItemUuid', getRead)
-// api.get('/task/:pageItemProgressUuid', getTask)
-// api.get('/act/:action/:pageItemProgressUuid/:userUuid', getAct)
-// api.post('/signup', postSignup)
-// api.post('/edit/:pageUuid', postEdit)
-// api.post('/create', postCreate)
-// api.delete<{
-//   Params: {
-//     pageUuid: string
-//   }
-//   Headers: {
-//     Authorization: string
-//   }
-// }>('/page/:pageUuid', deletePage)
+
+api.setErrorHandler((error, request, reply) => {
+  console.error(error)
+
+  if (error instanceof AuthenticationError) {
+    return reply
+      .status(401)
+      .send({ status: API_CODE.ERROR_INVALID_ACCESS_TOKEN })
+  }
+
+  return reply.status(500).send({ status: API_CODE.ERROR, error: error.message })
+})
+
+api.get('/version', getVersion)
+api.get('/dashboard', getDashboard)
+api.get('/list', getList)
+api.get('/details', getDetails)
+api.get('/edit/:pageUuid', getEdit)
+api.get('/pdf/:pageUuid', getPdf)
+api.get('/read/:pageItemUuid', getRead)
+api.get('/task/:pageItemProgressUuid', getTask)
+api.get('/act/:action/:pageItemProgressUuid/:userUuid', getAct)
+api.post('/signup', postSignup)
+api.post('/edit/:pageUuid', postEdit)
+api.post('/create', postCreate)
+api.delete<{
+  Params: {
+    pageUuid: string
+  }
+  Headers: {
+    Authorization: string
+  }
+}>('/page/:pageUuid', deletePage)
 
 // Run the HTTP server!
 const startHttpServer = async () => {
@@ -127,4 +122,3 @@ const startHttpServer = async () => {
 }
 
 void startHttpServer()
-
