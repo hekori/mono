@@ -1,12 +1,3 @@
-import {pg} from '../database/pg'
-import {FederatedCredentialsInitializer, to, UserInitializer} from "@hekori/traqrcode-common";
-import { ClientCredentials, ResourceOwnerPassword, AuthorizationCode } from 'simple-oauth2';
-
-import cookie from '@fastify/cookie'
-import session from '@fastify/session'
-import grant from 'grant'
-
-
 import {
     BACKEND_URL,
     OAUTH2_CLIENT_ID_GOOGLE,
@@ -16,6 +7,7 @@ import {
 } from "../settings";
 import {stringify} from "querystring";
 import axios from "axios";
+import jwt_decode from 'jwt-decode';
 
 
 const GOOGLE_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
@@ -26,14 +18,15 @@ const REDIRECT_URL = `${BACKEND_URL}${OAUTH2_REDIRECT_URL_GOOGLE}`
 
 export const oidcSetup = (api) => {
 
+    // Google Documentation
     // https://developers.google.com/identity/openid-connect/openid-connect#python
 
+    // OpenID Connect Documentation
+    // https://openid.net/specs/openid-connect-core-1_0.html
 
     console.log('BACKEND_URL', BACKEND_URL)
     console.log('process.env.NX_BACKEND_URL', process.env.NX_BACKEND_URL)
     console.log('redirect_url', REDIRECT_URL)
-
-
 
     // -------------------
     // REDIRECT TO GOOGLE
@@ -80,6 +73,7 @@ export const oidcSetup = (api) => {
         const { access_token, refresh_token, id_token } = tokenResponse.data;
 
 
+        console.log('jwt_decode', jwt_decode(id_token))
 
         return reply.send({status: "OK"})
 
