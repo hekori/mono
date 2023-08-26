@@ -40,5 +40,5 @@ export const FASTIFY_SESSION_SECRET_KEY = process.env.FASTIFY_SESSION_SECRET_KEY
 export const OAUTH2_CLIENT_ID_GOOGLE = process.env.OAUTH2_CLIENT_ID_GOOGLE
 export const OAUTH2_CLIENT_SECRET_GOOGLE = process.env.OAUTH2_CLIENT_SECRET_GOOGLE
 
-export const OAUTH2_LOGIN_URL_GOOGLE = '/login/google'
-export const OAUTH2_REDIRECT_URL_GOOGLE = '/oauth2/redirect/google'
+export const OAUTH2_LOGIN_PATH_GOOGLE = '/login/google'
+export const OAUTH2_REDIRECT_PATH_GOOGLE = '/oauth2/redirect/google'

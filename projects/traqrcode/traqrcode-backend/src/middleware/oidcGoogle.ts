@@ -2,19 +2,19 @@ import {
     BACKEND_URL,
     OAUTH2_CLIENT_ID_GOOGLE,
     OAUTH2_CLIENT_SECRET_GOOGLE,
-    OAUTH2_LOGIN_URL_GOOGLE,
-    OAUTH2_REDIRECT_URL_GOOGLE
+    OAUTH2_REDIRECT_PATH_GOOGLE
 } from "../settings";
 import {stringify} from "querystring";
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
+import {getBackendLoginGoogleUrl, getBackendLoginRedirectGoogleUrl} from "@hekori/traqrcode-common";
 
 
 const GOOGLE_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
 const GOOGLE_TOKEN_URL = 'https://accounts.google.com/token'
 
 const SCOPE = 'openid email'
-const REDIRECT_URL = `${BACKEND_URL}${OAUTH2_REDIRECT_URL_GOOGLE}`
+const REDIRECT_URL = `${BACKEND_URL}${OAUTH2_REDIRECT_PATH_GOOGLE}`
 
 export const oidcSetup = (api) => {
 
@@ -31,15 +31,15 @@ export const oidcSetup = (api) => {
     // -------------------
     // REDIRECT TO GOOGLE
     // ------------------
-    api.get(OAUTH2_LOGIN_URL_GOOGLE, (req, res) => {
+    api.get(getBackendLoginGoogleUrl(), (req, res) => {
         console.log(GOOGLE_AUTHORIZATION_URL);
         const url = `${GOOGLE_AUTHORIZATION_URL}?${stringify({
             client_id: OAUTH2_CLIENT_ID_GOOGLE,
             redirect_uri: REDIRECT_URL,
             access_type: 'offline',
             response_type: 'code',
-            scope: 'openid email',
-            state: 'random-state-string'
+            scope: SCOPE,
+            state: 'random-state-string' // TODO: implement CSRF
         })}`;
         res.redirect(url);
     });
@@ -48,7 +48,7 @@ export const oidcSetup = (api) => {
     // -------------------
     // CALLBACK FOR GOOGLE
     // ------------------
-    api.get(OAUTH2_REDIRECT_URL_GOOGLE, async (request, reply) => {
+    api.get(getBackendLoginRedirectGoogleUrl(), async (request, reply) => {
         console.log('called redirect_uri')
         console.log('request', request)
         const { code, scope } = request.query;
@@ -75,8 +75,8 @@ export const oidcSetup = (api) => {
 
         console.log('jwt_decode', jwt_decode(id_token))
 
-        return reply.send({status: "OK"})
-
+        // return reply.send({status: "OK"})
+        return reply.redirect(`http://localhost:3002/login/${access_token}`)
 
     });
 

@@ -124,3 +124,12 @@ export const getBackendLoginPostUrl = (addBaseUrl = false): string => {
 export const getBackendSignupPostUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/signup`
 }
+
+export const getBackendLoginGoogleUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/login/google`
+}
+
+export const getBackendLoginRedirectGoogleUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/oauth2/redirect/google`
+}
+

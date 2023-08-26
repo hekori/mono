@@ -4,6 +4,7 @@ import { useGlobal } from '../hooks/useGlobal'
 import { ShellPublic } from '../components/ShellPublic'
 import { TypeErrors } from './PageFrontpage'
 import {
+  getBackendLoginGoogleUrl,
   getBackendSignupPostUrl,
   PostSignupResponse,
   to,
@@ -22,6 +23,7 @@ import { useForm } from 'react-hook-form'
 import { useHistory } from 'react-router-dom'
 import { TERMS_ROUTE } from '../routing/routingPaths'
 import { ButtonLink } from '../../../../../libs/uikit/src/lib/buttons/ButtonLink'
+import {environment} from "../environments/environment";
 
 interface FormInput {
   email: string
@@ -191,6 +193,19 @@ export const PageSignup: React.FC<PageSignupProps> = ({ variant }) => {
                 {' '}
                 Setup
               </ButtonPrimary>
+
+
+              <a href={getBackendLoginGoogleUrl(true)}>Login with Google</a>
+              {/*<ButtonLink*/}
+              {/*    className={`min-w-full`}*/}
+              {/*    data-testid="button-login-google"*/}
+              {/*    to={getBackendLoginGoogleUrl(true)}*/}
+              {/*>*/}
+              {/*  {' '}*/}
+              {/*  Login with Google*/}
+              {/*</ButtonLink>*/}
+
+
             </form>
           </div>
           <div className="text-left text-onDocument3 mt-4">
