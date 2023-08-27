@@ -13,7 +13,7 @@ import { PageRead } from './pages/PageRead'
 import { PageSignup } from './pages/PageSignup'
 import { ActRouteInfo } from '@hekori/traqrcode-common'
 import { PagePricing } from './pages/PagePricing'
-import { PageLoginFromUrl } from './pages/PageLoginFromUrl'
+import { PageOidcLoginCallback } from './pages/PageOidcLoginCallback'
 import { PagePdfs } from './pages/PagePdfs'
 import {
   CREATE_QR_ROUTE, OIDC_LOGIN_ROUTE,
@@ -29,7 +29,7 @@ import { PageDashboard } from './pages/PageDashboard'
 import { isLoggedIn } from './utils/utilsUserLoggedIn'
 import { PageTask } from './pages/PageTask'
 import {
-  CheckLoginRouteInfo,
+  OidcLoginCallbackRouteInfo,
   DashboardRouteInfo,
   DetailsRouteInfo,
   EditRouteInfo,
@@ -45,11 +45,11 @@ import {
   editRegex,
   pdfRegex,
   readRegex,
-  routingRegex,
+  oidcLoginCallbackRegex,
   taskRegex,
   viewRegex,
-} from './routing/routingRegex'
-import {PageLoginWithOIDC} from "./pages/PageLoginWithOIDC";
+} from './routing/oidcLoginCallbackRegex'
+import {PageOidcLogin} from "./pages/PageOidcLogin";
 
 export const App = () => {
   const location = useLocation()
@@ -85,13 +85,13 @@ export const App = () => {
 
   // page OIDC login
   if (location.pathname === OIDC_LOGIN_ROUTE)
-    return <PageLoginWithOIDC />
+    return <PageOidcLogin />
 
   // page login from url
-  const loginRouteInfo: CheckLoginRouteInfo | null = routingRegex(
+  const loginRouteInfo: OidcLoginCallbackRouteInfo | null = oidcLoginCallbackRegex(
     location.pathname
   )
-  if (loginRouteInfo) return <PageLoginFromUrl routeInfo={loginRouteInfo} />
+  if (loginRouteInfo) return <PageOidcLoginCallback routeInfo={loginRouteInfo} />
 
   // page dashboard
   const dashboardRouteInfo: DashboardRouteInfo | null = dashboardRegex(

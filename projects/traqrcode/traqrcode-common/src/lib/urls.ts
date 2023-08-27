@@ -68,6 +68,11 @@ export const getFrontendActUrl = (
   }/${routeInfo.userUuid}`
 }
 
+export const getFrontendOidcLoginCallbackUrl = (addBaseUrl = false, idToken:string): string =>
+{
+  return `${addBaseUrl ? FRONTEND_URL : ''}/oidc-login/callback/${idToken}`
+}
+
 export const getBackendPdfUrl = (
   routeInfo: PdfRouteInfo,
   addBaseUrl = false
@@ -132,4 +137,6 @@ export const getBackendLoginGoogleUrl = (addBaseUrl = false): string => {
 export const getBackendLoginRedirectGoogleUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/oauth2/redirect/google`
 }
+
+
 

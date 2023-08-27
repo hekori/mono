@@ -2,16 +2,16 @@ import { environment } from '../environments/environment'
 import jwt_decode from 'jwt-decode'
 
 export const isLoggedIn = (): boolean => {
-  return !!localStorage.getItem(environment.getAccessTokenLocalStorageKey())
+  return !!localStorage.getItem(environment.getIdTokenLocalStorageKey())
 }
 
 export const logout = () => {
-  localStorage.removeItem(environment.getAccessTokenLocalStorageKey())
+  localStorage.removeItem(environment.getIdTokenLocalStorageKey())
 }
 
 export const getLoggedInUserUuid = (): string => {
   const jwtToken = localStorage.getItem(
-    environment.getAccessTokenLocalStorageKey()
+    environment.getIdTokenLocalStorageKey()
   )
   if (!jwtToken) return ''
   const decoded = jwt_decode(jwtToken) as { userUuid: string }

@@ -7,7 +7,14 @@ import {
 import {stringify} from "querystring";
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
-import {getBackendLoginGoogleUrl, getBackendLoginRedirectGoogleUrl} from "@hekori/traqrcode-common";
+import {
+    API_CODE,
+    getBackendLoginGoogleUrl,
+    getBackendLoginRedirectGoogleUrl,
+    getFrontendOidcLoginCallbackUrl, PageEditErrors, PageWorker, PostResponseBase, User
+} from "@hekori/traqrcode-common";
+import {createAccessToken} from "./auth";
+import {pg} from "../database/pg";
 
 
 const GOOGLE_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
@@ -73,10 +80,27 @@ export const oidcSetup = (api) => {
         const { access_token, refresh_token, id_token } = tokenResponse.data;
 
 
-        console.log('jwt_decode', jwt_decode(id_token))
+        const decodedIdToken:any = jwt_decode(id_token)
+
+        console.log('jwt_decode', decodedIdToken)
+
+        const email = decodedIdToken?.email
+        const emailVerified = decodedIdToken?.email_verified
+
+        if(!emailVerified) reply.status(401).send({
+            status: API_CODE.ERROR,
+            errors: [API_CODE.ERROR_EMAIL_IS_NOT_VERIFIED]
+        })
+
+        // find user by email
+        const user: User = await pg('user')
+            .where({ email }).first()
+
+        // createAccessToken
+
 
         // return reply.send({status: "OK"})
-        return reply.redirect(`http://localhost:3002/login/${access_token}`)
+        return reply.redirect(getFrontendOidcLoginCallbackUrl(true, id_token))
 
     });
 

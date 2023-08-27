@@ -1,6 +1,6 @@
 import { ActRouteInfo } from '@hekori/traqrcode-common'
 import {
-  CheckLoginRouteInfo,
+  OidcLoginCallbackRouteInfo,
   DashboardRouteInfo,
   DetailsRouteInfo,
   EditRouteInfo,
@@ -11,13 +11,14 @@ import {
 } from './routingTypes'
 import { Action, DASHBOARD_ROUTE, PDF_ROUTE } from './routingPaths'
 
-export const routingRegex = (pathname: string): CheckLoginRouteInfo | null => {
-  const pattern = /\/login\/(?<accessToken>.*)/
-  // console.log(pathname.match(pattern));
+export const oidcLoginCallbackRegex = (pathname: string): OidcLoginCallbackRouteInfo | null => {
+  const pattern = /\/oidc-login\/callback\/(?<accessToken>.*)\/(?<refreshToken>.*)\/(?<idToken>.*)/
   const groups = pathname.match(pattern)?.groups
   if (groups) {
     return {
       accessToken: groups.accessToken,
+      refreshToken: groups.refreshToken,
+      idToken: groups.idToken
     }
   }
   return null

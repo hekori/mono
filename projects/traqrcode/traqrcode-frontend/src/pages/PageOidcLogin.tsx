@@ -3,18 +3,12 @@ import {ShellPublic} from '../components/ShellPublic'
 import {Container} from '../components/Container'
 import {useHistory} from 'react-router-dom'
 import {TERMS_ROUTE} from '../routing/routingPaths'
-import {CheckLoginRouteInfo} from '../routing/routingTypes'
 import {getBackendLoginGoogleUrl} from "@hekori/traqrcode-common";
-import {ButtonSecondarySmall, ExternalLink, TextSmall} from "@hekori/uikit";
+import {ButtonSecondarySmall, TextSmall} from "@hekori/uikit";
 import {InternalLink} from "../../../../../libs/uikit/src/lib/buttons/InternalLink";
 
-interface PropsPageCheckLogin {
-    routeInfo: CheckLoginRouteInfo
-}
 
-export const PageLoginWithOIDC: React.FC = () => {
-    const history = useHistory()
-
+export const PageOidcLogin: React.FC = () => {
     return (
         <ShellPublic>
             <Container>
