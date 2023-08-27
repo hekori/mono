@@ -10,20 +10,21 @@ export interface UserInitializer {
   email: string
 }
 
-export interface FederatedCredentials {
-  federatedCredentialsUuid: string
+// see https://openid.net/specs/openid-connect-core-1_0.html for naming convention
+export interface OidcCredentials {
+  oidcCredentialsUuid: string
   createdAt: string
   userUuid: string
-  provider: string
-  subject: string
+  iss: string
+  sub: string
 }
 
-export interface FederatedCredentialsInitializer {
-  federatedCredentialsUuid?: string
+export interface OidcCredentialsInitializer {
+  oidcCredentialsUuid?: string
   createdAt?: string
   userUuid: string
-  provider: string
-  subject: string
+  iss: string
+  sub: string
 }
 
 
