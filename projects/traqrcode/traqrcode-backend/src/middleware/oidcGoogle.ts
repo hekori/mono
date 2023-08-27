@@ -11,7 +11,13 @@ import {
     API_CODE,
     getBackendLoginGoogleUrl,
     getBackendLoginRedirectGoogleUrl,
-    getFrontendOidcLoginCallbackUrl, PageEditErrors, PageWorker, PostResponseBase, User
+    getFrontendOidcLoginCallbackUrl,
+    PageEditErrors,
+    PageItemInitializer,
+    PageWorker,
+    PostResponseBase,
+    User,
+    UserInitializer
 } from "@hekori/traqrcode-common";
 import {createIdToken} from "./auth";
 import {pg} from "../database/pg";
@@ -90,9 +96,20 @@ export const oidcSetup = (api) => {
             errors: [API_CODE.ERROR_EMAIL_IS_NOT_VERIFIED]
         })
 
-        // find user by email
-        const user: User = await pg('user')
-            .where({ email }).first()
+        // // find user by email
+        // const user: User = await pg('user')
+        //     .where({ email }).first()
+
+        // create user account if necessary
+        const users = await pg<User>('user')
+            .insert({
+                email,
+            })
+            .onConflict('email')
+            .merge()
+            .returning('*')
+        const user = users[0]
+
 
         const idToken = createIdToken({userUuid: user.userUuid})
 
