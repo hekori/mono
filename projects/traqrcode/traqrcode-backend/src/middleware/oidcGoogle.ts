@@ -13,7 +13,7 @@ import {
     getBackendLoginRedirectGoogleUrl,
     getFrontendOidcLoginCallbackUrl, PageEditErrors, PageWorker, PostResponseBase, User
 } from "@hekori/traqrcode-common";
-import {createAccessToken} from "./auth";
+import {createIdToken} from "./auth";
 import {pg} from "../database/pg";
 
 
@@ -75,10 +75,8 @@ export const oidcSetup = (api) => {
             }
         });
 
-
         console.log('tokenResponse', tokenResponse.data)
-        const { access_token, refresh_token, id_token } = tokenResponse.data;
-
+        const { id_token } = tokenResponse.data;
 
         const decodedIdToken:any = jwt_decode(id_token)
 
@@ -96,11 +94,10 @@ export const oidcSetup = (api) => {
         const user: User = await pg('user')
             .where({ email }).first()
 
-        // createAccessToken
-
+        const idToken = createIdToken({userUuid: user.userUuid})
 
         // return reply.send({status: "OK"})
-        return reply.redirect(getFrontendOidcLoginCallbackUrl(true, id_token))
+        return reply.redirect(getFrontendOidcLoginCallbackUrl(true, idToken))
 
     });
 

@@ -88,10 +88,10 @@ export const App = () => {
     return <PageOidcLogin />
 
   // page login from url
-  const loginRouteInfo: OidcLoginCallbackRouteInfo | null = oidcLoginCallbackRegex(
+  const oidcLoginCallbackRouteInfo: OidcLoginCallbackRouteInfo | null = oidcLoginCallbackRegex(
     location.pathname
   )
-  if (loginRouteInfo) return <PageOidcLoginCallback routeInfo={loginRouteInfo} />
+  if (oidcLoginCallbackRouteInfo) return <PageOidcLoginCallback routeInfo={oidcLoginCallbackRouteInfo} />
 
   // page dashboard
   const dashboardRouteInfo: DashboardRouteInfo | null = dashboardRegex(

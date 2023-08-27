@@ -8,7 +8,7 @@ import {
 } from '@hekori/traqrcode-common'
 import { pg } from '../database/pg'
 import {
-  createAccessToken,
+  createIdToken,
   getLoginUrlForAccessToken,
 } from '../middleware/auth'
 import { sendMail } from '../email/sendMail'
@@ -55,7 +55,7 @@ export const postSignup = async (request, reply) => {
     }
     console.log('userUuid', userUuid)
 
-    const accessToken = createAccessToken({ userUuid })
+    const accessToken = createIdToken({ userUuid })
 
     // send out email
     const [emailSendError] = await to(
