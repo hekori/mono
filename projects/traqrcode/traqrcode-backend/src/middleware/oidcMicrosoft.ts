@@ -1,16 +1,13 @@
 import {
     BACKEND_URL,
-    OAUTH2_CLIENT_ID_GOOGLE,
-    OAUTH2_CLIENT_SECRET_GOOGLE,
-    OAUTH2_REDIRECT_PATH_GOOGLE
+    OAUTH2_CLIENT_ID_MICROSOFT, OAUTH2_CLIENT_SECRET_MICROSOFT, OAUTH2_REDIRECT_PATH_MICROSOFT,
 } from "../settings";
 import {stringify} from "querystring";
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import {
-    API_CODE,
-    getBackendLoginGoogleUrl,
-    getBackendLoginRedirectGoogleUrl,
+    API_CODE, getBackendLoginMicrosoftUrl,
+    getBackendLoginRedirectMicrosoftUrl,
     getFrontendOidcLoginCallbackUrl,
     User
 } from "@hekori/traqrcode-common";
@@ -18,16 +15,14 @@ import {createIdToken} from "./auth";
 import {pg} from "../database/pg";
 
 
-const GOOGLE_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
-const GOOGLE_TOKEN_URL = 'https://accounts.google.com/token'
+const MICROSOFT_AUTHORIZATION_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
+const MICROSOFT_TOKEN_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/token';
 
-const SCOPE = 'openid email'
-const REDIRECT_URL = `${BACKEND_URL}${OAUTH2_REDIRECT_PATH_GOOGLE}`
+const SCOPE = 'openid profile email'
+const REDIRECT_URL = `${BACKEND_URL}${OAUTH2_REDIRECT_PATH_MICROSOFT}`
 
-export const oidcGoogleSetup = (api) => {
+export const oidcMicrosoftSetup = (api) => {
 
-    // Google Documentation
-    // https://developers.google.com/identity/openid-connect/openid-connect#python
 
     // OpenID Connect Documentation
     // https://openid.net/specs/openid-connect-core-1_0.html
@@ -39,15 +34,16 @@ export const oidcGoogleSetup = (api) => {
     // -------------------
     // REDIRECT TO GOOGLE
     // ------------------
-    api.get(getBackendLoginGoogleUrl(), (req, res) => {
-        console.log(GOOGLE_AUTHORIZATION_URL);
-        const url = `${GOOGLE_AUTHORIZATION_URL}?${stringify({
-            client_id: OAUTH2_CLIENT_ID_GOOGLE,
+    api.get(getBackendLoginMicrosoftUrl(), (req, res) => {
+        console.log(MICROSOFT_AUTHORIZATION_URL);
+        const url = `${MICROSOFT_AUTHORIZATION_URL}?${stringify({
+            client_id: OAUTH2_CLIENT_ID_MICROSOFT,
             redirect_uri: REDIRECT_URL,
             access_type: 'offline',
             response_type: 'code',
             scope: SCOPE,
-            state: 'random-state-string' // TODO: implement CSRF
+            state: 'random-state-string', // TODO: implement CSRF
+            prompt: 'consent'
         })}`;
         res.redirect(url);
     });
@@ -56,7 +52,7 @@ export const oidcGoogleSetup = (api) => {
     // -------------------
     // CALLBACK FOR GOOGLE
     // ------------------
-    api.get(getBackendLoginRedirectGoogleUrl(), async (request, reply) => {
+    api.get(getBackendLoginRedirectMicrosoftUrl(), async (request, reply) => {
         console.log('called redirect_uri')
         console.log('request', request)
         const { code, scope } = request.query;
@@ -64,10 +60,10 @@ export const oidcGoogleSetup = (api) => {
         console.log('request.query', request.query)
 
 
-        const tokenResponse = await axios.post('https://oauth2.googleapis.com/token', stringify({
+        const tokenResponse = await axios.post(MICROSOFT_TOKEN_URL, stringify({
             code,
-            client_id: OAUTH2_CLIENT_ID_GOOGLE,
-            client_secret: OAUTH2_CLIENT_SECRET_GOOGLE,
+            client_id: OAUTH2_CLIENT_ID_MICROSOFT,
+            client_secret: OAUTH2_CLIENT_SECRET_MICROSOFT,
             redirect_uri: REDIRECT_URL,
             grant_type: 'authorization_code'
         }), {
@@ -84,12 +80,7 @@ export const oidcGoogleSetup = (api) => {
         console.log('jwt_decode', decodedIdToken)
 
         const email = decodedIdToken?.email
-        const emailVerified = decodedIdToken?.email_verified
 
-        if(!emailVerified) reply.status(401).send({
-            status: API_CODE.ERROR,
-            errors: [API_CODE.ERROR_EMAIL_IS_NOT_VERIFIED]
-        })
 
         // // find user by email
         // const user: User = await pg('user')

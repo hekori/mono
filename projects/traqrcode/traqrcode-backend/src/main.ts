@@ -34,7 +34,8 @@ import {getAct} from './endpoints/getAct'
 import {getDetails} from './endpoints/getDetails'
 import {getDashboard} from './endpoints/getDashboard'
 import {getVersion} from './endpoints/getVersion'
-import {oidcSetup} from "./middleware/oidcGoogle";
+import {oidcGoogleSetup} from "./middleware/oidcGoogle";
+import {oidcMicrosoftSetup} from "./middleware/oidcMicrosoft";
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -69,7 +70,8 @@ api.register(fastify_cors, {
   credentials: true,
 })
 
-oidcSetup(api)
+oidcGoogleSetup(api)
+oidcMicrosoftSetup(api)
 
 api.ready(() => {
   console.log('Server is ready and accepts')

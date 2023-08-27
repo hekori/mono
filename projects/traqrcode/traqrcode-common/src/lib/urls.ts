@@ -138,5 +138,16 @@ export const getBackendLoginRedirectGoogleUrl = (addBaseUrl = false): string => 
   return `${addBaseUrl ? BACKEND_URL : ''}/oauth2/redirect/google`
 }
 
+export const getBackendLoginMicrosoftUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/login/microsoft`
+}
+
+export const getBackendLoginRedirectMicrosoftUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/oauth2/redirect/microsoft`
+}
+
+
+
+
 
 

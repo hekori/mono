@@ -3,7 +3,7 @@ import {ShellPublic} from '../components/ShellPublic'
 import {Container} from '../components/Container'
 import {useHistory} from 'react-router-dom'
 import {TERMS_ROUTE} from '../routing/routingPaths'
-import {getBackendLoginGoogleUrl} from "@hekori/traqrcode-common";
+import {getBackendLoginGoogleUrl, getBackendLoginMicrosoftUrl} from "@hekori/traqrcode-common";
 import {ButtonSecondarySmall, TextSmall} from "@hekori/uikit";
 import {InternalLink} from "../../../../../libs/uikit/src/lib/buttons/InternalLink";
 
@@ -38,22 +38,7 @@ export const PageOidcLogin: React.FC = () => {
                 <br/>
 
                 <ButtonSecondarySmall onClick={() => {
-                    window.location.href = getBackendLoginGoogleUrl(true)
-                }}
-                className={`w-1/3`}
-                >
-                    <svg width="20" height="20" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
-                        <path
-                            d="M23.9981 12C23.9981 5.37258 18.6255 0 11.9991 0C5.3727 0 0 5.37258 0 12C0 17.9883 4.38794 22.9524 10.1246 23.8524V15.467H7.07764V12H10.1246V9.3565C10.1246 6.34825 11.9157 4.5 14.6564 4.5C15.9691 4.5 17.3423 4.7305 17.3423 4.7305V7.5H15.8292C14.3387 7.5 13.8731 8.312 13.8731 9.024V12H17.2016L16.6691 15.467H13.8731V23.8524C19.6098 22.9524 23.9981 17.9883 23.9981 12H23.9981Z"
-                            fill="white"/>
-                    </svg>
-                    <span className="ml-4">Login with Facebook</span>
-                </ButtonSecondarySmall>
-
-                <br/>
-
-                <ButtonSecondarySmall onClick={() => {
-                    window.location.href = getBackendLoginGoogleUrl(true)
+                    window.location.href = getBackendLoginMicrosoftUrl(true)
                 }}
                  className={`w-1/3`}
                 >

@@ -42,3 +42,9 @@ export const OAUTH2_CLIENT_SECRET_GOOGLE = process.env.OAUTH2_CLIENT_SECRET_GOOG
 
 export const OAUTH2_LOGIN_PATH_GOOGLE = '/login/google'
 export const OAUTH2_REDIRECT_PATH_GOOGLE = '/oauth2/redirect/google'
+
+export const OAUTH2_CLIENT_ID_MICROSOFT = process.env.OAUTH2_CLIENT_ID_MICROSOFT
+export const OAUTH2_CLIENT_SECRET_MICROSOFT = process.env.OAUTH2_CLIENT_SECRET_MICROSOFT
+
+export const OAUTH2_LOGIN_PATH_MICROSOFT = '/login/microsoft'
+export const OAUTH2_REDIRECT_PATH_MICROSOFT = '/oauth2/redirect/microsoft'
