@@ -4,7 +4,7 @@ import mobileScanningSvg from '../assets/frontpage/mobile_scanning_qr.svg'
 import {
   ButtonPrimary,
   ButtonSecondary,
-  Link,
+  ExternalLink,
   TextSubtitle,
 } from '@hekori/uikit'
 import { SectionHeader } from '../components/SectionHeader'
@@ -69,7 +69,7 @@ export const PageFront = () => {
   return (
     <Shell>
       <div className="md:h-128 border-b border-divider py-16">
-        <div className="text-center px-3 lg:px-0 md:my-32">
+        <div className="text-center px-3 lg:px-0 md:my-32 flex flex-col items-center">
           <h1 className="my-4 text-2xl md:text-3xl lg:text-5xl font-black leading-tight">
             Track QR Code Scans
           </h1>
@@ -213,7 +213,7 @@ are automatically logged and your personnel is notified.`}
           <SectionHeader title="Open Source Community Edition" />
 
           <div className="flex flex-wrap text-onDocument2">
-            <Link href="https://github.com/hekori/mono">Download</Link>
+            <ExternalLink href="https://github.com/hekori/mono">Download</ExternalLink>
             &nbsp; and install Traqrcode and run it on your own machine!
           </div>
         </div>

@@ -7,7 +7,7 @@ import { MoonIcon, SunIcon } from '@heroicons/react/outline'
 import { useGlobal } from '../hooks/useGlobal'
 import {
   CREATE_QR_ROUTE,
-  HOMEPAGE_ROUTE,
+  HOMEPAGE_ROUTE, OIDC_LOGIN_ROUTE,
   PRICING_ROUTE,
   SIGNUP_ROUTE,
 } from '../routing/routingPaths'
@@ -117,11 +117,11 @@ export const NavigationPublic = () => {
             <ButtonFlat
               aria-label="Log in / Sign up"
               className={
-                window.location.pathname.startsWith(SIGNUP_ROUTE)
+                window.location.pathname.startsWith(OIDC_LOGIN_ROUTE)
                   ? 'underline'
                   : ''
               }
-              onClick={() => history.push(SIGNUP_ROUTE)}
+              onClick={() => history.push(OIDC_LOGIN_ROUTE)}
             >
               Log in / Sign up
             </ButtonFlat>

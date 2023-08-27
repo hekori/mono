@@ -3,11 +3,12 @@ import { classNames } from '../ClassNames'
 import { Link, LinkProps } from 'react-router-dom'
 
 export const ButtonLink: React.FC<LinkProps> = ({ children, ...props }) => {
+
   return (
     <Link
       {...props}
       className={classNames(
-        'cursor-pointer text-onDocumentHighlight hover:underline focus:underline focus:outline-none',
+        'cursor-pointer text-onDocumentHighlight hover:underline focus:underline focus:outline-none flex items-center',
         props.className
       )}
     >

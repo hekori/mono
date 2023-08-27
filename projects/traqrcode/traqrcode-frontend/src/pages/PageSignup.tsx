@@ -193,19 +193,6 @@ export const PageSignup: React.FC<PageSignupProps> = ({ variant }) => {
                 {' '}
                 Setup
               </ButtonPrimary>
-
-
-              <a href={getBackendLoginGoogleUrl(true)}>Login with Google</a>
-              {/*<ButtonLink*/}
-              {/*    className={`min-w-full`}*/}
-              {/*    data-testid="button-login-google"*/}
-              {/*    to={getBackendLoginGoogleUrl(true)}*/}
-              {/*>*/}
-              {/*  {' '}*/}
-              {/*  Login with Google*/}
-              {/*</ButtonLink>*/}
-
-
             </form>
           </div>
           <div className="text-left text-onDocument3 mt-4">

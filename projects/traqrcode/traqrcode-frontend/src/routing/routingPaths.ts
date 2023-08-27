@@ -16,6 +16,8 @@ export const SIGNUP_ROUTE = '/signup'
 export const CREATE_QR_ROUTE = '/create-qr'
 export const DASHBOARD_ROUTE = '/dashboard'
 export const PDF_ROUTE = '/pdf'
+export const OIDC_LOGIN_ROUTE = '/oidc-login'
+export const FEDERATED_LOGIN_CALLBACK_ROUTE = '/oidc-login/callback'
 
 export const editRoute = ({ pageUuid }: EditRouteInfo) => {
   return `/edit/${pageUuid}`

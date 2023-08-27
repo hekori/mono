@@ -16,7 +16,7 @@ import { PagePricing } from './pages/PagePricing'
 import { PageLoginFromUrl } from './pages/PageLoginFromUrl'
 import { PagePdfs } from './pages/PagePdfs'
 import {
-  CREATE_QR_ROUTE,
+  CREATE_QR_ROUTE, OIDC_LOGIN_ROUTE,
   FRONTPAGE_ROUTE,
   IMPRINT_ROUTE,
   PDF_ROUTE,
@@ -49,6 +49,7 @@ import {
   taskRegex,
   viewRegex,
 } from './routing/routingRegex'
+import {PageLoginWithOIDC} from "./pages/PageLoginWithOIDC";
 
 export const App = () => {
   const location = useLocation()
@@ -82,7 +83,11 @@ export const App = () => {
   if (location.pathname === CREATE_QR_ROUTE)
     return <PageSignup variant={'createQr'} />
 
-  // page login
+  // page OIDC login
+  if (location.pathname === OIDC_LOGIN_ROUTE)
+    return <PageLoginWithOIDC />
+
+  // page login from url
   const loginRouteInfo: CheckLoginRouteInfo | null = routingRegex(
     location.pathname
   )
