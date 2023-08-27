@@ -77,16 +77,16 @@ api.ready(() => {
 
 })
 
-api.setErrorHandler((error, request, reply) => {
+api.setErrorHandler((error, request, reply): void => {
   console.error(error)
 
   if (error instanceof AuthenticationError) {
-    return reply
+    reply
       .status(401)
       .send({ status: API_CODE.ERROR_INVALID_ACCESS_TOKEN })
   }
 
-  return reply.status(500).send({ status: API_CODE.ERROR, error: error.message })
+  reply.status(500).send({ status: API_CODE.ERROR, error: error.message })
 })
 
 api.get('/version', getVersion)
