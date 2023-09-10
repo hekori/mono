@@ -1,29 +1,16 @@
 import * as React from 'react'
-import { useEffect, useState } from 'react'
-import { useGlobal } from '../hooks/useGlobal'
-import { ShellPublic } from '../components/ShellPublic'
-import { TypeErrors } from './PageFrontpage'
-import {
-  getBackendLoginGoogleUrl,
-  getBackendSignupPostUrl,
-  PostSignupResponse,
-  to,
-} from '@hekori/traqrcode-common'
-import {
-  ButtonPrimary,
-  ButtonSecondary,
-  Input,
-  TextNormal,
-  TextSmall,
-} from '@hekori/uikit'
-import { ExclamationIcon } from '@heroicons/react/outline'
-import { getNow, humanReadableTimeDifference } from '@hekori/dates'
-import { Container } from '../components/Container'
-import { useForm } from 'react-hook-form'
-import { useHistory } from 'react-router-dom'
-import { TERMS_ROUTE } from '../routing/routingPaths'
-import { ButtonLink } from '../../../../../libs/uikit/src/lib/buttons/ButtonLink'
-import {environment} from "../environments/environment";
+import {useEffect, useState} from 'react'
+import {useGlobal} from '../hooks/useGlobal'
+import {ShellPublic} from '../components/ShellPublic'
+import {TypeErrors} from './PageFrontpage'
+import {getBackendSignupPostUrl, PostSignupResponse, to,} from '@hekori/traqrcode-common'
+import {ButtonPrimary, ButtonSecondary, Input, InternalLink, TextNormal, TextSmall,} from '@hekori/uikit'
+import {ExclamationIcon} from '@heroicons/react/outline'
+import {getNow, humanReadableTimeDifference} from '@hekori/dates'
+import {Container} from '../components/Container'
+import {useForm} from 'react-hook-form'
+import {useHistory} from 'react-router-dom'
+import {OIDC_LOGIN_ROUTE, TERMS_ROUTE} from '../routing/routingPaths'
 
 interface FormInput {
   email: string
@@ -191,7 +178,7 @@ export const PageSignup: React.FC<PageSignupProps> = ({ variant }) => {
                 data-testid="button-create"
               >
                 {' '}
-                Setup
+                Press to start
               </ButtonPrimary>
             </form>
           </div>
@@ -202,10 +189,13 @@ export const PageSignup: React.FC<PageSignupProps> = ({ variant }) => {
               {variant === 'createQr' &&
                 'This will create an account and send you a login token via email.'}{' '}
               By entering your email address you accept the{' '}
-              <ButtonLink aria-label="terms & conditions" to={TERMS_ROUTE}>
+              <InternalLink aria-label="terms & conditions" href={TERMS_ROUTE}>
                 terms and conditions
-              </ButtonLink>
-              .
+              </InternalLink>.
+            </TextSmall>
+            <br/>
+            <TextSmall>
+              You can also login with your Google or Microsoft account <InternalLink href={OIDC_LOGIN_ROUTE}>here</InternalLink>.
             </TextSmall>
           </div>
         </Container>

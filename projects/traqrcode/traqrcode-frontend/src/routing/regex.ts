@@ -11,8 +11,8 @@ import {
 } from './routingTypes'
 import { Action, DASHBOARD_ROUTE, PDF_ROUTE } from './routingPaths'
 
-export const oidcLoginCallbackRegex = (pathname: string): OidcLoginCallbackRouteInfo | null => {
-  const pattern = /\/oidc-login\/callback\/(?<idToken>.*)/
+export const loginRegex = (pathname: string): OidcLoginCallbackRouteInfo | null => {
+  const pattern = /\/login\/(?<idToken>.*)/
   const groups = pathname.match(pattern)?.groups
   if (groups) {
     return {
@@ -21,6 +21,8 @@ export const oidcLoginCallbackRegex = (pathname: string): OidcLoginCallbackRoute
   }
   return null
 }
+
+
 export const dashboardRegex = (pathname: string): DashboardRouteInfo | null => {
   if (pathname.startsWith(DASHBOARD_ROUTE)) {
     return {}

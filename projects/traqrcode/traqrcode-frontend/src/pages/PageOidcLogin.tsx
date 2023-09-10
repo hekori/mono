@@ -1,11 +1,9 @@
 import * as React from 'react'
 import {ShellPublic} from '../components/ShellPublic'
 import {Container} from '../components/Container'
-import {useHistory} from 'react-router-dom'
 import {TERMS_ROUTE} from '../routing/routingPaths'
 import {getBackendLoginGoogleUrl, getBackendLoginMicrosoftUrl} from "@hekori/traqrcode-common";
-import {ButtonSecondarySmall, TextSmall} from "@hekori/uikit";
-import {InternalLink} from "../../../../../libs/uikit/src/lib/buttons/InternalLink";
+import {ButtonSecondarySmall, InternalLink, TextSmall} from "@hekori/uikit";
 
 
 export const PageOidcLogin: React.FC = () => {

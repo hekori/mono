@@ -1,12 +1,16 @@
 import {
     BACKEND_URL,
-    OAUTH2_CLIENT_ID_MICROSOFT, OAUTH2_CLIENT_SECRET_MICROSOFT, OAUTH2_REDIRECT_PATH_MICROSOFT,
+    OAUTH2_AUTHORIZATION_URL_MICROSOFT,
+    OAUTH2_TOKEN_URL_MICROSOFT,
+    OAUTH2_CLIENT_ID_MICROSOFT,
+    OAUTH2_CLIENT_SECRET_MICROSOFT,
+    OAUTH2_REDIRECT_PATH_MICROSOFT,
 } from "../settings";
 import {stringify} from "querystring";
 import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import {
-    API_CODE, getBackendLoginMicrosoftUrl,
+    getBackendLoginMicrosoftUrl,
     getBackendLoginRedirectMicrosoftUrl,
     getFrontendOidcLoginCallbackUrl,
     User
@@ -14,9 +18,6 @@ import {
 import {createIdToken} from "./auth";
 import {pg} from "../database/pg";
 
-
-const MICROSOFT_AUTHORIZATION_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize';
-const MICROSOFT_TOKEN_URL = 'https://login.microsoftonline.com/common/oauth2/v2.0/token';
 
 const SCOPE = 'openid profile email'
 const REDIRECT_URL = `${BACKEND_URL}${OAUTH2_REDIRECT_PATH_MICROSOFT}`
@@ -35,8 +36,8 @@ export const oidcMicrosoftSetup = (api) => {
     // REDIRECT TO GOOGLE
     // ------------------
     api.get(getBackendLoginMicrosoftUrl(), (req, res) => {
-        console.log(MICROSOFT_AUTHORIZATION_URL);
-        const url = `${MICROSOFT_AUTHORIZATION_URL}?${stringify({
+        console.log(OAUTH2_AUTHORIZATION_URL_MICROSOFT);
+        const url = `${OAUTH2_AUTHORIZATION_URL_MICROSOFT}?${stringify({
             client_id: OAUTH2_CLIENT_ID_MICROSOFT,
             redirect_uri: REDIRECT_URL,
             access_type: 'offline',
@@ -60,7 +61,7 @@ export const oidcMicrosoftSetup = (api) => {
         console.log('request.query', request.query)
 
 
-        const tokenResponse = await axios.post(MICROSOFT_TOKEN_URL, stringify({
+        const tokenResponse = await axios.post(OAUTH2_TOKEN_URL_MICROSOFT, stringify({
             code,
             client_id: OAUTH2_CLIENT_ID_MICROSOFT,
             client_secret: OAUTH2_CLIENT_SECRET_MICROSOFT,

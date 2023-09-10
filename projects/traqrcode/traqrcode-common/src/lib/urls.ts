@@ -70,7 +70,7 @@ export const getFrontendActUrl = (
 
 export const getFrontendOidcLoginCallbackUrl = (addBaseUrl = false, idToken:string): string =>
 {
-  return `${addBaseUrl ? FRONTEND_URL : ''}/oidc-login/callback/${idToken}`
+  return `${addBaseUrl ? FRONTEND_URL : ''}/login/${idToken}`
 }
 
 export const getBackendPdfUrl = (

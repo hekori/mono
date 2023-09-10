@@ -45,10 +45,10 @@ import {
   editRegex,
   pdfRegex,
   readRegex,
-  oidcLoginCallbackRegex,
+  loginRegex,
   taskRegex,
   viewRegex,
-} from './routing/oidcLoginCallbackRegex'
+} from './routing/regex'
 import {PageOidcLogin} from "./pages/PageOidcLogin";
 
 export const App = () => {
@@ -88,7 +88,7 @@ export const App = () => {
     return <PageOidcLogin />
 
   // page login from url
-  const oidcLoginCallbackRouteInfo: OidcLoginCallbackRouteInfo | null = oidcLoginCallbackRegex(
+  const oidcLoginCallbackRouteInfo: OidcLoginCallbackRouteInfo | null = loginRegex(
     location.pathname
   )
   if (oidcLoginCallbackRouteInfo) return <PageOidcLoginCallback routeInfo={oidcLoginCallbackRouteInfo} />

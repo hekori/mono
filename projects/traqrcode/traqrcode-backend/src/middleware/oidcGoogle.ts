@@ -1,8 +1,10 @@
 import {
     BACKEND_URL,
+    OAUTH2_AUTHORIZATION_URL_GOOGLE,
     OAUTH2_CLIENT_ID_GOOGLE,
     OAUTH2_CLIENT_SECRET_GOOGLE,
-    OAUTH2_REDIRECT_PATH_GOOGLE
+    OAUTH2_REDIRECT_PATH_GOOGLE,
+    OAUTH2_TOKEN_URL_GOOGLE
 } from "../settings";
 import {stringify} from "querystring";
 import axios from "axios";
@@ -16,10 +18,6 @@ import {
 } from "@hekori/traqrcode-common";
 import {createIdToken} from "./auth";
 import {pg} from "../database/pg";
-
-
-const GOOGLE_AUTHORIZATION_URL = 'https://accounts.google.com/o/oauth2/v2/auth'
-const GOOGLE_TOKEN_URL = 'https://accounts.google.com/token'
 
 const SCOPE = 'openid email'
 const REDIRECT_URL = `${BACKEND_URL}${OAUTH2_REDIRECT_PATH_GOOGLE}`
@@ -40,8 +38,8 @@ export const oidcGoogleSetup = (api) => {
     // REDIRECT TO GOOGLE
     // ------------------
     api.get(getBackendLoginGoogleUrl(), (req, res) => {
-        console.log(GOOGLE_AUTHORIZATION_URL);
-        const url = `${GOOGLE_AUTHORIZATION_URL}?${stringify({
+        console.log(OAUTH2_AUTHORIZATION_URL_GOOGLE);
+        const url = `${OAUTH2_AUTHORIZATION_URL_GOOGLE}?${stringify({
             client_id: OAUTH2_CLIENT_ID_GOOGLE,
             redirect_uri: REDIRECT_URL,
             access_type: 'offline',
@@ -64,7 +62,7 @@ export const oidcGoogleSetup = (api) => {
         console.log('request.query', request.query)
 
 
-        const tokenResponse = await axios.post('https://oauth2.googleapis.com/token', stringify({
+        const tokenResponse = await axios.post(OAUTH2_TOKEN_URL_GOOGLE, stringify({
             code,
             client_id: OAUTH2_CLIENT_ID_GOOGLE,
             client_secret: OAUTH2_CLIENT_SECRET_GOOGLE,
@@ -96,8 +94,7 @@ export const oidcGoogleSetup = (api) => {
         //     .where({ email }).first()
 
         // create user account if necessary
-        const users = await pg<User>('user')
-            .insert({
+        const users = await pg<User>('user').insert({
                 email,
             })
             .onConflict('email')
@@ -106,15 +103,12 @@ export const oidcGoogleSetup = (api) => {
         const user = users[0]
 
 
+        // TODO: implement refresh tokens
         const idToken = createIdToken({userUuid: user.userUuid})
 
         // return reply.send({status: "OK"})
         return reply.redirect(getFrontendOidcLoginCallbackUrl(true, idToken))
 
     });
-
-
-
-
 }
 
