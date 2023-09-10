@@ -8,7 +8,8 @@ export class Api {
   }
 
   logout() {
-    localStorage.removeItem(environment.getAccessTokenLocalStorageKey())
+    localStorage.removeItem(environment.getIdTokenLocalStorageKey())
+
   }
 
   checkLoggedIn(response: ResponseBase) {
@@ -26,7 +27,7 @@ export class Api {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
         Authorization: `Bearer ${localStorage.getItem(
-          environment.getAccessTokenLocalStorageKey()
+          environment.getIdTokenLocalStorageKey()
         )}`,
       },
     })
@@ -41,7 +42,7 @@ export class Api {
       headers: {
         'Content-type': 'application/pdf',
         Authorization: `Bearer ${localStorage.getItem(
-          environment.getAccessTokenLocalStorageKey()
+          environment.getIdTokenLocalStorageKey()
         )}`,
       },
     })
@@ -54,7 +55,7 @@ export class Api {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
         Authorization: `Bearer ${localStorage.getItem(
-          environment.getAccessTokenLocalStorageKey()
+          environment.getIdTokenLocalStorageKey()
         )}`,
       },
       body: JSON.stringify(json),
@@ -70,7 +71,7 @@ export class Api {
       headers: {
         'Content-type': 'application/json; charset=UTF-8',
         Authorization: `Bearer ${localStorage.getItem(
-          environment.getAccessTokenLocalStorageKey()
+          environment.getIdTokenLocalStorageKey()
         )}`,
       },
     })

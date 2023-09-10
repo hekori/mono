@@ -1,13 +1,135 @@
 import * as React from 'react'
 import { ShellPublic } from '../components/ShellPublic'
 import { APP_NAME } from '@hekori/traqrcode-common'
+import {TextTitle} from "@hekori/uikit";
 
 export const PageTerms = () => {
   return (
     <ShellPublic>
       <div className="w-full mx-auto pt-6 pb-12 min-h-screen">
         <div className="container max-w-5xl mx-auto m-8 px-4">
-          <h1>Allgemeine Nutzungsbedingungen</h1>
+
+          <TextTitle>General Terms of Use</TextTitle>
+          <p>
+            These General Terms of Use form the basis for the use of {APP_NAME}, provided by hekori either free of charge or for a fee. {APP_NAME} allows notifications to be sent by scanning a QR code or opening a link. The terms of use apply in the latest updated version from <b>March 1, 2020</b>.
+            Please note that the English version of the General Terms of Use are a non-binding translation from the German text below.
+
+          </p>
+          <h2>1. Contractual Partner</h2>
+          <p>
+            The "General Terms of Use" contract <i>("Terms of Use")</i> is concluded between you and hekori GmbH, Kastellweg 29, 69120 Heidelberg, Germany <i>("hekori")</i>.
+          </p>
+          <h2>2. Applicability of the Terms of Use</h2>
+          <ol>
+            <li>
+              You accept these Terms of Use and any other agreements referred to therein, either by <i>(a)</i> using them, if no registration is required, or <i>(b)</i> by registering, if a user account is required.
+            </li>
+            <li>
+              Neither registration nor the use of hekori services and products is permitted without agreeing to these Terms of Use.
+            </li>
+          </ol>
+          <h2>3. Requirements for Use</h2>
+          <ol>
+            <li>
+              To open a user account and use the hekori services, you must be fully capable of entering into legal transactions or act with the consent of your legal representatives.
+            </li>
+            <li>
+              Use requires a valid email address.
+            </li>
+            <li>
+              The contractual relationship is personal and non-transferable.
+            </li>
+          </ol>
+          <h2>4. Consequences of Use</h2>
+          <ol>
+            <li>
+              By using it, you confirm your knowledge and unrestricted recognition of the content of these Terms of Use.
+            </li>
+            <li>
+              You also state that all information is true, correct, current, and complete and commit to keeping it up-to-date during the contract term.
+            </li>
+          </ol>
+          <h2 id="Beginn">
+            5. Contract Start, Duration, and Termination
+          </h2>
+          <ol>
+            <li>
+              The usage contract concluded through use is indefinite.
+            </li>
+            <li>
+              You have the right to archive your data at any time and for any reason, thus also terminating your user contract. Content uploaded by you can be deleted by hekori.
+            </li>
+            <li>
+              We are entitled to terminate the use without giving reasons with a notice period of two weeks by email.
+            </li>
+            <li>
+              The right to terminate for good cause remains unaffected for both parties. Hekori is especially entitled to terminate the usage contract with immediate effect and delete data if there has been a severe or repeated violation of the user contract provisions and/or these Terms of Use.
+            </li>
+          </ol>
+          <h2 id="Pflichten">6. Your Obligations</h2>
+          <ol>
+            <li>
+              You commit not to violate these Terms of Use or applicable law or infringe the rights of third parties. This applies especially to third-party personal rights and intellectual or commercial property rights.
+            </li>
+            <li>
+              You are obliged to keep your access data, especially but not exclusively the access tokens located in the URLs, confidential and protect them from third-party access, and not to tolerate or allow third-party knowledge of them. In the event of misuse or loss of the password or a corresponding suspicion, you must immediately inform hekori.
+            </li>
+            <li>
+              Regardless of whether this constitutes a criminal offense, it is generally prohibited to provide content that is pornographic, sexual, violent, racist, seditious, discriminatory, offensive, and/or defamatory in nature.
+            </li>
+            <li>
+              In the event that you violate these Terms of Use, especially the principles mentioned above, and are at fault, you indemnify hekori from third-party claims resulting from such a violation.
+            </li>
+            <li>
+              We reserve the right to assert claims for damages and other claims against you.
+            </li>
+          </ol>
+          <h2>7. Rights of hekori</h2>
+          <ol>
+            <li>
+              hekori reserves the right to reject users without giving reasons. The transmitted data will be deleted immediately in this case.
+            </li>
+            <li>
+              If you provide false, incorrect, outdated, or incomplete information, or if we have reasonable grounds to believe that the information is false, incorrect, outdated, or incomplete, we can block or delete your data with immediate effect and without prior notice and prohibit you from using the service now and in the future.
+            </li>
+            <li>
+              We reserve the right to contact you at any time to verify usage data.
+            </li>
+            <li>
+              hekori does not guarantee the actual identity of the user, as the identification of people on the internet is only partially possible. Every user must convince themselves of the identity of another user before interacting with them in any way (e.g., adding as a friend, sharing training plans, or sending messages).
+            </li>
+          </ol>
+          <h2 id="Haftung">8. Liability and Warranty</h2>
+          <ol>
+            <li>
+              In the case of <b>services provided free of charge</b>, hekori is liable, regardless of the legal reason, exclusively for damages due to intent and gross negligence or the absence of a guaranteed property. In the case of intent, we are generally liable without limitation. In the case of gross negligence and the absence of a guaranteed property, our liability is limited to the typical, foreseeable damage. Otherwise, our liability is excluded.
+            </li>
+            <li>
+              In the case of services provided for a fee, we are liable, regardless of the legal reason, for damages due to intent and gross negligence or the absence of a guaranteed property without limitation.
+              <br />
+              If we violate an essential contractual obligation with slight negligence, our liability is limited to the typical, foreseeable damage. An essential contractual obligation is any obligation necessary for the fulfillment of contractual purposes, and on which you, as a consumer, can or could have relied.
+              <br />
+              Our liability for a breach of life, body, or health caused by us remains unaffected by the aforementioned limitations.
+              <br />
+              Otherwise, our liability is excluded.
+            </li>
+            <li>
+              To the extent that liability is excluded or limited, this exclusion or limitation also applies in favor of hekori's employees and agents. The liability limitations in items 12.1. and 12.2. apply to both contractual and non-contractual claims and benefit both the legal representatives and the vicarious agents of hekori if claims are made directly against them.
+            </li>
+            <li>
+              Claims under the Product Liability Act remain unaffected by the aforementioned exclusions or limitations of liability.
+            </li>
+            <li>
+              Except in cases required by law, hekori is not liable for damages resulting from the use of content made accessible via the online and mobile offer or other types of use of the online offer. This also applies to damages caused by errors, problems, viruses, or data loss.
+            </li>
+            <li>
+              You assume full liability for any claim, lawsuit, judicial, extrajudicial, or any other kind, resulting from conflicts with other users of hekori services or in any way related to them. You acknowledge and accept that we are in no way responsible for the actions or omissions of other users, nor for any damage resulting from the said actions or omissions.
+            </li>
+          </ol>
+          <br/>
+          <br/>
+
+          <TextTitle>Allgemeine Nutzungsbedingungen</TextTitle>
 
           <p>
             Diese Allgemeine Nutzungsbedingungen bilden die Grundlage für die

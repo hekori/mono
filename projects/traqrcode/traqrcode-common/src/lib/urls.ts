@@ -68,6 +68,16 @@ export const getFrontendActUrl = (
   }/${routeInfo.userUuid}`
 }
 
+export const getFrontendOidcLoginCallbackUrl = (addBaseUrl = false, idToken:string): string =>
+{
+  return `${addBaseUrl ? FRONTEND_URL : ''}/login/${idToken}`
+}
+
+export const getFrontendOidcLoginCallbackErrorUrl = (addBaseUrl = false): string =>
+{
+  return `${addBaseUrl ? FRONTEND_URL : ''}/login-error`
+}
+
 export const getBackendPdfUrl = (
   routeInfo: PdfRouteInfo,
   addBaseUrl = false
@@ -124,3 +134,25 @@ export const getBackendLoginPostUrl = (addBaseUrl = false): string => {
 export const getBackendSignupPostUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/signup`
 }
+
+export const getBackendLoginGoogleUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/login/google`
+}
+
+export const getBackendLoginRedirectGoogleUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/oauth2/redirect/google`
+}
+
+export const getBackendLoginMicrosoftUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/login/microsoft`
+}
+
+export const getBackendLoginRedirectMicrosoftUrl = (addBaseUrl = false): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/oauth2/redirect/microsoft`
+}
+
+
+
+
+
+

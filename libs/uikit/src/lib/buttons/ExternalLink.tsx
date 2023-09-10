@@ -1,7 +1,7 @@
 import React from 'react'
 import { classNames } from '../ClassNames'
 
-export const Link: React.FC<React.HTMLProps<HTMLAnchorElement>> = ({
+export const ExternalLink: React.FC<React.HTMLProps<HTMLAnchorElement>> = ({
   children,
   href,
   ...props

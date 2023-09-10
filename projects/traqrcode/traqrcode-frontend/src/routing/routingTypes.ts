@@ -4,8 +4,8 @@ export type RoutingTypes = {
   shortHash: string
   accessToken: string
 }
-export type CheckLoginRouteInfo = {
-  accessToken: string
+export type OidcLoginCallbackRouteInfo = {
+  idToken: string
 }
 export type DashboardRouteInfo = Record<string, never>
 export type PdfRouteInfo = Record<string, never>

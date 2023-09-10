@@ -1,4 +1,4 @@
-export import path = require('path')
+export import path = require('path');
 
 export const SSL_PRIVATE_KEY_PATH = process.env.SSL_PRIVATE_KEY_PATH || ''
 export const SSL_PUBLIC_CERT_PATH = process.env.SSL_PUBLIC_CERT_PATH || ''
@@ -32,3 +32,22 @@ export const SMTP_PASS = process.env.SMTP_PASS || ''
 // The DKIM_*** variables are ignored if SMTP_HOST is defined.
 export const DKIM_DOMAIN_NAME = process.env.DKIM_DOMAIN_NAME
 export const DKIM_PRIVATE_KEY = process.env.DKIM_PRIVATE_KEY
+
+
+export const FASTIFY_SESSION_SECRET_KEY = process.env.FASTIFY_SESSION_SECRET_KEY
+
+// OIDC / OAUTH2 providers
+export const OAUTH2_CLIENT_ID_GOOGLE = process.env.OAUTH2_CLIENT_ID_GOOGLE
+export const OAUTH2_CLIENT_SECRET_GOOGLE = process.env.OAUTH2_CLIENT_SECRET_GOOGLE
+
+export const OAUTH2_REDIRECT_PATH_GOOGLE = process.env.OAUTH2_REDIRECT_PATH_GOOGLE || '/oauth2/redirect/google'
+
+export const OAUTH2_CLIENT_ID_MICROSOFT = process.env.OAUTH2_CLIENT_ID_MICROSOFT
+export const OAUTH2_CLIENT_SECRET_MICROSOFT = process.env.OAUTH2_CLIENT_SECRET_MICROSOFT
+
+export const OAUTH2_REDIRECT_PATH_MICROSOFT = process.env.OAUTH2_REDIRECT_PATH_MICROSOFT || '/oauth2/redirect/microsoft'
+
+export const OAUTH2_AUTHORIZATION_URL_GOOGLE = process.env.OAUTH2_AUTHORIZATION_URL_GOOGLE || 'https://accounts.google.com/o/oauth2/v2/auth'
+export const OAUTH2_TOKEN_URL_GOOGLE = process.env.OAUTH2_TOKEN_URL_GOOGLE || 'https://oauth2.googleapis.com/token'
+export const OAUTH2_AUTHORIZATION_URL_MICROSOFT = process.env.OAUTH2_AUTHORIZATION_URL_MICROSOFT || 'https://login.microsoftonline.com/common/oauth2/v2.0/authorize'
+export const OAUTH2_TOKEN_URL_MICROSOFT = process.env.OAUTH2_TOKEN_URL_MICROSOFT || 'https://login.microsoftonline.com/common/oauth2/v2.0/token'

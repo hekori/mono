@@ -10,6 +10,35 @@ export interface UserInitializer {
   email: string
 }
 
+// see https://openid.net/specs/openid-connect-core-1_0.html for naming convention
+export interface OidcCredentials {
+  oidcCredentialsUuid: string
+  createdAt: string
+  userUuid: string
+  iss: string
+  sub: string
+}
+
+export interface OidcCredentialsInitializer {
+  oidcCredentialsUuid?: string
+  createdAt?: string
+  userUuid: string
+  iss: string
+  sub: string
+}
+
+export interface OidcCsrfState {
+  OidcCsrfStateUuid: string
+  createdAt: string
+  csrfToken: string
+}
+
+export interface OidcCsrfStateInitializer {
+  OidcCsrfStateUuid?: string
+  createdAt?: string
+  csrfToken: string
+}
+
 export interface Page {
   pageUuid: string
   title: string

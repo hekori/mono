@@ -11,12 +11,12 @@ import { PageTerms } from './pages/PageTerms'
 import { PageAction } from './pages/PageAct'
 import { PageRead } from './pages/PageRead'
 import { PageSignup } from './pages/PageSignup'
-import { ActRouteInfo } from '@hekori/traqrcode-common'
+import {ActRouteInfo, getFrontendOidcLoginCallbackErrorUrl} from '@hekori/traqrcode-common'
 import { PagePricing } from './pages/PagePricing'
-import { PageLoginFromUrl } from './pages/PageLoginFromUrl'
+import { PageOidcLoginCallback } from './pages/PageOidcLoginCallback'
 import { PagePdfs } from './pages/PagePdfs'
 import {
-  CREATE_QR_ROUTE,
+  CREATE_QR_ROUTE, OIDC_LOGIN_ROUTE,
   FRONTPAGE_ROUTE,
   IMPRINT_ROUTE,
   PDF_ROUTE,
@@ -29,7 +29,7 @@ import { PageDashboard } from './pages/PageDashboard'
 import { isLoggedIn } from './utils/utilsUserLoggedIn'
 import { PageTask } from './pages/PageTask'
 import {
-  CheckLoginRouteInfo,
+  OidcLoginCallbackRouteInfo,
   DashboardRouteInfo,
   DetailsRouteInfo,
   EditRouteInfo,
@@ -45,10 +45,12 @@ import {
   editRegex,
   pdfRegex,
   readRegex,
-  routingRegex,
+  loginRegex,
   taskRegex,
   viewRegex,
-} from './routing/routingRegex'
+} from './routing/regex'
+import {PageOidcLogin} from "./pages/PageOidcLogin";
+import {PageErrorLogin} from "./pages/PageErrorLogin";
 
 export const App = () => {
   const location = useLocation()
@@ -82,11 +84,18 @@ export const App = () => {
   if (location.pathname === CREATE_QR_ROUTE)
     return <PageSignup variant={'createQr'} />
 
-  // page login
-  const loginRouteInfo: CheckLoginRouteInfo | null = routingRegex(
+  // page OIDC login
+  if (location.pathname === OIDC_LOGIN_ROUTE)
+    return <PageOidcLogin />
+
+  if (location.pathname === getFrontendOidcLoginCallbackErrorUrl())
+    return <PageErrorLogin />
+
+  // page login from url
+  const oidcLoginCallbackRouteInfo: OidcLoginCallbackRouteInfo | null = loginRegex(
     location.pathname
   )
-  if (loginRouteInfo) return <PageLoginFromUrl routeInfo={loginRouteInfo} />
+  if (oidcLoginCallbackRouteInfo) return <PageOidcLoginCallback routeInfo={oidcLoginCallbackRouteInfo} />
 
   // page dashboard
   const dashboardRouteInfo: DashboardRouteInfo | null = dashboardRegex(

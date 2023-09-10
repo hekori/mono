@@ -3,7 +3,7 @@ import { FastifyRequest } from 'fastify'
 import { AuthenticationError } from '../endpoints/errors'
 import jwt = require('jsonwebtoken')
 
-export const createAccessToken = (
+export const createIdToken = (
   {
     userUuid,
   }: {

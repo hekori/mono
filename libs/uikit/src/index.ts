@@ -1,7 +1,8 @@
 export * from './lib/buttons/ButtonFlat'
 export * from './lib/buttons/ButtonPrimary'
 export * from './lib/buttons/ButtonSecondary'
-export * from './lib/buttons/Link'
+export * from './lib/buttons/ExternalLink'
+export * from './lib/buttons/InternalLink'
 
 export * from './lib/typography/typography'
 export * from './lib/components/Card'

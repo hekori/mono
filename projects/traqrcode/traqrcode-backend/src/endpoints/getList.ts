@@ -13,6 +13,7 @@ export const getList = async (request, reply) => {
   const accessToken = getAccessTokenFromRequest(request)
   const decoded = verifyAccessToken(accessToken)
 
+  console.log('decoded', decoded)
   const { userUuid } = decoded
 
   const result = await pg('page')
