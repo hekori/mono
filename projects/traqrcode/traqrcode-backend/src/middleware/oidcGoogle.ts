@@ -12,12 +12,15 @@ import jwt_decode from 'jwt-decode';
 import {
     API_CODE,
     getBackendLoginGoogleUrl,
-    getBackendLoginRedirectGoogleUrl,
-    getFrontendOidcLoginCallbackUrl,
+    getBackendLoginRedirectGoogleUrl, getFrontendOidcLoginCallbackErrorUrl,
+    getFrontendOidcLoginCallbackUrl, OidcCsrfStateInitializer,
     User
 } from "@hekori/traqrcode-common";
 import {createIdToken} from "./auth";
 import {pg} from "../database/pg";
+
+import { v4 as uuidv4 } from 'uuid';
+
 
 const SCOPE = 'openid email'
 const REDIRECT_URL = `${BACKEND_URL}${OAUTH2_REDIRECT_PATH_GOOGLE}`
@@ -34,20 +37,29 @@ export const oidcGoogleSetup = (api) => {
     console.log('process.env.NX_BACKEND_URL', process.env.NX_BACKEND_URL)
     console.log('redirect_url', REDIRECT_URL)
 
+
+
+
     // -------------------
     // REDIRECT TO GOOGLE
     // ------------------
-    api.get(getBackendLoginGoogleUrl(), (req, res) => {
+    api.get(getBackendLoginGoogleUrl(), async (request, reply) => {
         console.log(OAUTH2_AUTHORIZATION_URL_GOOGLE);
+
+        const csrfToken = uuidv4()
+        await pg<OidcCsrfStateInitializer>('oidcCsrfState').insert({
+            csrfToken,
+        })
+
         const url = `${OAUTH2_AUTHORIZATION_URL_GOOGLE}?${stringify({
             client_id: OAUTH2_CLIENT_ID_GOOGLE,
             redirect_uri: REDIRECT_URL,
             access_type: 'offline',
             response_type: 'code',
             scope: SCOPE,
-            state: 'random-state-string' // TODO: implement CSRF
+            state: csrfToken
         })}`;
-        res.redirect(url);
+        reply.redirect(url);
     });
 
 
@@ -61,6 +73,10 @@ export const oidcGoogleSetup = (api) => {
         //
         console.log('request.query', request.query)
 
+        const csrfToken = request?.query?.state  ?? 'undefined'
+        const row = await pg<OidcCsrfStateInitializer>('oidcCsrfState').where({ csrfToken }).first()
+        console.log('row=', row)
+        if(!row) return reply.redirect(getFrontendOidcLoginCallbackErrorUrl(true))
 
         const tokenResponse = await axios.post(OAUTH2_TOKEN_URL_GOOGLE, stringify({
             code,

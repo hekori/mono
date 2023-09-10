@@ -73,6 +73,11 @@ export const getFrontendOidcLoginCallbackUrl = (addBaseUrl = false, idToken:stri
   return `${addBaseUrl ? FRONTEND_URL : ''}/login/${idToken}`
 }
 
+export const getFrontendOidcLoginCallbackErrorUrl = (addBaseUrl = false): string =>
+{
+  return `${addBaseUrl ? FRONTEND_URL : ''}/login-error`
+}
+
 export const getBackendPdfUrl = (
   routeInfo: PdfRouteInfo,
   addBaseUrl = false

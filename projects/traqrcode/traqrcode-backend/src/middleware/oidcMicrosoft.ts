@@ -11,12 +11,13 @@ import axios from "axios";
 import jwt_decode from 'jwt-decode';
 import {
     getBackendLoginMicrosoftUrl,
-    getBackendLoginRedirectMicrosoftUrl,
-    getFrontendOidcLoginCallbackUrl,
+    getBackendLoginRedirectMicrosoftUrl, getFrontendOidcLoginCallbackErrorUrl,
+    getFrontendOidcLoginCallbackUrl, OidcCsrfStateInitializer,
     User
 } from "@hekori/traqrcode-common";
 import {createIdToken} from "./auth";
 import {pg} from "../database/pg";
+import {v4 as uuidv4} from "uuid";
 
 
 const SCOPE = 'openid profile email'
@@ -35,18 +36,24 @@ export const oidcMicrosoftSetup = (api) => {
     // -------------------
     // REDIRECT TO GOOGLE
     // ------------------
-    api.get(getBackendLoginMicrosoftUrl(), (req, res) => {
+    api.get(getBackendLoginMicrosoftUrl(), async (request, reply) => {
         console.log(OAUTH2_AUTHORIZATION_URL_MICROSOFT);
+
+        const csrfToken = uuidv4()
+        await pg<OidcCsrfStateInitializer>('oidcCsrfState').insert({
+            csrfToken,
+        })
+
         const url = `${OAUTH2_AUTHORIZATION_URL_MICROSOFT}?${stringify({
             client_id: OAUTH2_CLIENT_ID_MICROSOFT,
             redirect_uri: REDIRECT_URL,
             access_type: 'offline',
             response_type: 'code',
             scope: SCOPE,
-            state: 'random-state-string', // TODO: implement CSRF
+            state: csrfToken,
             prompt: 'consent'
         })}`;
-        res.redirect(url);
+        reply.redirect(url);
     });
 
 
@@ -59,6 +66,11 @@ export const oidcMicrosoftSetup = (api) => {
         const { code, scope } = request.query;
         //
         console.log('request.query', request.query)
+
+        const csrfToken = request?.query?.state  ?? 'undefined'
+        const row = await pg<OidcCsrfStateInitializer>('oidcCsrfState').where({ csrfToken }).first()
+        console.log('row=', row)
+        if(!row) return reply.redirect(getFrontendOidcLoginCallbackErrorUrl(true))
 
 
         const tokenResponse = await axios.post(OAUTH2_TOKEN_URL_MICROSOFT, stringify({

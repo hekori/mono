@@ -11,7 +11,7 @@ import { PageTerms } from './pages/PageTerms'
 import { PageAction } from './pages/PageAct'
 import { PageRead } from './pages/PageRead'
 import { PageSignup } from './pages/PageSignup'
-import { ActRouteInfo } from '@hekori/traqrcode-common'
+import {ActRouteInfo, getFrontendOidcLoginCallbackErrorUrl} from '@hekori/traqrcode-common'
 import { PagePricing } from './pages/PagePricing'
 import { PageOidcLoginCallback } from './pages/PageOidcLoginCallback'
 import { PagePdfs } from './pages/PagePdfs'
@@ -50,6 +50,7 @@ import {
   viewRegex,
 } from './routing/regex'
 import {PageOidcLogin} from "./pages/PageOidcLogin";
+import {PageErrorLogin} from "./pages/PageErrorLogin";
 
 export const App = () => {
   const location = useLocation()
@@ -86,6 +87,9 @@ export const App = () => {
   // page OIDC login
   if (location.pathname === OIDC_LOGIN_ROUTE)
     return <PageOidcLogin />
+
+  if (location.pathname === getFrontendOidcLoginCallbackErrorUrl())
+    return <PageErrorLogin />
 
   // page login from url
   const oidcLoginCallbackRouteInfo: OidcLoginCallbackRouteInfo | null = loginRegex(

@@ -7,6 +7,7 @@ ALTER TABLE "oidcCsrfState" ADD COLUMN IF NOT EXISTS "oidcCsrfStateUuid" UUID PR
 ALTER TABLE "oidcCsrfState" ADD COLUMN IF NOT EXISTS "createdAt" timestamp with time zone NOT NULL DEFAULT CURRENT_TIMESTAMP;
 ALTER TABLE "oidcCsrfState" ADD COLUMN IF NOT EXISTS "csrfToken" VARCHAR(256) NOT NULL;
 
+ALTER TABLE "oidcCsrfState" ADD CONSTRAINT unique_oidcCsrfState_csrfToken UNIQUE ("csrfToken");
 `
     await trx.raw(cmd)
 }

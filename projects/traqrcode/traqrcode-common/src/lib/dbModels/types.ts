@@ -27,6 +27,17 @@ export interface OidcCredentialsInitializer {
   sub: string
 }
 
+export interface OidcCsrfState {
+  OidcCsrfStateUuid: string
+  createdAt: string
+  csrfToken: string
+}
+
+export interface OidcCsrfStateInitializer {
+  OidcCsrfStateUuid?: string
+  createdAt?: string
+  csrfToken: string
+}
 
 export interface Page {
   pageUuid: string
