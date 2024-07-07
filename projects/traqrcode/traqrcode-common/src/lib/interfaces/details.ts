@@ -7,6 +7,7 @@ export interface DetailsDatabaseResponse {
   pageItemUuid: string
   pageItemTitle: string
   pageItemSubTitle: string
+  pageItemProgressAnnotation: string
   pageItemProgressCreatedAt: string
   pageItemProgressStartedAt: string
   pageItemProgressFinishedAt: string

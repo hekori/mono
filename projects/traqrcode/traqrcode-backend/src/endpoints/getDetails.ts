@@ -24,6 +24,7 @@ export const getDetails = async (request, reply) => {
       'pageItem.title as pageItemTitle',
       'pageItem.subTitle as pageItemSubTitle',
       'pageItemProgress.pageItemProgressUuid as pageItemProgressUuid',
+      'pageItemProgress.annotation as pageItemProgressAnnotation',
       'pageItemProgress.createdAt as pageItemProgressCreatedAt',
       'pageItemProgress.startedAt as pageItemProgressStartedAt',
       'pageItemProgress.finishedAt as pageItemProgressFinishedAt',

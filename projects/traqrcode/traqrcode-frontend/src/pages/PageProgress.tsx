@@ -104,6 +104,8 @@ export const PageProgress = ({ routeInfo }: PropsPageDetails) => {
                   <TextLarge>{item.pageItemTitle}</TextLarge>
                   <br />
                   <TextSmall>{item.pageItemSubTitle}</TextSmall>
+                  <br />
+                  <TextSmall>{item.pageItemProgressAnnotation}</TextSmall>
                 </span>
 
                 <ProgressInfo
