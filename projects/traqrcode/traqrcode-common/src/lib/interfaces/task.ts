@@ -2,6 +2,7 @@ export interface GetTaskResponseOk {
   status: 'OK'
   title: string
   subTitle: string
+  annotation: string
   createdAt: string
   startedAt: string
   finishedAt: string

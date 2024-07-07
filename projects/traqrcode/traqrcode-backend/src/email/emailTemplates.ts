@@ -29,12 +29,18 @@ export const email_notify_receiver_of_new_task_subject = () =>
 export const email_notify_receiver_of_new_task_body = (
   title: string,
   subtitle: string,
+  annotation: string,
   link_start: string,
   link_task: string
-) => `A request for
+) => {
+
+  const annotationText = annotation ? `Annotation:\n${annotation}`: ''
+  return `A request for
 ${title}
 ${subtitle}
 has been made.
+
+${annotationText}
 
 Click the link to accept
 ${link_start}
@@ -42,6 +48,8 @@ ${link_start}
 You can view the current status of the task here
 ${link_task}
 `
+
+}
 
 export const email_notify_accept_task_subject = () =>
   `[TRAQRCODE] You have accepted the task`

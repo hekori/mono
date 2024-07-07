@@ -6,7 +6,7 @@ import {
   GetReadResponseError,
   GetReadResponseOk,
   PageWorker,
-  PostAnnotationRequest,
+  PostAnnotationRequest, PostAnnotationResponseOk,
   to,
   User,
 } from '@hekori/traqrcode-common'
@@ -73,6 +73,7 @@ export const postAnnotation = async (request, reply) => {
       body: email_notify_receiver_of_new_task_body(
         pageItem.title,
         pageItem.subTitle,
+        pageItemProgress.annotation,
         getFrontendActUrl(
           {
             action: Action.start,
@@ -89,7 +90,7 @@ export const postAnnotation = async (request, reply) => {
     })
   }
 
-  const responseData: GetReadResponseOk = {
+  const responseData: PostAnnotationResponseOk = {
     pageItemProgressUuid: pageItemProgress.pageItemProgressUuid,
     status: 'OK',
   }

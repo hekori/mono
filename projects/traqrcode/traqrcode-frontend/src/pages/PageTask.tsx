@@ -42,6 +42,8 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
           textPending={'Waiting ...'}
           textDone={`Request for "${task.title}" ${
             task.subTitle ? `"${task.subTitle}"` : ''
+          } ${
+              task.annotation ? `with annotation ${task.annotation}` : ''
           } has been received`}
         />
         <ProgressInfoConnector done={!!task.startedAt} />

@@ -35,6 +35,7 @@ export const getTask = async (request, reply) => {
     finishedAt: pageItemProgress.finishedAt,
     subTitle: pageItem.subTitle,
     title: pageItem.title,
+    annotation: pageItemProgress.annotation,
     startedAt: pageItemProgress.startedAt,
     status: 'OK',
   }
