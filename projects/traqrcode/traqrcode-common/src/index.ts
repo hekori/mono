@@ -1,6 +1,7 @@
 export * from './lib/interfaces/api'
 export * from './lib/interfaces/generic'
 export * from './lib/interfaces/read'
+export * from './lib/interfaces/annotation'
 export * from './lib/interfaces/old'
 export * from './lib/dbModels/types'
 export * from './lib/constants'

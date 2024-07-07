@@ -1,6 +1,5 @@
 export interface GetReadResponseOk {
   status: 'OK'
-  pageItemProgressUuid: string
 }
 
 export interface GetReadResponseError {

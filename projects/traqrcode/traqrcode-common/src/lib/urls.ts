@@ -87,6 +87,12 @@ export const getBackendListGetUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/list`
 }
 
+export const getBackendAnnotationPostUrl = (
+    addBaseUrl = false
+): string => {
+  return `${addBaseUrl ? BACKEND_URL : ''}/annotation`
+}
+
 export const getBackendCreatePagePostUrl = (addBaseUrl = false): string => {
   return `${addBaseUrl ? BACKEND_URL : ''}/create`
 }

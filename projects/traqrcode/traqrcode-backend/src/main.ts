@@ -39,6 +39,7 @@ import { getAct } from './endpoints/getAct'
 import { getDetails } from './endpoints/getDetails'
 import { getDashboard } from './endpoints/getDashboard'
 import { getVersion } from './endpoints/getVersion'
+import {postAnnotation} from "./endpoints/postAnnotation";
 
 console.log('-'.repeat(80))
 console.log('STAGE=', STAGE)
@@ -103,6 +104,8 @@ api.get('/act/:action/:pageItemProgressUuid/:userUuid', getAct)
 api.post('/signup', postSignup)
 api.post('/edit/:pageUuid', postEdit)
 api.post('/create', postCreate)
+api.post('/annotation', postAnnotation)
+
 api.delete<{
   Params: {
     pageUuid: string

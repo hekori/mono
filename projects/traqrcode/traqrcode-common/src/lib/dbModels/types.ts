@@ -55,6 +55,7 @@ export interface PageWorkerInitializer {
 export interface PageItemProgress {
   pageItemProgressUuid: string
   pageItemUuid: string
+  annotation?: string
   userUuid?: string
   createdAt?: string
   startedAt?: string
@@ -64,6 +65,7 @@ export interface PageItemProgress {
 export interface PageItemProgressInitializer {
   pageItemProgressUuid: string
   pageItemUuid: string
+  annotation?: string
   userUuid?: string
   createdAt?: string
   startedAt?: string
