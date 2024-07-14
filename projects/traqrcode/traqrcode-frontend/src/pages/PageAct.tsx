@@ -1,22 +1,27 @@
 import * as React from 'react'
-import {useState} from 'react'
-import {useGlobal} from '../hooks/useGlobal'
-import {useHistory} from 'react-router-dom'
-import {Loading} from '../components/Loading'
+import { useState } from 'react'
+import { useGlobal } from '../hooks/useGlobal'
+import { useHistory } from 'react-router-dom'
+import { Loading } from '../components/Loading'
 import {
-    Action,
-    ActRouteInfo, GetActResponse, getFrontendActUrl,
-    GetTaskResponseOk,
-    to,
+  Action,
+  ActRouteInfo,
+  getFrontendActUrl,
+  GetTaskResponseOk,
+  to,
 } from '@hekori/traqrcode-common'
-import {Container} from '../components/Container'
-import {ButtonSecondary, TextLarge, TextSubtitle, TextTitle} from '@hekori/uikit'
-import {Shell} from '../components/Shell'
-import {useQuery} from 'react-query'
-import {dateFormatter, timeFormatter} from "@hekori/dates";
+import { Container } from '../components/Container'
+import {
+  ButtonSecondary,
+  TextLarge,
+  TextSubtitle,
+  TextTitle,
+} from '@hekori/uikit'
+import { Shell } from '../components/Shell'
+import { useQuery } from 'react-query'
 
 type PropsPageAction = {
-    routeInfo: ActRouteInfo
+  routeInfo: ActRouteInfo
 }
 
 export const PageAction = ({routeInfo}: PropsPageAction) => {
@@ -66,8 +71,9 @@ export const PageAction = ({routeInfo}: PropsPageAction) => {
     console.log(routeInfo)
     let status = ''
     if(task?.startedAt && routeInfo.action === 'start') status = '⚠️ Warning: ️This task has been started! (possibly by someone else)'
-    if(task?.finishedAt) status = '⚠️ Error: This task has been finished already!'
+    if(task?.finishedAt) status = '⚠️ Good news: This task has been finished already!'
 
+    const disabled = loading || !!task?.finishedAt
     return (
         <Shell>
             <Container>
@@ -75,16 +81,17 @@ export const PageAction = ({routeInfo}: PropsPageAction) => {
                     <TextTitle>{task?.title}</TextTitle>
                     <TextSubtitle>{task?.subTitle}</TextSubtitle>
                     <TextLarge>{task?.annotation}</TextLarge>
-
                     <TextLarge>{status}</TextLarge>
                 </div>
 
 
-                {!(task?.finishedAt) && <ButtonSecondary
+                <ButtonSecondary
                   className="min-w-full mt-8"
-                  disabled={loading}
+                  disabled={disabled}
                   onClick={async (e) => {
                       e.preventDefault()
+                      if(disabled) return
+
                       setLoading(true)
 
                       const [err, res] = await to(
@@ -105,7 +112,7 @@ export const PageAction = ({routeInfo}: PropsPageAction) => {
                 >
                     {actionText}
                 </ButtonSecondary>
-                }
+
 
             </Container>
         </Shell>
