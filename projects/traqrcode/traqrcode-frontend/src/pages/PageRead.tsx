@@ -48,8 +48,8 @@ export const PageRead: React.FC<PropsPageRead> = ({ routeInfo }) => {
 
     content = (
         <div className="w-full mx-auto text-left pt-6 pb-12 min-h-screen">
-          <div className="container max-w-5xl mx-auto m-8">
-            <h1 className={'text-xl'}> Please enter additional information </h1>
+          <div className="container max-w-5xl mx-auto m-8 p-8">
+            <h1 className={'text-xl pb-8'}> Please enter additional information </h1>
 
             <TextArea
                 className={'text-md'}
