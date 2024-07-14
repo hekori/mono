@@ -16,7 +16,7 @@ export const DarkTheme: Theme = {
   button2Hover: '#68dcff',
   onButton: '#ffffff',
   input: '#031227',
-  inputBorder: '#CCCCCC44',
+  inputBorder: '#7f868d',
   onInput: '#e8e8e8',
   onMain: '#dedede',
   main: '#323232',
