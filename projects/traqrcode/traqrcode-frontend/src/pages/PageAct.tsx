@@ -1,63 +1,113 @@
 import * as React from 'react'
-import { useGlobal } from '../hooks/useGlobal'
-import { useHistory } from 'react-router-dom'
-import { Loading } from '../components/Loading'
+import {useState} from 'react'
+import {useGlobal} from '../hooks/useGlobal'
+import {useHistory} from 'react-router-dom'
+import {Loading} from '../components/Loading'
 import {
-  Action,
-  ActRouteInfo,
-  GetActResponse,
-  getFrontendActUrl,
-  getFrontendPageItemProgressUrl,
+    Action,
+    ActRouteInfo, GetActResponse, getFrontendActUrl,
+    GetTaskResponseOk,
+    to,
 } from '@hekori/traqrcode-common'
-import { useQuery } from 'react-query'
-import { Container } from '../components/Container'
-import { ButtonSecondary } from '@hekori/uikit'
-import { Shell } from '../components/Shell'
+import {Container} from '../components/Container'
+import {ButtonSecondary, TextLarge, TextSubtitle, TextTitle} from '@hekori/uikit'
+import {Shell} from '../components/Shell'
+import {useQuery} from 'react-query'
+import {dateFormatter, timeFormatter} from "@hekori/dates";
 
 type PropsPageAction = {
-  routeInfo: ActRouteInfo
+    routeInfo: ActRouteInfo
 }
 
-export const PageAction = ({ routeInfo }: PropsPageAction) => {
-  const { state, api } = useGlobal()
+export const PageAction = ({routeInfo}: PropsPageAction) => {
+    const {state, api} = useGlobal()
 
-  const history = useHistory()
+    const history = useHistory()
 
-  const { isLoading, isFetching, error, data } = useQuery<GetActResponse>(
-    `pageAct--${routeInfo.pageItemProgressUuid}--${routeInfo.userUuid}`,
-    async () => {
-      return api.get(getFrontendActUrl(routeInfo))
-    },
-    { refetchOnWindowFocus: false }
-  )
+    const [loading, setLoading] = useState<boolean>(false)
+    const [errors, setErrors] = useState<string[]>([])
 
-  console.log('data', data)
+    const {
+        isLoading,
+        isFetching,
+        error,
+        data: task,
+    } = useQuery<GetTaskResponseOk>(
+        `pageItem--${routeInfo.pageItemProgressUuid}`,
+        async () => {
+            return api.get(`/task/${routeInfo.pageItemProgressUuid}`)
+        },
+        {refetchOnWindowFocus: false}
+    )
 
-  if (isLoading) return <Loading />
-  if (error) return <div> error </div>
+    console.log(state)
 
-  let content = null
+    let content
+    if (isLoading || loading) content = <Loading/>
+    if (error || errors.length > 0) content = <div>{errors}</div>
 
-  if (routeInfo.action === Action.stop) {
-    content = <h1>You have finished the task</h1>
-  } else if (routeInfo.action === Action.start) {
-    content = <h1>You have accepted the task</h1>
-  }
+    if (content)
+        return (
+            <Shell>
+                <Container>{content}</Container>
+            </Shell>
+        )
 
-  return (
-    <Shell>
-      <Container>
-        {content}
+    let actionText = null
 
-        <ButtonSecondary
-          className="min-w-full mt-8"
-          onClick={() => {
-            history.push(getFrontendPageItemProgressUrl(routeInfo))
-          }}
-        >
-          View
-        </ButtonSecondary>
-      </Container>
-    </Shell>
-  )
+    if (routeInfo.action === Action.stop) {
+        actionText = 'I have finished the task'
+    } else if (routeInfo.action === Action.start) {
+        actionText = 'Accept the task'
+    }
+
+
+    console.log('routeInfo')
+    console.log(routeInfo)
+    let status = ''
+    if(task?.startedAt && routeInfo.action === 'start') status = '⚠️ Warning: ️This task has been started! (possibly by someone else)'
+    if(task?.finishedAt) status = '⚠️ Error: This task has been finished already!'
+
+    return (
+        <Shell>
+            <Container>
+                <div className='text-left'>
+                    <TextTitle>{task?.title}</TextTitle>
+                    <TextSubtitle>{task?.subTitle}</TextSubtitle>
+                    <TextLarge>{task?.annotation}</TextLarge>
+
+                    <TextLarge>{status}</TextLarge>
+                </div>
+
+
+                {!(task?.finishedAt) && <ButtonSecondary
+                  className="min-w-full mt-8"
+                  disabled={loading}
+                  onClick={async (e) => {
+                      e.preventDefault()
+                      setLoading(true)
+
+                      const [err, res] = await to(
+                          api.get(
+                              getFrontendActUrl(routeInfo),
+                          )
+                      )
+                      console.log(res)
+
+                      if (err) {
+                          console.log(err, res)
+                          setErrors(err)
+                          setLoading(false)
+                          return
+                      }
+                      history.push(`/task/${routeInfo.pageItemProgressUuid}`)
+                  }}
+                >
+                    {actionText}
+                </ButtonSecondary>
+                }
+
+            </Container>
+        </Shell>
+    )
 }
