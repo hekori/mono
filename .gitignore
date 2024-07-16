@@ -9,3 +9,4 @@ yarn-error.log
 dependencygraph.*.svg
 dependencygraph.svg
 App.css
+.idea/

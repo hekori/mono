@@ -38,19 +38,15 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
     content = (
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
 
-
-
           <PageItemProgressSummary
+              titleLabel={'Your request has been received!'}
               title={task?.title}
               subTitle={task?.subTitle}
+              annotationLabel={'Your annotation'}
               annotation={task?.annotation}
           />
-
           <br/><br/>
-
           <TextSubtitle>Progress</TextSubtitle>
-
-
         <ProgressInfo
           done={!!task.createdAt}
           mdiIcon={mdiEmail}

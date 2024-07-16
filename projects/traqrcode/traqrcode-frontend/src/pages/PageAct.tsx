@@ -20,6 +20,7 @@ import {
 import { Shell } from '../components/Shell'
 import { useQuery } from 'react-query'
 import { PageItemProgressSummary } from '../components/PageItemProgressSummary'
+import {Card} from "../components/Card";
 
 type PropsPageAction = {
   routeInfo: ActRouteInfo
@@ -81,18 +82,17 @@ export const PageAction = ({ routeInfo }: PropsPageAction) => {
     <Shell>
       <Container>
         <PageItemProgressSummary
+          titleLabel={'Request'}
           title={task?.title}
           subTitle={task?.subTitle}
+          annotationLabel={'The following annotation has been made'}
           annotation={task?.annotation}
         />
-        {status}
 
-        <div className="text-left">
-          <TextTitle>{task?.title}</TextTitle>
-          <TextSubtitle>{task?.subTitle}</TextSubtitle>
-          <TextLarge>{task?.annotation}</TextLarge>
-          <TextLarge>{status}</TextLarge>
-        </div>
+
+        {status && <div className='text-left'><br/><Card>
+          {status}
+        </Card></div>}
 
         {!disabled && (
           <ButtonSecondary
