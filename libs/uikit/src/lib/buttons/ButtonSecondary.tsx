@@ -11,7 +11,7 @@ export const ButtonSecondary: React.FC<ButtonProps> = ({
       type="button"
       {...props}
       className={classNames(
-        'cursor-pointer text-center px-8 py-4 font-medium rounded-md shadow-md bg-button2 text-onButton hover:bg-button2Hover focus:outline-none focus:ring-2 focus:ring-offset-2 focus:bg-button2Hover',
+        'text-center px-8 py-4 font-medium rounded-md shadow-md text-onButton focus:outline-none ', props.disabled ? 'cursor-not-allowed bg-button2Disabled' :'bg-button2 cursor-pointer hover:bg-button2Hover focus:ring-2 focus:ring-offset-2 focus:bg-button2Hover',
         props.className
       )}
     >

@@ -1,6 +1,20 @@
 import { classNames } from '../ClassNames'
 import React from 'react'
 
+
+export const TextHuge: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
+                                                                          children,
+                                                                        }) => {
+  return <span className="text-4xl text-primary">{children}</span>
+}
+
+
+export const TextXl: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
+                                                                             children,
+                                                                           }) => {
+  return <span className="text-xl text-primary">{children}</span>
+}
+
 export const TextLarge: React.FC<React.HTMLAttributes<HTMLSpanElement>> = ({
   children,
 }) => {
@@ -24,7 +38,7 @@ export const TextTitle: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({
   ...props
 }) => {
   return (
-    <h1
+    <span
       {...props}
       className={classNames(
         'text-4xl font-bold mb-8 text-primary',
@@ -32,7 +46,7 @@ export const TextTitle: React.FC<React.HTMLAttributes<HTMLHeadingElement>> = ({
       )}
     >
       {children}
-    </h1>
+    </span>
   )
 }
 

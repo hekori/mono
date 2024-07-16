@@ -12,8 +12,10 @@ export interface Theme {
   onSubNavigation: string
   button: string
   buttonHover: string
+  buttonDisabled: string
   button2: string
   button2Hover: string
+  button2Disabled: string
   onButton: string
   input: string
   inputBorder: string

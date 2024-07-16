@@ -28,10 +28,12 @@ export const LightTheme: Theme = {
   onNavigation: '#FFFFFF',
   button: '#ff7700',
   buttonHover: '#ffba65',
+  buttonDisabled:'#b79778',
   button2: '#00c4ff',
   button2Hover: '#68dcff',
+  button2Disabled: '#77a8b7',
   onButton: '#ffffff',
   teaser: '#51747f',
   onTeaser: '#f3f3f3',
-  touchableHighlight: '#AAAAFF44',
+  touchableHighlight: '#AAAAFF44'
 }

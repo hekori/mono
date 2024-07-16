@@ -7,6 +7,8 @@ import { ProgressInfo, ProgressInfoConnector } from '../components/ProgressInfo'
 import { Shell } from '../components/Shell'
 import { mdiCheck, mdiEmail, mdiProgressClock } from '@mdi/js'
 import { TaskRouteInfo } from '../routing/routingTypes'
+import {PageItemProgressSummary} from "../components/PageItemProgressSummary";
+import {TextSubtitle} from "@hekori/uikit";
 
 type PropsPageTask = {
   routeInfo: TaskRouteInfo
@@ -35,16 +37,26 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
   else {
     content = (
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
+
+
+
+          <PageItemProgressSummary
+              title={task?.title}
+              subTitle={task?.subTitle}
+              annotation={task?.annotation}
+          />
+
+          <br/><br/>
+
+          <TextSubtitle>Progress</TextSubtitle>
+
+
         <ProgressInfo
           done={!!task.createdAt}
           mdiIcon={mdiEmail}
           date={task.createdAt || ''}
           textPending={'Waiting ...'}
-          textDone={`Request for "${task.title}" ${
-            task.subTitle ? `"${task.subTitle}"` : ''
-          } ${
-              task.annotation ? `with annotation ${task.annotation}` : ''
-          } has been received`}
+          textDone={`Request has been received`}
         />
         <ProgressInfoConnector done={!!task.startedAt} />
         <ProgressInfo
