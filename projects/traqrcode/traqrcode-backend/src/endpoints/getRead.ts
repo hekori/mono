@@ -22,6 +22,7 @@ export const getRead = async (request, reply) => {
 
   const responseData: GetReadResponseOk = {
     status: 'OK',
+    pageItem
   }
   return reply.send(responseData)
 

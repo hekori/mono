@@ -30,6 +30,7 @@ export interface PageItem {
   createdAt: string
   title: string
   subTitle: string
+  customInstructions: string
 }
 
 export interface PageItemInitializer {
@@ -38,6 +39,7 @@ export interface PageItemInitializer {
   createdAt?: string
   title: string
   subTitle: string
+  customInstructions: string
 }
 
 export interface PageWorker {

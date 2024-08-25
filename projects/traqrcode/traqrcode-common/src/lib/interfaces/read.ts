@@ -1,5 +1,8 @@
+import {PageItem} from "../dbModels/types";
+
 export interface GetReadResponseOk {
   status: 'OK'
+  pageItem: PageItem
 }
 
 export interface GetReadResponseError {

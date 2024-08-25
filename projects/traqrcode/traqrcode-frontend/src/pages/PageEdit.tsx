@@ -48,6 +48,7 @@ export const createNewItem = ({ state }: CreateNewItemArgs): PageEditState => {
     pageItemUuid,
     title: '',
     subTitle: '',
+    customInstructions: ''
   }
   return newState
 }
@@ -57,6 +58,7 @@ export const InitialPageEditErrors: PageEditErrors = {
   field: {},
   global: [],
 }
+
 export const PageEdit = ({ routeInfo }: PropsPageEdit) => {
   useCheckLoggedIn()
 

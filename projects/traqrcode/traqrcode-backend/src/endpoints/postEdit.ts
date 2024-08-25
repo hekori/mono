@@ -147,6 +147,7 @@ export const postEdit = async (request, reply) => {
         pageItemUuid,
         title: body.uuidToPageItem[pageItemUuid].title,
         subTitle: body.uuidToPageItem[pageItemUuid].subTitle,
+        customInstructions: body.uuidToPageItem[pageItemUuid].customInstructions
       } as PageItemInitializer)
       .onConflict('pageItemUuid')
       .merge()
