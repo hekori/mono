@@ -4,16 +4,16 @@ import {
   getFrontendActUrl,
   getFrontendPageItemProgressUrl,
   GetReadResponseError,
-  GetReadResponseOk,
   PageWorker,
-  PostAnnotationRequest, PostAnnotationResponseOk,
+  PostAnnotationRequest,
+  PostAnnotationResponseOk,
   to,
   User,
 } from '@hekori/traqrcode-common'
-import { pg } from '../database/pg'
-import { log } from '../utils/utils'
-import { sendMail } from '../email/sendMail'
-import { EMAIL_DEFAULT_SENDER } from '../settings'
+import {pg} from '../database/pg'
+import {log} from '../utils/utils'
+import {sendMail} from '../email/sendMail'
+import {EMAIL_DEFAULT_SENDER} from '../settings'
 import {
   email_notify_receiver_of_new_task_body,
   email_notify_receiver_of_new_task_subject,
@@ -32,6 +32,17 @@ export const postAnnotation = async (request, reply) => {
   const [err, pageItem] = await to(
     pg('pageItem').where({ pageItemUuid: data.pageItemUuid }).first()
   )
+
+  console.log('bla')
+  if(data.annotation.length < 10){
+    const responseData: GetReadResponseError = {
+      status: 'ERROR',
+      errors: [API_CODE.ERROR_TEXT_TOO_SHORT],
+    }
+
+    return reply.status(400).send(responseData)
+  }
+
 
   if (!pageItem) {
     const responseData: GetReadResponseError = {
