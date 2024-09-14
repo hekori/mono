@@ -42,14 +42,13 @@ export const email_notify_receiver_of_new_task_body = ({
     link_task: string,
 }) => {
 
-    const annotationText = annotation ? `Annotation:\n${annotation}` : ''
     return `A request has been made
     
 ---------------------------------------
 page title: ${pageTitle}
 QR title: ${title}
 QR subtitle: ${subtitle}
-annotation: ${annotationText}
+annotation: ${annotation}
 ---------------------------------------
 
 Click the link to accept
