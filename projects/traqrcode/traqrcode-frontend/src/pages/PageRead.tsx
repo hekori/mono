@@ -30,6 +30,9 @@ export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
 
     const [annotation, setAnnotation] = useState<string>('')
     const [errors, setErrors] = useState<string[]>([])
+    const [submitting, setSubmitting] = useState<boolean>(false)
+
+
 
     const {isLoading, isFetching, error, data} = useQuery<GetReadResponse>(
         `pageItem--${routeInfo.pageItemUuid}`,
@@ -48,6 +51,9 @@ export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
             )
         )
 
+        setSubmitting(false)
+
+
         if (res.status === 'ERROR') {
 
             setErrors(res.errors.map((item: string) => {
@@ -64,6 +70,7 @@ export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
         } else {
             history.push(`/task/${res.pageItemProgressUuid}`)
         }
+
     }
 
 
@@ -95,8 +102,11 @@ export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
 
                     <ButtonSecondary
                         className="min-w-full mt-8"
+                        disabled={submitting}
+
                         onClick={async (e) => {
                             e.preventDefault()
+                            setSubmitting(true)
                             setErrors([])
                             void sendRequest()
                         }}
