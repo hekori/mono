@@ -46,17 +46,10 @@ export const email_notify_receiver_of_new_task_body = ({
     return `A request has been made
     
 ---------------------------------------
-pageTitle:
-${pageTitle}
-
-QR title:
-${title}
-
-QR subtitle:
-${subtitle}
-
-annotation:
-${annotationText}
+page title: ${pageTitle}
+QR title: ${title}
+QR subtitle: ${subtitle}
+annotation: ${annotationText}
 ---------------------------------------
 
 Click the link to accept
@@ -88,19 +81,11 @@ export const email_notify_accept_task_body = ({
 }) => `You have accepted the task
 
 ---------------------------------------
-pageTitle:
-${pageTitle}
-
-QR title:
-${title}
-
-QR subtitle:
-${subtitle}
-
-annotation:
-${annotationText}
+page title: ${pageTitle}
+QR title: ${title}
+QR subtitle: ${subtitle}
+annotation: ${annotationText}
 ---------------------------------------
-
 
 Click the following link to complete the task
 ${link_task}
@@ -126,17 +111,10 @@ export const email_notify_done_task_body = ({
     annotationText: string,
 }) => `You have finished the task
 ---------------------------------------
-pageTitle:
-${pageTitle}
-
-QR title:
-${title}
-
-QR subtitle:
-${subtitle}
-
-annotation:
-${annotationText}
+page title: ${pageTitle}
+QR title: ${title}
+QR subtitle: ${subtitle}
+annotation: ${annotationText}
 ---------------------------------------
 
 You can view the current status of the task here
