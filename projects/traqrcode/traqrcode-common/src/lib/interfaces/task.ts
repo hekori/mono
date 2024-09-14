@@ -1,5 +1,6 @@
 export interface GetTaskResponseOk {
   status: 'OK'
+  pageTitle: string
   title: string
   subTitle: string
   annotation: string

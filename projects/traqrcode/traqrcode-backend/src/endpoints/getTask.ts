@@ -1,7 +1,7 @@
 import {
   API_CODE,
   GetReadResponseError,
-  GetTaskResponseOk,
+  GetTaskResponseOk, Page,
   PageItem,
   PageItemProgress,
 } from '@hekori/traqrcode-common'
@@ -30,7 +30,14 @@ export const getTask = async (request, reply) => {
     .where({ pageItemUuid: pageItemProgress.pageItemUuid })
     .first()
 
+  const page: Page = await pg('page')
+      .where({ pageUuid: pageItem.pageUuid })
+      .first()
+
+
+
   const responseData: GetTaskResponseOk = {
+    pageTitle: page.title,
     createdAt: pageItemProgress.createdAt,
     finishedAt: pageItemProgress.finishedAt,
     subTitle: pageItem.subTitle,

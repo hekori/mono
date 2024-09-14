@@ -4,6 +4,7 @@ import {Card} from './Card'
 
 export interface PageItemProgressSummaryProps
     extends React.HTMLAttributes<HTMLDivElement> {
+    pageTitle?: string
     titleLabel?: string
     title?: string
     subTitle?: string
@@ -12,6 +13,7 @@ export interface PageItemProgressSummaryProps
 }
 
 export const PageItemProgressSummary: React.FC<PageItemProgressSummaryProps> = ({
+                                                                                    pageTitle,
                                                                                     titleLabel,
                                                                                     title,
                                                                                     subTitle,
@@ -21,6 +23,10 @@ export const PageItemProgressSummary: React.FC<PageItemProgressSummaryProps> = (
                                                                                 }) => {
     return (
         <div className={'text-left'}>
+            <Card>
+                <div className="text-sm font-bold">{pageTitle}</div>
+            </Card>
+            <br/>
             <Card>
                 <div className="text-sm font-bold">{titleLabel}</div>
                 <br/>

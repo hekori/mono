@@ -39,6 +39,7 @@ export const PageTask = ({ routeInfo }: PropsPageTask) => {
       <div className="max-w-screen-xl container mx-auto px-6 pt-6 pb-12 min-h-screen">
 
           <PageItemProgressSummary
+              pageTitle={task.pageTitle}
               titleLabel={'Your request has been received!'}
               title={task?.title}
               subTitle={task?.subTitle}
