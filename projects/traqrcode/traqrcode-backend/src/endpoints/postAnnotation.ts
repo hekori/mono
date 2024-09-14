@@ -33,15 +33,24 @@ export const postAnnotation = async (request, reply) => {
     pg('pageItem').where({ pageItemUuid: data.pageItemUuid }).first()
   )
 
-  console.log('bla')
   if(data.annotation.length < 10){
     const responseData: GetReadResponseError = {
       status: 'ERROR',
-      errors: [API_CODE.ERROR_TEXT_TOO_SHORT],
+      errors: [API_CODE.ERROR_TEXT_MUST_BE_AT_LEAST_10_CHARACTERS],
     }
 
     return reply.status(400).send(responseData)
   }
+
+  if(data.annotation.length > 800){
+    const responseData: GetReadResponseError = {
+      status: 'ERROR',
+      errors: [API_CODE.ERROR_TEXT_MUST_BE_AT_LEAST_10_CHARACTERS],
+    }
+
+    return reply.status(400).send(responseData)
+  }
+
 
 
   if (!pageItem) {

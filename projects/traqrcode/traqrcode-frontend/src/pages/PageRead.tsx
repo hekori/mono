@@ -55,8 +55,11 @@ export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
         if (res.status === 'ERROR'){
 
             setErrors(res.errors.map((item: string) => {
-                if(item === API_CODE.ERROR_TEXT_TOO_SHORT){
+                if(item === API_CODE.ERROR_TEXT_MUST_BE_AT_LEAST_10_CHARACTERS){
                     return 'Text is too short. Must be at least 10 characters long!'
+                }
+                else if(item === API_CODE.ERROR_TEXT_MUST_BE_AT_MOST_800_CHARACTERS){
+                    return 'Text is too long. Must be at most 800 characters long!'
                 }
                 return item
             }))
