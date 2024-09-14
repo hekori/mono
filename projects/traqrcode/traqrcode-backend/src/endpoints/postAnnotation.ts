@@ -3,7 +3,7 @@ import {
   API_CODE,
   getFrontendActUrl,
   getFrontendPageItemProgressUrl,
-  GetReadResponseError,
+  GetReadResponseError, Page,
   PageWorker,
   PostAnnotationRequest,
   PostAnnotationResponseOk,
@@ -33,7 +33,7 @@ export const postAnnotation = async (request, reply) => {
     pg('pageItem').where({ pageItemUuid: data.pageItemUuid }).first()
   )
 
-  if(data.annotation.length < 10){
+  if(pageItem.customInstructions.length > 0 && data.annotation.length < 10){
     const responseData: GetReadResponseError = {
       status: 'ERROR',
       errors: [API_CODE.ERROR_TEXT_MUST_BE_AT_LEAST_10_CHARACTERS],
@@ -42,7 +42,7 @@ export const postAnnotation = async (request, reply) => {
     return reply.status(400).send(responseData)
   }
 
-  if(data.annotation.length > 800){
+  if(pageItem.customInstructions.length > 0 && data.annotation.length > 800){
     const responseData: GetReadResponseError = {
       status: 'ERROR',
       errors: [API_CODE.ERROR_TEXT_MUST_BE_AT_LEAST_10_CHARACTERS],
@@ -83,6 +83,15 @@ export const postAnnotation = async (request, reply) => {
       pageUuid: pageItem.pageUuid,
     })
 
+
+  const page: Page = await pg('page')
+      .where({
+        pageUuid: pageItem.pageUuid,
+      })
+      .first()
+
+
+
   log('notify receiver_ids')
   for (const pageWorker of pageWorkers) {
     log('send email')
@@ -90,22 +99,24 @@ export const postAnnotation = async (request, reply) => {
       sender: EMAIL_DEFAULT_SENDER,
       receiver: pageWorker.email,
       subject: email_notify_receiver_of_new_task_subject(),
-      body: email_notify_receiver_of_new_task_body(
-        pageItem.title,
-        pageItem.subTitle,
-        pageItemProgress.annotation,
-        getFrontendActUrl(
-          {
-            action: Action.start,
-            pageItemProgressUuid: pageItemProgress.pageItemProgressUuid,
-            userUuid: pageWorker.userUuid,
-          },
-          true
-        ),
-        getFrontendPageItemProgressUrl(
-          { pageItemProgressUuid: pageItemProgress.pageItemProgressUuid },
-          true
-        )
+      body: email_notify_receiver_of_new_task_body({
+            pageTitle: page.title,
+            title: pageItem.title,
+            subtitle: pageItem.subTitle,
+            annotation: pageItemProgress.annotation,
+            link_start: getFrontendActUrl(
+                {
+                  action: Action.start,
+                  pageItemProgressUuid: pageItemProgress.pageItemProgressUuid,
+                  userUuid: pageWorker.userUuid,
+                },
+                true
+            ),
+            link_task: getFrontendPageItemProgressUrl(
+                { pageItemProgressUuid: pageItemProgress.pageItemProgressUuid },
+                true
+            )
+          }
       ),
     })
   }

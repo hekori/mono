@@ -23,10 +23,6 @@ type PropsPageRead = {
 }
 
 
-
-
-
-
 export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
     const {state, api} = useGlobal()
     const history = useHistory()
@@ -52,19 +48,17 @@ export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
             )
         )
 
-        if (res.status === 'ERROR'){
+        if (res.status === 'ERROR') {
 
             setErrors(res.errors.map((item: string) => {
-                if(item === API_CODE.ERROR_TEXT_MUST_BE_AT_LEAST_10_CHARACTERS){
+                if (item === API_CODE.ERROR_TEXT_MUST_BE_AT_LEAST_10_CHARACTERS) {
                     return 'Text is too short. Must be at least 10 characters long!'
-                }
-                else if(item === API_CODE.ERROR_TEXT_MUST_BE_AT_MOST_800_CHARACTERS){
+                } else if (item === API_CODE.ERROR_TEXT_MUST_BE_AT_MOST_800_CHARACTERS) {
                     return 'Text is too long. Must be at most 800 characters long!'
                 }
                 return item
             }))
-        }
-        else if (err) {
+        } else if (err) {
             setErrors([err.toString()])
             return
         } else {
@@ -79,14 +73,16 @@ export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
     else if (error) content = <Error500/>
     else if (data?.status === API_CODE.ERROR) content = <Error500/>
     else if (isGetReadResponseOk(data) && data.pageItem.customInstructions.length === 0) {
-        void sendRequest()
-        content = <Loading/>
+        if (errors.length === 0) {
+            void sendRequest()
+            content = <Loading/>
+        } else content = <Error500/>
     } else if (isGetReadResponseOk(data)) {
 
         content = (
             <div className="w-full mx-auto text-left pt-6 pb-12 min-h-screen">
                 <div className="container max-w-5xl mx-auto m-8 p-8">
-                    <h1 className={'text-xl pb-8'}> Please enter additional information </h1>
+                    <h1 className={'text-xl pb-8'}>Please enter additional information </h1>
 
                     <TextArea
                         className={'text-md'}
@@ -101,6 +97,7 @@ export const PageRead: React.FC<PropsPageRead> = ({routeInfo}) => {
                         className="min-w-full mt-8"
                         onClick={async (e) => {
                             e.preventDefault()
+                            setErrors([])
                             void sendRequest()
                         }}
                     >

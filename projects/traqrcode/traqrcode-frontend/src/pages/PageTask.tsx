@@ -1,12 +1,12 @@
 import * as React from 'react'
-import { useGlobal } from '../hooks/useGlobal'
-import { useQuery } from 'react-query'
-import { GetTaskResponseOk } from '@hekori/traqrcode-common'
-import { Loading } from '../components/Loading'
-import { ProgressInfo, ProgressInfoConnector } from '../components/ProgressInfo'
-import { Shell } from '../components/Shell'
-import { mdiCheck, mdiEmail, mdiProgressClock } from '@mdi/js'
-import { TaskRouteInfo } from '../routing/routingTypes'
+import {useGlobal} from '../hooks/useGlobal'
+import {useQuery} from 'react-query'
+import {GetTaskResponseOk} from '@hekori/traqrcode-common'
+import {Loading} from '../components/Loading'
+import {ProgressInfo, ProgressInfoConnector} from '../components/ProgressInfo'
+import {Shell} from '../components/Shell'
+import {mdiCheck, mdiEmail, mdiProgressClock} from '@mdi/js'
+import {TaskRouteInfo} from '../routing/routingTypes'
 import {PageItemProgressSummary} from "../components/PageItemProgressSummary";
 import {TextSubtitle} from "@hekori/uikit";
 
