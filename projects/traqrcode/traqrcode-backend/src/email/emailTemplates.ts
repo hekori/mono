@@ -23,8 +23,8 @@ and download the PDF for printing here
 ${link_pdf}
 `
 
-export const email_notify_receiver_of_new_task_subject = () =>
-    '[TRAQRCODE] New request'
+export const email_notify_receiver_of_new_task_subject = (pageTitle) =>
+    `[TRAQRCODE] New request - ${pageTitle}`
 
 export const email_notify_receiver_of_new_task_body = ({
                                                            pageTitle,
@@ -60,8 +60,8 @@ ${link_task}
 
 }
 
-export const email_notify_accept_task_subject = () =>
-    `[TRAQRCODE] You have accepted the task`
+export const email_notify_accept_task_subject = (pageTitle) =>
+    `[TRAQRCODE] You have accepted the task - ${pageTitle}`
 
 export const email_notify_accept_task_body = ({
                                                   pageTitle,
@@ -93,8 +93,8 @@ You can view the current status of the task here
 ${link_stop}
 `
 
-export const email_notify_done_task_subject = () =>
-    '[TRAQRCODE] You have finished the task'
+export const email_notify_done_task_subject = (pageTitle) =>
+    `[TRAQRCODE] You have finished the task - ${pageTitle}`
 
 export const email_notify_done_task_body = ({
                                                 pageTitle,

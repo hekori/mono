@@ -98,7 +98,7 @@ export const postAnnotation = async (request, reply) => {
     await sendMail({
       sender: EMAIL_DEFAULT_SENDER,
       receiver: pageWorker.email,
-      subject: email_notify_receiver_of_new_task_subject(),
+      subject: email_notify_receiver_of_new_task_subject(page.title),
       body: email_notify_receiver_of_new_task_body({
             pageTitle: page.title,
             title: pageItem.title,

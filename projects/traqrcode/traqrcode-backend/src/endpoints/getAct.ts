@@ -54,7 +54,7 @@ export const getAct = async (request, reply) => {
         await sendMail({
             sender: EMAIL_DEFAULT_SENDER,
             receiver: user.email,
-            subject: email_notify_accept_task_subject(),
+            subject: email_notify_accept_task_subject(page.title),
             body: email_notify_accept_task_body(
                 {
                     pageTitle: page.title,
@@ -85,7 +85,7 @@ export const getAct = async (request, reply) => {
         await sendMail({
             sender: EMAIL_DEFAULT_SENDER,
             receiver: user.email,
-            subject: email_notify_done_task_subject(),
+            subject: email_notify_done_task_subject(page.title),
             body: email_notify_done_task_body({
                 pageTitle: page.title,
                 title: pageItem.title,
